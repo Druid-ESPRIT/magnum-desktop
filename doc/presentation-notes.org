@@ -1,0 +1,60 @@
+#+TITLE: Presentation Notes
+#+AUTHOR: Druid
+
+* Introduction
+
+Magnum est une plateforme de podcasting, similaire à Google Podcasts et Spotify.
+
+* Problématique + étude de l'existant
+
+Vous êtes-vous déjà demandé à quoi ressemblerait le monde si Spotify ne
+monopolisait pas l'industrie du podcasting?
+
+Magnum espère changer cela.
+
+* Critique de l’existant
+
+#+attr_html: :width 100px
+[[file:~/img/spotify-logo.png][Spotify Logo]]
+
+- Spotify n'offre pas une bonne expérience pour les utilisateurs non premium.
+- Monopolie de Spotify dans l'industrie du podcasting.
+- Manque d'innovation de la part de Google Podcasts.
+
+* Solution proposée (Idée du projet)
+
+Magnum associe l'interactivité sociale dont nous rêvons aux podcasts que nous
+écoutons.
+
+Les podcasteurs peuvent choisir de monétiser leur contenu via des abonnements,
+mais Magnum sera toujours gratuite.
+
+* Identification des acteurs
+
+- Les spectateurs.
+- Les podcasteurs.
+- Les administrateurs.
+
+* Spécifications fonctionnelles: Besoin fonctionnel + non fonctionnel
+
+=Décrire les fonctionnalités du front-office, back-office ici (par des
+diagrammes par exemples)=
+
+* Les modules
+
+- Gestion des utilisateurs
+- Gestion des abonnements
+- Gestion des podcasts
+- Gestion des playlists
+- Gestion des paiements/paniers
+- Gestion des historiques
+
+* Maquettes des interfaces (choisir un ou 2 cas d'utilisation (Java, Web et Mobile)
+
+=Ajouter vos maquettes ici.=
+
+* Stratégie Marketing pour vendre l’application
+
+
+
+* Conclusion

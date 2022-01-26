@@ -1,1 +1,153 @@
-/home/grtcdr/doc/org/java-project.org
+#+TITLE: Java Project
+#+AUTHOR: Druid
+
+* Magnum
+** Description
+Magnum is a Podcasting platform, similar to Google Podcasts and Spotify.
+
+** Models:
+*** User Management:
+#+BEGIN_EXAMPLE
+                      +----------+         +-------------------+
+                      |   User   |         | Preferences       |
+                      |----------|  Joins  |-------------------|
+                      | ID: Int  | <-----> | UserID: Int       |
+                      | Username |         | Comedy¹: bool     |
+                      | Email    |         | Science²: bool    |
+                      | Password |         | Technology³: bool |
+                      +----------+         +-------------------+
+
+[1,2,3]: If set to `true`, it means that this user is interested in this
+topic. This is used to determine the kind/category of content that will later
+appear in their feed.
+
+Preferences is the main mechanism that drives the Feed. For more
+information, see the footnotes.
+
+#+END_EXAMPLE
+
+**** Description:
+The user table defines the model of a user, see /[[#types]["Types"]]/  for a list of available types.
+
+**** Types:
+:PROPERTIES:
+:CUSTOM_ID: types
+:END:
+1. Viewers (User).
+2. Uploaders (Content creators).
+3. Moderators (Admins).
+
+-----
+
+*** Subscription Management:
+*Podcasters* can monetize their content in the form of subscriptions.
+
+Users may choose to pay a fee to subscribe to them. Based on the tier the user
+chooses, they receive access to perks that non-subscribed users may not. The pricing
+of these tiers is not regulated by Magnum.
+
+#+BEGIN_EXAMPLE
+                 +------------------+
+                 |   Subscription   |
+                 |------------------|
+                 | ID: Int          |
+                 | UserID: Int      |  <--- This joins with the ID
+                 | PodcasterID: Int |       column of the user table.
+                 | From: Date       |
+                 | To: Date         |
+                 | Price: Float     |
+                 +------------------+
+#+END_EXAMPLE
+
+-----
+
+*** Podcast Management:
+#+BEGIN_EXAMPLE
++-----------------------------+     +------------------+
+| Podcast                     |     | Comment          |
+| --------------------------- |     |------------------|
+| ID: Int                     |     | UserID: Int      | <---- This joins with the ID
+| SubscriptionID: Int         |     | ReplyingTo: Int  |       column of the user table.
+| Category: Enum<Category>    |     | Message: String  |
+| Views: Int                  |     | SubmitDate: Date |
+| Rating: Int (1..5)          |     +------------------+
+| PodcasterID: Int            |
++-----------------------------+
+
+enum Category {
+    Comedy,
+    Science,
+    Horror,
+    Technology,
+    etc.
+}
+
+If PlanID of the Podcast table is NULL, the podcast is not a part of any plan,
+meaning the podcast is free of charge.
+#+END_EXAMPLE
+
+-----
+
+*** Playlist Management:
+#+BEGIN_EXAMPLE
++---------------------+
+| Playlist            |
+|---------------------|
+| ID                  |
+| UserID:             | <-- This joins with the user table.
+| Name                |
+| Description         |
+| Podcasts: [ID: Int] | <-- This joins with the podcast table.
++---------------------+
+#+END_EXAMPLE
+
+-----
+
+*** Payment/Cart Management:
+
+
+
+-----
+
+*** History Management:
+
+#+BEGIN_EXAMPLE
+Possible views that can be shown based on the data provided by this module:
+- Profile activity.
+- Commenting activity.
+- Watch history.
+- Purchase (subscriptions) history.
+
+enum Type {
+    Podcast,
+    Profile,
+    Comment,
+    Purchases,
+}
+
+                       +-----------------+
+                       | History         |
+                       |-----------------|
+                       | UserID: Int     | <--- This joins with the ID column of
+                       | Message: String |      the User table.
+                       | Time: Date      |
+                       +-----------------+
+
+#+END_EXAMPLE
+
+-----
+
+** Tasks:
+1. [[#foot][Feed]].
+2. Audio player.
+3. Playlists.
+4. [[#foot][XML Parser]].
+5. Donations.
+6. Slur-filter.
+
+** Footnotes:
+:PROPERTIES:
+:CUSTOM_ID: foot
+:END:
+- Feed: A discoverable interface that presents a curated list of podcasts that constantly evolves per the *user's preferences*.
+- XML Parser: RSS is at the backbone of the podcasting industry; RSS speaks XML. Magnum may retrieve and play *outside podcasts*, i.e. podcasts that are not available directly on the platform.
