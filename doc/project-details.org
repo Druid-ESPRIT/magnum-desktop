@@ -67,11 +67,13 @@ of these tiers is not regulated by Magnum.
 | Podcast                     |     | Comment          |
 | --------------------------- |     |------------------|
 | ID: Int                     |     | UserID: Int      | <---- This joins with the ID
-| SubscriptionID: Int         |     | ReplyingTo: Int  |       column of the user table.
-| Category: Enum<Category>    |     | Message: String  |
-| ImagePath: String           |
-| Views: Int                  |     | SubmitDate: Date |
-| Hash: String                |     +------------------+
+| SubscriptionID: Int         | <-: | ReplyingTo: Int  |       column of the user table.
+| Category: Enum<Category>    |   | | Message: String  |
+| ImagePath: String           |   | | SubmitDate: Date |
+| Views: Int                  |   | +------------------+
+| Title: String               |   |
+| Description: String         |   \,----> This joins with the ID column
+| Hash: String                |           of the subscription table.
 | Rating: Int (1..5)          |
 | PodcasterID: Int            |
 +-----------------------------+
