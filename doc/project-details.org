@@ -1,4 +1,4 @@
-#+TITLE: Java Project
+#+TITLE: Magnum's Class & Functionality Documentation
 #+AUTHOR: Druid
 
 * Magnum
