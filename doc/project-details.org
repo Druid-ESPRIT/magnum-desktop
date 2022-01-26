@@ -19,16 +19,7 @@ Magnum is a Podcasting platform, similar to Google Podcasts and Spotify.
 | ProfilePicturePath |
 +--------------------+
 
-+-------------------+
-|    Preferences    |
-|-------------------|
-| UserID: Int       |
-| Comedy¹: bool     |
-| Science²: bool    |
-| Technology³: bool |
-+-------------------+
-
-// Extended documentation of the "User" table --------------------------------------------
+// Extended documentation of the "User" table -----------------------------
 User {
   ID: Int,                    // Unsigned integer as its type.
   Username: String,           // Unique username.
@@ -38,7 +29,16 @@ User {
   ProfilePicturePath: String, // Path to the user's profile picture in the server's filesystem.
 }
 
-// Extended documentation fo the "Preferences" table.
++-------------------+
+|    Preferences    |
+|-------------------|
+| UserID: Int       |
+| Comedy¹: bool     |
+| Science²: bool    |
+| Technology³: bool |
++-------------------+
+
+// Extended documentation fo the "Preferences" table ----------------------
 [1,2,3]: If set to `true`, it means that this user is interested in this
 topic. This is used to determine the kind/category of content that will later
 appear in their feed.
@@ -97,7 +97,7 @@ of these tiers is not regulated by Magnum.
 +-----------------------------+      :----> This joins with the user ID column
                                             of the user (i.e. podcaster) table.
 
-// Extended documentation of the "Podcast" table ------------------------------------------
+// Extended documentation of the "Podcast" table --------------------------
 - Hash: A podcast's hash is calculated and stored in order
 to stop a podcaster from re-uploading the same exact audio file more than once.
 - SubscriptionID: If SubscriptionID of the Podcast table is a '0', the podcast is not a part of any subscription,
@@ -113,7 +113,7 @@ meaning the podcast is free of charge.
 | SubmitDate: Date |   \,-----> This joins with the ID column of the "Podcast" table.
 +------------------+
 
-// Extended documentation of the "Comment" table -------------------------------------------
+// Extended documentation of the "Comment" table --------------------------
 enum Category {
     Comedy,
     Science,
@@ -122,9 +122,8 @@ enum Category {
     etc.
 }
 
-UserID: The user ID of the original commenter.
-
-ReplyingTo: This points to some user's ID (instead of their username (String),
+- UserID: The user ID of the original commenter.
+- ReplyingTo: This points to some user's ID (instead of their username (String),
 which could be costly in a giant database). If a comment is not a reply, this column takes a '0'.
 #+END_EXAMPLE
 
@@ -148,6 +147,8 @@ which could be costly in a giant database). If a comment is not a reply, this co
 
 *** Payment/Cart Management:
 #+BEGIN_EXAMPLE
+TODO: Fill this puppy with the appropriate fields.
+
     +------------------------+
     |         Payment        |
     |------------------------|
@@ -159,29 +160,23 @@ which could be costly in a giant database). If a comment is not a reply, this co
 -----
 
 *** History Management:
-
-#+BEGIN_EXAMPLE
 Possible views that can be shown based on the data provided by this module:
 - Profile activity.
 - Commenting activity.
 - Watch history.
 - Purchase (subscriptions) history.
 
-enum Type {
-    Podcast,
-    Profile,
-    Comment,
-    Purchases,
-}
+#+BEGIN_EXAMPLE
+NOTE: This model is not ready yet.
+TODO: Finalize this model.
 
-                       +-----------------+
-                       | History         |
-                       |-----------------|
-                       | UserID: Int     | <--- This joins with the ID column of
-                       | Message: String |      the User table.
-                       | Time: Date      |
-                       +-----------------+
-
++-----------------+
+| History         |
+|-----------------|
+| UserID: Int     | <--- This joins with the ID column of
+| Message: String |      the User table.
+| Time: Date      |
++-----------------+
 #+END_EXAMPLE
 
 -----
