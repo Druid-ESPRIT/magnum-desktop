@@ -69,8 +69,10 @@ of these tiers is not regulated by Magnum.
 | ID: Int                     |     | UserID: Int      | <---- This joins with the ID
 | SubscriptionID: Int         |     | ReplyingTo: Int  |       column of the user table.
 | Category: Enum<Category>    |     | Message: String  |
+| ImagePath: String           |
 | Views: Int                  |     | SubmitDate: Date |
-| Rating: Int (1..5)          |     +------------------+
+| Hash: String                |     +------------------+
+| Rating: Int (1..5)          |
 | PodcasterID: Int            |
 +-----------------------------+
 
@@ -144,6 +146,9 @@ enum Type {
 4. [[#foot][XML Parser]].
 5. Donations.
 6. Slur-filter.
+7. Spam-filter.
+8. Keyboard navigation.
+9. Get started/usage guide/documentation.
 
 ** Footnotes:
 :PROPERTIES:
