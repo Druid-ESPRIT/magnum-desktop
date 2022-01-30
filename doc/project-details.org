@@ -6,42 +6,49 @@
 Magnum is a Podcasting platform, similar to Google Podcasts and Spotify.
 
 ** Models:
-*** User Management:
+*** User & History Management:
 #+BEGIN_EXAMPLE
-+--------------------+
-|        User        |
-|--------------------|
-| ID                 |
-| Username           |
-| Email              |
-| Password           |
-| Biography          |
-| ProfilePicturePath |
-+--------------------+
++----------------------------+
+|            Users           |
+|----------------------------|
+| ID: Int                    |
+| username: String           |
+| email: String              |
+| password: String           |
+| biography: String          |
+| status: Enum<Status>       |
+| profilePicturePath: String |
++----------------------------+
 
 // Extended documentation of the "User" table -----------------------------
 User {
   ID: Int,                    // Unsigned integer as its type.
-  Username: String,           // Unique username.
-  Email: String,
-  Password: String,           // Hashed password.
-  Biography: String,          // "About me".
-  ProfilePicturePath: String, // Path to the user's profile picture in the server's filesystem.
+  username: String,           // Unique username.
+  email: String,
+  password: String,           // Hashed password.
+  biography: String,          // "About me".
+  profilePicturePath: String, // Path to the user's profile picture in the server's filesystem.
 }
 
-+-------------------+
-|    Preferences    |
-|-------------------|
-| UserID: Int       |
-| Comedy¹: bool     |
-| Science²: bool    |
-| Technology³: bool |
-+-------------------+
+// Extended documentation of the "Preferences" table ----------------------
+As the user listens to more and more podcasts of a specific type (e.g. Comedy),
+the preferences table will increment the appropriate column so that we can track
+the user's preferences and display a tailored experience for the user, i.e. in
+their feed.
 
-// Extended documentation fo the "Preferences" table ----------------------
-[1,2,3]: If set to `true`, it means that this user is interested in this
-topic. This is used to determine the kind/category of content that will later
-appear in their feed.
++-----------------+
+| History         |
+|-----------------|
+| userID: Int     | <--- This joins with the ID column of
+| message: String |      the User table.
+| time: Date      |
++-----------------+
+
+// Extended documentation of the "History" table --------------------------
+- Profile activity.
+- Commenting activity.
+- Watch history.
+- Purchase (subscriptions) history.
 #+END_EXAMPLE
 
 **** Description:
@@ -57,43 +64,40 @@ The user table defines the model of a user, see /[[#types]["Types"]]/  for a lis
 
 -----
 
-*** Subscription Management:
-*Podcasters* can monetize their content in the form of subscriptions.
-
-Users may choose to pay a fee to subscribe to them. Based on the tier the user
-chooses, they receive access to perks that non-subscribed users may not. The pricing
-of these tiers is not regulated by Magnum.
+*** Feed & Preferences Management:
 
 #+BEGIN_EXAMPLE
-+------------------+
-|   Subscription   |
-|------------------|
-| ID: Int          |
-| UserID: Int      |  <--- This joins with the ID
-| PodcasterID: Int |       column of the user table.
-| From: Date       |
-| To: Date         |
-| Price: Float     |
-+------------------+
++-------------------+
+|    Preferences    |
+|-------------------|
+| userID: Int       |
+| comedy¹: Int      |
+| science²: Int     |
+| technology³: Int  |
+| politics: Int     |
+| news: Int         |
+| sports: Int       |
+| business: Int     |
++-------------------+
 #+END_EXAMPLE
 
 -----
 
-*** Podcast Management:
+*** Podcast & Comment Management:
 #+BEGIN_EXAMPLE
 +-----------------------------+
-| Podcast                     |
+| Podcasts                    |
 |-----------------------------|
 | ID: Int                     |
-| SubscriptionID: Int         | <-,
-| Category: Enum<Category>    |   |
-| Views: Int = 0              |   |
-| ImagePath: String           |   |
-| Title: String               |   |
-| Description: String         |   \,----> This joins with the ID column
-| Hash: String                |           of the subscription table.
-| Rating: Int (1..5)          |
-| PodcasterID: Int            | <----:
+| subscriptionID: Int         | <-,
+| category: Enum<Category>    |   |
+| views: Int = 0              |   |
+| imagePath: String           |   |
+| title: String               |   |
+| description: String         |   \,----> This joins with the ID column
+| hash: String                |           of the subscription table.
+| rating: Int (1..5)          |
+| podcasterID: Int            | <----:
 +-----------------------------+      :----> This joins with the user ID column
                                             of the user (i.e. podcaster) table.
 
@@ -104,13 +108,13 @@ to stop a podcaster from re-uploading the same exact audio file more than once.
 meaning the podcast is free of charge.
 
 +------------------+
-| Comment          |
+| Comments         |
 |------------------|
-| UserID: Int      | <---- This joins with the ID
-| PodcastID: Int   | <-,   column of the "User" table.
-| ReplyingTo: Int  |   |
-| Message: String  |   |
-| SubmitDate: Date |   \,-----> This joins with the ID column of the "Podcast" table.
+| userID: Int      | <---- This joins with the ID
+| podcastID: Int   | <-,   column of the "User" table.
+| replyingTo: Int  |   |
+| message: String  |   |
+| submitDate: Date |   \,-----> This joins with the ID column of the "Podcast" table.
 +------------------+
 
 // Extended documentation of the "Comment" table --------------------------
@@ -122,8 +126,8 @@ enum Category {
     etc.
 }
 
-- UserID: The user ID of the original commenter.
-- ReplyingTo: This points to some user's ID (instead of their username (String),
+- userID: The user ID of the original commenter.
+- replyingTo: This points to some user's ID (instead of their username (String),
 which could be costly in a giant database). If a comment is not a reply, this column takes a '0'.
 #+END_EXAMPLE
 
@@ -132,51 +136,45 @@ which could be costly in a giant database). If a comment is not a reply, this co
 *** Playlist Management:
 #+BEGIN_EXAMPLE
 +---------------------+
-| Playlist            |
+| Playlists           |
 |---------------------|
 | ID: Int             |
-| UserID: Int         | <-- This joins with ID column of the "User" table.
-| Name: String        |
-| Description: String |
-| CreationDate: Date  |
-| Podcasts: ID[Int]   | <-- This joins with ID column of the "Podcast" table.
+| userID: Int         | <-- This joins with ID column of the "User" table.
+| name: String        |
+| description: String |
+| creationDate: Date  |
+| podcasts: ID[Int]   | <-- This joins with ID column of the "Podcast" table.
 +---------------------+
 #+END_EXAMPLE
 
 -----
 
-*** Payment/Cart Management:
+*** Payment & Subscription Management:
+*Podcasters* can monetize their content in the form of subscriptions.
+
+Users may choose to pay a fee to subscribe to them. Based on the tier the user
+chooses, they receive access to perks that non-subscribed users may not. The pricing
+of these tiers is not regulated by Magnum.
+
 #+BEGIN_EXAMPLE
 TODO: Fill this puppy with the appropriate fields.
 
-    +------------------------+
-    |         Payment        |
-    |------------------------|
-    |           ...          |
-    +------------------------+
-#+END_EXAMPLE
++------------------------+
+|         Payments       |
+|------------------------|
+|           ...          |
++------------------------+
 
-
------
-
-*** History Management:
-Possible views that can be shown based on the data provided by this module:
-- Profile activity.
-- Commenting activity.
-- Watch history.
-- Purchase (subscriptions) history.
-
-#+BEGIN_EXAMPLE
-NOTE: This model is not ready yet.
-TODO: Finalize this model.
-
-+-----------------+
-| History         |
-|-----------------|
-| UserID: Int     | <--- This joins with the ID column of
-| Message: String |      the User table.
-| Time: Date      |
-+-----------------+
++------------------+
+|  Subscriptions   |
+|------------------|
+| ID: Int          |
+| userID: Int      |  <--- This joins with the ID
+| podcasterID: Int |       column of the user table.
+| from: Date       |
+| to: Date         |
+| price: Float     |
++------------------+
 #+END_EXAMPLE
 
 -----
