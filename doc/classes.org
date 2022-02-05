@@ -1,7 +1,7 @@
-#+TITLE: Classes & Functionalities
+#+TITLE: Modules & Functionalities
 #+AUTHOR: Druid
 
-* Models
+* Modules
 ** User Management
 *** Description
 The user table defines the model of the possible actors of magnum, i.e. its
@@ -238,9 +238,10 @@ ype {
 -----
 
 * Functionalities
+
 1. Audio player
-2. /[[#discover][Discover page]]/
-3. /[[#xmlp][XML Parser]]/
+2. /[[#discover-page][Discover page]]/
+3. /[[#xml-parser][XML Parser]]/
 4. Slur filter for the comments model
 5. Spam filter for the podcasts model
 6. Keyboard navigation
@@ -249,14 +250,14 @@ ype {
 * Footnotes
 ** Discover page
 :PROPERTIES:
-:CUSTOM_ID: discover
+:CUSTOM_ID: discover-page
 :END:
 An interface that presents a curated list of podcasts to the user sorted by
 their category.
 
 ** XML Parser
 :PROPERTIES:
-:CUSTOM_ID: xmlp
+:CUSTOM_ID: xml-parser
 :END:
 RSS is at the backbone of the podcasting industry; RSS speaks XML. Magnum may
 retrieve and play *outside podcasts*, i.e. podcasts that are not available
