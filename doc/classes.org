@@ -1,4 +1,4 @@
-#+TITLE: Modules & Functionalities
+#+TITLE: Magnum's modules and functionalities
 #+AUTHOR: Druid
 
 * Modules
@@ -238,13 +238,12 @@ ype {
 -----
 
 * Functionalities
-
 1. Audio player
 2. /[[#discover-page][Discover page]]/
-3. /[[#xml-parser][XML Parser]]/
-4. Slur filter for the comments model
-5. Spam filter for the podcasts model
-6. Keyboard navigation
+3. /[[#xml-parser][XML parser]]/
+4. Keyboard navigation
+5. Slur filter for the comments model
+6. Spam filter for the podcasts model
 7. Get started/usage guide/documentation
 
 * Footnotes
