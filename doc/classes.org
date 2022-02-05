@@ -1,14 +1,12 @@
-#+TITLE: Magnum's Class & Functionality Documentation
+#+TITLE: Classes & Functionalities
 #+AUTHOR: Druid
 
 * Magnum
-** Description
-Magnum - a podcast & article platform.
-
 ** Models
 *** User Management
 **** Models
 ***** Users
+
 #+BEGIN_EXAMPLE
 +----------------------------+
 |            Users           |
@@ -45,7 +43,8 @@ enum Activities {
 #+END_EXAMPLE
 
 **** Description
-The user table defines the model of the possible actors of magnum, i.e. its users. For more information, see the /[[#actors]["Actors"]]/ section.
+The user table defines the model of the possible actors of magnum, i.e. its
+users. For more information, see the /[[#actors]["Actors"]]/ section.
 
 **** Actors
 :PROPERTIES:
@@ -124,13 +123,8 @@ meaning the podcast is free of charge.
 #+END_EXAMPLE
 
 *** Subscription Management:
-*Podcasters* can monetize their content in the form of subscriptions.
-
-Users may choose to pay a fee to subscribe to them. Based on the tier the user
-chooses, they receive access to perks that non-subscribed users may not. The pricing
-of these tiers is not regulated by Magnum.
-
-**** Payment Method
+**** Models
+***** Payment Method
 
 #+BEGIN_EXAMPLE
 +--------------------------+
@@ -145,7 +139,6 @@ of these tiers is not regulated by Magnum.
 | CVV: int                 |
 +--------------------------+
 
-// Extended documentation of the "CreditCards" table --------------------------
 enum Issuers {
     VISA,
     MasterCard,
@@ -154,7 +147,7 @@ enum Issuers {
 }
 #+END_EXAMPLE
 
-**** Subscriptions
+***** Subscriptions
 
 #+BEGIN_EXAMPLE
 +------------------+
@@ -169,6 +162,14 @@ enum Issuers {
 +------------------+
 #+END_EXAMPLE
 
+**** Description
+
+*Podcasters* can monetize their content in the form of subscriptions.
+
+Users may choose to pay a fee to subscribe to them. Based on the tier the user
+chooses, they receive access to perks that non-subscribed users may not. The pricing
+of these tiers is not regulated by Magnum.
+
 *** Flag management
 
 #+BEGIN_EXAMPLE
@@ -177,7 +178,7 @@ enum Issuers {
 |---------------------|
 | ID: int             |
 | userID: int         | <-- This joins with ID column of the "User" table.
-| offenseID: String   |
+| offenseID: String   | <-- This joins with the ID column of the "Offense" table.
 | description: String |
 | dateFlagged: Date   |
 +---------------------+
@@ -186,7 +187,7 @@ enum Issuers {
 | Offenses                |
 |-------------------------|
 | ID: int                 |
-| points: int             | <-- This joins with ID column of the "User" table.
+| points: int             |
 | type: enum<OffenseType> |
 +-------------------------+
 
@@ -225,7 +226,8 @@ enum TicketStatus {
 | type: enum<TicketType> |
 +------------------------+
 
-enum TicketType {
+enum TicketT
+ype {
   FeatureRequest,
   BugReport,
   FailedPayment,
@@ -236,38 +238,21 @@ enum TicketType {
 
 -----
 
-** Tasks
-1. /[[#foot][Feed]]/.
+** Functionalities
+1. /[[*Footnotes][Discover page]]/.
 2. Audio player.
-3. /[[#foot][XML Parser]]/.
-4. Donations.
-5. Slur-filter.
-6. Spam-filter.
-7. Keyboard navigation.
-8. Get started/usage guide/documentation.
+3. /[[*Footnotes][XML Parser]]/.
+4. Slur filter for the comments model.
+5. Spam filter for the podcasts model.
+6. Keyboard navigation.
+7. Get started/usage guide/documentation.
 
 ** Footnotes
-:PROPERTIES:
-:CUSTOM_ID: foot
-:END:
-- Feed: A discoverable interface that presents a curated list of podcasts that constantly evolves per the *user's preferences*.
-- XML Parser: RSS is at the backbone of the podcasting industry; RSS speaks XML. Magnum may retrieve and play *outside podcasts*, i.e. podcasts that are not available directly on the platform.
+*** Discover page
+An interface that presents a curated list of podcasts to the user sorted by
+their category.
 
------
-
-* Tables that should be considered in the future
-
-** Playlist Management
-
-#+BEGIN_EXAMPLE
-+---------------------+
-| Playlists           |
-|---------------------|
-| ID: int             |
-| userID: int         | <-- This joins with ID column of the "User" table.
-| name: String        |
-| description: String |
-| creationDate: Date  |
-| podcasts: ID[int]   | <-- This joins with ID column of the "Podcast" table.
-+---------------------+
-#+END_EXAMPLE
+*** XML Parser
+RSS is at the backbone of the podcasting industry; RSS speaks XML. Magnum may
+retrieve and play *outside podcasts*, i.e. podcasts that are not available
+directly on the platform.
