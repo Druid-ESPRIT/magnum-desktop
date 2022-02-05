@@ -1,11 +1,22 @@
 #+TITLE: Classes & Functionalities
 #+AUTHOR: Druid
 
-* Magnum
-** Models
-*** User Management
-**** Models
-***** Users
+* Models
+** User Management
+*** Description
+The user table defines the model of the possible actors of magnum, i.e. its
+users. For more information, see the /[[#actors]["Actors"]]/ section.
+
+*** Actors
+:PROPERTIES:
+:CUSTOM_ID: actors
+:END:
+1. Regular users
+2. Content creators
+3. Administrators
+
+*** Models
+**** Users
 
 #+BEGIN_EXAMPLE
 +----------------------------+
@@ -23,7 +34,7 @@
 +----------------------------+
 #+END_EXAMPLE
 
-***** History
+**** History
 
 #+BEGIN_EXAMPLE
 +----------------------------+
@@ -42,20 +53,8 @@ enum Activities {
 }
 #+END_EXAMPLE
 
-**** Description
-The user table defines the model of the possible actors of magnum, i.e. its
-users. For more information, see the /[[#actors]["Actors"]]/ section.
-
-**** Actors
-:PROPERTIES:
-:CUSTOM_ID: actors
-:END:
-1. Viewers (User).
-2. Uploaders (Content creators).
-3. Moderators (Admins).
-
-*** Podcast Management
-**** Podcasts
+** Podcast Management
+*** Podcasts
 
 #+BEGIN_EXAMPLE
 +-----------------------------+
@@ -82,7 +81,7 @@ meaning the podcast is free of charge.
 
 #+END_EXAMPLE
 
-**** Categories
+*** Categories
 
 #+BEGIN_EXAMPLE
 +---------------------+
@@ -94,8 +93,8 @@ meaning the podcast is free of charge.
 +---------------------+
 #+END_EXAMPLE
 
-*** Article Management
-**** Articles
+** Article Management
+*** Articles
 
 #+BEGIN_EXAMPLE
 +------------------+
@@ -108,7 +107,7 @@ meaning the podcast is free of charge.
 +------------------+
 #+END_EXAMPLE
 
-**** Comments
+*** Comments
 
 #+BEGIN_EXAMPLE
 +------------------+
@@ -122,9 +121,17 @@ meaning the podcast is free of charge.
 +------------------+
 #+END_EXAMPLE
 
-*** Subscription Management:
-**** Models
-***** Payment Method
+** Subscription Management:
+*** Description
+
+*Podcasters* can monetize their content in the form of subscriptions.
+
+Users may choose to pay a fee to subscribe to them. Based on the tier the user
+chooses, they receive access to perks that non-subscribed users may not. The pricing
+of these tiers is not regulated by Magnum.
+
+*** Models
+**** Payment Method
 
 #+BEGIN_EXAMPLE
 +--------------------------+
@@ -147,7 +154,7 @@ enum Issuers {
 }
 #+END_EXAMPLE
 
-***** Subscriptions
+**** Subscriptions
 
 #+BEGIN_EXAMPLE
 +------------------+
@@ -162,15 +169,7 @@ enum Issuers {
 +------------------+
 #+END_EXAMPLE
 
-**** Description
-
-*Podcasters* can monetize their content in the form of subscriptions.
-
-Users may choose to pay a fee to subscribe to them. Based on the tier the user
-chooses, they receive access to perks that non-subscribed users may not. The pricing
-of these tiers is not regulated by Magnum.
-
-*** Flag management
+** Flag management
 
 #+BEGIN_EXAMPLE
 +---------------------+
@@ -198,7 +197,7 @@ enum OffenseType {
 }
 #+END_EXAMPLE
 
-*** Ticket management
+** Ticket management
 
 #+BEGIN_EXAMPLE
 +----------------------------+
@@ -238,21 +237,27 @@ ype {
 
 -----
 
-** Functionalities
-1. /[[*Footnotes][Discover page]]/.
-2. Audio player.
-3. /[[*Footnotes][XML Parser]]/.
-4. Slur filter for the comments model.
-5. Spam filter for the podcasts model.
-6. Keyboard navigation.
-7. Get started/usage guide/documentation.
+* Functionalities
+1. Audio player
+2. /[[#discover][Discover page]]/
+3. /[[#xmlp][XML Parser]]/
+4. Slur filter for the comments model
+5. Spam filter for the podcasts model
+6. Keyboard navigation
+7. Get started/usage guide/documentation
 
-** Footnotes
-*** Discover page
+* Footnotes
+** Discover page
+:PROPERTIES:
+:CUSTOM_ID: discover
+:END:
 An interface that presents a curated list of podcasts to the user sorted by
 their category.
 
-*** XML Parser
+** XML Parser
+:PROPERTIES:
+:CUSTOM_ID: xmlp
+:END:
 RSS is at the backbone of the podcasting industry; RSS speaks XML. Magnum may
 retrieve and play *outside podcasts*, i.e. podcasts that are not available
 directly on the platform.
