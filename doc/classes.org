@@ -77,10 +77,9 @@ Attributes:
 #+END_EXAMPLE
 
 Attributes:
-- ~hash~: A podcast's hash is calculated and stored in order
-to stop the re-uploading of already existing audio files (podcasts) within the database.
 - ~subscriptionID~: References the /ID/ column of the [[#subscriptions][Subscriptions]] table. Unless it is *NULL*, the podcast is part of a subscription.
 - ~categoryID~: References the /ID/ column of the [[#categories][Categories]] table.
+- ~hash~: A podcast's hash is calculated and stored in order to stop the re-uploading of already existing audio files (podcasts) within the database.
 
 *** Categories
 :PROPERTIES:
@@ -182,6 +181,7 @@ enum Issuers {
 +------------------+
 #+END_EXAMPLE
 
+Attributes:
 - ~cardID~: References the /ID/ column of the [[#payment-method][Payment Method]] table.
 - ~podcasterID~: References the /ID/ column of the [[#offenses][Offenses]] table.
 - ~duration~: The duration of the subscription in **months**.
@@ -253,9 +253,9 @@ enum Status {
 #+END_EXAMPLE
 
 Attributes:
-- ~kindID~: References the ID column of the [[#ticket-kind][Ticket Kind]] table.
-- ~resolvedBy~: References the ID column of the [[#users][Users]] table - The user that resolved/handled the ticket.
 - ~submittedBy~: References the ID column of the [[#users][Users]] table - The user that submitted the ticket.
+- ~resolvedBy~: References the ID column of the [[#users][Users]] table - The user that resolved/handled the ticket.
+- ~kindID~: References the ID column of the [[#ticket-kind][Ticket Kind]] table.
 
 *** Ticket Kind
 :PROPERTIES:
@@ -282,8 +282,8 @@ enum Kind {
 
 * Functionalities
 1. Audio player.
-2. [[#footnotes][Discover page^{1}]].
-3. [[#footnotes][XML parser^{2}]].
+2. [[#footnotes][Discover page^{[1]}]].
+3. [[#footnotes][XML parser^{[2]}]].
 4. Keyboard navigation.
 5. Slur filter for the /Comments/ model.
 6. Spam filter for the /Podcasts/ model.
@@ -294,9 +294,9 @@ enum Kind {
 :CUSTOM_ID: footnotes
 :END:
 
-1. Discover page: An interface that presents a curated list of podcasts to the user
-sorted by their category.
+¹ Discover page: An interface that presents a curated list of podcasts to the
+user sorted by their category.
 
-2. XML Parser: RSS is at the backbone of the podcasting industry; RSS speaks XML.
+² XML Parser: RSS is at the backbone of the podcasting industry; RSS speaks XML.
 Magnum may retrieve and play *outside podcasts*, i.e. podcasts that are not
 available directly on the platform.
