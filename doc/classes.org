@@ -184,7 +184,7 @@ enum Issuers {
 Attributes:
 - ~cardID~: References the /ID/ column of the [[#payment-method][Payment Method]] table.
 - ~podcasterID~: References the /ID/ column of the [[#offenses][Offenses]] table.
-- ~duration~: The duration of the subscription in **months**.
+- ~duration~: The duration of the subscription in *months*.
 
 ** Flag management
 Our flagging system allows the user to report another person based on a certain offense.
