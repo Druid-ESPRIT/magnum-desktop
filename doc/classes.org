@@ -60,6 +60,10 @@ Attributes:
 
 ** Podcast Management
 *** Podcasts
+:PROPERTIES:
+:CUSTOM_ID: podcasts
+:END:
+
 #+BEGIN_EXAMPLE
 +-----------------------------+
 | Podcasts                    |
@@ -138,31 +142,29 @@ Podcasters can monetize their content in the form of subscriptions.
 Users that choose to subscribe to said podcasters, must pay the fee determined
 by them.
 
-*** Payment Method
+*** Orders
 :PROPERTIES:
-:CUSTOM_ID: payment-method
+:CUSTOM_ID: orders
 :END:
 
 #+BEGIN_EXAMPLE
-+--------------------------+
-| PaymentMethod            |
-|--------------------------|
-| ID: int                  |
-| userID: int              |
-| issuer: Enum<Issuers>    |
-| cardNumber: int          |
-| expiryYear: int          |
-| expiryMonth: int         |
-| CVV: int                 |
-+--------------------------+
-
-enum Issuers {
-    VISA,
-    MasterCard,
-    AmericanExpress,
-    Maestro,
-}
++---------------------+
+| Orders              |
+|---------------------|
+| ID: int             |
+| userID: int         |
+| subscriptionID: int |
+| duration: int       |
+| price: float        |
+| orderDate: datetime |
+| startDate: datetime |
+| endDate: datetime   |
++---------------------+
 #+END_EXAMPLE
+
+Attributes:
+- ~userID~: References the /ID/ column of the [[#users][Users]] table.
+- ~subscriptionID~: References the /ID/ column of the [[#subscriptions][Subscription]] table.
 
 *** Subscriptions
 :PROPERTIES:
@@ -174,17 +176,13 @@ enum Issuers {
 |  Subscriptions   |
 |------------------|
 | ID: int          |
-| cardID: int      |
 | podcasterID: int |
-| duration: int    |
-| price: Float     |
+| price: float     |
 +------------------+
 #+END_EXAMPLE
 
 Attributes:
-- ~cardID~: References the /ID/ column of the [[#payment-method][Payment Method]] table.
 - ~podcasterID~: References the /ID/ column of the [[#offenses][Offenses]] table.
-- ~duration~: The duration of the subscription in *months*.
 
 ** Flag management
 Our flagging system allows the user to report another person based on a certain offense.
