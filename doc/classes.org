@@ -111,7 +111,7 @@ Attributes:
 | Articles         |
 |------------------|
 | ID: int          |
-| author: String   |
+| authorID: int    |
 | title: String    |
 | content: String  |
 +------------------+
@@ -135,7 +135,7 @@ Attributes:
 - ~userID~: References the /ID/ column of the [[#users][Users]] table.
 - ~articleID~: References the /ID/ column of the [[#articles][Articles]] table.
 
-** Subscription Management:
+** Subscription Management
 
 Podcasters can monetize their content in the form of subscriptions.
 
@@ -184,7 +184,7 @@ Attributes:
 Attributes:
 - ~podcasterID~: References the /ID/ column of the [[#offenses][Offenses]] table.
 
-** Flag management
+** Flag Management
 Our flagging system allows the user to report another person based on a certain offense.
 
 Flagging someone directly affects their score. Administrators are notified and called to manually review (and ban if necessary) the accounts of users whose score has reached the minimum threshold.
@@ -229,7 +229,7 @@ enum Kind {
 Attributes:
 - ~deduction~: The amount of points to deduct from a user's score.
 
-** Ticket management
+** Ticket Management
 *** Ticket
 #+BEGIN_EXAMPLE
 +----------------------------+
