@@ -58,7 +58,6 @@ enum Activities {
 Attributes:
 - ~userID~: References the /ID/ column of the [[#users][Users]] table.
 
-
 *** Flags
 :PROPERTIES:
 :CUSTOM_ID: flags
@@ -84,11 +83,12 @@ Attributes:
 - ~offenseID~: References the /ID/ column of the [[#offenses][Offenses]] table.
 
 *** Offenses
-This table holds all possible types of offenses, which is directly linked with the [[#flags][Flags]] table.
-
 :PROPERTIES:
 :CUSTOM_ID: offenses
 :END:
+
+This table holds all possible types of offenses, which is directly linked with the [[#flags][Flags]] table.
+
 #+BEGIN_EXAMPLE
 +-------------------------+
 | Offenses                |
@@ -107,7 +107,6 @@ enum Kind {
 
 Attributes:
 - ~deduction~: The amount of points to deduct from a user's score.
-
 
 ** Podcast Management
 *** Podcasts
@@ -233,7 +232,7 @@ Attributes:
 #+END_EXAMPLE
 
 Attributes:
-- ~podcasterID~: References the /ID/ column of the [[#offenses][Offenses]] table.
+- ~podcasterID~: References the /ID/ column of the [[#users][Users]] table.
 
 ** Ticket Management
 *** Ticket
