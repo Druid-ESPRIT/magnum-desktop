@@ -58,6 +58,57 @@ enum Activities {
 Attributes:
 - ~userID~: References the /ID/ column of the [[#users][Users]] table.
 
+
+*** Flags
+:PROPERTIES:
+:CUSTOM_ID: flags
+:END:
+Our flagging system allows the user to report another person based on a certain offense.
+
+Flagging someone directly affects their score. Administrators are notified and called to manually review (and ban if necessary) the accounts of users whose score has reached the minimum threshold.
+
+#+BEGIN_EXAMPLE
++---------------------+
+| Flags               |
+|---------------------|
+| ID: int             |
+| userID: int         |
+| offenseID: String   |
+| description: String |
+| dateFlagged: Date   |
++---------------------+
+#+END_EXAMPLE
+
+Attributes:
+- ~userID~: References the /ID/ column of the [[#users][Users]] table.
+- ~offenseID~: References the /ID/ column of the [[#offenses][Offenses]] table.
+
+*** Offenses
+This table holds all possible types of offenses, which is directly linked with the [[#flags][Flags]] table.
+
+:PROPERTIES:
+:CUSTOM_ID: offenses
+:END:
+#+BEGIN_EXAMPLE
++-------------------------+
+| Offenses                |
+|-------------------------|
+| ID: int                 |
+| deduction: int          |
+| kind: enum<Kind>        |
++-------------------------+
+
+enum Kind {
+  Harassment,
+  Spam,
+  Violence,
+}
+#+END_EXAMPLE
+
+Attributes:
+- ~deduction~: The amount of points to deduct from a user's score.
+
+
 ** Podcast Management
 *** Podcasts
 :PROPERTIES:
@@ -183,51 +234,6 @@ Attributes:
 
 Attributes:
 - ~podcasterID~: References the /ID/ column of the [[#offenses][Offenses]] table.
-
-** Flag Management
-Our flagging system allows the user to report another person based on a certain offense.
-
-Flagging someone directly affects their score. Administrators are notified and called to manually review (and ban if necessary) the accounts of users whose score has reached the minimum threshold.
-
-*** Flags
-#+BEGIN_EXAMPLE
-+---------------------+
-| Flags               |
-|---------------------|
-| ID: int             |
-| userID: int         |
-| offenseID: String   |
-| description: String |
-| dateFlagged: Date   |
-+---------------------+
-#+END_EXAMPLE
-
-Attributes:
-- ~userID~: References the /ID/ column of the [[#users][Users]] table.
-- ~offenseID~: References the /ID/ column of the [[#offenses][Offenses]] table.
-
-*** Offenses
-:PROPERTIES:
-:CUSTOM_ID: offenses
-:END:
-#+BEGIN_EXAMPLE
-+-------------------------+
-| Offenses                |
-|-------------------------|
-| ID: int                 |
-| deduction: int          |
-| kind: enum<Kind>        |
-+-------------------------+
-
-enum Kind {
-  Harassment,
-  Spam,
-  Violence,
-}
-#+END_EXAMPLE
-
-Attributes:
-- ~deduction~: The amount of points to deduct from a user's score.
 
 ** Ticket Management
 *** Ticket
