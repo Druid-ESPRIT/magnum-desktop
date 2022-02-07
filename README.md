@@ -2,4 +2,4 @@
 
 - Quick links:
   - [Project Board](https://github.com/Druid-ESPRIT/magnum-desktop/projects/1)
-  - [Classes & Functionaly Documentation](doc/classes.org)
+  - [Class & Functionality Documentation (HTML Preview)](https://htmlpreview.github.io/?https://github.com/Druid-ESPRIT/magnum-docs/blob/main/doc/classes.html)
