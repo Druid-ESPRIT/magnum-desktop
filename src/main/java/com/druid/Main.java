@@ -13,13 +13,17 @@ public class Main {
     public static void main(String[] args) {
         // TODO: Populate the entrypoint
         UserService u_svc = new UserService();
-        User user = new User();
-        Faker faker = new Faker();
+        u_svc.getUsers().stream().forEach(u -> System.out.println(u.toString()));
+        // User user = new User();
+        // Faker faker = new Faker();
 
-        user.setUsername(faker.name().username());
-        user.setEmail(faker.internet().emailAddress());
-        user.setPassword(faker.internet().password());
-        user.setStatus(UserStatus.Active);
-        u_svc.addUser(user);
+        // user.setUsername(faker.name().username());
+        // user.setEmail(faker.internet().emailAddress());
+        // user.setPassword(faker.internet().password());
+        // user.setFirstName(faker.name().firstName());
+        // user.setLastName(faker.name().lastName());
+        // user.setBiography(faker.company().catchPhrase());
+        // user.setStatus(UserStatus.Active);
+        // u_svc.addUser(user);
     }
 }

@@ -7,10 +7,7 @@ import com.druid.enums.UserStatus;
 import com.druid.utils.Debugger;
 
 import java.nio.file.Paths;
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -25,20 +22,22 @@ public class UserService implements IUser {
             return;
         }
 
-        String query = "INSERT INTO `Users`" +
-                "(`firstName`, `lastName`, `username`, `email`, `password`, `biography`, `avatar`, `status`) VALUES" +
-                " ('"+u.getFirstName()+"'," +
-                "'"+u.getLastName()+"'," +
-                "'"+u.getUsername()+"'," +
-                "'"+u.getEmail()+"'," +
-                "'"+u.getPassword()+"'," +
-                "'"+u.getBiography()+"'," +
-                "'"+u.getAvatar()+"'," +
-                "'"+u.getStatus()+"')";
+        String query = "INSERT INTO `Users` " +
+                "(firstName, lastName, username, email, password, biography, avatar, status) " +
+                "VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+
         try {
-            Statement stmt = con.createStatement();
+            PreparedStatement stmt = con.prepareStatement(query);
+            stmt.setString(1, u.getFirstName());
+            stmt.setString(2, u.getLastName());
+            stmt.setString(3, u.getUsername());
+            stmt.setString(4, u.getEmail());
+            stmt.setString(5, u.getPassword());
+            stmt.setString(6, u.getBiography());
+            stmt.setString(7, u.getAvatar().toString());
+            stmt.setString(8, u.getStatus().toString());
             stmt.executeUpdate(query);
-            System.out.println("INFO: New user added.");
+            System.out.println("INFO: User (with username='"+u.getUsername()+"') successfully added.");
         } catch (SQLException ex) {
             ex.printStackTrace();
         }
@@ -67,7 +66,7 @@ public class UserService implements IUser {
                 ));
             }
 
-            Debugger.log("INFO: Successfully fetched all users.");
+            Debugger.log("INFO: Users successfully fetched.");
 
         } catch (SQLException ex) {
             ex.printStackTrace();
@@ -102,19 +101,28 @@ public class UserService implements IUser {
 
     @Override
     public void updateUser(User u) {
-        String query = "UPDATE `Users` SET " +
-                "`firstName`='"+u.getFirstName()+"', " +
-                "`lastName`='"+u.getLastName()+"', " +
-                "`email`='"+u.getEmail()+"', " +
-                "`password`='"+u.getPassword()+"', " +
-                "`biography=`'"+u.getBiography()+"', " +
-                "`avatar`='"+u.getAvatar()+"', " +
-                "`status`='"+u.getStatus()+"') " +
-                "WHERE username = '"+u.getUsername()+"'";
+        String query = "UPDATE Users SET " +
+                "firstName = ?" +
+                "lastName = ?" +
+                "email= ?" +
+                "password = ?" +
+                "biography = ? " +
+                "avatar = ? " +
+                "status = ? " +
+                "WHERE username = ?";
+
         try {
-            Statement stmt = con.createStatement();
-            stmt.executeUpdate(query);
-            Debugger.log("INFO: User (with username='"+u.getUsername()+"' updated.");
+            PreparedStatement stmt = con.prepareStatement(query);
+            stmt.setString(1, u.getFirstName());
+            stmt.setString(2, u.getLastName());
+            stmt.setString(3, u.getEmail());
+            stmt.setString(4, u.getPassword());
+            stmt.setString(5, u.getBiography());
+            stmt.setString(6, u.getAvatar().toString());
+            stmt.setString(7, u.getStatus().toString());
+            stmt.setString(8, u.getUsername());
+            stmt.executeQuery(query);
+            Debugger.log("INFO: User (with username='"+u.getUsername()+"' successfully updated.");
         } catch (SQLException ex) {
             ex.printStackTrace();
         }
@@ -122,6 +130,6 @@ public class UserService implements IUser {
 
     @Override
     public void deleteUser(User u) {
-
+        return;
     }
 }
