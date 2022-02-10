@@ -16,6 +16,21 @@ public class User {
     private String password;
     private UserStatus status;
 
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", avatar=" + avatar +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", biography='" + biography + '\'' +
+                ", email='" + email + '\'' +
+                ", username='" + username + '\'' +
+                ", password='" + password + '\'' +
+                ", status=" + status +
+                '}';
+    }
+
     public User() {
     }
 

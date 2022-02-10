@@ -18,26 +18,16 @@ public class UserService implements IUser {
     public void addUser(User u) {
         // Check that the user being passed doesn't
         // already exist in the database.
-        if (this.getUser(u)) {
+        if (this.checkIfUserExists(u)) {
             return;
         }
 
-        String query = "INSERT INTO `Users` " +
-                "(firstName, lastName, username, email, password, biography, avatar, status) " +
-                "VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+        String query = "INSERT INTO `Users`(`firstName`, `lastName`, `username`, `email`, `password`, `biography`, `avatar`, `status`) VALUES ('"+u.getFirstName()+"','"+u.getLastName()+"','"+u.getUsername()+"','"+u.getEmail()+"' ,'"+u.getPassword()+"','"+u.getBiography()+"','"+u.getAvatar()+"','"+u.getStatus()+"')";
 
         try {
-            PreparedStatement stmt = con.prepareStatement(query);
-            stmt.setString(1, u.getFirstName());
-            stmt.setString(2, u.getLastName());
-            stmt.setString(3, u.getUsername());
-            stmt.setString(4, u.getEmail());
-            stmt.setString(5, u.getPassword());
-            stmt.setString(6, u.getBiography());
-            stmt.setString(7, u.getAvatar().toString());
-            stmt.setString(8, u.getStatus().toString());
+            Statement stmt = con.createStatement();
             stmt.executeUpdate(query);
-            System.out.println("INFO: User (with username='"+u.getUsername()+"') successfully added.");
+            Debugger.log("INFO: User (with username='"+u.getUsername()+"') successfully added.");
         } catch (SQLException ex) {
             ex.printStackTrace();
         }
@@ -54,7 +44,7 @@ public class UserService implements IUser {
 
             while(result.next()) {
                 users.add(new User(
-                        result.getInt("id"),
+                        result.getInt("ID"),
                         result.getString("firstName"),
                         result.getString("lastName"),
                         result.getString("username"),
@@ -67,15 +57,15 @@ public class UserService implements IUser {
             }
 
             Debugger.log("INFO: Users successfully fetched.");
-
         } catch (SQLException ex) {
             ex.printStackTrace();
         }
+
         return null;
     }
 
     @Override
-    public boolean getUser(User u) {
+    public boolean checkIfUserExists(User u) {
         List<User> users = new ArrayList<>();
         String query = "SELECT ID, username, email " +
                 "FROM Users " +
