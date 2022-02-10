@@ -109,7 +109,8 @@ public class UserService implements IUser {
                 "`password`='"+u.getPassword()+"', " +
                 "`biography=`'"+u.getBiography()+"', " +
                 "`avatar`='"+u.getAvatar()+"', " +
-                "`status`='"+u.getStatus()+"')";
+                "`status`='"+u.getStatus()+"') " +
+                "WHERE username = '"+u.getUsername()+"'";
         try {
             Statement stmt = con.createStatement();
             stmt.executeUpdate(query);
