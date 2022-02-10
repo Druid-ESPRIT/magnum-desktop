@@ -5,9 +5,11 @@ import java.sql.Connection;
 import java.sql.SQLException;
 
 public class DBConnection {
-    final static String URL = "jdbc:mariadb://localhost:3306/workshop"; // TODO: Change this to MYSQL
+    final static String URL = "jdbc:mariadb://localhost:3306/magnum";
+    //                              ^^^^^^^
+    //               Change this to "mysql" if using MYSQL.
     final static String USERNAME = "grtcdr";
-    final static String PWD = "rdctrg";
+    final static String PWD = "Rm,<(3(jfLSf[XHgX^XpN,Wr";
 
     private Connection con;
     static DBConnection instance = null;
@@ -21,7 +23,7 @@ public class DBConnection {
         }
     }
 
-    public Connection getCon() {
+    public Connection getConnection() {
         return con;
     }
 

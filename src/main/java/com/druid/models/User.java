@@ -7,7 +7,6 @@ import java.util.Objects;
 
 public class User {
     private int id;
-    private int score;
     private Path avatar;
     private String firstName;
     private String lastName;
@@ -15,19 +14,16 @@ public class User {
     private String email;
     private String username;
     private String password;
-    private boolean admin;
     private UserStatus status;
 
     public User() {
     }
 
-    public User(String firstName, String lastName, String username, String email, String password, String biography, Path avatar, UserStatus status, boolean admin, int score) {
-        this.id = id;
-        this.score = score;
-        this.avatar = avatar;
+    public User(String firstName, String lastName, String username, String email, String password, String biography, Path avatar, UserStatus status) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.biography = biography;
+        this.avatar = avatar;
         this.email = email;
         this.username = username;
         this.password = password;
@@ -53,14 +49,6 @@ public class User {
 
     public void setId(int id) {
         this.id = id;
-    }
-
-    public int getScore() {
-        return score;
-    }
-
-    public void setScore(int score) {
-        this.score = score;
     }
 
     public Path getAvatar() {
@@ -125,13 +113,5 @@ public class User {
 
     public void setStatus(UserStatus status) {
         this.status = status;
-    }
-
-    public boolean isAdmin() {
-        return this.admin;
-    }
-
-    public void setAdmin(boolean admin) {
-        this.admin = admin;
     }
 }

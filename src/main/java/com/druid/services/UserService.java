@@ -15,11 +15,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class UserService implements IUser {
-    Connection con = DBConnection.getInstance().getCon();
+    Connection con = DBConnection.getInstance().getConnection();
 
     @Override
     public void addUser(User u) {
-        String query = "INSERT INTO `Users`(``firstName`, `lastName`, `username`, `email`, `password`, `biography`, `avatar`, `status`, `admin`, `score`) VALUES ('"+u.getFirstName()+"','"+u.getLastName()+"','"+u.getUsername()+"','"+u.getEmail()+"' ,'"+u.getPassword()+"','"+u.getBiography()+"','"+u.getAvatar()+"','"+u.getStatus()+"','"+u.isAdmin()+"','"+u.getScore()+"')";
+        if (this.getUser(u)) {
+            return;
+        }
+
+        String query = "INSERT INTO `Users`(`firstName`, `lastName`, `username`, `email`, `password`, `biography`, `avatar`, `status`) VALUES ('"+u.getFirstName()+"','"+u.getLastName()+"','"+u.getUsername()+"','"+u.getEmail()+"' ,'"+u.getPassword()+"','"+u.getBiography()+"','"+u.getAvatar()+"','"+u.getStatus()+"')";
         try {
             Statement stmt = con.createStatement();
             stmt.executeUpdate(query);
@@ -47,9 +51,7 @@ public class UserService implements IUser {
                         result.getString("password"),
                         result.getString("biography"),
                         Paths.get(result.getString("avatar")),
-                        UserStatus.valueOf(result.getString("status")),
-                        result.getBoolean("admin"),
-                        result.getInt("score")
+                        UserStatus.valueOf(result.getString("status"))
                 ));
             }
 
@@ -59,6 +61,28 @@ public class UserService implements IUser {
             ex.printStackTrace();
         }
         return null;
+    }
+
+    @Override
+    public boolean getUser(User u) {
+        List<User> users = new ArrayList<>();
+        String query = "SELECT ID, username, email FROM Users WHERE ID='"+u.getId()+"' OR email='"+u.getEmail()+"' or username='"+u.getUsername()+"'";
+
+        try {
+            Statement stmt = con.createStatement();
+            ResultSet result = stmt.executeQuery(query);
+
+            if (result.next()) {
+                return true;
+            } else {
+                return false;
+            }
+
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+
+        return false;
     }
 
     @Override
