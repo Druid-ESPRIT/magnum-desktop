@@ -19,11 +19,22 @@ public class UserService implements IUser {
 
     @Override
     public void addUser(User u) {
+        // Check that the user being passed doesn't
+        // already exist in the database.
         if (this.getUser(u)) {
             return;
         }
 
-        String query = "INSERT INTO `Users`(`firstName`, `lastName`, `username`, `email`, `password`, `biography`, `avatar`, `status`) VALUES ('"+u.getFirstName()+"','"+u.getLastName()+"','"+u.getUsername()+"','"+u.getEmail()+"' ,'"+u.getPassword()+"','"+u.getBiography()+"','"+u.getAvatar()+"','"+u.getStatus()+"')";
+        String query = "INSERT INTO `Users`" +
+                "(`firstName`, `lastName`, `username`, `email`, `password`, `biography`, `avatar`, `status`) VALUES" +
+                " ('"+u.getFirstName()+"'," +
+                "'"+u.getLastName()+"'," +
+                "'"+u.getUsername()+"'," +
+                "'"+u.getEmail()+"'," +
+                "'"+u.getPassword()+"'," +
+                "'"+u.getBiography()+"'," +
+                "'"+u.getAvatar()+"'," +
+                "'"+u.getStatus()+"')";
         try {
             Statement stmt = con.createStatement();
             stmt.executeUpdate(query);
@@ -44,6 +55,7 @@ public class UserService implements IUser {
 
             while(result.next()) {
                 users.add(new User(
+                        result.getInt("id"),
                         result.getString("firstName"),
                         result.getString("lastName"),
                         result.getString("username"),
@@ -66,8 +78,11 @@ public class UserService implements IUser {
     @Override
     public boolean getUser(User u) {
         List<User> users = new ArrayList<>();
-        String query = "SELECT ID, username, email FROM Users WHERE ID='"+u.getId()+"' OR email='"+u.getEmail()+"' or username='"+u.getUsername()+"'";
-
+        String query = "SELECT ID, username, email " +
+                "FROM Users " +
+                "WHERE ID='"+u.getId()+"' OR " +
+                "email='"+u.getEmail()+"' OR " +
+                "username='"+u.getUsername()+"'";
         try {
             Statement stmt = con.createStatement();
             ResultSet result = stmt.executeQuery(query);
@@ -87,7 +102,21 @@ public class UserService implements IUser {
 
     @Override
     public void updateUser(User u) {
-
+        String query = "UPDATE `Users` SET " +
+                "`firstName`='"+u.getFirstName()+"', " +
+                "`lastName`='"+u.getLastName()+"', " +
+                "`email`='"+u.getEmail()+"', " +
+                "`password`='"+u.getPassword()+"', " +
+                "`biography=`'"+u.getBiography()+"', " +
+                "`avatar`='"+u.getAvatar()+"', " +
+                "`status`='"+u.getStatus()+"')";
+        try {
+            Statement stmt = con.createStatement();
+            stmt.executeUpdate(query);
+            Debugger.log("INFO: User (with username='"+u.getUsername()+"' updated.");
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
     }
 
     @Override

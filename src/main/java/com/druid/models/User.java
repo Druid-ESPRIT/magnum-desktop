@@ -30,6 +30,18 @@ public class User {
         this.status = status;
     }
 
+    public User(int id, String firstName, String lastName, String username, String email, String password, String biography, Path avatar, UserStatus status) {
+        this.id = id;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.biography = biography;
+        this.avatar = avatar;
+        this.email = email;
+        this.username = username;
+        this.password = password;
+        this.status = status;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
