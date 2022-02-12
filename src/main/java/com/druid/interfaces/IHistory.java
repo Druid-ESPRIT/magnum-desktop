@@ -1,7 +1,6 @@
 package com.druid.interfaces;
 
 import com.druid.models.History;
-
 import java.util.List;
 
 /** This interface exposes the necessary methods to interact with the History model. */

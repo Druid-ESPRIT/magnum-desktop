@@ -5,7 +5,6 @@ import com.druid.interfaces.IUser;
 import com.druid.models.User;
 import com.druid.utils.DBConnection;
 import com.druid.utils.Debugger;
-
 import java.nio.file.Paths;
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -112,31 +111,31 @@ public class UserService implements IUser {
 
   public User findUser(User u) {
     String query =
-            "SELECT ID, username, email "
-                    + "FROM Users "
-                    + "WHERE ID='"
-                    + u.getID()
-                    + "' OR "
-                    + "email='"
-                    + u.getEmail()
-                    + "' OR "
-                    + "username='"
-                    + u.getUsername()
-                    + "'";
+        "SELECT ID, username, email "
+            + "FROM Users "
+            + "WHERE ID='"
+            + u.getID()
+            + "' OR "
+            + "email='"
+            + u.getEmail()
+            + "' OR "
+            + "username='"
+            + u.getUsername()
+            + "'";
     try {
       Statement stmt = con.createStatement();
       ResultSet result = stmt.executeQuery(query);
       if (result.next()) {
-      return new User(
-              result.getInt("ID"),
-              result.getString("firstName"),
-              result.getString("lastName"),
-              result.getString("username"),
-              result.getString("email"),
-              result.getString("password"),
-              result.getString("biography"),
-              Paths.get(result.getString("avatar")),
-              UserStatus.fromString(result.getString("status")));
+        return new User(
+            result.getInt("ID"),
+            result.getString("firstName"),
+            result.getString("lastName"),
+            result.getString("username"),
+            result.getString("email"),
+            result.getString("password"),
+            result.getString("biography"),
+            Paths.get(result.getString("avatar")),
+            UserStatus.fromString(result.getString("status")));
       } else {
         return null;
       }
@@ -204,5 +203,4 @@ public class UserService implements IUser {
       ex.printStackTrace();
     }
   }
-
 }
