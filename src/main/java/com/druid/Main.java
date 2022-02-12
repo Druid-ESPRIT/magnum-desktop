@@ -39,7 +39,7 @@ public class Main {
     user.setPassword(faker.internet().password());
     user.setStatus(UserStatus.ACTIVE);
 
-//    addUserScenario(user);
+    //    addUserScenario(user);
     UserService u_svc = new UserService();
     Debugger.log(u_svc.findUser(user).toString());
   }
