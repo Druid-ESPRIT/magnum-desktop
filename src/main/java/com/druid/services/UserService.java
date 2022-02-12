@@ -27,7 +27,7 @@ public class UserService implements IUser {
     }
 
     String query =
-        "INSERT INTO `Users`(`firstName`, `lastName`, `username`, `email`, `password`, `biography`,"
+        "INSERT INTO `Users` (`firstName`, `lastName`, `username`, `email`, `password`, `biography`,"
             + " `avatar`, `status`) VALUES ('"
             + u.getFirstName()
             + "','"
@@ -58,7 +58,7 @@ public class UserService implements IUser {
   @Override
   public List<User> getUsers() {
     List<User> users = new ArrayList<>();
-    String query = "SELECT * FROM Users";
+    String query = "SELECT * FROM `Users`";
 
     try {
       Statement stmt = con.createStatement();
@@ -87,7 +87,7 @@ public class UserService implements IUser {
   }
 
   public Optional<User> findUser(User u) {
-    String query = "SELECT * FROM Users WHERE ID = ? OR email = ? OR username = ?";
+    String query = "SELECT * FROM `Users` WHERE `ID` = ? OR `email` = ? OR `username` = ?";
     try {
       PreparedStatement stmt = con.prepareStatement(query);
       stmt.setInt(1, u.getID());
@@ -118,7 +118,7 @@ public class UserService implements IUser {
   @Override
   public void updateUser(User u) {
     String query =
-        "UPDATE Users SET "
+        "UPDATE `Users` SET "
             + "`firstName` = '"
             + u.getFirstName()
             + "', "
@@ -142,7 +142,7 @@ public class UserService implements IUser {
             + "' "
             + "WHERE `username` = '"
             + u.getUsername()
-            + "';";
+            + "'";
 
     Debugger.log(query);
 
@@ -163,7 +163,7 @@ public class UserService implements IUser {
       return;
     }
 
-    String query = "DELETE FROM Users WHERE username = '" + u.getUsername() + "'";
+    String query = "DELETE FROM `Users` WHERE `username` = '" + u.getUsername() + "'";
     try {
       Statement stmt = con.createStatement();
       stmt.executeUpdate(query);
