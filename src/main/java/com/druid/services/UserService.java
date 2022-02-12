@@ -27,8 +27,8 @@ public class UserService implements IUser {
     }
 
     String query =
-        "INSERT INTO `Users` (`firstName`, `lastName`, `username`, `email`, `password`, `biography`,"
-            + " `avatar`, `status`) VALUES ('"
+        "INSERT INTO `Users` (`firstName`, `lastName`, `username`, `email`, `password`,"
+            + " `biography`, `avatar`, `status`) VALUES ('"
             + u.getFirstName()
             + "','"
             + u.getLastName()
