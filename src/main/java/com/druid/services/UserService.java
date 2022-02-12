@@ -10,6 +10,7 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.sql.PreparedStatement;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -110,21 +111,14 @@ public class UserService implements IUser {
   }
 
   public User findUser(User u) {
-    String query =
-        "SELECT ID, username, email "
-            + "FROM Users "
-            + "WHERE ID='"
-            + u.getID()
-            + "' OR "
-            + "email='"
-            + u.getEmail()
-            + "' OR "
-            + "username='"
-            + u.getUsername()
-            + "'";
+    String query = "SELECT * FROM Users WHERE ID = ? OR email = ? OR username = ?";
     try {
-      Statement stmt = con.createStatement();
-      ResultSet result = stmt.executeQuery(query);
+      PreparedStatement stmt = con.prepareStatement(query);
+      stmt.setInt(1, u.getID());
+      stmt.setString(2, u.getEmail());
+      stmt.setString(3, u.getUsername());
+      ResultSet result = stmt.executeQuery();
+
       if (result.next()) {
         return new User(
             result.getInt("ID"),

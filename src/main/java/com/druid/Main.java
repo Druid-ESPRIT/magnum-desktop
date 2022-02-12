@@ -37,7 +37,10 @@ public class Main {
     user.setUsername("elda.pfannerstill");
     user.setEmail(faker.internet().emailAddress());
     user.setPassword(faker.internet().password());
+    user.setStatus(UserStatus.ACTIVE);
 
-    deleteUserScenario(user);
+//    addUserScenario(user);
+    UserService u_svc = new UserService();
+    Debugger.log(u_svc.findUser(user).toString());
   }
 }
