@@ -13,6 +13,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 public class UserService implements IUser {
   Connection con = DBConnection.getInstance().getConnection();
@@ -21,7 +22,7 @@ public class UserService implements IUser {
   public void addUser(User u) {
     // Check that the user being passed doesn't
     // already exist in the database.
-    if (this.doesUserExist(u)) {
+    if (this.findUser(u) != null) {
       return;
     }
 
@@ -85,32 +86,7 @@ public class UserService implements IUser {
     return null;
   }
 
-  public boolean doesUserExist(User u) {
-    List<User> users = new ArrayList<>();
-    String query =
-        "SELECT ID, username, email "
-            + "FROM Users "
-            + "WHERE ID='"
-            + u.getID()
-            + "' OR "
-            + "email='"
-            + u.getEmail()
-            + "' OR "
-            + "username='"
-            + u.getUsername()
-            + "'";
-    try {
-      Statement stmt = con.createStatement();
-      ResultSet result = stmt.executeQuery(query);
-      return result.next();
-    } catch (SQLException ex) {
-      ex.printStackTrace();
-    }
-
-    return false;
-  }
-
-  public User findUser(User u) {
+  public Optional<User> findUser(User u) {
     String query = "SELECT * FROM Users WHERE ID = ? OR email = ? OR username = ?";
     try {
       PreparedStatement stmt = con.prepareStatement(query);
@@ -120,7 +96,7 @@ public class UserService implements IUser {
       ResultSet result = stmt.executeQuery();
 
       if (result.next()) {
-        return new User(
+        return Optional.of(new User(
             result.getInt("ID"),
             result.getString("firstName"),
             result.getString("lastName"),
@@ -129,15 +105,13 @@ public class UserService implements IUser {
             result.getString("password"),
             result.getString("biography"),
             Paths.get(result.getString("avatar")),
-            UserStatus.fromString(result.getString("status")));
-      } else {
-        return null;
+            UserStatus.fromString(result.getString("status"))));
       }
     } catch (SQLException ex) {
       ex.printStackTrace();
     }
 
-    return null;
+    return Optional.empty();
   }
 
   @Override
@@ -183,7 +157,7 @@ public class UserService implements IUser {
   @Override
   // TODO: Implement this.
   public void deleteUser(User u) {
-    if (!this.doesUserExist(u)) {
+    if (this.findUser(u) == null) {
       Debugger.log("WARN: User (with username='" + u.getUsername() + "') does not exist.");
       return;
     }
