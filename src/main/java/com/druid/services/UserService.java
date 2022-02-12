@@ -22,7 +22,7 @@ public class UserService implements IUser {
   public void addUser(User u) {
     // Check that the user being passed doesn't
     // already exist in the database.
-    if (this.findUser(u) != null) {
+    if (this.findUser(u).isPresent()) {
       return;
     }
 
@@ -158,7 +158,7 @@ public class UserService implements IUser {
   @Override
   // TODO: Implement this.
   public void deleteUser(User u) {
-    if (this.findUser(u) == null) {
+    if (this.findUser(u).isEmpty()) {
       Debugger.log("WARN: User (with username='" + u.getUsername() + "') does not exist.");
       return;
     }
