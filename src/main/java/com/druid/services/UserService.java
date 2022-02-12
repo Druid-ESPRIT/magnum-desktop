@@ -96,16 +96,17 @@ public class UserService implements IUser {
       ResultSet result = stmt.executeQuery();
 
       if (result.next()) {
-        return Optional.of(new User(
-            result.getInt("ID"),
-            result.getString("firstName"),
-            result.getString("lastName"),
-            result.getString("username"),
-            result.getString("email"),
-            result.getString("password"),
-            result.getString("biography"),
-            Paths.get(result.getString("avatar")),
-            UserStatus.fromString(result.getString("status"))));
+        return Optional.of(
+            new User(
+                result.getInt("ID"),
+                result.getString("firstName"),
+                result.getString("lastName"),
+                result.getString("username"),
+                result.getString("email"),
+                result.getString("password"),
+                result.getString("biography"),
+                Paths.get(result.getString("avatar")),
+                UserStatus.fromString(result.getString("status"))));
       }
     } catch (SQLException ex) {
       ex.printStackTrace();
