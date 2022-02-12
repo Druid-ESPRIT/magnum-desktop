@@ -1,11 +1,12 @@
 package com.druid.models;
 
 import com.druid.enums.UserStatus;
+
 import java.nio.file.Path;
 import java.util.Objects;
 
 public class User {
-  private int id;
+  private int ID;
   private Path avatar;
   private String firstName;
   private String lastName;
@@ -14,36 +15,6 @@ public class User {
   private String username;
   private String password;
   private UserStatus status;
-
-  @Override
-  public String toString() {
-    return "User{"
-        + "id="
-        + id
-        + ", avatar="
-        + avatar
-        + ", firstName='"
-        + firstName
-        + '\''
-        + ", lastName='"
-        + lastName
-        + '\''
-        + ", biography='"
-        + biography
-        + '\''
-        + ", email='"
-        + email
-        + '\''
-        + ", username='"
-        + username
-        + '\''
-        + ", password='"
-        + password
-        + '\''
-        + ", status="
-        + status
-        + '}';
-  }
 
   public User() {}
 
@@ -76,7 +47,7 @@ public class User {
       String biography,
       Path avatar,
       UserStatus status) {
-    this.id = id;
+    this.ID = id;
     this.firstName = firstName;
     this.lastName = lastName;
     this.biography = biography;
@@ -88,26 +59,56 @@ public class User {
   }
 
   @Override
+  public String toString() {
+    return "User{"
+        + "id="
+        + ID
+        + ", avatar="
+        + avatar
+        + ", firstName='"
+        + firstName
+        + '\''
+        + ", lastName='"
+        + lastName
+        + '\''
+        + ", biography='"
+        + biography
+        + '\''
+        + ", email='"
+        + email
+        + '\''
+        + ", username='"
+        + username
+        + '\''
+        + ", password='"
+        + password
+        + '\''
+        + ", status="
+        + status
+        + '}';
+  }
+
+  @Override
   public boolean equals(Object o) {
     if (this == o) return true;
     if (o == null || getClass() != o.getClass()) return false;
     User user = (User) o;
-    return getId() == user.getId()
+    return getID() == user.getID()
         && getEmail().equals(user.getEmail())
         && getUsername().equals(user.getUsername());
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(getId(), getEmail(), getUsername());
+    return Objects.hash(getID(), getEmail(), getUsername());
   }
 
-  public int getId() {
-    return id;
+  public int getID() {
+    return ID;
   }
 
-  public void setId(int id) {
-    this.id = id;
+  public void setID(int ID) {
+    this.ID = ID;
   }
 
   public Path getAvatar() {

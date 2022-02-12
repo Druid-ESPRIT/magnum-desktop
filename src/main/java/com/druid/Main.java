@@ -7,22 +7,37 @@ import com.druid.utils.Debugger;
 import com.github.javafaker.Faker;
 
 public class Main {
-  public static void main(String[] args) {
-    // TODO: Populate the entrypoint
-    Faker faker = new Faker();
+  public static void getUsersScenario() {
+    // Get a list of users and print them to the console.
     UserService u_svc = new UserService();
-    User user = new User();
-    u_svc.getUsers();
+    u_svc.getUsers().forEach(x -> Debugger.log(x.toString()));
+  }
 
-    user.setUsername(faker.name().username());
+  public static void addUserScenario(User user) {
+    UserService u_svc = new UserService();
+    u_svc.addUser(user);
+  }
+
+  public static void updateUserScenario(User user) {
+    UserService u_svc = new UserService();
+    user.setStatus(UserStatus.DISABLED);
+    u_svc.updateUser(user);
+  }
+
+  public static void deleteUserScenario(User user) {
+    UserService u_svc = new UserService();
+    u_svc.deleteUser(user);
+  }
+
+  public static void main(String[] args) {
+    // Faker generates fake data so we don't have to do it by hand.
+    Faker faker = new Faker();
+    User user = new User();
+
+    user.setUsername("elda.pfannerstill");
     user.setEmail(faker.internet().emailAddress());
     user.setPassword(faker.internet().password());
-    user.setFirstName(faker.name().firstName());
-    user.setLastName(faker.name().lastName());
-    user.setBiography(faker.shakespeare().romeoAndJulietQuote());
-    user.setStatus(UserStatus.Active);
 
-    u_svc.addUser(user);
-    Debugger.log(user);
+    deleteUserScenario(user);
   }
 }

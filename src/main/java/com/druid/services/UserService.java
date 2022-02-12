@@ -5,8 +5,12 @@ import com.druid.interfaces.IUser;
 import com.druid.models.User;
 import com.druid.utils.DBConnection;
 import com.druid.utils.Debugger;
+
 import java.nio.file.Paths;
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -17,7 +21,7 @@ public class UserService implements IUser {
   public void addUser(User u) {
     // Check that the user being passed doesn't
     // already exist in the database.
-    if (this.checkIfUserExists(u)) {
+    if (this.doesUserExist(u)) {
       return;
     }
 
@@ -38,7 +42,7 @@ public class UserService implements IUser {
             + "','"
             + u.getAvatar()
             + "','"
-            + u.getStatus()
+            + u.getStatus().toString()
             + "')";
 
     try {
@@ -70,10 +74,10 @@ public class UserService implements IUser {
                 result.getString("password"),
                 result.getString("biography"),
                 Paths.get(result.getString("avatar")),
-                UserStatus.valueOf(result.getString("status"))));
+                UserStatus.fromString(result.getString("status"))));
       }
 
-      Debugger.log("INFO: Users successfully fetched.");
+      return users;
     } catch (SQLException ex) {
       ex.printStackTrace();
     }
@@ -81,14 +85,13 @@ public class UserService implements IUser {
     return null;
   }
 
-  @Override
-  public boolean checkIfUserExists(User u) {
+  public boolean doesUserExist(User u) {
     List<User> users = new ArrayList<>();
     String query =
         "SELECT ID, username, email "
             + "FROM Users "
             + "WHERE ID='"
-            + u.getId()
+            + u.getID()
             + "' OR "
             + "email='"
             + u.getEmail()
@@ -99,13 +102,7 @@ public class UserService implements IUser {
     try {
       Statement stmt = con.createStatement();
       ResultSet result = stmt.executeQuery(query);
-
-      if (result.next()) {
-        return true;
-      } else {
-        return false;
-      }
-
+      return result.next();
     } catch (SQLException ex) {
       ex.printStackTrace();
     }
@@ -113,38 +110,99 @@ public class UserService implements IUser {
     return false;
   }
 
+  public User findUser(User u) {
+    String query =
+            "SELECT ID, username, email "
+                    + "FROM Users "
+                    + "WHERE ID='"
+                    + u.getID()
+                    + "' OR "
+                    + "email='"
+                    + u.getEmail()
+                    + "' OR "
+                    + "username='"
+                    + u.getUsername()
+                    + "'";
+    try {
+      Statement stmt = con.createStatement();
+      ResultSet result = stmt.executeQuery(query);
+      if (result.next()) {
+      return new User(
+              result.getInt("ID"),
+              result.getString("firstName"),
+              result.getString("lastName"),
+              result.getString("username"),
+              result.getString("email"),
+              result.getString("password"),
+              result.getString("biography"),
+              Paths.get(result.getString("avatar")),
+              UserStatus.fromString(result.getString("status")));
+      } else {
+        return null;
+      }
+    } catch (SQLException ex) {
+      ex.printStackTrace();
+    }
+
+    return null;
+  }
+
   @Override
   public void updateUser(User u) {
     String query =
         "UPDATE Users SET "
-            + "firstName = ?"
-            + "lastName = ?"
-            + "email= ?"
-            + "password = ?"
-            + "biography = ? "
-            + "avatar = ? "
-            + "status = ? "
-            + "WHERE username = ?";
+            + "`firstName` = '"
+            + u.getFirstName()
+            + "', "
+            + "`lastName` = '"
+            + u.getLastName()
+            + "', "
+            + "`email`= '"
+            + u.getEmail()
+            + "', "
+            + "`password` = '"
+            + u.getPassword()
+            + "', "
+            + "`biography` = '"
+            + u.getBiography()
+            + "', "
+            + "`avatar` = '"
+            + u.getAvatar()
+            + "', "
+            + "`status` = '"
+            + u.getStatus().toString()
+            + "' "
+            + "WHERE `username` = '"
+            + u.getUsername()
+            + "';";
+
+    Debugger.log(query);
 
     try {
-      PreparedStatement stmt = con.prepareStatement(query);
-      stmt.setString(1, u.getFirstName());
-      stmt.setString(2, u.getLastName());
-      stmt.setString(3, u.getEmail());
-      stmt.setString(4, u.getPassword());
-      stmt.setString(5, u.getBiography());
-      stmt.setString(6, u.getAvatar().toString());
-      stmt.setString(7, u.getStatus().toString());
-      stmt.setString(8, u.getUsername());
-      stmt.executeQuery(query);
-      Debugger.log("INFO: User (with username='" + u.getUsername() + "' successfully updated.");
+      Statement stmt = con.createStatement();
+      stmt.executeUpdate(query);
+      Debugger.log("INFO: User (with username='" + u.getUsername() + "') successfully updated.");
     } catch (SQLException ex) {
       ex.printStackTrace();
     }
   }
 
   @Override
+  // TODO: Implement this.
   public void deleteUser(User u) {
-    return;
+    if (!this.doesUserExist(u)) {
+      Debugger.log("WARN: User (with username='" + u.getUsername() + "') does not exist.");
+      return;
+    }
+
+    String query = "DELETE FROM Users WHERE username = '" + u.getUsername() + "'";
+    try {
+      Statement stmt = con.createStatement();
+      stmt.executeUpdate(query);
+      Debugger.log("INFO: User (with username='" + u.getUsername() + "') successfully deleted.");
+    } catch (SQLException ex) {
+      ex.printStackTrace();
+    }
   }
+
 }

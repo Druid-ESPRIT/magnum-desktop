@@ -10,9 +10,8 @@ public class DBConnection {
   //               Change this to "mysql" if using MYSQL.
   static final String USERNAME = "grtcdr";
   static final String PWD = "Rm,<(3(jfLSf[XHgX^XpN,Wr";
-
-  private Connection con;
   static DBConnection instance = null;
+  private Connection con;
 
   private DBConnection() {
     try {
@@ -23,14 +22,14 @@ public class DBConnection {
     }
   }
 
-  public Connection getConnection() {
-    return con;
-  }
-
   public static DBConnection getInstance() {
     if (instance == null) {
       instance = new DBConnection();
     }
     return instance;
+  }
+
+  public Connection getConnection() {
+    return con;
   }
 }

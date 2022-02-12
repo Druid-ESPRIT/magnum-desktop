@@ -13,8 +13,9 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Class" />
         <option value="JUnit5 Test Class" />
+        <option value="Class" />
+        <option value="Interface" />
       </list>
     </option>
   </component>
@@ -39,11 +40,11 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary" value="JUnit5" />
     <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5" value="" />
-    <property name="last_opened_file_path" value="/usr/share/doc/java11-openjdk" />
-    <property name="project.structure.last.edited" value="SDKs" />
+    <property name="last_opened_file_path" value="/usr/share/doc/java11-openjdk/api" />
+    <property name="project.structure.last.edited" value="Libraries" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
-    <property name="settings.editor.selected.configurable" value="com.maddyhome.idea.vim.ui.VimEmulationConfigurable" />
+    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
   </component>
   <component name="RecentsManager">
     <key name="CreateTestDialog.Recents.Supers">
@@ -51,6 +52,9 @@
     </key>
     <key name="CreateTestDialog.RecentsKey">
       <recent name="com.druid.services" />
+    </key>
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="com.druid.enums" />
     </key>
   </component>
   <component name="RunManager" selected="Application.Unnamed">
@@ -101,8 +105,8 @@
     <recent_temporary>
       <list>
         <item itemvalue="JUnit.UserServiceTest.checkIfUserExists" />
-        <item itemvalue="JUnit.UserServiceTest" />
         <item itemvalue="JUnit.UserServiceTest.getUsers" />
+        <item itemvalue="JUnit.UserServiceTest" />
         <item itemvalue="JUnit.All in magnum-desktop" />
       </list>
     </recent_temporary>
@@ -124,6 +128,10 @@
         <breakpoint enabled="true" type="java-exception">
           <properties class="java.lang.NullPointerException" package="java.lang" />
           <option name="timeStamp" value="1" />
+        </breakpoint>
+        <breakpoint enabled="true" type="java-exception">
+          <properties class="java.sql.SQLSyntaxErrorException" package="java.sql" />
+          <option name="timeStamp" value="2" />
         </breakpoint>
       </breakpoints>
     </breakpoint-manager>
