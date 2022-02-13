@@ -1,10 +1,16 @@
 package com.druid;
 
+import com.druid.enums.HistoryActivities;
 import com.druid.enums.UserStatus;
+import com.druid.models.History;
 import com.druid.models.User;
+import com.druid.services.HistoryService;
 import com.druid.services.UserService;
 import com.druid.utils.Debugger;
 import com.github.javafaker.Faker;
+
+import java.sql.Timestamp;
+import java.util.Date;
 
 public class Main {
   public static void getUsersScenario() {
@@ -32,15 +38,21 @@ public class Main {
   public static void main(String[] args) {
     // Faker generates fake data so we don't have to do it by hand.
     Faker faker = new Faker();
-    User user = new User();
 
-    user.setUsername("elda.pfannerstill");
-    user.setEmail(faker.internet().emailAddress());
-    user.setPassword(faker.internet().password());
-    user.setStatus(UserStatus.ACTIVE);
+    Date date = new Date();
+    Timestamp time = new Timestamp(date.getTime());
 
-    //    addUserScenario(user);
-    UserService u_svc = new UserService();
-    Debugger.log(u_svc.findUser(user).toString());
+    History hist = new History();
+    hist.setActivity(HistoryActivities.BILLING);
+    hist.setDescription("Subscription purchased for $" + faker.number().randomNumber());
+    hist.setTime(time);
+
+    UserService user_svc = new UserService();
+    HistoryService hist_svc = new HistoryService();
+    User user = user_svc.findUser(72).get();
+
+    hist_svc.addToHistory(hist, user);
+    hist_svc.getHistory(user).stream().forEach(x -> Debugger.log(x));
+    hist_svc.deleteHistory(user);
   }
 }

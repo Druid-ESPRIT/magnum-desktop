@@ -5,12 +5,9 @@ import com.druid.interfaces.IUser;
 import com.druid.models.User;
 import com.druid.utils.DBConnection;
 import com.druid.utils.Debugger;
+
 import java.nio.file.Paths;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -18,11 +15,10 @@ import java.util.Optional;
 public class UserService implements IUser {
   Connection con = DBConnection.getInstance().getConnection();
 
-  @Override
   public void addUser(User u) {
     // Check that the user being passed doesn't
     // already exist in the database.
-    if (this.findUser(u).isPresent()) {
+    if (this.findUser(u.getID()).isPresent()) {
       return;
     }
 
@@ -55,7 +51,6 @@ public class UserService implements IUser {
     }
   }
 
-  @Override
   public List<User> getUsers() {
     List<User> users = new ArrayList<>();
     String query = "SELECT * FROM `Users`";
@@ -86,13 +81,11 @@ public class UserService implements IUser {
     return null;
   }
 
-  public Optional<User> findUser(User u) {
-    String query = "SELECT * FROM `Users` WHERE `ID` = ? OR `email` = ? OR `username` = ?";
+  public Optional<User> findUser(int ID) {
+    String query = "SELECT * FROM `Users` WHERE `ID` = ?";
     try {
       PreparedStatement stmt = con.prepareStatement(query);
-      stmt.setInt(1, u.getID());
-      stmt.setString(2, u.getEmail());
-      stmt.setString(3, u.getUsername());
+      stmt.setInt(1, ID);
       ResultSet result = stmt.executeQuery();
 
       if (result.next()) {
@@ -115,7 +108,6 @@ public class UserService implements IUser {
     return Optional.empty();
   }
 
-  @Override
   public void updateUser(User u) {
     String query =
         "UPDATE `Users` SET "
@@ -155,10 +147,8 @@ public class UserService implements IUser {
     }
   }
 
-  @Override
-  // TODO: Implement this.
   public void deleteUser(User u) {
-    if (this.findUser(u).isEmpty()) {
+    if (this.findUser(u.getID()).isEmpty()) {
       Debugger.log("WARN: User (with username='" + u.getUsername() + "') does not exist.");
       return;
     }

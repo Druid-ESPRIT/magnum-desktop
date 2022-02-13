@@ -1,6 +1,7 @@
 package com.druid.models;
 
 import com.druid.enums.HistoryActivities;
+
 import java.sql.Timestamp;
 
 public class History {
@@ -27,6 +28,23 @@ public class History {
 
   public void setID(int ID) {
     this.ID = ID;
+  }
+
+  @Override
+  public String toString() {
+    return "History{"
+        + "ID="
+        + ID
+        + ", userID="
+        + userID
+        + ", activity="
+        + activity
+        + ", description='"
+        + description
+        + '\''
+        + ", time="
+        + time
+        + '}';
   }
 
   public int getUserID() {
