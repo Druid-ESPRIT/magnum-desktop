@@ -1,32 +1,24 @@
 package com.druid.models;
 
-import com.druid.enums.HistoryActivities;
+import com.druid.enums.HistoryActivity;
 import java.sql.Timestamp;
 
 public class History {
   private int ID;
   private int userID;
-  private HistoryActivities activity;
+  private HistoryActivity activity;
   private String description;
   private Timestamp time;
 
   public History() {}
 
   public History(
-      int ID, int userID, HistoryActivities activity, String description, Timestamp time) {
+          int ID, int userID, HistoryActivity activity, String description, Timestamp time) {
     this.ID = ID;
     this.userID = userID;
     this.activity = activity;
     this.description = description;
     this.time = time;
-  }
-
-  public int getID() {
-    return ID;
-  }
-
-  public void setID(int ID) {
-    this.ID = ID;
   }
 
   @Override
@@ -46,6 +38,14 @@ public class History {
         + '}';
   }
 
+  public int getID() {
+    return ID;
+  }
+
+  public void setID(int ID) {
+    this.ID = ID;
+  }
+
   public int getUserID() {
     return userID;
   }
@@ -54,11 +54,11 @@ public class History {
     this.userID = userID;
   }
 
-  public HistoryActivities getActivity() {
+  public HistoryActivity getActivity() {
     return activity;
   }
 
-  public void setActivity(HistoryActivities activity) {
+  public void setActivity(HistoryActivity activity) {
     this.activity = activity;
   }
 

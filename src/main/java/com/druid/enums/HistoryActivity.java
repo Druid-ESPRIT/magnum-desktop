@@ -1,6 +1,6 @@
 package com.druid.enums;
 
-public enum HistoryActivities {
+public enum HistoryActivity {
   PROFILE {
     @Override
     public String toString() {
@@ -20,14 +20,14 @@ public enum HistoryActivities {
     }
   };
 
-  public static HistoryActivities fromString(String value) {
+  public static HistoryActivity fromString(String value) {
     switch (value) {
       case "Profile":
-        return HistoryActivities.PROFILE;
+        return HistoryActivity.PROFILE;
       case "Security":
-        return HistoryActivities.SECURITY;
+        return HistoryActivity.SECURITY;
       case "Billing":
-        return HistoryActivities.BILLING;
+        return HistoryActivity.BILLING;
       default:
         throw new IllegalArgumentException();
     }
