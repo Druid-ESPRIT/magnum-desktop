@@ -12,8 +12,7 @@ public class History {
 
   public History() {}
 
-  public History(
-          int ID, int userID, HistoryActivity activity, String description, Timestamp time) {
+  public History(int ID, int userID, HistoryActivity activity, String description, Timestamp time) {
     this.ID = ID;
     this.userID = userID;
     this.activity = activity;

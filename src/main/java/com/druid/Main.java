@@ -2,7 +2,6 @@ package com.druid;
 
 import com.druid.enums.FlagOffense;
 import com.druid.enums.HistoryActivity;
-import com.druid.enums.UserStatus;
 import com.druid.models.Flag;
 import com.druid.models.History;
 import com.druid.models.User;
