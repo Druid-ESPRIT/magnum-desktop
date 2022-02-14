@@ -2,12 +2,11 @@ package com.druid;
 
 import com.druid.enums.*;
 import com.druid.models.*;
-import com.druid.utils.*;
 import com.druid.services.*;
+import com.druid.utils.*;
 import com.github.javafaker.Faker;
-
-import java.util.Date;
 import java.sql.Timestamp;
+import java.util.Date;
 
 public class Main {
   public static void main(String[] args) {
