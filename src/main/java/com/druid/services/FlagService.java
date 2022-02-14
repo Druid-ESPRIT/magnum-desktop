@@ -1,7 +1,6 @@
 package com.druid.services;
 
 import com.druid.enums.FlagOffense;
-import com.druid.interfaces.IFlag;
 import com.druid.models.Flag;
 import com.druid.models.User;
 import com.druid.utils.DBConnection;
@@ -10,7 +9,7 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class FlagService implements IFlag {
+public class FlagService {
   Connection con = DBConnection.getInstance().getConnection();
 
   public void flag(Flag flag, User user) {
@@ -40,13 +39,13 @@ public class FlagService implements IFlag {
     }
   }
 
-  public List<Flag> getFlags(User u) {
+  public List<Flag> getFlags(User user) {
     List<Flag> flagList = new ArrayList<>();
     String query = "SELECT * FROM `Flags` WHERE `userID` = ?";
 
     try {
       PreparedStatement stmt = con.prepareStatement(query);
-      stmt.setInt(1, u.getID());
+      stmt.setInt(1, user.getID());
       ResultSet result = stmt.executeQuery();
 
       while (result.next()) {
@@ -67,8 +66,8 @@ public class FlagService implements IFlag {
     return null;
   }
 
-  public void unflag(int flagID) {
-    String query = "DELETE FROM `Flags` WHERE `ID` = '" + flagID + "'";
+  public void unflag(User user) {
+    String query = "DELETE FROM `Flags` WHERE `ID` = '" + user.getID() + "'";
     try {
       Statement stmt = con.createStatement();
       stmt.executeUpdate(query);

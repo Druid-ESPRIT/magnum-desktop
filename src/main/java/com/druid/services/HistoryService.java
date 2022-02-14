@@ -1,7 +1,6 @@
 package com.druid.services;
 
 import com.druid.enums.HistoryActivity;
-import com.druid.interfaces.IHistory;
 import com.druid.models.History;
 import com.druid.models.User;
 import com.druid.utils.DBConnection;
@@ -10,7 +9,7 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class HistoryService implements IHistory {
+public class HistoryService {
   Connection con = DBConnection.getInstance().getConnection();
 
   public void addToHistory(History hist, User user) {
@@ -38,13 +37,13 @@ public class HistoryService implements IHistory {
     }
   }
 
-  public List<History> getHistory(User u) {
+  public List<History> getHistory(User user) {
     List<History> historyList = new ArrayList<>();
     String query = "SELECT * FROM `History` where `userID` = ?";
 
     try {
       PreparedStatement stmt = con.prepareStatement(query);
-      stmt.setInt(1, u.getID());
+      stmt.setInt(1, user.getID());
       ResultSet result = stmt.executeQuery();
 
       while (result.next()) {
