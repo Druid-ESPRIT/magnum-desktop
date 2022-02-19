@@ -5,13 +5,12 @@ import com.druid.models.User;
 import com.druid.utils.DBConnection;
 import com.druid.utils.Debugger;
 import com.druid.utils.Mail;
-import org.apache.commons.lang3.RandomStringUtils;
-
 import java.sql.*;
 import java.util.Date;
 import java.util.Optional;
 import java.util.Random;
 import java.util.concurrent.TimeUnit;
+import org.apache.commons.lang3.RandomStringUtils;
 
 public class TokenService {
   Connection con = DBConnection.getInstance().getConnection();
@@ -82,9 +81,11 @@ public class TokenService {
         "Hi, "
             + user.getUsername()
             + "!\n"
-            + "You recently asked to reset your password, the following token can be used to recover your account: "
+            + "You recently asked to reset your password, the following token can be used to"
+            + " recover your account: "
             + token
-            + "\nDo not share this with anyone, and hurry up, this token will expire after 24 hours!";
+            + "\n"
+            + "Do not share this with anyone, and hurry up, this token will expire after 24 hours!";
     Mail.send(user.getEmail(), subject, text);
   }
 }
