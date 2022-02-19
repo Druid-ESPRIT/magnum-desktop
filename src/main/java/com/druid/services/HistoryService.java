@@ -5,6 +5,7 @@ import com.druid.models.History;
 import com.druid.models.User;
 import com.druid.utils.DBConnection;
 import com.druid.utils.Debugger;
+
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -39,7 +40,7 @@ public class HistoryService {
 
   public List<History> getHistory(User user) {
     List<History> historyList = new ArrayList<>();
-    String query = "SELECT * FROM `History` where `userID` = ?";
+    String query = "SELECT * FROM `History` WHERE `userID` = ?";
 
     try {
       PreparedStatement stmt = con.prepareStatement(query);

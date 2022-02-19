@@ -1,10 +1,13 @@
 package com.druid;
 
-import com.druid.enums.*;
-import com.druid.models.*;
-import com.druid.services.*;
-import com.druid.utils.*;
+import com.druid.models.Flag;
+import com.druid.models.History;
+import com.druid.models.User;
+import com.druid.services.TokenService;
+import com.druid.services.UserService;
+import com.druid.utils.Debugger;
 import com.github.javafaker.Faker;
+
 import java.sql.Timestamp;
 import java.util.Date;
 
@@ -16,17 +19,12 @@ public class Main {
     Date date = new Date();
     Timestamp time = new Timestamp(date.getTime());
     UserService user_svc = new UserService();
+    TokenService token_svc = new TokenService();
 
     History hist = new History();
     Flag flag = new Flag();
-    User user = new User();
-    user.setEmail(faker.internet().emailAddress());
-    user.setFirstName(faker.name().firstName());
-    user.setLastName(faker.name().lastName());
-    user.setUsername(faker.name().username());
-    user.setPassword(faker.internet().password());
-    user.setBiography(faker.hacker().abbreviation());
-    user.setStatus(UserStatus.ACTIVE);
-    user_svc.addUser(user);
+    User user = user_svc.findUser(73).get();
+    token_svc.generate(user);
+    Debugger.log(token_svc.getMostRecent(user));
   }
 }

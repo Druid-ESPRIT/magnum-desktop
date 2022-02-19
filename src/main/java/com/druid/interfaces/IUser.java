@@ -1,6 +1,7 @@
 package com.druid.interfaces;
 
 import com.druid.models.User;
+
 import java.util.List;
 
 public interface IUser {

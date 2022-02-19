@@ -4,46 +4,25 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="10f164c2-a5be-4c39-9d6a-baeb0dc0e142" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/mysql_connector_java.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.attach_pid127292" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.attach_pid2604" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.deepsource.toml" beforeDir="false" afterPath="$PROJECT_DIR$/.deepsource.toml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/mariadb_java_client.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+    <list default="true" id="10f164c2-a5be-4c39-9d6a-baeb0dc0e142" name="Changes" comment="Downgrade to JAVA 1.8">
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_sun_mail_javax_mail_1_6_2.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__javax_activation_activation_1_1.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_commons_commons_text_1_9.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/javax_mail_api.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/druid/models/Token.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/druid/services/TokenService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/druid/utils/Mail.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/magnum-desktop.iml" beforeDir="false" afterPath="$PROJECT_DIR$/magnum-desktop.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sql/magnum.sql" beforeDir="false" afterPath="$PROJECT_DIR$/sql/magnum.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/druid/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/druid/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/druid/interfaces/IUser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/druid/interfaces/IUser.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/druid/models/Flag.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/druid/models/Flag.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/druid/models/History.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/druid/models/History.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/druid/models/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/druid/models/User.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/druid/services/FlagService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/druid/services/FlagService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/druid/services/HistoryService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/druid/services/HistoryService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/druid/services/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/druid/services/UserService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/druid/utils/DBConnection.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/druid/utils/DBConnection.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/druid/Main.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/druid/enums/FlagOffense$1.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/druid/enums/FlagOffense$2.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/druid/enums/FlagOffense$3.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/druid/enums/FlagOffense.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/druid/enums/HistoryActivity$1.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/druid/enums/HistoryActivity$2.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/druid/enums/HistoryActivity$3.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/druid/enums/HistoryActivity.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/druid/enums/UserStatus$1.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/druid/enums/UserStatus$2.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/druid/enums/UserStatus$3.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/druid/enums/UserStatus.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/druid/interfaces/IFlag.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/druid/interfaces/IHistory.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/druid/interfaces/IUser.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/druid/models/Flag.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/druid/models/History.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/druid/models/User.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/druid/services/FlagService.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/druid/services/HistoryService.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/druid/services/UserService.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/druid/utils/DBConnection.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/druid/utils/Debugger.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -98,8 +77,8 @@
       <recent name="com.druid.services" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
-      <recent name="com.druid.interfaces" />
       <recent name="com.druid.services" />
+      <recent name="com.druid.interfaces" />
       <recent name="com.druid.enums" />
     </key>
   </component>
@@ -175,6 +154,21 @@
       <option name="presentableId" value="Default" />
       <updated>1644253857224</updated>
     </task>
+    <task id="LOCAL-00001" summary="Downgrade to JAVA 1.8">
+      <created>1645282451609</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1645282451609</updated>
+    </task>
+    <task id="LOCAL-00002" summary="Downgrade to JAVA 1.8">
+      <created>1645282461422</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1645282461422</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -188,6 +182,10 @@
       </map>
     </option>
   </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Downgrade to JAVA 1.8" />
+    <option name="LAST_COMMIT_MESSAGE" value="Downgrade to JAVA 1.8" />
+  </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
@@ -198,6 +196,10 @@
         <breakpoint enabled="true" type="java-exception">
           <properties class="java.sql.SQLSyntaxErrorException" package="java.sql" />
           <option name="timeStamp" value="2" />
+        </breakpoint>
+        <breakpoint enabled="true" type="java-exception">
+          <properties class="java.lang.ClassNotFoundException" package="java.lang" />
+          <option name="timeStamp" value="4" />
         </breakpoint>
       </breakpoints>
     </breakpoint-manager>
