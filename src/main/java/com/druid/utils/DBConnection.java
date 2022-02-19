@@ -5,11 +5,9 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 
 public class DBConnection {
-  static final String URL = "jdbc:mariadb://localhost:3306/magnum";
-  //                              ^^^^^^^
-  //               Change this to "mysql" if using MYSQL.
+  static final String URL = "jdbc:mysql://192.168.122.193:3306/magnum";
   static final String USERNAME = "grtcdr";
-  static final String PWD = "Rm,<(3(jfLSf[XHgX^XpN,Wr";
+  static final String PWD = "%*ohG$)5UM5A}?!D^}Da?m?";
   static DBConnection instance = null;
   private Connection con;
 

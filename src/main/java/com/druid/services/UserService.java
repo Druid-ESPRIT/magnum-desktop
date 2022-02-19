@@ -147,7 +147,7 @@ public class UserService implements IUser {
   }
 
   public void deleteUser(User u) {
-    if (this.findUser(u.getID()).isEmpty()) {
+    if (!this.findUser(u.getID()).isPresent()) {
       Debugger.log("WARN: User (with username='" + u.getUsername() + "') does not exist.");
       return;
     }
