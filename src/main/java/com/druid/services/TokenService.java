@@ -5,12 +5,13 @@ import com.druid.models.User;
 import com.druid.utils.DBConnection;
 import com.druid.utils.Debugger;
 import com.druid.utils.Mail;
+import org.apache.commons.lang3.RandomStringUtils;
+
 import java.sql.*;
 import java.util.Date;
 import java.util.Optional;
 import java.util.Random;
 import java.util.concurrent.TimeUnit;
-import org.apache.commons.lang3.RandomStringUtils;
 
 public class TokenService {
   Connection con = DBConnection.getInstance().getConnection();
@@ -29,6 +30,32 @@ public class TokenService {
                 result.getInt("ID"),
                 result.getInt("userID"),
                 result.getString("token"),
+                result.getBoolean("consumed"),
+                result.getTimestamp("created")));
+      }
+    } catch (SQLException ex) {
+      ex.printStackTrace();
+    }
+
+    return Optional.empty();
+  }
+
+  public Optional<Token> get(Token token, User user) {
+    String query = "SELECT * FROM `Tokens` WHERE `token` = ? AND `userID` = ?";
+
+    try {
+      PreparedStatement stmt = con.prepareStatement(query);
+      stmt.setString(1, token.getToken());
+      stmt.setInt(2, user.getID());
+      ResultSet result = stmt.executeQuery();
+
+      if (result.next()) {
+        return Optional.of(
+            new Token(
+                result.getInt("ID"),
+                result.getInt("userID"),
+                result.getString("token"),
+                result.getBoolean("consumed"),
                 result.getTimestamp("created")));
       }
     } catch (SQLException ex) {
@@ -87,5 +114,25 @@ public class TokenService {
             + "\n"
             + "Do not share this with anyone, and hurry up, this token will expire after 24 hours!";
     Mail.send(user.getEmail(), subject, text);
+  }
+
+  public void update(Token t) {
+    int consumed = t.isConsumed() ? 1 : 0;
+    String query =
+        "UPDATE `Tokens` SET "
+            + "`consumed` = '"
+            + consumed
+            + "' "
+            + "WHERE `ID` = '"
+            + t.getID()
+            + "'";
+
+    try {
+      Statement stmt = con.createStatement();
+      stmt.executeUpdate(query);
+      Debugger.log("INFO: Token successfully updated.");
+    } catch (SQLException ex) {
+      ex.printStackTrace();
+    }
   }
 }

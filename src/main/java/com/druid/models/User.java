@@ -1,6 +1,7 @@
 package com.druid.models;
 
 import com.druid.enums.UserStatus;
+
 import java.nio.file.Path;
 import java.util.Objects;
 
@@ -106,8 +107,9 @@ public class User {
     return ID;
   }
 
-  public void setID(int ID) {
+  public User setID(int ID) {
     this.ID = ID;
+    return this;
   }
 
   public Path getAvatar() {
@@ -146,16 +148,18 @@ public class User {
     return email;
   }
 
-  public void setEmail(String email) {
+  public User setEmail(String email) {
     this.email = email;
+    return this;
   }
 
   public String getUsername() {
     return username;
   }
 
-  public void setUsername(String username) {
+  public User setUsername(String username) {
     this.username = username;
+    return this;
   }
 
   public String getPassword() {

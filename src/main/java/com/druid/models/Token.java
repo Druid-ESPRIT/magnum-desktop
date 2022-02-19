@@ -6,14 +6,16 @@ public class Token {
   private int ID;
   private int userID;
   private String token;
+  private boolean consumed;
   private Timestamp created;
 
   public Token() {}
 
-  public Token(int ID, int userID, String token, Timestamp created) {
+  public Token(int ID, int userID, String token, boolean consumed, Timestamp created) {
     this.ID = ID;
     this.userID = userID;
     this.token = token;
+    this.consumed = consumed;
     this.created = created;
   }
 
@@ -27,6 +29,8 @@ public class Token {
         + ", token='"
         + token
         + '\''
+        + ", consumed="
+        + consumed
         + ", created="
         + created
         + '}';
@@ -52,8 +56,17 @@ public class Token {
     return token;
   }
 
-  public void setToken(String token) {
+  public Token setToken(String token) {
     this.token = token;
+    return this;
+  }
+
+  public boolean isConsumed() {
+    return consumed;
+  }
+
+  public void setConsumed(boolean consumed) {
+    this.consumed = consumed;
   }
 
   public Timestamp getCreated() {

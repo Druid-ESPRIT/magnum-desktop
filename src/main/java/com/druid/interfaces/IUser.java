@@ -1,14 +1,15 @@
 package com.druid.interfaces;
 
 import com.druid.models.User;
+
 import java.util.List;
 
 public interface IUser {
-  public void addUser(User p);
+  public void add(User p);
 
-  public List<User> getUsers();
+  public List<User> fetchAll();
 
-  public void updateUser(User u);
+  public void update(User u);
 
-  public void deleteUser(User u);
+  public void delete(User u);
 }
