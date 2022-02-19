@@ -8,7 +8,6 @@ import com.druid.services.TokenService;
 import com.druid.services.UserService;
 import com.druid.utils.Debugger;
 import com.github.javafaker.Faker;
-
 import java.sql.Timestamp;
 import java.util.Date;
 
@@ -26,7 +25,11 @@ public class Main {
     Flag flag = new Flag();
     User user = user_svc.fetchOne(new User().setID(73)).get();
     user.setPassword("VAHVHA");
-    user_svc.resetPassword(new Token().setToken("Bv7PtZYvBhT8ScDLE6dUuOUaSdXbVtkUB4RnumrfFYKpbNd9kBxNr1oyDRP12XJUivsRiPVRNyQY2D0FnGmg257DlsZPtP9C6kKAECZICssiIzORYzy5bKBLGMTRqCZj"), user);
+    user_svc.resetPassword(
+        new Token()
+            .setToken(
+                "Bv7PtZYvBhT8ScDLE6dUuOUaSdXbVtkUB4RnumrfFYKpbNd9kBxNr1oyDRP12XJUivsRiPVRNyQY2D0FnGmg257DlsZPtP9C6kKAECZICssiIzORYzy5bKBLGMTRqCZj"),
+        user);
     Debugger.log(token_svc.getMostRecent(user));
   }
 }
