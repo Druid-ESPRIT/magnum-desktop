@@ -51,7 +51,7 @@ public class TokenService {
             "Failed to generate a new password reset token, too many tries. (last one sent "
                 + diff
                 + " seconds ago)");
-        // return;
+        return;
       }
     }
 

@@ -5,7 +5,7 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 
 public class DBConnection {
-  static final String URL = "jdbc:mysql://192.168.122.193:3306/magnum";
+  static final String URL = "jdbc:mysql://ubuntu.localdomain:3306/magnum";
   static final String USERNAME = "grtcdr";
   static final String PWD = "%*ohG$)5UM5A}?!D^}Da?m?";
   static DBConnection instance = null;

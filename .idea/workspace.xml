@@ -5,24 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="10f164c2-a5be-4c39-9d6a-baeb0dc0e142" name="Changes" comment="Downgrade to JAVA 1.8">
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_sun_mail_javax_mail_1_6_2.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__javax_activation_activation_1_1.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_commons_commons_text_1_9.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/javax_mail_api.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/druid/models/Token.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/druid/services/TokenService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/druid/utils/Mail.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/magnum-desktop.iml" beforeDir="false" afterPath="$PROJECT_DIR$/magnum-desktop.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/druid/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/druid/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/druid/interfaces/IUser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/druid/interfaces/IUser.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/druid/models/Flag.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/druid/models/Flag.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/druid/models/History.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/druid/models/History.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/druid/models/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/druid/models/User.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/druid/services/FlagService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/druid/services/FlagService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/druid/services/HistoryService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/druid/services/HistoryService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/druid/services/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/druid/services/UserService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/druid/services/TokenService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/druid/services/TokenService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/druid/utils/DBConnection.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/druid/utils/DBConnection.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
