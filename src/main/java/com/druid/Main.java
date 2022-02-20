@@ -8,6 +8,7 @@ import com.druid.utils.Debugger;
 public class Main {
   public static void main(String[] args) {
     // TODO: Populate entry-point.
+<<<<<<< HEAD
     // Faker generates fake data so we don't have to do it by hand.
     UserService user_svc = new UserService();
     TokenService token_svc = new TokenService();
@@ -15,5 +16,7 @@ public class Main {
     User user = user_svc.fetchOne(new User().setEmail("ba.tahaaziz@gmail.com")).get();
     user.setPassword("password");
     Debugger.log(user_svc.authenticate(user));
+=======
+>>>>>>> 2925372 (Format code with google-java-format)
   }
 }

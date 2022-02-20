@@ -7,6 +7,11 @@ import com.druid.models.Token;
 import com.druid.models.User;
 import com.druid.utils.DBConnection;
 import com.druid.utils.Debugger;
+<<<<<<< HEAD
+=======
+import com.druid.utils.Mail;
+
+>>>>>>> 2925372 (Format code with google-java-format)
 import java.nio.file.Paths;
 import java.sql.*;
 import java.util.ArrayList;
@@ -145,6 +150,23 @@ public class UserService implements IUser {
     this.update(user);
   }
 
+  /**
+   * This function sends a mail containing the username of a particular user.
+   * @param user The user who will be mailed their username.
+   */
+  public void mailUsername(User user) {
+    if (!this.fetchOne(user).isPresent()) {
+      return;
+    }
+
+    String subject = "Your username on Magnum";
+    String text =
+            "Hi!\n"
+                    + "You recently forgot your username, but we haven't; here it is: "
+                    + user.getUsername();
+    Mail.send(user.getEmail(), subject, text, false);
+  }
+
   public void update(User user) {
     String query =
         "UPDATE `Users` SET "
@@ -184,7 +206,6 @@ public class UserService implements IUser {
 
   /**
    * This function allows the deletion of particular users from the database.
-   *
    * @param user A user that is to be deleted from the database.
    * @return Returns true if deleted, and false if not.
    */
@@ -219,7 +240,6 @@ public class UserService implements IUser {
 
   /**
    * This function provides the mechanism for user authentication.
-   *
    * @param user A user to be compared against existing users in the database.
    * @return If a match is found, a User object, with their full details is returned.
    */

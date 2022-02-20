@@ -134,4 +134,19 @@ public class TokenService {
       ex.printStackTrace();
     }
   }
+
+
+  /**
+   * This function cleans up the token table by removing all consumed tokens.
+   */
+  public void clean() {
+    String query = "DELETE FROM `Tokens` WHERE `consumed` = 1";
+    try {
+      Statement stmt = con.createStatement();
+      stmt.executeUpdate(query);
+      Debugger.log("INFO: Consumed tokens successfully removed.");
+    } catch (SQLException ex) {
+      ex.printStackTrace();
+    }
+  }
 }
