@@ -7,7 +7,6 @@
     <list default="true" id="10f164c2-a5be-4c39-9d6a-baeb0dc0e142" name="Changes" comment="Downgrade to JAVA 1.8">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/druid/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/druid/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/druid/services/TokenService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/druid/services/TokenService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/druid/services/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/druid/services/UserService.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />

@@ -5,12 +5,13 @@ import com.druid.models.User;
 import com.druid.utils.DBConnection;
 import com.druid.utils.Debugger;
 import com.druid.utils.Mail;
+import org.apache.commons.lang3.RandomStringUtils;
+
 import java.sql.*;
 import java.util.Date;
 import java.util.Optional;
 import java.util.Random;
 import java.util.concurrent.TimeUnit;
-import org.apache.commons.lang3.RandomStringUtils;
 
 public class TokenService {
   Connection con = DBConnection.getInstance().getConnection();
@@ -135,10 +136,7 @@ public class TokenService {
     }
   }
 
-
-  /**
-   * This function cleans up the token table by removing all consumed tokens.
-   */
+  /** This function cleans up the token table by removing all consumed tokens. */
   public void clean() {
     String query = "DELETE FROM `Tokens` WHERE `consumed` = 1";
     try {
