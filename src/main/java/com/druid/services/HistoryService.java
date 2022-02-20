@@ -5,7 +5,6 @@ import com.druid.models.History;
 import com.druid.models.User;
 import com.druid.utils.DBConnection;
 import com.druid.utils.Debugger;
-
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;

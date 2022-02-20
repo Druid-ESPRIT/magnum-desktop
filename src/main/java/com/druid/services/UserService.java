@@ -8,7 +8,6 @@ import com.druid.models.User;
 import com.druid.utils.DBConnection;
 import com.druid.utils.Debugger;
 import com.druid.utils.Mail;
-
 import java.nio.file.Paths;
 import java.sql.*;
 import java.util.ArrayList;
