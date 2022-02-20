@@ -1,7 +1,6 @@
 package com.druid.models;
 
 import com.druid.enums.HistoryActivity;
-
 import java.sql.Timestamp;
 
 public class History {
