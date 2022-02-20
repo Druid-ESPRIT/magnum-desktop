@@ -1,7 +1,5 @@
 package com.druid;
 
-import com.druid.enums.UserStatus;
-import com.druid.models.Token;
 import com.druid.models.User;
 import com.druid.services.TokenService;
 import com.druid.services.UserService;
@@ -17,6 +15,5 @@ public class Main {
     User user = user_svc.fetchOne(new User().setEmail("ba.tahaaziz@gmail.com")).get();
     user.setPassword("password");
     Debugger.log(user_svc.authenticate(user));
-
   }
 }

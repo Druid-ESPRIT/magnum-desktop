@@ -5,13 +5,12 @@ import com.druid.models.User;
 import com.druid.utils.DBConnection;
 import com.druid.utils.Debugger;
 import com.druid.utils.Mail;
-import org.apache.commons.lang3.RandomStringUtils;
-
 import java.sql.*;
 import java.util.Date;
 import java.util.Optional;
 import java.util.Random;
 import java.util.concurrent.TimeUnit;
+import org.apache.commons.lang3.RandomStringUtils;
 
 public class TokenService {
   Connection con = DBConnection.getInstance().getConnection();

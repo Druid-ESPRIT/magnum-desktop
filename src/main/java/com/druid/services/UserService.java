@@ -7,7 +7,6 @@ import com.druid.models.Token;
 import com.druid.models.User;
 import com.druid.utils.DBConnection;
 import com.druid.utils.Debugger;
-
 import java.nio.file.Paths;
 import java.sql.*;
 import java.util.ArrayList;
@@ -210,6 +209,7 @@ public class UserService implements IUser {
 
   /**
    * This function encrypts a given password with BCrypt.
+   *
    * @param password The password to encrypt.
    * @return The encrypted password.
    */
