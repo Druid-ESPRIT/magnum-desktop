@@ -1,6 +1,7 @@
 package com.druid.interfaces;
 
 import com.druid.models.User;
+
 import java.util.List;
 
 public interface IUser {
@@ -10,5 +11,5 @@ public interface IUser {
 
   public void update(User u);
 
-  public void delete(User u);
+  public boolean delete(User u);
 }

@@ -1,11 +1,13 @@
 package com.druid.services;
 
+import at.favre.lib.crypto.bcrypt.BCrypt;
 import com.druid.enums.UserStatus;
 import com.druid.interfaces.IUser;
 import com.druid.models.Token;
 import com.druid.models.User;
 import com.druid.utils.DBConnection;
 import com.druid.utils.Debugger;
+
 import java.nio.file.Paths;
 import java.sql.*;
 import java.util.ArrayList;
@@ -17,37 +19,37 @@ import java.util.concurrent.TimeUnit;
 public class UserService implements IUser {
   Connection con = DBConnection.getInstance().getConnection();
 
-  public void add(User u) {
+  public void add(User user) {
     // Check that the user being passed doesn't
     // already exist in the database.
-    if (this.fetchOne(u).isPresent()) {
+    if (this.fetchOne(user).isPresent()) {
       return;
     }
 
     String query =
         "INSERT INTO `Users` (`firstName`, `lastName`, `username`, `email`, `password`,"
             + " `biography`, `avatar`, `status`) VALUES ('"
-            + u.getFirstName()
+            + user.getFirstName()
             + "','"
-            + u.getLastName()
+            + user.getLastName()
             + "','"
-            + u.getUsername()
+            + user.getUsername()
             + "','"
-            + u.getEmail()
+            + user.getEmail()
             + "' ,'"
-            + u.getPassword()
+            + encrypt(user.getPassword())
             + "','"
-            + u.getBiography()
+            + user.getBiography()
             + "','"
-            + u.getAvatar()
+            + user.getAvatar()
             + "','"
-            + u.getStatus().toString()
+            + user.getStatus().toString()
             + "')";
 
     try {
       Statement stmt = con.createStatement();
       stmt.executeUpdate(query);
-      Debugger.log("INFO: User (with username='" + u.getUsername() + "') successfully added.");
+      Debugger.log("INFO: User (with username='" + user.getUsername() + "') successfully added.");
     } catch (SQLException ex) {
       ex.printStackTrace();
     }
@@ -83,13 +85,13 @@ public class UserService implements IUser {
     return null;
   }
 
-  public Optional<User> fetchOne(User u) {
+  public Optional<User> fetchOne(User user) {
     String query = "SELECT * FROM `Users` WHERE `ID` = ? OR `username` = ? OR `email` = ?";
     try {
       PreparedStatement stmt = con.prepareStatement(query);
-      stmt.setInt(1, u.getID());
-      stmt.setString(2, u.getUsername());
-      stmt.setString(3, u.getEmail());
+      stmt.setInt(1, user.getID());
+      stmt.setString(2, user.getUsername());
+      stmt.setString(3, user.getEmail());
       ResultSet result = stmt.executeQuery();
 
       if (result.next()) {
@@ -144,56 +146,112 @@ public class UserService implements IUser {
     this.update(user);
   }
 
-  public void update(User u) {
+  public void update(User user) {
     String query =
         "UPDATE `Users` SET "
             + "`firstName` = '"
-            + u.getFirstName()
+            + user.getFirstName()
             + "', "
             + "`lastName` = '"
-            + u.getLastName()
+            + user.getLastName()
             + "', "
             + "`email`= '"
-            + u.getEmail()
+            + user.getEmail()
             + "', "
             + "`password` = '"
-            + u.getPassword()
+            + encrypt(user.getPassword())
             + "', "
             + "`biography` = '"
-            + u.getBiography()
+            + user.getBiography()
             + "', "
             + "`avatar` = '"
-            + u.getAvatar()
+            + user.getAvatar()
             + "', "
             + "`status` = '"
-            + u.getStatus().toString()
+            + user.getStatus().toString()
             + "' "
             + "WHERE `username` = '"
-            + u.getUsername()
+            + user.getUsername()
             + "'";
 
     try {
       Statement stmt = con.createStatement();
       stmt.executeUpdate(query);
-      Debugger.log("INFO: User (with username='" + u.getUsername() + "') successfully updated.");
+      Debugger.log("INFO: User (with username='" + user.getUsername() + "') successfully updated.");
     } catch (SQLException ex) {
       ex.printStackTrace();
     }
   }
 
-  public void delete(User u) {
-    if (!this.fetchOne(u).isPresent()) {
-      Debugger.log("WARN: User (with username='" + u.getUsername() + "') does not exist.");
-      return;
+  /**
+   * This function allows the deletion of particular users from the database.
+   *
+   * @param user A user that is to be deleted from the database.
+   * @return Returns true if deleted, and false if not.
+   */
+  public boolean delete(User user) {
+    if (!this.fetchOne(user).isPresent()) {
+      Debugger.log("WARN: User (with username='" + user.getUsername() + "') does not exist.");
+      return false;
     }
 
-    String query = "DELETE FROM `Users` WHERE `username` = '" + u.getUsername() + "'";
+    String query = "DELETE FROM `Users` WHERE `username` = '" + user.getUsername() + "'";
     try {
       Statement stmt = con.createStatement();
       stmt.executeUpdate(query);
-      Debugger.log("INFO: User (with username='" + u.getUsername() + "') successfully deleted.");
+      Debugger.log("INFO: User (with username='" + user.getUsername() + "') successfully deleted.");
+      return true;
     } catch (SQLException ex) {
       ex.printStackTrace();
     }
+
+    return false;
+  }
+
+  /**
+   * This function encrypts a given password with BCrypt.
+   * @param password The password to encrypt.
+   * @return The encrypted password.
+   */
+  public String encrypt(String password) {
+    return BCrypt.with(BCrypt.Version.VERSION_2Y).hashToString(12, password.toCharArray());
+  }
+
+  /**
+   * This function provides the mechanism for user authentication.
+   *
+   * @param user A user to be compared against existing users in the database.
+   * @return If a match is found, a User object, with their full details is returned.
+   */
+  public Optional<User> authenticate(User user) {
+    String query = "SELECT * FROM `Users` WHERE `username` = ?";
+    try {
+      PreparedStatement stmt = con.prepareStatement(query);
+      stmt.setString(1, user.getUsername());
+      ResultSet result = stmt.executeQuery();
+
+      if (result.next()) {
+        User match =
+            new User(
+                result.getInt("ID"),
+                result.getString("firstName"),
+                result.getString("lastName"),
+                result.getString("username"),
+                result.getString("email"),
+                result.getString("password"),
+                result.getString("biography"),
+                Paths.get(result.getString("avatar")),
+                UserStatus.fromString(result.getString("status")));
+
+        BCrypt.Result BResult =
+            BCrypt.verifyer().verify(user.getPassword().toCharArray(), match.getPassword());
+
+        if (BResult.verified) return Optional.of(match);
+      }
+    } catch (SQLException ex) {
+      ex.printStackTrace();
+    }
+
+    return Optional.empty();
   }
 }

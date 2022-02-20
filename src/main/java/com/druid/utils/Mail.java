@@ -1,12 +1,12 @@
 package com.druid.utils;
 
-import java.util.Date;
-import java.util.Properties;
 import javax.mail.Message;
 import javax.mail.MessagingException;
 import javax.mail.Session;
 import javax.mail.Transport;
 import javax.mail.internet.MimeMessage;
+import java.util.Date;
+import java.util.Properties;
 
 public class Mail {
   private static String username = "devel.magnum";
@@ -26,7 +26,7 @@ public class Mail {
     return Session.getInstance(props, null);
   }
 
-  public static void send(String recipient, String subject, String text) {
+  public static void send(String recipient, String subject, String content, boolean html) {
     try {
       String sender = Mail.username + '@' + Mail.provider;
       MimeMessage msg = new MimeMessage(getSession());
@@ -35,7 +35,8 @@ public class Mail {
       msg.setRecipients(Message.RecipientType.TO, recipient);
       msg.setSubject(subject);
       msg.setSentDate(new Date());
-      msg.setText(text);
+      if (html) msg.setHeader("Content-Type", "text/html");
+      msg.setText(content);
       Transport.send(msg, sender, Mail.password);
     } catch (MessagingException ex) {
       ex.printStackTrace();
