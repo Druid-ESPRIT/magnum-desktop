@@ -1,13 +1,16 @@
 package com.druid.services;
 
 import at.favre.lib.crypto.bcrypt.BCrypt;
+import com.druid.enums.HistoryActivity;
 import com.druid.enums.UserStatus;
 import com.druid.interfaces.IUser;
+import com.druid.models.History;
 import com.druid.models.Token;
 import com.druid.models.User;
 import com.druid.utils.DBConnection;
 import com.druid.utils.Debugger;
 import com.druid.utils.Mail;
+
 import java.nio.file.Paths;
 import java.sql.*;
 import java.util.ArrayList;
@@ -50,6 +53,23 @@ public class UserService implements IUser {
       Statement stmt = con.createStatement();
       stmt.executeUpdate(query);
       Debugger.log("INFO: User (with username='" + user.getUsername() + "') successfully added.");
+
+      // Fetch the recently created user
+      // since we need their ID.
+      fetchOne(user)
+          .ifPresent(
+              u -> {
+                // Set the fetched ID
+                user.setID(u.getID());
+                // Record this action
+                HistoryService hist_svc = new HistoryService();
+                History hist = new History();
+                hist.setTime(new Timestamp(new Date().getTime()));
+                hist.setUserID(user.getID());
+                hist.setActivity(HistoryActivity.CORE);
+                hist.setDescription("The moment you created your account");
+                hist_svc.addToHistory(hist, user);
+              });
     } catch (SQLException ex) {
       ex.printStackTrace();
     }
@@ -265,7 +285,25 @@ public class UserService implements IUser {
         BCrypt.Result BResult =
             BCrypt.verifyer().verify(user.getPassword().toCharArray(), match.getPassword());
 
-        if (BResult.verified) return Optional.of(match);
+        // Do not authenticate if the
+        // passwords do not match.
+        if (!BResult.verified) return Optional.empty();
+
+        // Do not authenticate if the user
+        // has been previously banned.
+        if (match.getStatus().equals(UserStatus.BANNED)) {
+          Debugger.log("Unable to authenticate as this user has been banned.");
+          return Optional.empty();
+        }
+
+        // Re-enable the user if their account
+        // has been previously disabled.
+        if (match.getStatus().equals(UserStatus.DISABLED)) {
+          match.setStatus(UserStatus.ACTIVE);
+          update(match);
+        }
+
+        Optional.of(match);
       }
     } catch (SQLException ex) {
       ex.printStackTrace();

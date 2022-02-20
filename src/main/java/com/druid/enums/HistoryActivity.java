@@ -18,6 +18,12 @@ public enum HistoryActivity {
     public String toString() {
       return "Billing";
     }
+  },
+  CORE {
+    @Override
+    public String toString() {
+      return "Core";
+    }
   };
 
   public static HistoryActivity fromString(String value) {
@@ -28,6 +34,8 @@ public enum HistoryActivity {
         return HistoryActivity.SECURITY;
       case "Billing":
         return HistoryActivity.BILLING;
+      case "Core":
+        return HistoryActivity.CORE;
       default:
         throw new IllegalArgumentException();
     }

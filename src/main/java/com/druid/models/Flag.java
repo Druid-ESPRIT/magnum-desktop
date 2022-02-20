@@ -1,6 +1,7 @@
 package com.druid.models;
 
 import com.druid.enums.FlagOffense;
+
 import java.sql.Timestamp;
 
 public class Flag {
