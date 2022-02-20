@@ -5,6 +5,11 @@
  */
 package magnum.services;
 
+import magnum.enums.EventStatus;
+import magnum.enums.EventType;
+import magnum.interfaces.IEventService;
+import magnum.models.Event;
+import magnum.utils.DbConnection;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -14,22 +19,15 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import magnum.enums.EventStatus;
-import magnum.enums.EventType;
-import magnum.interfaces.IEventService;
-import magnum.models.Event;
 import magnum.models.User;
-import utils.DbConnection;
 
-/**
- *
- * @author Litai
- */
+
 public class EventService implements IEventService {
 
     DbConnection db;
     Connection cnx;
-     UserService userService;
+
+    UserService userService;
 
     public EventService() {
         cnx = DbConnection.getInstance().getDb();
@@ -38,8 +36,9 @@ public class EventService implements IEventService {
 
     @Override
     public boolean addEvent(Event e) {
-        String request = "INSERT INTO event (userid, name, description, type, location, date, payant, status)"
-                + " VALUES (?,?,?,?,?,?,?,?)";
+
+        String request = "INSERT INTO event (userid, name, description, type, location, date, payant, prix, status)"
+                + " VALUES (?,?,?,?,?,?,?,?,?)";
         try {
             PreparedStatement pst = cnx.prepareStatement(request);
             pst.setInt(1, e.getUser().getId());
@@ -49,7 +48,8 @@ public class EventService implements IEventService {
             pst.setString(5, e.getLocation());
             pst.setDate(6, e.getDate());
             pst.setBoolean(7, e.isPayant());
-            pst.setInt(8, 2); // 2 Not Finished // 1 Finished
+            pst.setDouble(8,e.getPrix());
+            pst.setInt(9, 2); // 2 Not Finished // 1 Finished
 
             pst.executeUpdate();
 
@@ -65,7 +65,7 @@ public class EventService implements IEventService {
 
     @Override
     public boolean updateEvent(Event e) {
-String request = "UPDATE event SET userid=?, name=?, description=?, type=?, location=?, date=?, payant=?, status=? WHERE id=?";
+        String request = "UPDATE event SET userid=?, name=?, description=?, type=?, location=?, date=?, payant=?, prix=?, status=? WHERE id=?";
         try {
             PreparedStatement pst = cnx.prepareStatement(request);
             pst.setInt(1, e.getUser().getId());
@@ -75,8 +75,9 @@ String request = "UPDATE event SET userid=?, name=?, description=?, type=?, loca
             pst.setString(5, e.getLocation());
             pst.setDate(6, e.getDate());
             pst.setBoolean(7, e.isPayant());
-            pst.setString(8, e.getStatus().name());
-            pst.setInt(9, e.getId());
+            pst.setDouble(8,e.getPrix());
+            pst.setString(9, e.getStatus().name());
+            pst.setInt(10, e.getId());
 
             pst.executeUpdate();
 
@@ -93,7 +94,7 @@ String request = "UPDATE event SET userid=?, name=?, description=?, type=?, loca
 
     @Override
     public boolean cancelEvent(Event e) {
-    String request = "DELETE FROM event where id=?";
+        String request = "DELETE FROM event where id=?";
         try {
             PreparedStatement pst = cnx.prepareStatement(request);
             pst.setInt(1, e.getId());
@@ -157,6 +158,7 @@ String request = "UPDATE event SET userid=?, name=?, description=?, type=?, loca
                 e.setLocation(rs.getString("location"));
                 e.setDate(rs.getDate("date"));
                 e.setPayant(rs.getBoolean("payant"));
+                e.setPrix(rs.getDouble("prix"));
                 e.setStatus(EventStatus.valueOf(rs.getString("status")));
 
                 return e;
@@ -207,6 +209,97 @@ String request = "UPDATE event SET userid=?, name=?, description=?, type=?, loca
             Logger.getLogger(EventService.class.getName()).log(Level.SEVERE, null, ex);
             return false;
         }
+    }
+
+    @Override
+    public int numberOfEventsPodcaster(int podcasterid) {
+         int numberOfEvents = 0;
+        String request = "SELECT * FROM event where userid="+podcasterid;
+        Statement st;
+        try {
+            st = cnx.createStatement();
+            ResultSet rs = st.executeQuery(request);
+            while (rs.next()) {
+              numberOfEvents++;
+            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(EventService.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        return numberOfEvents;
+    }
+
+    @Override
+    public double incomePerEvent( int eventid) {
+        Event e = getEvent(eventid);
+        if(e.isPayant())
+        {
+            int participants = numberOfParticipants(e.getId());
+        return  e.getPrix()*participants;
+        }
+        
+        return 0;
+        
+    }
+
+    @Override
+    public int numberOfParticipants( int eventid) {
+         int numberOfParticipants = 0;
+        String request = "SELECT * FROM event_user where eventid="+eventid;
+        Statement st;
+        try {
+            st = cnx.createStatement();
+            ResultSet rs = st.executeQuery(request);
+            while (rs.next()) {
+              numberOfParticipants++;
+            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(EventService.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        return numberOfParticipants;
+    }
+
+    @Override
+    public double totalIncome(int podcasterid) {
+        
+          List<Event> myList = new ArrayList<>();
+                  double totalIncome=0;
+
+        String request = "SELECT * FROM event where userid="+podcasterid;
+        Statement st;
+        try {
+              st = cnx.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
+            ResultSet rs = st.executeQuery(request);
+            while (rs.next()) {
+                Event e = new Event();
+                e.setId(rs.getInt(1));
+                e.setUser(userService.getUser(1));
+                e.setName(rs.getString("name"));
+                e.setDescription(rs.getString("description"));
+                e.setType(EventType.valueOf(rs.getString("type")));
+                e.setLocation(rs.getString("location"));
+                e.setDate(rs.getDate("date"));
+                e.setPayant(rs.getBoolean("payant"));
+                e.setStatus(EventStatus.valueOf(rs.getString("status")));
+                myList.add(e);
+            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(EventService.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        
+        
+        for (Event event : myList) {
+            double incomePerEvent = incomePerEvent( event.getId());
+            totalIncome+=incomePerEvent;
+        }
+        
+        
+        return totalIncome;
     }
 
 }

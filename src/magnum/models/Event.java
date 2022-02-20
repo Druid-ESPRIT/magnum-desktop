@@ -9,13 +9,10 @@ import magnum.enums.EventStatus;
 import magnum.enums.EventType;
 import java.sql.Date;
 
-/**
- *
- * @author Litai
- */
+
 public class Event {
     
-      private int id;
+    private int id;
     private User user;
     private String name;
     private String description;
@@ -23,13 +20,35 @@ public class Event {
     private String location;
     private Date date;
     private boolean payant;
+    private double prix;
     private EventStatus status;
 
     public Event() {
     }
+
+    public Event(User user, String name, String description, EventType type, String location, Date date, boolean payant, double prix) {
+        this.user = user;
+        this.name = name;
+        this.description = description;
+        this.type = type;
+        this.location = location;
+        this.date = date;
+        this.payant = payant;
+        this.prix = prix;
+    }
     
-    
-    public Event(int id, User user, String name, String description, EventType type, String location, Date date, boolean payant, EventStatus status) {
+     public Event(User user, String name, String description, EventType type, String location, Date date, boolean payant) {
+        this.user = user;
+        this.name = name;
+        this.description = description;
+        this.type = type;
+        this.location = location;
+        this.date = date;
+        this.payant = payant;
+    }
+
+
+    public Event(int id, User user, String name, String description, EventType type, String location, Date date, boolean payant, double prix, EventStatus status) {
         this.id = id;
         this.user = user;
         this.name = name;
@@ -38,29 +57,16 @@ public class Event {
         this.location = location;
         this.date = date;
         this.payant = payant;
+        this.prix = prix;
         this.status = status;
     }
-
-    public Event(User user, String name, String description, EventType type, String location, Date date, boolean payant, EventStatus status) {
-        this.user = user;
-        this.name = name;
-        this.description = description;
-        this.type = type;
-        this.location = location;
-        this.date = date;
-        this.payant = payant;
-        this.status = status;
-    }
-
-    public Event(User user, String name, String description, EventType type, String location, Date date, boolean payant) {
-        this.user = user;
-        this.name = name;
-        this.description = description;
-        this.type = type;
-        this.location = location;
-        this.date = date;
-        this.payant = payant;
-    }
+    
+    
+    
+    
+    
+    
+   
     
     
 
@@ -136,9 +142,21 @@ public class Event {
         this.status = status;
     }
 
+    public double getPrix() {
+        return prix;
+    }
+
+    public void setPrix(double prix) {
+        this.prix = prix;
+    }
+
     @Override
     public String toString() {
-        return "Event{" + "id=" + id + ", user=" + user + ", name=" + name + ", description=" + description + ", type=" + type + ", location=" + location + ", date=" + date + ", payant=" + payant + ", status=" + status + '}';
+        return "Event{" + "id=" + id + ", user=" + user + ", name=" + name + ", description=" + description + ", type=" + type + ", location=" + location + ", date=" + date + ", payant=" + payant + ", prix=" + prix + ", status=" + status + '}';
     }
     
+    
+
+    
+
 }

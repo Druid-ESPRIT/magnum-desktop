@@ -16,7 +16,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import magnum.interfaces.IReviewService;
 import magnum.models.Review;
-import utils.DbConnection;
+import magnum.utils.DbConnection;
 
 /**
  *

@@ -14,7 +14,7 @@ import java.util.logging.Logger;
 import magnum.enums.Status;
 import magnum.interfaces.IUserService;
 import magnum.models.User;
-import utils.DbConnection;
+import magnum.utils.DbConnection;
 
 /**
  *

@@ -24,6 +24,11 @@ public interface IEventService {
     public boolean userParticipation(Event e,User u);
     public boolean userParticipationCancel(Event e,User u);
     
+       public int numberOfEventsPodcaster(int podcasterid);
+    public double totalIncome(int podcasterid);
+    public double incomePerEvent(int eventid);
+    public int numberOfParticipants(int eventid);
+    
     
     
 }
