@@ -4,41 +4,42 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="10f164c2-a5be-4c39-9d6a-baeb0dc0e142" name="Changes" comment="Downgrade to JAVA 1.8">
+    <list default="true" id="7ad16cf0-7884-4bd8-9ff1-e76bf789df35" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__at_favre_lib_bcrypt_0_9_0.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__at_favre_lib_bytes_1_3_0.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__com_github_javafaker_javafaker_1_0_2.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__com_github_mifmif_generex_1_0_2.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__com_sun_mail_javax_mail_1_6_2.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__dk_brics_automaton_automaton_1_11_8.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__javax_activation_activation_1_1.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_commons_commons_lang3_3_5.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_commons_commons_text_1_9.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_apiguardian_apiguardian_api_1_1_2.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_junit_jupiter_junit_jupiter_5_8_2.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_junit_jupiter_junit_jupiter_api_5_8_2.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_junit_jupiter_junit_jupiter_engine_5_8_2.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_junit_jupiter_junit_jupiter_params_5_8_2.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_junit_platform_junit_platform_commons_1_8_2.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_junit_platform_junit_platform_engine_1_8_2.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_opentest4j_opentest4j_1_2_0.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_yaml_snakeyaml_android_1_23.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/github_javafaker.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/javax_mail_api.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/junit.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/mysql_connector_java.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-<<<<<<< HEAD
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/druid/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/druid/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/druid/services/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/druid/services/UserService.java" afterDir="false" />
-=======
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/druid/models/Token.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/druid/models/Token.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/druid/models/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/druid/models/User.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/druid/utils/Mail.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/druid/utils/Mail.java" afterDir="false" />
->>>>>>> 157155c (fix: smtp potential security hole and anti-patterns)
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="FileTemplateManagerImpl">
-    <option name="RECENT_TEMPLATES">
-      <list>
-        <option value="JUnit5 Test Class" />
-        <option value="Interface" />
-        <option value="Class" />
-      </list>
-    </option>
-  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
-  </component>
-  <component name="GitSEFilterConfiguration">
-    <file-type-list>
-      <filtered-out-file-type name="LOCAL_BRANCH" />
-      <filtered-out-file-type name="REMOTE_BRANCH" />
-      <filtered-out-file-type name="TAG" />
-      <filtered-out-file-type name="COMMIT_BY_MESSAGE" />
-    </file-type-list>
   </component>
   <component name="MavenImportPreferences">
     <option name="generalSettings">
@@ -46,162 +47,52 @@
         <option name="useMavenConfig" value="true" />
       </MavenGeneralSettings>
     </option>
+    <option name="importingSettings">
+      <MavenImportingSettings>
+        <option name="jdkForImporter" value="1.8" />
+      </MavenImportingSettings>
+    </option>
   </component>
-  <component name="ProjectId" id="24n69uEpMtfWFnO0mIyRsspDcwe" />
+  <component name="MavenRunner">
+    <option name="jreName" value="1.8" />
+  </component>
+  <component name="ProjectId" id="25NrjUSN7ZwKX5EL6ZKQo4XomfV" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
-    <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
-    <property name="Downloaded.Files.Path.Enabled" value="true" />
-    <property name="Repository.Attach.Annotations" value="false" />
-    <property name="Repository.Attach.JavaDocs" value="false" />
-    <property name="Repository.Attach.Sources" value="false" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
-    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
-    <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary" value="JUnit5" />
-    <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5" value="" />
-    <property name="last_opened_file_path" value="/usr/share/java/mysql-connector-java.jar" />
-    <property name="project.structure.last.edited" value="Problems" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.37327936" />
     <property name="settings.editor.selected.configurable" value="reference.projectsettings.compiler.javacompiler" />
   </component>
-  <component name="RecentsManager">
-    <key name="CreateTestDialog.Recents.Supers">
-      <recent name="" />
-    </key>
-    <key name="CreateTestDialog.RecentsKey">
-      <recent name="com.druid.services" />
-    </key>
-    <key name="CopyClassDialog.RECENTS_KEY">
-      <recent name="com.druid.services" />
-      <recent name="com.druid.interfaces" />
-      <recent name="com.druid.enums" />
-    </key>
-  </component>
-  <component name="RunManager" selected="Application.Main">
-    <configuration name="Main" type="Application" factoryName="Application" nameIsGenerated="true">
-      <option name="ALTERNATIVE_JRE_PATH" value="1.8" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
+  <component name="RunManager">
+    <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.druid.Main" />
       <module name="magnum-desktop" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="All in magnum-desktop" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="magnum-desktop" />
-      <option name="PACKAGE_NAME" value="" />
-      <option name="TEST_OBJECT" value="package" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="UserServiceTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="magnum-desktop" />
-      <option name="PACKAGE_NAME" value="com.druid.services" />
-      <option name="MAIN_CLASS_NAME" value="com.druid.services.UserServiceTest" />
-      <option name="TEST_OBJECT" value="class" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="UserServiceTest.checkIfUserExists" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="magnum-desktop" />
-      <option name="PACKAGE_NAME" value="com.druid.services" />
-      <option name="MAIN_CLASS_NAME" value="com.druid.services.UserServiceTest" />
-      <option name="METHOD_NAME" value="checkIfUserExists" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="UserServiceTest.getUsers" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="magnum-desktop" />
-      <option name="PACKAGE_NAME" value="com.druid.services" />
-      <option name="MAIN_CLASS_NAME" value="com.druid.services.UserServiceTest" />
-      <option name="METHOD_NAME" value="getUsers" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <list>
-      <item itemvalue="Application.Main" />
-      <item itemvalue="JUnit.All in magnum-desktop" />
-      <item itemvalue="JUnit.UserServiceTest" />
-      <item itemvalue="JUnit.UserServiceTest.checkIfUserExists" />
-      <item itemvalue="JUnit.UserServiceTest.getUsers" />
-    </list>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.UserServiceTest.checkIfUserExists" />
-        <item itemvalue="JUnit.UserServiceTest.getUsers" />
-        <item itemvalue="JUnit.UserServiceTest" />
-        <item itemvalue="JUnit.All in magnum-desktop" />
+        <item itemvalue="Application.Main" />
       </list>
     </recent_temporary>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="10f164c2-a5be-4c39-9d6a-baeb0dc0e142" name="Changes" comment="" />
-      <created>1644253857224</created>
+      <changelist id="7ad16cf0-7884-4bd8-9ff1-e76bf789df35" name="Changes" comment="" />
+      <created>1645378522889</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1644253857224</updated>
+      <updated>1645378522889</updated>
     </task>
-    <task id="LOCAL-00001" summary="Downgrade to JAVA 1.8">
-      <created>1645282451609</created>
-      <option name="number" value="00001" />
-      <option name="presentableId" value="LOCAL-00001" />
-      <option name="project" value="LOCAL" />
-      <updated>1645282451609</updated>
-    </task>
-    <task id="LOCAL-00002" summary="Downgrade to JAVA 1.8">
-      <created>1645282461422</created>
-      <option name="number" value="00002" />
-      <option name="presentableId" value="LOCAL-00002" />
-      <option name="project" value="LOCAL" />
-      <updated>1645282461422</updated>
-    </task>
-    <option name="localTasksCounter" value="3" />
     <servers />
-  </component>
-  <component name="Vcs.Log.Tabs.Properties">
-    <option name="TAB_STATES">
-      <map>
-        <entry key="MAIN">
-          <value>
-            <State />
-          </value>
-        </entry>
-      </map>
-    </option>
-  </component>
-  <component name="VcsManagerConfiguration">
-    <MESSAGE value="Downgrade to JAVA 1.8" />
-    <option name="LAST_COMMIT_MESSAGE" value="Downgrade to JAVA 1.8" />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <breakpoint enabled="true" type="java-exception">
-          <properties class="java.lang.NullPointerException" package="java.lang" />
-          <option name="timeStamp" value="1" />
-        </breakpoint>
-        <breakpoint enabled="true" type="java-exception">
-          <properties class="java.sql.SQLSyntaxErrorException" package="java.sql" />
-          <option name="timeStamp" value="2" />
-        </breakpoint>
-        <breakpoint enabled="true" type="java-exception">
-          <properties class="java.lang.ClassNotFoundException" package="java.lang" />
-          <option name="timeStamp" value="4" />
-        </breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
   </component>
 </project>

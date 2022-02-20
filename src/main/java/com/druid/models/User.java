@@ -1,6 +1,7 @@
 package com.druid.models;
 
 import com.druid.enums.UserStatus;
+
 import java.nio.file.Path;
 import java.util.Objects;
 
