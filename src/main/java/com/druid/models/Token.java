@@ -56,9 +56,8 @@ public class Token {
     return token;
   }
 
-  public Token setToken(String token) {
+  public void setToken(String token) {
     this.token = token;
-    return this;
   }
 
   public boolean isConsumed() {

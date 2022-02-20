@@ -1,12 +1,12 @@
 package com.druid.utils;
 
-import java.util.Date;
-import java.util.Properties;
 import javax.mail.Message;
 import javax.mail.MessagingException;
 import javax.mail.Session;
 import javax.mail.Transport;
 import javax.mail.internet.MimeMessage;
+import java.util.Date;
+import java.util.Properties;
 
 public class Mail {
   private static String username = "devel.magnum";
@@ -23,6 +23,7 @@ public class Mail {
     props.put("mail.smtp.auth", "true");
     props.put("mail.smtp.starttls.enable", "true");
     props.put("mail.smtp.EnableSSL.enable", "true");
+    props.put("mail.smtp.ssl.checkserveridentity", "true");
     return Session.getInstance(props, null);
   }
 

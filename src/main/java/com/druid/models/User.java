@@ -1,6 +1,7 @@
 package com.druid.models;
 
 import com.druid.enums.UserStatus;
+
 import java.nio.file.Path;
 import java.util.Objects;
 
@@ -147,35 +148,31 @@ public class User {
     return email;
   }
 
-  public User setEmail(String email) {
+  public void setEmail(String email) {
     this.email = email;
-    return this;
   }
 
   public String getUsername() {
     return username;
   }
 
-  public User setUsername(String username) {
+  public void setUsername(String username) {
     this.username = username;
-    return this;
   }
 
   public String getPassword() {
     return password;
   }
 
-  public User setPassword(String password) {
+  public void setPassword(String password) {
     this.password = password;
-    return this;
   }
 
   public UserStatus getStatus() {
     return status;
   }
 
-  public User setStatus(UserStatus status) {
+  public void setStatus(UserStatus status) {
     this.status = status;
-    return this;
   }
 }
