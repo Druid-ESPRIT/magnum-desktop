@@ -5,22 +5,22 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="7ad16cf0-7884-4bd8-9ff1-e76bf789df35" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/src/main/resources/main.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/druid/enums/HistoryActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/druid/enums/HistoryActivity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/druid/interfaces/IUser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/druid/interfaces/IUser.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/druid/models/Flag.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/druid/models/Flag.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/druid/models/History.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/druid/models/History.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/druid/models/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/druid/models/User.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/druid/services/FlagService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/druid/services/FlagService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/druid/services/HistoryService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/druid/services/HistoryService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/druid/services/TokenService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/druid/services/TokenService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/druid/services/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/druid/services/UserService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/druid/utils/Mail.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/druid/utils/Mail.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/druid/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/druid/Main.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="FxmlFile" />
+      </list>
+    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -54,13 +54,22 @@
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="last_opened_file_path" value="/usr/share/java/mysql-connector-java.jar" />
-    <property name="project.structure.last.edited" value="Libraries" />
+    <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.37327936" />
-    <property name="settings.editor.selected.configurable" value="reference.projectsettings.compiler.javacompiler" />
+    <property name="settings.editor.selected.configurable" value="project.propCompiler" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/main/resources" />
+      <recent name="$PROJECT_DIR$/src/main/resources/views" />
+      <recent name="$PROJECT_DIR$/src/main/java/com/druid/gui" />
+      <recent name="$PROJECT_DIR$/src/main/java/com/druid/gui/views" />
+    </key>
   </component>
   <component name="RunManager">
     <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
@@ -86,5 +95,16 @@
       <updated>1645378522889</updated>
     </task>
     <servers />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
 </project>
