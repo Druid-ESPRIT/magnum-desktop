@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project-private xmlns="http://www.netbeans.org/ns/project-private/1">
+    <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
+    <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
+        <group>
+            <file>file:/C:/Users/zeineb/Documents/NetBeansProjects/magnum-desktop-article-management/src/services/ArticleService.java</file>
+            <file>file:/C:/Users/zeineb/Documents/NetBeansProjects/magnum-desktop-article-management/src/models/Podcaster.java</file>
+            <file>file:/C:/Users/zeineb/Documents/NetBeansProjects/magnum-desktop-article-management/src/models/Commentaire.java</file>
+            <file>file:/C:/Users/zeineb/Documents/NetBeansProjects/magnum-desktop-article-management/src/models/User.java</file>
+            <file>file:/C:/Users/zeineb/Documents/NetBeansProjects/magnum-desktop-article-management/src/interfaces/IarticleService.java</file>
+            <file>file:/C:/Users/zeineb/Documents/NetBeansProjects/magnum-desktop-article-management/src/interfaces/Icommentaire.java</file>
+            <file>file:/C:/Users/zeineb/Documents/NetBeansProjects/magnum-desktop-article-management/src/interfaces/IPodcasterService.java</file>
+            <file>file:/C:/Users/zeineb/Documents/NetBeansProjects/magnum-desktop-article-management/src/services/UserService.java</file>
+            <file>file:/C:/Users/zeineb/Documents/NetBeansProjects/magnum-desktop-article-management/src/Utils/MaConnexion.java</file>
+            <file>file:/C:/Users/zeineb/Documents/NetBeansProjects/magnum-desktop-article-management/src/interfaces/Iuser.java</file>
+            <file>file:/C:/Users/zeineb/Documents/NetBeansProjects/magnum-desktop-article-management/src/models/Article.java</file>
+            <file>file:/C:/Users/zeineb/Documents/NetBeansProjects/magnum-desktop-article-management/src/services/PodcasterService.java</file>
+            <file>file:/C:/Users/zeineb/Documents/NetBeansProjects/magnum-desktop-article-management/src/services/CommentaireService.java</file>
+            <file>file:/C:/Users/zeineb/Documents/NetBeansProjects/magnum-desktop-article-management/src/main/main.java</file>
+        </group>
+    </open-files>
+</project-private>
