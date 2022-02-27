@@ -10,8 +10,6 @@ import com.druid.utils.DBConnection;
 import com.druid.utils.Debugger;
 import com.druid.utils.Mail;
 import com.druid.utils.QuickHistory;
-import org.jooq.DSLContext;
-import org.jooq.impl.DSL;
 
 import java.nio.file.Paths;
 import java.sql.*;
@@ -21,14 +19,12 @@ import java.util.List;
 import java.util.Optional;
 import java.util.concurrent.TimeUnit;
 
-import static org.jooq.impl.DSL.*;
-
-public class UserService implements IUser {
+public class AdministratorService implements IUser {
   Connection con = DBConnection.getInstance().getConnection();
 
   @Override
   public Optional<User> fetchByType(User u, UserTypes t) {
-    if (t == UserTypes.USER) {
+    if (t == UserTypes.ADMINISTRATOR) {
       return fetchOne(u);
     }
     return Optional.empty();
@@ -38,39 +34,41 @@ public class UserService implements IUser {
     // Check that the user being passed doesn't
     // already exist in the database.
     if (this.fetchOne(user).isPresent()) {
-      Debugger.log("WARNING: User (with username='" + user.getUsername() + "') already exists.");
       return;
     }
 
-    DSLContext create = DSL.using(con, DBConnection.getDialect());
-    create
-        .insertInto(
-            table(name("Users")),
-            field(name("username")),
-            field(name("email")),
-            field(name("password")),
-            field(name("avatar")),
-            field(name("status")))
-        .values(
-            user.getUsername(),
-            user.getEmail(),
-            user.getPassword(),
-            user.getAvatar(),
-            user.getStatus())
-        .execute();
+    String query =
+        "INSERT INTO `Users` (`username`, `email`, `password`,"
+            + " `avatar`, `status`) VALUES ('"
+            + user.getUsername()
+            + "','"
+            + user.getEmail()
+            + "' ,'"
+            + encrypt(user.getPassword())
+            + "','"
+            + user.getAvatar()
+            + "','"
+            + user.getStatus().toString()
+            + "')";
 
-    Debugger.log("INFO: User (with username='" + user.getUsername() + "') successfully added.");
+    try {
+      Statement stmt = con.createStatement();
+      stmt.executeUpdate(query);
+      Debugger.log("INFO: User (with username='" + user.getUsername() + "') successfully added.");
 
-    // Fetch the recently created user
-    // since we need their ID.
-    fetchOne(user)
-        .ifPresent(
-            u -> {
-              // Set the fetched ID
-              user.setID(u.getID());
-              // Record this action
-              QuickHistory.logAccountCreation(user);
-            });
+      // Fetch the recently created user
+      // since we need their ID.
+      fetchOne(user)
+          .ifPresent(
+              u -> {
+                // Set the fetched ID
+                user.setID(u.getID());
+                // Record this action
+                QuickHistory.logAccountCreation(user);
+              });
+    } catch (SQLException ex) {
+      ex.printStackTrace();
+    }
   }
 
   public List<User> fetchAll() {
@@ -96,8 +94,6 @@ public class UserService implements IUser {
     } catch (SQLException ex) {
       ex.printStackTrace();
     }
-
-    Debugger.log("No users found.");
 
     return null;
   }

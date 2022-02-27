@@ -1,15 +1,13 @@
 package com.druid.models;
 
 import com.druid.enums.UserStatus;
+
 import java.nio.file.Path;
 import java.util.Objects;
 
 public class User {
   private int ID;
   private Path avatar;
-  private String firstName;
-  private String lastName;
-  private String biography;
   private String email;
   private String username;
   private String password;
@@ -17,18 +15,7 @@ public class User {
 
   public User() {}
 
-  public User(
-      String firstName,
-      String lastName,
-      String username,
-      String email,
-      String password,
-      String biography,
-      Path avatar,
-      UserStatus status) {
-    this.firstName = firstName;
-    this.lastName = lastName;
-    this.biography = biography;
+  public User(String username, String email, String password, Path avatar, UserStatus status) {
     this.avatar = avatar;
     this.email = email;
     this.username = username;
@@ -37,54 +24,13 @@ public class User {
   }
 
   public User(
-      int id,
-      String firstName,
-      String lastName,
-      String username,
-      String email,
-      String password,
-      String biography,
-      Path avatar,
-      UserStatus status) {
+      int id, String username, String email, String password, Path avatar, UserStatus status) {
     this.ID = id;
-    this.firstName = firstName;
-    this.lastName = lastName;
-    this.biography = biography;
     this.avatar = avatar;
     this.email = email;
     this.username = username;
     this.password = password;
     this.status = status;
-  }
-
-  @Override
-  public String toString() {
-    return "User{"
-        + "id="
-        + ID
-        + ", avatar="
-        + avatar
-        + ", firstName='"
-        + firstName
-        + '\''
-        + ", lastName='"
-        + lastName
-        + '\''
-        + ", biography='"
-        + biography
-        + '\''
-        + ", email='"
-        + email
-        + '\''
-        + ", username='"
-        + username
-        + '\''
-        + ", password='"
-        + password
-        + '\''
-        + ", status="
-        + status
-        + '}';
   }
 
   @Override
@@ -102,6 +48,18 @@ public class User {
     return Objects.hash(getID(), getEmail(), getUsername());
   }
 
+  @Override
+  public String toString() {
+    return "User{" +
+            "ID=" + ID +
+            ", avatar=" + avatar +
+            ", email='" + email + '\'' +
+            ", username='" + username + '\'' +
+            ", password='" + password + '\'' +
+            ", status=" + status +
+            '}';
+  }
+
   public int getID() {
     return ID;
   }
@@ -117,30 +75,6 @@ public class User {
 
   public void setAvatar(Path avatar) {
     this.avatar = avatar;
-  }
-
-  public String getFirstName() {
-    return firstName;
-  }
-
-  public void setFirstName(String firstName) {
-    this.firstName = firstName;
-  }
-
-  public String getLastName() {
-    return lastName;
-  }
-
-  public void setLastName(String lastName) {
-    this.lastName = lastName;
-  }
-
-  public String getBiography() {
-    return biography;
-  }
-
-  public void setBiography(String biography) {
-    this.biography = biography;
   }
 
   public String getEmail() {
