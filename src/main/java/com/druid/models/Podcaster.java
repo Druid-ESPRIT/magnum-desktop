@@ -2,6 +2,7 @@ package com.druid.models;
 
 import com.druid.enums.UserStatus;
 import java.nio.file.Path;
+import java.util.Objects;
 
 public class Podcaster extends User {
   private String firstName;
@@ -69,6 +70,16 @@ public class Podcaster extends User {
         + biography
         + '\''
         + '}';
+  }
+
+  @Override
+  public boolean equals(Object o) {
+    return super.equals(o);
+  }
+
+  @Override
+  public int hashCode() {
+    return super.hashCode();
   }
 
   public String getFirstName() {

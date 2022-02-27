@@ -36,6 +36,43 @@ public class Administrator extends User {
     this.lastName = lastName;
   }
 
+  @Override
+  public String toString() {
+    return "Administrator{"
+        + "ID="
+        + this.getID()
+        + ", avatar="
+        + this.getAvatar()
+        + ", email='"
+        + this.getEmail()
+        + '\''
+        + ", username='"
+        + this.getUsername()
+        + '\''
+        + ", password='"
+        + this.getPassword()
+        + '\''
+        + ", status="
+        + this.getStatus()
+        + ", firstName='"
+        + firstName
+        + '\''
+        + ", lastName='"
+        + lastName
+        + '\''
+        + '}';
+  }
+
+  @Override
+  public boolean equals(Object o) {
+    return super.equals(o);
+  }
+
+  @Override
+  public int hashCode() {
+    return super.hashCode();
+  }
+
   public String getFirstName() {
     return firstName;
   }
