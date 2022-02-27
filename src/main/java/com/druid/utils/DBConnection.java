@@ -1,10 +1,9 @@
 package com.druid.utils;
 
-import org.jooq.SQLDialect;
-
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+import org.jooq.SQLDialect;
 
 public class DBConnection {
   private static final String URL = "jdbc:mysql://ubuntu.localdomain:3306/magnum";

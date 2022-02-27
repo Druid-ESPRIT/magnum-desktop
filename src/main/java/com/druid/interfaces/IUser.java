@@ -3,7 +3,6 @@ package com.druid.interfaces;
 import at.favre.lib.crypto.bcrypt.BCrypt;
 import com.druid.enums.UserTypes;
 import com.druid.models.User;
-
 import java.util.List;
 import java.util.Optional;
 

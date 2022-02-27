@@ -1,5 +1,7 @@
 package com.druid.services;
 
+import static org.jooq.impl.DSL.*;
+
 import at.favre.lib.crypto.bcrypt.BCrypt;
 import com.druid.enums.UserStatus;
 import com.druid.enums.UserTypes;
@@ -10,9 +12,6 @@ import com.druid.utils.DBConnection;
 import com.druid.utils.Debugger;
 import com.druid.utils.Mail;
 import com.druid.utils.QuickHistory;
-import org.jooq.DSLContext;
-import org.jooq.impl.DSL;
-
 import java.nio.file.Paths;
 import java.sql.*;
 import java.util.ArrayList;
@@ -20,8 +19,8 @@ import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 import java.util.concurrent.TimeUnit;
-
-import static org.jooq.impl.DSL.*;
+import org.jooq.DSLContext;
+import org.jooq.impl.DSL;
 
 public class UserService implements IUser {
   Connection con = DBConnection.getInstance().getConnection();

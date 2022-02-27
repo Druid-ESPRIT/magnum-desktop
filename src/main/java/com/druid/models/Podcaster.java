@@ -1,7 +1,6 @@
 package com.druid.models;
 
 import com.druid.enums.UserStatus;
-
 import java.nio.file.Path;
 
 public class Podcaster extends User {
@@ -44,17 +43,32 @@ public class Podcaster extends User {
 
   @Override
   public String toString() {
-    return "Podcaster{" +
-            "ID=" + this.getID() +
-            ", avatar=" + this.getAvatar() +
-            ", email='" + this.getEmail() + '\'' +
-            ", username='" + this.getUsername() + '\'' +
-            ", password='" + this.getPassword() + '\'' +
-            ", status=" + this.getStatus() +
-            ", firstName='" + firstName + '\'' +
-            ", lastName='" + lastName + '\'' +
-            ", biography='" + biography + '\'' +
-            '}';
+    return "Podcaster{"
+        + "ID="
+        + this.getID()
+        + ", avatar="
+        + this.getAvatar()
+        + ", email='"
+        + this.getEmail()
+        + '\''
+        + ", username='"
+        + this.getUsername()
+        + '\''
+        + ", password='"
+        + this.getPassword()
+        + '\''
+        + ", status="
+        + this.getStatus()
+        + ", firstName='"
+        + firstName
+        + '\''
+        + ", lastName='"
+        + lastName
+        + '\''
+        + ", biography='"
+        + biography
+        + '\''
+        + '}';
   }
 
   public String getFirstName() {

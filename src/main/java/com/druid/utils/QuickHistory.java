@@ -4,7 +4,6 @@ import com.druid.enums.HistoryActivity;
 import com.druid.models.History;
 import com.druid.models.User;
 import com.druid.services.HistoryService;
-
 import java.sql.Timestamp;
 import java.util.Date;
 

@@ -1,7 +1,6 @@
 package com.druid.models;
 
 import com.druid.enums.UserStatus;
-
 import java.nio.file.Path;
 import java.util.Objects;
 
@@ -50,14 +49,23 @@ public class User {
 
   @Override
   public String toString() {
-    return "User{" +
-            "ID=" + ID +
-            ", avatar=" + avatar +
-            ", email='" + email + '\'' +
-            ", username='" + username + '\'' +
-            ", password='" + password + '\'' +
-            ", status=" + status +
-            '}';
+    return "User{"
+        + "ID="
+        + ID
+        + ", avatar="
+        + avatar
+        + ", email='"
+        + email
+        + '\''
+        + ", username='"
+        + username
+        + '\''
+        + ", password='"
+        + password
+        + '\''
+        + ", status="
+        + status
+        + '}';
   }
 
   public int getID() {
