@@ -14,9 +14,13 @@ public class Main extends Application {
 
   @Override
   public void start(Stage stage) throws IOException {
-    Parent root = FXMLLoader.load(getClass().getResource("/main.fxml"));
+    Parent root = FXMLLoader.load(getClass().getResource("/register.fxml"));
+    Scene scene = new Scene(root, 300, 300);
+    String css = this.getClass().getResource("/general.css").toExternalForm();
+
     stage.setTitle("Magnum");
-    stage.setScene(new Scene(root, 300, 300));
+    scene.getStylesheets().add(css);
+    stage.setScene(scene);
     stage.show();
   }
 }
