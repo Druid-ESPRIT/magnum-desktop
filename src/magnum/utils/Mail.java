@@ -22,8 +22,8 @@ public class Mail {
    
                 
             public String sendEmail(String toEmailAddress, String emailMessage) {
-            String userName = "mail";
-            String password = "mdp";
+            String userName = "essia.litaiem@esprit.tn";
+            String password = "191JFT1059/04120102";
             String emailSubject = "Ticket Evenement";
             try {
             Properties props = System.getProperties();

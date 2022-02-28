@@ -125,6 +125,7 @@ public class EventService implements IEventService {
                 e.setLocation(rs.getString("location"));
                 e.setDate(rs.getDate("date"));
                 e.setPayant(rs.getBoolean("payant"));
+                e.setPrix(rs.getDouble("prix"));
                 e.setStatus(EventStatus.valueOf(rs.getString("status")));
                 myList.add(e);
             }
@@ -283,6 +284,7 @@ public class EventService implements IEventService {
                 e.setLocation(rs.getString("location"));
                 e.setDate(rs.getDate("date"));
                 e.setPayant(rs.getBoolean("payant"));
+                e.setPrix(rs.getDouble("prix"));
                 e.setStatus(EventStatus.valueOf(rs.getString("status")));
                 myList.add(e);
             }
@@ -300,6 +302,36 @@ public class EventService implements IEventService {
         
         
         return totalIncome;
+    }
+
+    @Override
+    public List<Event> getAll(int podcaster) {
+      List<Event> myList = new ArrayList<>();
+        String request = "SELECT * FROM event where userid="+podcaster;
+        Statement st;
+        try {
+             st = cnx.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
+            ResultSet rs = st.executeQuery(request);
+            while (rs.next()) {
+                Event e = new Event();
+                e.setId(rs.getInt(1));
+                e.setUser(userService.getUser(1));
+                e.setName(rs.getString("name"));
+                e.setDescription(rs.getString("description"));
+                e.setType(EventType.valueOf(rs.getString("type")));
+                e.setLocation(rs.getString("location"));
+                e.setDate(rs.getDate("date"));
+                e.setPayant(rs.getBoolean("payant"));
+                e.setPrix(rs.getDouble("prix"));
+                e.setStatus(EventStatus.valueOf(rs.getString("status")));
+                myList.add(e);
+            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(EventService.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        return myList;
     }
 
 }

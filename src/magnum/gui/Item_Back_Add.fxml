@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="399.0" prefWidth="949.0" style="-fx-background-color: #fff;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Pane layoutX="29.0" layoutY="22.0" prefHeight="338.0" prefWidth="896.0" style="-fx-background-color: #fff;">
+         <children>
+            <Separator layoutX="41.0" layoutY="94.0" prefHeight="0.0" prefWidth="763.0" />
+            <Label layoutX="43.0" layoutY="18.0" text="Event Name" textFill="#3a1c9d">
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font>
+            </Label>
+            <Pane layoutY="269.0" prefHeight="70.0" prefWidth="896.0" style="-fx-background-color: #F0F0F0;">
+               <children>
+                  <JFXButton fx:id="Add_event_btn" layoutY="-1.0" onMouseClicked="#add_event" prefHeight="70.0" prefWidth="896.0" style="-fx-background-color: #0085BD;" stylesheets="@style.css" text="Add" />
+               </children></Pane>
+            <Label layoutX="232.0" layoutY="18.0" text="Price" textFill="#3a1c9d">
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font>
+            </Label>
+            <Label layoutX="381.0" layoutY="18.0" prefHeight="27.0" prefWidth="62.0" text="Date" textFill="#3a1c9d">
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font>
+            </Label>
+            <Label layoutX="38.0" layoutY="111.0" text="Description" textFill="#3a1c9d">
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font>
+            </Label>
+            <Label fx:id="event_location_label" layoutX="38.0" layoutY="188.0" text="Location" textFill="#3a1c9d">
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font>
+            </Label>
+            <TextField fx:id="event_name" layoutX="35.0" layoutY="49.0" />
+            <TextField fx:id="event_price" layoutX="230.0" layoutY="49.0" prefHeight="25.0" prefWidth="131.0" />
+            <DatePicker fx:id="event_date" layoutX="384.0" layoutY="49.0" />
+            <TextArea fx:id="event_description" layoutX="36.0" layoutY="140.0" prefHeight="46.0" prefWidth="479.0" />
+            <TextField fx:id="event_location" layoutX="35.0" layoutY="215.0" prefHeight="46.0" prefWidth="479.0" />
+            <ComboBox fx:id="type" layoutX="607.0" layoutY="49.0" prefWidth="150.0" />
+            <Label layoutX="607.0" layoutY="18.0" prefHeight="27.0" prefWidth="102.0" text="Type" textFill="#3a1c9d">
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font>
+            </Label>
+         </children>
+         <effect>
+            <DropShadow color="#d7d2d2" height="50.0" radius="24.5" width="50.0" />
+         </effect>
+      </Pane>
+   </children>
+</AnchorPane>
