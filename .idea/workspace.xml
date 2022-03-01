@@ -5,8 +5,30 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="7ad16cf0-7884-4bd8-9ff1-e76bf789df35" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/druid/models/Administrator.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/druid/models/Podcaster.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/druid/services/AdministratorService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/druid/services/PodcasterService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/druid/utils/QuickHistory.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/magnum-desktop.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/druid/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/druid/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/druid/enums/FlagOffense.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/druid/enums/FlagOffense.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/druid/enums/HistoryActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/druid/enums/HistoryActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/druid/enums/UserStatus.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/druid/enums/UserStatus.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/druid/interfaces/IUser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/druid/interfaces/IUser.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/druid/models/Flag.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/druid/models/Flag.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/druid/models/History.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/druid/models/History.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/druid/models/Token.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/druid/models/Token.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/druid/models/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/druid/models/User.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/druid/services/FlagService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/druid/services/FlagService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/druid/services/HistoryService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/druid/services/HistoryService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/druid/services/TokenService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/druid/services/TokenService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/druid/services/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/druid/services/UserService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/druid/utils/DBConnection.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/druid/utils/DBConnection.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/druid/utils/Debugger.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/druid/utils/Debugger.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/druid/utils/Mail.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/druid/utils/Mail.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/main.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/main.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -17,6 +39,7 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="FxmlFile" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -42,6 +65,9 @@
     <option name="jreName" value="1.8" />
   </component>
   <component name="ProjectId" id="25NrjUSN7ZwKX5EL6ZKQo4XomfV" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
@@ -54,11 +80,11 @@
     <property name="Repository.Attach.Sources" value="false" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
-    <property name="last_opened_file_path" value="/usr/share/java/mysql-connector-java.jar" />
-    <property name="project.structure.last.edited" value="Libraries" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../magnum-desktop" />
+    <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.49566296" />
-    <property name="settings.editor.selected.configurable" value="project.propCompiler" />
+    <property name="settings.editor.selected.configurable" value="preferences.JavaFX" />
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
@@ -70,8 +96,10 @@
   </component>
   <component name="RunManager">
     <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="ALTERNATIVE_JRE_PATH" value="1.8" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
       <option name="MAIN_CLASS_NAME" value="com.druid.Main" />
-      <module name="magnum-desktop" />
+      <module name="mgnm" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -103,5 +131,15 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <breakpoint enabled="true" type="java-exception">
+          <properties class="java.util.NoSuchElementException" package="java.util" />
+          <option name="timeStamp" value="1" />
+        </breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>
