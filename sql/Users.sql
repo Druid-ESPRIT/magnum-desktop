@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Feb 26, 2022 at 12:30 PM
+-- Generation Time: Mar 01, 2022 at 09:07 PM
 -- Server version: 8.0.28-0ubuntu0.20.04.3
 -- PHP Version: 7.4.3
 
@@ -33,13 +33,19 @@ CREATE TABLE `Users` (
   `username` varchar(40) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `email` varchar(80) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `password` varchar(72) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `firstName` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `lastName` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `biography` varchar(250) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `avatar` varchar(120) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `status` enum('Active','Disabled','Banned','') CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `role` enum('Admin','Normal') COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'Normal'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+  `status` enum('Active','Disabled','Banned','') CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `Users`
+--
+
+INSERT INTO `Users` (`ID`, `username`, `email`, `password`, `avatar`, `status`) VALUES
+(8, 'aaa', 'aaa@gmail.com', '$2y$12$JVVycDR0FqTNqvXJBnck8utX5UqX2YbI90S.uX/KXOLzLBm948cYa', 'avatar2.png', 'Active'),
+(9, 'aaaa', 'aaaa@gmail.com', '$2y$12$Y8/2Si/HF04VLMwJHVkhBOGgE1c5xZTURwlik/mqzDlQlrTXa5x2y', 'null', 'Active'),
+(10, 'a', 'a', '$2y$12$4bJb8DqfxNRDZskWODy9NOZERi8gqniOXJxbjKCQ05byekijbEnP6', 'null', 'Active'),
+(11, 'grtcdr', 'ba.tahaaziz@gmail.com', '$2y$12$Nj1owfwAfcd2rdjQnri9SeTArLTHKla01l9jHYzbDhjrWBViUlWmm', 'null', 'Active');
 
 --
 -- Indexes for dumped tables
@@ -59,7 +65,7 @@ ALTER TABLE `Users`
 -- AUTO_INCREMENT for table `Users`
 --
 ALTER TABLE `Users`
-  MODIFY `ID` int NOT NULL AUTO_INCREMENT;
+  MODIFY `ID` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Mar 01, 2022 at 08:56 PM
+-- Generation Time: Mar 01, 2022 at 09:07 PM
 -- Server version: 8.0.28-0ubuntu0.20.04.3
 -- PHP Version: 7.4.3
 
@@ -30,11 +30,11 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `Podcasters` (
   `ID` int NOT NULL,
-  `firstName` varchar(40) NOT NULL COMMENT 'This attribute can be used as the name of the podcast and not necessarily that of the account holder.',
-  `lastName` varchar(40) NOT NULL COMMENT 'This attribute can be used as the name of the podcast and not necessarily that of the account holder.',
-  `biography` varchar(200) DEFAULT NULL COMMENT 'A short and sweet paragraph that tells users a little bit about the podcaster.',
-  `avatar` varchar(120) DEFAULT NULL COMMENT 'The name and extension of the image file that represents the avatar of the user, e.g. "grtcdr.png"'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  `firstName` varchar(40) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT 'This attribute can be used as the name of the podcast and not necessarily that of the account holder.',
+  `lastName` varchar(40) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT 'This attribute can be used as the name of the podcast and not necessarily that of the account holder.',
+  `biography` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL COMMENT 'A short and sweet paragraph that tells users a little bit about the podcaster.',
+  `avatar` varchar(120) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL COMMENT 'The name and extension of the image file that represents the avatar of the user, e.g. "grtcdr.png"'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Indexes for dumped tables
