@@ -4,16 +4,15 @@ import com.druid.enums.UserStatus;
 import com.druid.models.User;
 import com.druid.services.UserService;
 import com.druid.utils.Debugger;
+import java.net.URL;
+import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
-
 import javax.mail.internet.AddressException;
 import javax.mail.internet.InternetAddress;
-import java.net.URL;
-import java.util.ResourceBundle;
 
 public class RegisterController implements Initializable {
   UserService user_svc = new UserService();
@@ -69,7 +68,7 @@ public class RegisterController implements Initializable {
     } catch (AddressException ex) {
       alert(emailAlert, "This email is not valid.");
     } finally {
-       hideAlert(emailAlert);
+      hideAlert(emailAlert);
     }
 
     // Verify that the password and its confirmation are identical.
