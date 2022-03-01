@@ -19,8 +19,6 @@ import java.util.List;
 import java.util.Optional;
 
 public class AdministratorService implements IUser<Administrator> {
-  Connection con = DBConnection.getInstance().getConnection();
-
   public void add(Administrator administrator) {
     // Check that the user being passed doesn't
     // already exist in the database.
@@ -54,7 +52,7 @@ public class AdministratorService implements IUser<Administrator> {
             + "')";
 
     try {
-      Statement stmt = con.createStatement();
+      Statement stmt = IUser.con.createStatement();
       stmt.executeUpdate(query);
       Debugger.log(
           "INFO: User (with username='" + administrator.getUsername() + "') successfully added.");
@@ -72,7 +70,7 @@ public class AdministratorService implements IUser<Administrator> {
             + "WHERE a.id = u.id";
 
     try {
-      Statement stmt = con.createStatement();
+      Statement stmt = IUser.con.createStatement();
       ResultSet result = stmt.executeQuery(query);
 
       while (result.next()) {
@@ -99,7 +97,7 @@ public class AdministratorService implements IUser<Administrator> {
   public Optional<Administrator> fetchOne(Administrator administrator) {
     String query = "SELECT * FROM `Users` WHERE `ID` = ? OR `username` = ? OR `email` = ?";
     try {
-      PreparedStatement stmt = con.prepareStatement(query);
+      PreparedStatement stmt = IUser.con.prepareStatement(query);
       stmt.setInt(1, administrator.getID());
       stmt.setString(2, administrator.getUsername());
       stmt.setString(3, administrator.getEmail());
@@ -159,7 +157,7 @@ public class AdministratorService implements IUser<Administrator> {
             + "'";
 
     try {
-      Statement stmt = con.createStatement();
+      Statement stmt = IUser.con.createStatement();
       stmt.executeUpdate(query);
       Debugger.log(
           "INFO: Administrator (with username='"
@@ -194,7 +192,7 @@ public class AdministratorService implements IUser<Administrator> {
             + "')";
 
     try {
-      Statement stmt = con.createStatement();
+      Statement stmt = IUser.con.createStatement();
       stmt.executeUpdate(query);
       Debugger.log(
           "INFO: Administrator (with username='"
@@ -222,7 +220,7 @@ public class AdministratorService implements IUser<Administrator> {
             + "WHERE a.id = u.id";
 
     try {
-      PreparedStatement stmt = con.prepareStatement(query);
+      PreparedStatement stmt = IUser.con.prepareStatement(query);
       stmt.setString(1, administrator.getUsername());
       ResultSet result = stmt.executeQuery();
 
