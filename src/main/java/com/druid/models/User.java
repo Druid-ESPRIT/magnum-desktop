@@ -7,9 +7,6 @@ import java.util.Objects;
 public class User {
   private int ID;
   private Path avatar;
-  private String firstName;
-  private String lastName;
-  private String biography;
   private String email;
   private String username;
   private String password;
@@ -17,18 +14,7 @@ public class User {
 
   public User() {}
 
-  public User(
-      String firstName,
-      String lastName,
-      String username,
-      String email,
-      String password,
-      String biography,
-      Path avatar,
-      UserStatus status) {
-    this.firstName = firstName;
-    this.lastName = lastName;
-    this.biography = biography;
+  public User(String username, String email, String password, Path avatar, UserStatus status) {
     this.avatar = avatar;
     this.email = email;
     this.username = username;
@@ -37,19 +23,8 @@ public class User {
   }
 
   public User(
-      int id,
-      String firstName,
-      String lastName,
-      String username,
-      String email,
-      String password,
-      String biography,
-      Path avatar,
-      UserStatus status) {
+      int id, String username, String email, String password, Path avatar, UserStatus status) {
     this.ID = id;
-    this.firstName = firstName;
-    this.lastName = lastName;
-    this.biography = biography;
     this.avatar = avatar;
     this.email = email;
     this.username = username;
@@ -64,15 +39,6 @@ public class User {
         + ID
         + ", avatar="
         + avatar
-        + ", firstName='"
-        + firstName
-        + '\''
-        + ", lastName='"
-        + lastName
-        + '\''
-        + ", biography='"
-        + biography
-        + '\''
         + ", email='"
         + email
         + '\''
@@ -117,30 +83,6 @@ public class User {
 
   public void setAvatar(Path avatar) {
     this.avatar = avatar;
-  }
-
-  public String getFirstName() {
-    return firstName;
-  }
-
-  public void setFirstName(String firstName) {
-    this.firstName = firstName;
-  }
-
-  public String getLastName() {
-    return lastName;
-  }
-
-  public void setLastName(String lastName) {
-    this.lastName = lastName;
-  }
-
-  public String getBiography() {
-    return biography;
-  }
-
-  public void setBiography(String biography) {
-    this.biography = biography;
   }
 
   public String getEmail() {

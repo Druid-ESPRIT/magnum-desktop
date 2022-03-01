@@ -7,7 +7,6 @@ import com.druid.interfaces.IUser;
 import com.druid.models.History;
 import com.druid.models.Token;
 import com.druid.models.User;
-import com.druid.utils.DBConnection;
 import com.druid.utils.Debugger;
 import com.druid.utils.Mail;
 import java.nio.file.Paths;
@@ -18,8 +17,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.concurrent.TimeUnit;
 
-public class UserService implements IUser {
-  Connection con = DBConnection.getInstance().getConnection();
+public class UserService {
 
   public void add(User user) {
     // Check that the user being passed doesn't
@@ -29,19 +27,13 @@ public class UserService implements IUser {
     }
 
     String query =
-        "INSERT INTO `Users` (`firstName`, `lastName`, `username`, `email`, `password`,"
-            + " `biography`, `avatar`, `status`) VALUES ('"
-            + user.getFirstName()
-            + "','"
-            + user.getLastName()
-            + "','"
+        "INSERT INTO `Users` (`username`, `email`, `password`,"
+            + " `avatar`, `status`) VALUES ('"
             + user.getUsername()
             + "','"
             + user.getEmail()
             + "' ,'"
             + encrypt(user.getPassword())
-            + "','"
-            + user.getBiography()
             + "','"
             + user.getAvatar()
             + "','"
@@ -49,7 +41,7 @@ public class UserService implements IUser {
             + "')";
 
     try {
-      Statement stmt = con.createStatement();
+      Statement stmt = IUser.con.createStatement();
       stmt.executeUpdate(query);
       Debugger.log("INFO: User (with username='" + user.getUsername() + "') successfully added.");
 
@@ -67,7 +59,7 @@ public class UserService implements IUser {
                 hist.setUserID(user.getID());
                 hist.setActivity(HistoryActivity.CORE);
                 hist.setDescription("The moment you created your account");
-                hist_svc.addToHistory(hist, user);
+                hist_svc.add(hist, user);
               });
     } catch (SQLException ex) {
       ex.printStackTrace();
@@ -79,19 +71,16 @@ public class UserService implements IUser {
     String query = "SELECT * FROM `Users`";
 
     try {
-      Statement stmt = con.createStatement();
+      Statement stmt = IUser.con.createStatement();
       ResultSet result = stmt.executeQuery(query);
 
       while (result.next()) {
         users.add(
             new User(
                 result.getInt("ID"),
-                result.getString("firstName"),
-                result.getString("lastName"),
                 result.getString("username"),
                 result.getString("email"),
                 result.getString("password"),
-                result.getString("biography"),
                 Paths.get(result.getString("avatar")),
                 UserStatus.fromString(result.getString("status"))));
       }
@@ -107,7 +96,7 @@ public class UserService implements IUser {
   public Optional<User> fetchOne(User user) {
     String query = "SELECT * FROM `Users` WHERE `ID` = ? OR `username` = ? OR `email` = ?";
     try {
-      PreparedStatement stmt = con.prepareStatement(query);
+      PreparedStatement stmt = IUser.con.prepareStatement(query);
       stmt.setInt(1, user.getID());
       stmt.setString(2, user.getUsername());
       stmt.setString(3, user.getEmail());
@@ -117,12 +106,9 @@ public class UserService implements IUser {
         return Optional.of(
             new User(
                 result.getInt("ID"),
-                result.getString("firstName"),
-                result.getString("lastName"),
                 result.getString("username"),
                 result.getString("email"),
                 result.getString("password"),
-                result.getString("biography"),
                 Paths.get(result.getString("avatar")),
                 UserStatus.fromString(result.getString("status"))));
       }
@@ -186,20 +172,11 @@ public class UserService implements IUser {
   public void update(User user) {
     String query =
         "UPDATE `Users` SET "
-            + "`firstName` = '"
-            + user.getFirstName()
-            + "', "
-            + "`lastName` = '"
-            + user.getLastName()
-            + "', "
             + "`email`= '"
             + user.getEmail()
             + "', "
             + "`password` = '"
             + encrypt(user.getPassword())
-            + "', "
-            + "`biography` = '"
-            + user.getBiography()
             + "', "
             + "`avatar` = '"
             + user.getAvatar()
@@ -212,7 +189,7 @@ public class UserService implements IUser {
             + "'";
 
     try {
-      Statement stmt = con.createStatement();
+      Statement stmt = IUser.con.createStatement();
       stmt.executeUpdate(query);
       Debugger.log("INFO: User (with username='" + user.getUsername() + "') successfully updated.");
     } catch (SQLException ex) {
@@ -234,7 +211,7 @@ public class UserService implements IUser {
 
     String query = "DELETE FROM `Users` WHERE `username` = '" + user.getUsername() + "'";
     try {
-      Statement stmt = con.createStatement();
+      Statement stmt = IUser.con.createStatement();
       stmt.executeUpdate(query);
       Debugger.log("INFO: User (with username='" + user.getUsername() + "') successfully deleted.");
       return true;
@@ -264,7 +241,7 @@ public class UserService implements IUser {
   public Optional<User> authenticate(User user) {
     String query = "SELECT * FROM `Users` WHERE `username` = ?";
     try {
-      PreparedStatement stmt = con.prepareStatement(query);
+      PreparedStatement stmt = IUser.con.prepareStatement(query);
       stmt.setString(1, user.getUsername());
       ResultSet result = stmt.executeQuery();
 
@@ -272,12 +249,9 @@ public class UserService implements IUser {
         User match =
             new User(
                 result.getInt("ID"),
-                result.getString("firstName"),
-                result.getString("lastName"),
                 result.getString("username"),
                 result.getString("email"),
                 result.getString("password"),
-                result.getString("biography"),
                 Paths.get(result.getString("avatar")),
                 UserStatus.fromString(result.getString("status")));
 

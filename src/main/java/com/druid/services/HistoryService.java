@@ -12,7 +12,7 @@ import java.util.List;
 public class HistoryService {
   Connection con = DBConnection.getInstance().getConnection();
 
-  public void addToHistory(History hist, User user) {
+  public void add(History hist, User user) {
     String query =
         "INSERT INTO `History` (`userID`, `activity`, `description`, `time`) "
             + "VALUES ('"
@@ -37,7 +37,7 @@ public class HistoryService {
     }
   }
 
-  public List<History> getHistory(User user) {
+  public List<History> get(User user) {
     List<History> historyList = new ArrayList<>();
     String query = "SELECT * FROM `History` WHERE `userID` = ?";
 
@@ -64,7 +64,7 @@ public class HistoryService {
     return null;
   }
 
-  public void clearHistory(User user) {
+  public void clear(User user) {
     String query =
         "DELETE FROM `History` WHERE `userID` = '"
             + user.getID()

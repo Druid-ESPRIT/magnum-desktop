@@ -3,19 +3,30 @@ package com.druid.utils;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+import java.util.Properties;
 
 public class DBConnection {
-  static final String URL = "jdbc:mysql://ubuntu.localdomain:3306/magnum";
+  // MYSQL User.
   static final String USERNAME = "grtcdr";
-  static final String PWD = "%*ohG$)5UM5A}?!D^}Da?m?";
+  static final String PASSWORD = "ohma8chuth6zeiCh";
+
+  // Your Host.
+  static final String HOST = "ubuntu.localdomain";
+  static final String DB_NAME = "magnum";
+
   static DBConnection instance = null;
   private Connection con;
 
   private DBConnection() {
     try {
-      con = DriverManager.getConnection(URL, USERNAME, PWD);
+      Properties properties = new Properties();
+      properties.put("user", USERNAME);
+      properties.put("password", PASSWORD);
+      con = DriverManager.getConnection("jdbc:mysql://" + HOST + ":/" + DB_NAME, properties);
+
       Debugger.log("INFO: Database connection established.");
     } catch (SQLException exception) {
+      System.out.println("Failed to communicate with the database.");
       exception.printStackTrace();
     }
   }
