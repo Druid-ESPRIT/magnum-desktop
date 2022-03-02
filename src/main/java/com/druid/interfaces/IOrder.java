@@ -7,6 +7,6 @@ import java.util.List;
 public interface IOrder {
     public void addOrder(Order or);
     public List<Order> getOrders();
-    public void updateOrder(Order or);
-    public void deleteOrder(Order or);
+    public void updateOrder(Order or,int id);
+    public void deleteOrder(int id);
 }

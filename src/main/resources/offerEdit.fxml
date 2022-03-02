@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.String?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane fx:id="anchorPane2" prefHeight="306.0" prefWidth="262.0" stylesheets="@style.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.druid.offerEditController">
+   <children>
+      <VBox alignment="TOP_CENTER" layoutX="2.0" layoutY="7.0" prefHeight="80.0" prefWidth="260.0" AnchorPane.bottomAnchor="180.0" AnchorPane.leftAnchor="2.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="7.0">
+         <children>
+            <HBox prefHeight="80.0" prefWidth="260.0">
+               <children>
+                  <Label prefHeight="17.0" prefWidth="92.0" text="Description:">
+                     <HBox.margin>
+                        <Insets bottom="80.0" left="20.0" />
+                     </HBox.margin>
+                  </Label>
+                  <TextArea fx:id="tfdesc" prefHeight="117.0" prefWidth="204.0">
+                     <HBox.margin>
+                        <Insets left="20.0" right="10.0" />
+                     </HBox.margin>
+                  </TextArea>
+               </children>
+            </HBox>
+         </children>
+      </VBox>
+      <VBox layoutX="2.0" layoutY="179.0" prefHeight="40.0" prefWidth="260.0">
+         <children>
+            <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0">
+               <children>
+                  <Label text="Image:">
+                     <HBox.margin>
+                        <Insets left="30.0" right="40.0" />
+                     </HBox.margin>
+                  </Label>
+                  <Label fx:id="filechosen" prefHeight="17.0" prefWidth="88.0">
+                     <HBox.margin>
+                        <Insets />
+                     </HBox.margin>
+                  </Label>
+                  <Button mnemonicParsing="false" onAction="#fileselector" styleClass="search-button" stylesheets="@style.css" text="Choose" />
+               </children>
+            </HBox>
+         </children>
+      </VBox>
+      <Button fx:id="addbutton" layoutX="132.0" layoutY="229.0" mnemonicParsing="false" onAction="#btnEditOfferClicked" prefHeight="30.0" prefWidth="80.0" stylesheets="@style.css" text="Edit ">
+         <styleClass>
+            <String fx:value="add-btn" />
+            <String fx:value="shadow" />
+         </styleClass>
+         <font>
+            <Font name="Cambria Math" size="14.0" />
+         </font></Button>
+      <VBox layoutX="1.0" layoutY="104.0" prefHeight="50.0" prefWidth="260.0">
+         <children>
+            <HBox alignment="CENTER_LEFT" prefHeight="50.0" prefWidth="260.0">
+               <children>
+                  <Label contentDisplay="CENTER" text="Price:">
+                     <HBox.margin>
+                        <Insets left="35.0" right="25.0" />
+                     </HBox.margin>
+                  </Label>
+                  <TextField fx:id="tfprice" prefHeight="25.0" prefWidth="49.0">
+                     <HBox.margin>
+                        <Insets right="10.0" />
+                     </HBox.margin>
+                  </TextField>
+                  <Label text="\$" />
+               </children>
+            </HBox>
+         </children>
+      </VBox>
+      <Button layoutX="40.0" layoutY="229.0" mnemonicParsing="false" onAction="#DeleteOffer" prefHeight="30.0" prefWidth="80.0" stylesheets="@style.css" text="Delete">
+         <styleClass>
+            <String fx:value="add-btn" />
+            <String fx:value="shadow" />
+         </styleClass>
+         <font>
+            <Font name="Cambria" size="14.0" />
+         </font>
+      </Button>
+      <Label fx:id="getid" layoutX="14.0" layoutY="284.0" />
+   </children>
+</AnchorPane>

@@ -5,7 +5,7 @@ import java.sql.Connection;
 import java.sql.SQLException;
 public class DBConnection {
 
-    final static String URL = "jdbc:mysql://localhost:3306/pidev1";
+    final static String URL = "jdbc:mysql://localhost:3306/magnum";
     final static String USERNAME = "root";
     final static String PWD = "";
 
@@ -15,7 +15,7 @@ public class DBConnection {
     private DBConnection() {
         try {
             con = DriverManager.getConnection(URL, USERNAME, PWD);
-            // Debugger.log("INFO: Database connection established.");
+
             System.out.println("INFO: Database connection established");
         } catch (SQLException exception) {
             exception.printStackTrace();

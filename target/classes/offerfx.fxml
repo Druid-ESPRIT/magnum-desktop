@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.String?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane fx:id="anchorPane" prefHeight="345.0" prefWidth="374.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.druid.OfferController">
+   <children>
+      <VBox layoutY="76.0" prefHeight="99.0" prefWidth="374.0" AnchorPane.bottomAnchor="170.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="76.0">
+         <children>
+            <HBox alignment="CENTER" prefHeight="97.0" prefWidth="374.0">
+               <children>
+                  <Label text="Description:">
+                     <HBox.margin>
+                        <Insets bottom="100.0" />
+                     </HBox.margin>
+                  </Label>
+                  <TextArea fx:id="tfdesc" prefHeight="81.0" prefWidth="222.0">
+                     <HBox.margin>
+                        <Insets left="20.0" />
+                     </HBox.margin>
+                  </TextArea>
+               </children>
+            </HBox>
+         </children>
+      </VBox>
+      <VBox layoutY="217.0" prefHeight="35.0" prefWidth="374.0" AnchorPane.bottomAnchor="111.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="217.0">
+         <children>
+            <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0">
+               <children>
+                  <Label contentDisplay="CENTER" text="Price:">
+                     <HBox.margin>
+                        <Insets left="50.0" right="40.0" />
+                     </HBox.margin>
+                  </Label>
+                  <TextField fx:id="tfprice" prefHeight="25.0" prefWidth="49.0">
+                     <HBox.margin>
+                        <Insets right="10.0" />
+                     </HBox.margin>
+                  </TextField>
+                  <Label text="\$" />
+               </children>
+            </HBox>
+         </children>
+      </VBox>
+      <VBox layoutY="252.0" prefHeight="59.0" prefWidth="374.0">
+         <children>
+            <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0">
+               <children>
+                  <Label text="Image:">
+                     <HBox.margin>
+                        <Insets left="50.0" right="40.0" />
+                     </HBox.margin>
+                  </Label>
+                  <Label fx:id="filechosen" prefHeight="17.0" prefWidth="108.0">
+                     <HBox.margin>
+                        <Insets />
+                     </HBox.margin>
+                  </Label>
+                  <Button mnemonicParsing="false" onAction="#fileselector" styleClass="search-button" stylesheets="@style.css" text="Choose" />
+               </children>
+            </HBox>
+         </children>
+      </VBox>
+      <Button fx:id="addbutton" layoutX="133.0" layoutY="311.0" mnemonicParsing="false" onAction="#btnCreateOfferClicked" prefHeight="25.0" prefWidth="108.0" stylesheets="@style.css" text="Create offer">
+         <styleClass>
+            <String fx:value="add-btn" />
+            <String fx:value="shadow" />
+         </styleClass>
+         <font>
+            <Font name="Cambria Math" size="14.0" />
+         </font></Button>
+      <VBox alignment="CENTER" prefHeight="43.0" prefWidth="374.0" styleClass="right-bar" stylesheets="@style.css">
+         <children>
+            <Label alignment="CENTER" styleClass="transparent" stylesheets="@style.css" text="Create your new Subscription offer !">
+               <font>
+                  <Font name="Cambria" size="19.0" />
+               </font>
+            </Label>
+         </children>
+      </VBox>
+   </children>
+</AnchorPane>
