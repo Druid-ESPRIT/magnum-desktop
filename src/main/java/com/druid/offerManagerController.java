@@ -115,9 +115,9 @@ public class offerManagerController implements Initializable {
         }
     }
 
-    public void loadData(List<Offer> ofs){
-        if (ofs.size() > 0) {
-            setChosenOffer(ofs.get(0));
+    public void loadData(List<Offer> offers){
+        if (offers.size() > 0) {
+            setChosenOffer(offers.get(0));
             myListener = new MyListener() {
                 @Override
                 public void onClickListener(Offer offer) {
@@ -131,16 +131,13 @@ public class offerManagerController implements Initializable {
         int row =1;
 
         try {
-
-            for (int i = 0; i < ofs.size();i++) {
+            for (int i = 0; i < offers.size();i++) {
                 FXMLLoader fxmlLoader = new FXMLLoader();
                 fxmlLoader.setLocation(getClass().getResource("/item.fxml"));
                 AnchorPane anchorPane = fxmlLoader.load();
                 ItemController itemController = fxmlLoader.getController();
 
-                itemController.setData(ofs.get(i), myListener);
-
-
+                itemController.setData(offers.get(i), myListener);
 
                 if (column == 3) {
                     column = 0;
@@ -153,8 +150,6 @@ public class offerManagerController implements Initializable {
                 grid.setMinWidth(Region.USE_COMPUTED_SIZE);
                 grid.setPrefWidth(Region.USE_COMPUTED_SIZE);
                 grid.setMaxWidth(Region.USE_PREF_SIZE);
-
-
                 grid.setMinHeight(Region.USE_COMPUTED_SIZE);
                 grid.setPrefHeight(Region.USE_COMPUTED_SIZE);
                 grid.setMaxHeight(Region.USE_PREF_SIZE);

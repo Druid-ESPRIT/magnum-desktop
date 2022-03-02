@@ -5,44 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="cb940256-f0cc-4c38-8ec7-06ab4cef1873" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/druid/ItemController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/druid/OfferController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/druid/OfferWindow.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/druid/OrderManagerController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/druid/PlaceOrderController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/druid/SubscriptionListController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/druid/SubscriptionManagerController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/druid/TestHomeController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/druid/enums/OrderStatus.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/druid/interfaces/IOffer.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/druid/interfaces/MyListener.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/druid/models/Coupon.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/druid/models/Offer.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/druid/models/PdOffer.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/druid/offerEditController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/druid/offerManagerController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/druid/services/CouponService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/druid/services/OfferService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/Item.fxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/OrderManager.fxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/offerfx.fxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/offermanager.fxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/placeOrder.fxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/style.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/subscriptionList.fxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/testHome.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/magnum-desktop.iml" beforeDir="false" afterPath="$PROJECT_DIR$/magnum-desktop.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/druid/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/druid/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/druid/interfaces/IOrder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/druid/interfaces/IOrder.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/druid/interfaces/ISubscription.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/druid/interfaces/ISubscription.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/druid/models/Order.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/druid/models/Order.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/druid/models/Subscription.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/druid/models/Subscription.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/druid/services/OrderService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/druid/services/OrderService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/druid/services/SubscriptionService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/druid/services/SubscriptionService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/druid/utils/DBConnection.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/druid/utils/DBConnection.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/druid/offerManagerController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/druid/offerManagerController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/druid/offerManagerController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/druid/offerManagerController.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -251,7 +216,7 @@
       <workItem from="1646064203419" duration="21983000" />
       <workItem from="1646087928487" duration="675000" />
       <workItem from="1646168494022" duration="15162000" />
-      <workItem from="1646217729557" duration="1330000" />
+      <workItem from="1646217729557" duration="2677000" />
     </task>
     <servers />
   </component>
