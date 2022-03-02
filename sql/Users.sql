@@ -38,16 +38,6 @@ CREATE TABLE `Users` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `Users`
---
-
-INSERT INTO `Users` (`ID`, `username`, `email`, `password`, `avatar`, `status`) VALUES
-(8, 'aaa', 'aaa@gmail.com', '$2y$12$JVVycDR0FqTNqvXJBnck8utX5UqX2YbI90S.uX/KXOLzLBm948cYa', 'avatar2.png', 'Active'),
-(9, 'aaaa', 'aaaa@gmail.com', '$2y$12$Y8/2Si/HF04VLMwJHVkhBOGgE1c5xZTURwlik/mqzDlQlrTXa5x2y', 'null', 'Active'),
-(10, 'a', 'a', '$2y$12$4bJb8DqfxNRDZskWODy9NOZERi8gqniOXJxbjKCQ05byekijbEnP6', 'null', 'Active'),
-(11, 'grtcdr', 'ba.tahaaziz@gmail.com', '$2y$12$Nj1owfwAfcd2rdjQnri9SeTArLTHKla01l9jHYzbDhjrWBViUlWmm', 'null', 'Active');
-
---
 -- Indexes for dumped tables
 --
 
@@ -65,7 +55,7 @@ ALTER TABLE `Users`
 -- AUTO_INCREMENT for table `Users`
 --
 ALTER TABLE `Users`
-  MODIFY `ID` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `ID` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

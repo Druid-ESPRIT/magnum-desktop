@@ -55,7 +55,7 @@ ALTER TABLE `Flags`
 -- AUTO_INCREMENT for table `Flags`
 --
 ALTER TABLE `Flags`
-  MODIFY `ID` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `ID` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1;
 
 --
 -- Constraints for dumped tables

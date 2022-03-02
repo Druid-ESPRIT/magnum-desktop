@@ -40,12 +40,6 @@ CREATE TABLE `History` (
 -- Dumping data for table `History`
 --
 
-INSERT INTO `History` (`ID`, `userID`, `activity`, `description`, `time`) VALUES
-(5, 8, 'Core', 'The moment you created your account', '2022-02-28 09:47:49'),
-(6, 9, 'Core', 'The moment you created your account', '2022-03-01 11:22:00'),
-(7, 10, 'Core', 'The moment you created your account', '2022-03-01 12:23:44'),
-(8, 11, 'Core', 'The moment you created your account', '2022-03-01 13:45:19');
-
 --
 -- Indexes for dumped tables
 --
@@ -65,7 +59,7 @@ ALTER TABLE `History`
 -- AUTO_INCREMENT for table `History`
 --
 ALTER TABLE `History`
-  MODIFY `ID` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `ID` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1;
 
 --
 -- Constraints for dumped tables

@@ -4,7 +4,17 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7ad16cf0-7884-4bd8-9ff1-e76bf789df35" name="Changes" comment="" />
+    <list default="true" id="7ad16cf0-7884-4bd8-9ff1-e76bf789df35" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/druid/interfaces/Clearable.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/magnum-desktop.iml" beforeDir="false" afterPath="$PROJECT_DIR$/magnum-desktop.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/sql/Flags.sql" beforeDir="false" afterPath="$PROJECT_DIR$/sql/Flags.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/sql/History.sql" beforeDir="false" afterPath="$PROJECT_DIR$/sql/History.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/sql/Users.sql" beforeDir="false" afterPath="$PROJECT_DIR$/sql/Users.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/druid/controllers/RegisterController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/druid/controllers/RegisterController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/druid/utils/Mail.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/druid/utils/Mail.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/register.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/register.fxml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -56,7 +66,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/../magnum-desktop" />
-    <property name="project.structure.last.edited" value="Modules" />
+    <property name="project.structure.last.edited" value="Problems" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.49566296" />
     <property name="settings.editor.selected.configurable" value="preferences.JavaFX" />
@@ -74,7 +84,7 @@
       <option name="ALTERNATIVE_JRE_PATH" value="1.8" />
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
       <option name="MAIN_CLASS_NAME" value="com.druid.Main" />
-      <module name="mgnm" />
+      <module name="magnum-desktop" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>

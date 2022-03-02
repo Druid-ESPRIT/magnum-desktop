@@ -8,6 +8,9 @@ import javax.mail.Session;
 import javax.mail.Transport;
 import javax.mail.internet.MimeMessage;
 
+/**
+ * This utility class implements a handy mail sending method.
+ */
 public class Mail {
   private static String username = "devel.magnum";
   private static String provider = "gmail.com";
@@ -27,6 +30,25 @@ public class Mail {
     return Session.getInstance(props, null);
   }
 
+  /**
+   * This method allows you to send emails.
+   * <br>
+   * <br>
+   * <h2>Usage</h2>
+   * <pre>{@code
+   * String recipient = "example@domain.org";
+   * String subject = "Hello there";
+   * String content = "What goes up must come down";
+   * boolean html = false;
+   *
+   * Mail.send(recipient, subject, content, html);
+   * }</pre>
+   *
+   * @param recipient The person who will be sent the mail.
+   * @param subject The subject of the mail.
+   * @param content The content of the mail.
+   * @param html Whether the mail is an HTML document or plain text.
+   */
   public static void send(String recipient, String subject, String content, boolean html) {
     try {
       String sender = Mail.username + '@' + Mail.provider;
