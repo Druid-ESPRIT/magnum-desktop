@@ -1,7 +1,10 @@
 package com.druid.controllers;
 
-import com.druid.utils.Clearable;
 import com.druid.services.UserService;
+import com.druid.utils.Clearable;
+import java.io.IOException;
+import java.net.URL;
+import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -12,52 +15,44 @@ import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
-import java.io.IOException;
-import java.net.URL;
-import java.util.ResourceBundle;
-
 public class LoginController implements Initializable {
-    private Stage stage;
+  private Stage stage;
 
-    private UserService user_svc = new UserService();
+  private UserService user_svc = new UserService();
 
-    @FXML
-    private Hyperlink forgotPassword;
+  @FXML private Hyperlink forgotPassword;
 
-    @FXML
-    private TextField username;
+  @FXML private TextField username;
 
-    @FXML
-    private PasswordField password;
+  @FXML private PasswordField password;
 
+  public Stage getStage() {
+    return stage;
+  }
 
-    public Stage getStage() {
-        return stage;
-    }
+  public void setStage(Stage stage) {
+    this.stage = stage;
+  }
 
-    public void setStage(Stage stage) {
-        this.stage = stage;
-    }
+  @Override
+  public void initialize(URL url, ResourceBundle resourceBundle) {
 
-    @Override
-    public void initialize(URL url, ResourceBundle resourceBundle) {
+    password.setOnKeyPressed(Clearable.clear(password));
+    username.setOnKeyPressed(Clearable.clear(username));
 
-        password.setOnKeyPressed(Clearable.clear(password));
-        username.setOnKeyPressed(Clearable.clear(username));
-
-        forgotPassword.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent actionEvent) {
-                SceneSwitcher sceneController = new SceneSwitcher();
-                try {
-                    sceneController.showForgotPassword(actionEvent);
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
+    forgotPassword.setOnAction(
+        new EventHandler<ActionEvent>() {
+          @Override
+          public void handle(ActionEvent actionEvent) {
+            SceneSwitcher sceneController = new SceneSwitcher();
+            try {
+              sceneController.showForgotPassword(actionEvent);
+            } catch (IOException e) {
+              e.printStackTrace();
             }
+          }
         });
-    }
+  }
 
-    public void login(MouseEvent mouseEvent) {
-    }
+  public void login(MouseEvent mouseEvent) {}
 }
