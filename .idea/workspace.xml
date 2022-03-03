@@ -5,15 +5,40 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="7ad16cf0-7884-4bd8-9ff1-e76bf789df35" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/druid/interfaces/Clearable.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/druid/controllers/ForgotPasswordController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/druid/controllers/LoginController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/druid/controllers/SceneSwitcher.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/druid/controllers/TokenInputController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/views/ForgotPassword.fxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/views/Login.fxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/views/TokenInput.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/magnum-desktop.iml" beforeDir="false" afterPath="$PROJECT_DIR$/magnum-desktop.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sql/Flags.sql" beforeDir="false" afterPath="$PROJECT_DIR$/sql/Flags.sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sql/History.sql" beforeDir="false" afterPath="$PROJECT_DIR$/sql/History.sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sql/Users.sql" beforeDir="false" afterPath="$PROJECT_DIR$/sql/Users.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/druid/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/druid/Main.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/druid/controllers/RegisterController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/druid/controllers/RegisterController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/druid/enums/FlagOffense.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/druid/enums/FlagOffense.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/druid/enums/HistoryActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/druid/enums/HistoryActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/druid/enums/UserStatus.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/druid/enums/UserStatus.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/druid/interfaces/Clearable.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/druid/utils/Clearable.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/druid/interfaces/IUser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/druid/interfaces/IUser.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/druid/models/Administrator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/druid/models/Administrator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/druid/models/Flag.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/druid/models/Flag.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/druid/models/History.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/druid/models/History.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/druid/models/Podcaster.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/druid/models/Podcaster.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/druid/models/Token.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/druid/models/Token.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/druid/models/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/druid/models/User.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/druid/services/AdministratorService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/druid/services/AdministratorService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/druid/services/FlagService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/druid/services/FlagService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/druid/services/HistoryService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/druid/services/HistoryService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/druid/services/PodcasterService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/druid/services/PodcasterService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/druid/services/TokenService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/druid/services/TokenService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/druid/services/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/druid/services/UserService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/druid/utils/DBConnection.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/druid/utils/DBConnection.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/druid/utils/Debugger.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/druid/utils/Debugger.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/druid/utils/Mail.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/druid/utils/Mail.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/register.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/register.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/druid/utils/QuickHistory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/druid/utils/QuickHistory.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/login.fxml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/main.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/views/Main.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/register.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/views/Register.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -23,8 +48,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="FxmlFile" />
         <option value="Class" />
+        <option value="FxmlFile" />
       </list>
     </option>
   </component>
@@ -66,17 +91,23 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/../magnum-desktop" />
-    <property name="project.structure.last.edited" value="Problems" />
+    <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.49566296" />
     <property name="settings.editor.selected.configurable" value="preferences.JavaFX" />
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/src/main/resources" />
       <recent name="$PROJECT_DIR$/src/main/resources/views" />
+      <recent name="$PROJECT_DIR$/src/main/resources" />
       <recent name="$PROJECT_DIR$/src/main/java/com/druid/gui" />
       <recent name="$PROJECT_DIR$/src/main/java/com/druid/gui/views" />
+    </key>
+    <key name="ExtractSuperBase.RECENT_KEYS">
+      <recent name="com.druid.controllers" />
+    </key>
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="com.druid.controllers" />
     </key>
   </component>
   <component name="RunManager">
