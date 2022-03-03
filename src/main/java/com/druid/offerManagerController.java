@@ -52,15 +52,16 @@ public class offerManagerController implements Initializable {
     private Offer offer;
     OfferService o_svc = new OfferService();
     List<Offer> offers = o_svc.getOffers();
-    ObservableList<Offer> OfferSearchModel = FXCollections.observableArrayList(offers);
+
+
 
 
     @FXML
     void SearchClicked(ActionEvent event) {
-      List<Offer> searchedOffers = o_svc.searchOffer(tfsearch.getText());
+      /*List<Offer> searchedOffers = o_svc.searchOffer(tfsearch.getText());
       grid.getChildren().clear();
       //System.out.println(searchedOffers);
-      loadData(searchedOffers);
+      loadData(searchedOffers);*/
     }
 
     @FXML
@@ -116,6 +117,7 @@ public class offerManagerController implements Initializable {
     }
 
     public void loadData(List<Offer> offers){
+
         if (offers.size() > 0) {
             setChosenOffer(offers.get(0));
             myListener = new MyListener() {
@@ -125,6 +127,7 @@ public class offerManagerController implements Initializable {
                 }
             };
         }
+
         grid2.getColumnConstraints().clear();
         grid2.getChildren().clear();
         int column =0;
@@ -146,7 +149,6 @@ public class offerManagerController implements Initializable {
 
                 grid.add(anchorPane, column++, row);
                 GridPane.setMargin(anchorPane, new Insets(10));
-
                 grid.setMinWidth(Region.USE_COMPUTED_SIZE);
                 grid.setPrefWidth(Region.USE_COMPUTED_SIZE);
                 grid.setMaxWidth(Region.USE_PREF_SIZE);
@@ -159,12 +161,18 @@ public class offerManagerController implements Initializable {
             e.printStackTrace();
         }
     }
+    public void refreshData(){
+        grid.getChildren().clear();
+        offers.clear();
+    }
     public void listenForSearchInput(){
         tfsearch.textProperty().addListener((observable, previouslySearched, searchInput) -> {
             if (!searchInput.isEmpty()) {
-                grid.getChildren().clear();
+                refreshData();
                 loadData(o_svc.searchOffer(searchInput));
-
+            }
+            else {
+                loadData(offers);
             }
         });
 

@@ -77,7 +77,7 @@
             </HBox>
          </children>
       </VBox>
-      <Button layoutX="40.0" layoutY="229.0" mnemonicParsing="false" onAction="#DeleteOffer" prefHeight="30.0" prefWidth="80.0" stylesheets="@style.css" text="Delete">
+      <Button fx:id="deleteButton" layoutX="40.0" layoutY="229.0" mnemonicParsing="false" onAction="#DeleteOffer" prefHeight="30.0" prefWidth="80.0" stylesheets="@style.css" text="Delete">
          <styleClass>
             <String fx:value="add-btn" />
             <String fx:value="shadow" />

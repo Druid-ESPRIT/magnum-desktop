@@ -4,6 +4,7 @@ import com.druid.models.Offer;
 import com.druid.services.OfferService;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.FileChooser;
@@ -42,6 +43,9 @@ public class OfferController{
 
         Stage stage = (Stage) addbutton.getScene().getWindow();
         stage.close();
+
+
+
 
 
 

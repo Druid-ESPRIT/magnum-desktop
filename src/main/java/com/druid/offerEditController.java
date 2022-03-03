@@ -5,12 +5,18 @@ import com.druid.services.OfferService;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
 import java.io.File;
+import java.io.IOException;
+import java.util.List;
 import java.util.Optional;
 
 
@@ -32,8 +38,13 @@ public class offerEditController {
     private Button addbutton;
     @FXML
     private Label getid;
+    @FXML
+    private Button deleteButton;
 
     OfferService so = new OfferService();
+
+    FXMLLoader fxmlLoader = new FXMLLoader();
+    offerManagerController itemController = fxmlLoader.getController();
 
     @FXML
     void btnEditOfferClicked(ActionEvent event) {
@@ -46,10 +57,9 @@ public class offerEditController {
         {
         Offer o = new Offer(10,Float.parseFloat(tfprice.getText()),tfdesc.getText(),filechosen.getText());
         so.updateOffer(o,Integer.parseInt(getid.getText()));
-        anchorPane2.getChildren().clear();}
+        anchorPane2.getChildren().clear();
 
-
-
+        }
     }
 
     @FXML
@@ -58,6 +68,7 @@ public class offerEditController {
         alert.showAndWait();
         so.deleteOffer(Integer.parseInt(getid.getText()));
         anchorPane2.getChildren().clear();
+
 
     }
 

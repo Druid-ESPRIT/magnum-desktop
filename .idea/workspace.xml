@@ -6,8 +6,15 @@
   <component name="ChangeListManager">
     <list default="true" id="cb940256-f0cc-4c38-8ec7-06ab4cef1873" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/druid/OfferController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/druid/OfferController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/druid/offerEditController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/druid/offerEditController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/druid/offerManagerController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/druid/offerManagerController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/offerEdit.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/offerEdit.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/druid/OfferController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/druid/OfferController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/druid/offerEditController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/druid/offerEditController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/druid/offerManagerController$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/druid/offerManagerController$1.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/druid/offerManagerController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/druid/offerManagerController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/offerEdit.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/offerEdit.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -216,7 +223,8 @@
       <workItem from="1646064203419" duration="21983000" />
       <workItem from="1646087928487" duration="675000" />
       <workItem from="1646168494022" duration="15162000" />
-      <workItem from="1646217729557" duration="2677000" />
+      <workItem from="1646217729557" duration="13622000" />
+      <workItem from="1646249537028" duration="1077000" />
     </task>
     <servers />
   </component>
