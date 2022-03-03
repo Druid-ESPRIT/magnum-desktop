@@ -1,9 +1,7 @@
-package com.druid;
+package com.druid.Controllers;
 
-import com.druid.interfaces.MyListener;
-import com.druid.models.Offer;
+import com.druid.Controllers.SubscriptionListController;
 import com.druid.models.Subscription;
-import com.druid.services.OfferService;
 import com.druid.services.SubscriptionService;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;

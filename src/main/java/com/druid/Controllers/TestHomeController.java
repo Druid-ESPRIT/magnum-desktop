@@ -1,4 +1,4 @@
-package com.druid;
+package com.druid.Controllers;
 
 
 import javafx.application.Application;

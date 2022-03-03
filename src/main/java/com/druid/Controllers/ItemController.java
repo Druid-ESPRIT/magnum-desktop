@@ -1,4 +1,4 @@
-package com.druid;
+package com.druid.Controllers;
 
 import com.druid.interfaces.MyListener;
 import com.druid.models.Offer;
@@ -10,7 +10,6 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 
 import java.io.File;
-import java.nio.file.Paths;
 
 public class ItemController {
 

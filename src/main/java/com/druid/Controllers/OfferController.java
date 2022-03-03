@@ -1,4 +1,4 @@
-package com.druid;
+package com.druid.Controllers;
 
 import com.druid.models.Offer;
 import com.druid.services.OfferService;

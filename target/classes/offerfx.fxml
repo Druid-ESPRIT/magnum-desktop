@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="anchorPane" prefHeight="345.0" prefWidth="374.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.druid.OfferController">
+<AnchorPane fx:id="anchorPane" prefHeight="345.0" prefWidth="374.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.druid.Controllers.OfferController">
    <children>
       <VBox layoutY="76.0" prefHeight="99.0" prefWidth="374.0" AnchorPane.bottomAnchor="170.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="76.0">
          <children>

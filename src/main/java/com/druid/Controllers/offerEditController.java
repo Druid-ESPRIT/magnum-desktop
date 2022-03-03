@@ -1,22 +1,16 @@
-package com.druid;
+package com.druid.Controllers;
 
 import com.druid.models.Offer;
 import com.druid.services.OfferService;
 import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
 import java.io.File;
-import java.io.IOException;
-import java.util.List;
 import java.util.Optional;
 
 
