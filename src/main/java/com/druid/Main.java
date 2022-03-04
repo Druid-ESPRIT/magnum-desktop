@@ -1,6 +1,7 @@
 package com.druid;
 
 import com.druid.controllers.LoginController;
+import com.druid.models.User;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;

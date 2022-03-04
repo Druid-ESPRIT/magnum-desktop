@@ -1,8 +1,11 @@
 package com.druid.controllers;
 
+import com.druid.enums.UserStatus;
+import com.druid.models.User;
 import com.druid.utils.Clearable;
 import com.druid.services.UserService;
 import com.druid.utils.Debugger;
+import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -17,6 +20,8 @@ import javafx.stage.Stage;
 
 import javax.mail.internet.AddressException;
 import javax.mail.internet.InternetAddress;
+import javax.swing.*;
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -33,7 +38,9 @@ public class RegisterController implements Initializable {
     @FXML
     private PasswordField passwordConfirm;
     @FXML
-    private Button registerButton;
+    private Button register;
+    @FXML
+    private Button cancel;
     @FXML
     private Text emailAlert;
     @FXML
@@ -73,13 +80,13 @@ public class RegisterController implements Initializable {
             hideAlert(usernameAlert);
         }
 
-//        User user = new User();
-//        user.setEmail(email.getText().trim());
-//        user.setUsername(username.getText().trim());
-//        user.setPassword(password.getText());
-//        user.setStatus(UserStatus.ACTIVE);
-//        user_svc.add(user);
-        Debugger.log("Looks alright!");
+        // Create the user.
+        User user = new User();
+        user.setEmail(email.getText().trim());
+        user.setUsername(username.getText().trim());
+        user.setPassword(password.getText());
+        user.setStatus(UserStatus.ACTIVE);
+        user_svc.add(user);
     }
 
     public boolean isAlphaNumeric(String text) {
@@ -93,10 +100,31 @@ public class RegisterController implements Initializable {
         password.setOnKeyPressed(Clearable.clear(password));
         passwordConfirm.setOnKeyPressed(Clearable.clear(passwordConfirm));
 
-        registerButton.setOnMouseClicked(new EventHandler<MouseEvent>() {
+        register.setOnAction(new EventHandler<ActionEvent>() {
             @Override
-            public void handle(MouseEvent event) {
+            public void handle(ActionEvent event) {
                 register();
+
+                // Switch to the login scene.
+                SceneSwitcher sceneController = new SceneSwitcher();
+                try {
+                    sceneController.showLogin(event);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+
+
+        cancel.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                SceneSwitcher sceneController = new SceneSwitcher();
+                try {
+                    sceneController.showLogin(event);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
             }
         });
 
@@ -114,10 +142,10 @@ public class RegisterController implements Initializable {
                 try {
                     new InternetAddress(email.getText()).validate();
                     hideAlert(emailAlert);
-                    registerButton.setDisable(false);
+                    register.setDisable(false);
                 } catch (AddressException ex) {
                     alert(emailAlert, "This is not a valid email.");
-                    registerButton.setDisable(true);
+                    register.setDisable(true);
                 }
             }
         });
@@ -127,18 +155,18 @@ public class RegisterController implements Initializable {
                 String text = username.getText();
                 if (!isAlphaNumeric(text)) {
                     alert(usernameAlert, "Your username can only contain letters and digits.");
-                    registerButton.setDisable(true);
+                    register.setDisable(true);
                     return;
                 }
 
                 if (text.isEmpty()) {
                     alert(usernameAlert, "This field is required.");
-                    registerButton.setDisable(true);
+                    register.setDisable(true);
                     return;
                 }
 
                 hideAlert(usernameAlert);
-                registerButton.setDisable(false);
+                register.setDisable(false);
             }
         });
 
@@ -146,18 +174,18 @@ public class RegisterController implements Initializable {
             if (!output) { // When we lose focus
                 if (!password.getText().equals(passwordConfirm.getText())) {
                     alert(passwordConfirmAlert, "The password and its confirmation don't match.");
-                    registerButton.setDisable(true);
+                    register.setDisable(true);
                     return;
                 }
 
                 if (password.getText().isEmpty()) {
                     alert(passwordAlert, "This field is required.");
-                    registerButton.setDisable(true);
+                    register.setDisable(true);
                     return;
                 }
 
                 hideAlert(passwordConfirmAlert);
-                registerButton.setDisable(false);
+                register.setDisable(false);
             }
         });
 
@@ -165,12 +193,12 @@ public class RegisterController implements Initializable {
             if (!output) {
                 if (passwordConfirm.getText().isEmpty()) {
                     alert(passwordConfirmAlert, "This field is required.");
-                    registerButton.setDisable(true);
+                    register.setDisable(true);
                     return;
                 }
 
                 hideAlert(passwordConfirmAlert);
-                registerButton.setDisable(false);
+                register.setDisable(false);
             }
         });
     }

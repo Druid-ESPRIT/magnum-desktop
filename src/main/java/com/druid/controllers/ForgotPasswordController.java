@@ -1,5 +1,8 @@
 package com.druid.controllers;
 
+import com.druid.models.User;
+import com.druid.services.TokenService;
+import com.druid.services.UserService;
 import com.druid.utils.Clearable;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -10,9 +13,13 @@ import javafx.scene.control.TextField;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.Optional;
 import java.util.ResourceBundle;
 
 public class ForgotPasswordController implements Initializable {
+    TokenService token_svc = new TokenService();
+    UserService user_svc = new UserService();
+
     @FXML
     private TextField username;
 
@@ -24,12 +31,19 @@ public class ForgotPasswordController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-
         username.setOnKeyPressed(Clearable.clear(username));
 
         send.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent actionEvent) {
+                User user = new User();
+                user.setUsername(username.getText());
+                Optional<User> match = user_svc.fetchOne(user);
+
+                if (match.isPresent()) {
+                    token_svc.generate(match.get());
+                }
+
                 SceneSwitcher sceneController = new SceneSwitcher();
                 try {
                     sceneController.showTokenInput(actionEvent);

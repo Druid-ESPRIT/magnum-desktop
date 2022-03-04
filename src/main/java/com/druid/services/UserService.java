@@ -277,7 +277,7 @@ public class UserService {
                     update(match);
                 }
 
-                Optional.of(match);
+                return Optional.of(match);
             }
         } catch (SQLException ex) {
             ex.printStackTrace();

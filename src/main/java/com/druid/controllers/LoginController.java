@@ -1,11 +1,15 @@
 package com.druid.controllers;
 
+import com.druid.models.User;
 import com.druid.utils.Clearable;
 import com.druid.services.UserService;
+import com.druid.utils.ConnectedUser;
+import com.druid.utils.Debugger;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
 import javafx.scene.control.Hyperlink;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
@@ -14,22 +18,24 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.Optional;
 import java.util.ResourceBundle;
 
 public class LoginController implements Initializable {
     private Stage stage;
-
     private UserService user_svc = new UserService();
+    private User connectedUser = ConnectedUser.getInstance().getUser();
 
     @FXML
     private Hyperlink forgotPassword;
-
+    @FXML
+    private Hyperlink signUp;
+    @FXML
+    private Button confirm;
     @FXML
     private TextField username;
-
     @FXML
     private PasswordField password;
-
 
     public Stage getStage() {
         return stage;
@@ -41,7 +47,6 @@ public class LoginController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-
         password.setOnKeyPressed(Clearable.clear(password));
         username.setOnKeyPressed(Clearable.clear(username));
 
@@ -51,6 +56,37 @@ public class LoginController implements Initializable {
                 SceneSwitcher sceneController = new SceneSwitcher();
                 try {
                     sceneController.showForgotPassword(actionEvent);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+
+        confirm.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent actionEvent) {
+                connectedUser.setUsername(username.getText());
+                connectedUser.setPassword(password.getText());
+                Debugger.log(connectedUser.getPassword());
+                Optional<User> match = user_svc.authenticate(connectedUser);
+                if (match.isPresent()) {
+                    connectedUser.setStatus(match.get().getStatus());
+                    connectedUser.setEmail(match.get().getEmail());
+                    connectedUser.setID(match.get().getID());
+                    connectedUser.setAvatar(match.get().getAvatar());
+                    // User successfully logged in.
+                    // TODO: Switch to the discover scene.
+                    Debugger.log(connectedUser.getID());
+                }
+            }
+        });
+
+        signUp.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent actionEvent) {
+                SceneSwitcher sceneController = new SceneSwitcher();
+                try {
+                    sceneController.showRegister(actionEvent);
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
