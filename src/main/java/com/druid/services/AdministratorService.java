@@ -8,8 +8,6 @@ import at.favre.lib.crypto.bcrypt.BCrypt;
 import com.druid.enums.UserStatus;
 import com.druid.interfaces.IUser;
 import com.druid.models.Administrator;
-import com.druid.models.Token;
-import com.druid.models.User;
 import com.druid.utils.Debugger;
 
 import java.nio.file.Paths;
@@ -123,11 +121,6 @@ public class AdministratorService implements IUser<Administrator> {
         }
 
         return Optional.empty();
-    }
-
-    public void resetPassword(Token token, User user) {
-        UserService user_svc = new UserService();
-        user_svc.resetPassword(token, user);
     }
 
     /**

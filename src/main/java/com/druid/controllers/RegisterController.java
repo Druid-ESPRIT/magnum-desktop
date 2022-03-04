@@ -2,9 +2,8 @@ package com.druid.controllers;
 
 import com.druid.enums.UserStatus;
 import com.druid.models.User;
-import com.druid.utils.Clearable;
 import com.druid.services.UserService;
-import com.druid.utils.Debugger;
+import com.druid.utils.Clearable;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -14,13 +13,11 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 import javax.mail.internet.AddressException;
 import javax.mail.internet.InternetAddress;
-import javax.swing.*;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;

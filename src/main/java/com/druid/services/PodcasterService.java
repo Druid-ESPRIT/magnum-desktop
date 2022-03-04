@@ -8,7 +8,6 @@ import at.favre.lib.crypto.bcrypt.BCrypt;
 import com.druid.enums.UserStatus;
 import com.druid.interfaces.IUser;
 import com.druid.models.Podcaster;
-import com.druid.models.Token;
 import com.druid.utils.Debugger;
 
 import java.nio.file.Paths;
@@ -68,8 +67,8 @@ public class PodcasterService implements IUser<Podcaster> {
     public List<Podcaster> fetchAll() {
         List<Podcaster> podcasters = new ArrayList<>();
         String query =
-                "SELECT u.*, p.firstName, p.lastName, p.biography, p.avatar"
-                        + "FROM Users as u "
+                "SELECT u.*, p.firstName, p.lastName, p.biography"
+                        + "FROM Users AS u "
                         + "INNER JOIN Podcasters AS p "
                         + "WHERE p.id = u.id";
 
@@ -126,11 +125,6 @@ public class PodcasterService implements IUser<Podcaster> {
         }
 
         return Optional.empty();
-    }
-
-    public void resetPassword(Token token, Podcaster podcaster) {
-        UserService user_svc = new UserService();
-        user_svc.resetPassword(token, podcaster);
     }
 
     /**

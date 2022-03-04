@@ -1,5 +1,10 @@
 package com.druid.services;
 
+import com.druid.errors.login.InvalidCredentialsException;
+import com.druid.errors.token.ConsumedTokenException;
+import com.druid.errors.token.ExpiredTokenException;
+import com.druid.errors.token.InvalidTokenException;
+import com.druid.errors.token.TokenTimeoutException;
 import com.druid.models.Token;
 import com.druid.models.User;
 import com.druid.utils.DBConnection;
@@ -40,13 +45,21 @@ public class TokenService {
         return Optional.empty();
     }
 
-    public Optional<Token> get(Token token, User user) {
-        String query = "SELECT * FROM `Tokens` WHERE `token` = ? AND `userID` = ?";
+    public Optional<Token> get(Token token, User user) throws InvalidCredentialsException {
+        UserService user_svc = new UserService();
+        Optional<User> match = user_svc.fetchOne(user);
+
+        if (!match.isPresent()) {
+            throw new InvalidCredentialsException("This user doesn't exist.");
+        }
+
+        String query = "SELECT * FROM `Tokens` " +
+                "WHERE `token` = ? AND `userID` = ?";
 
         try {
             PreparedStatement stmt = con.prepareStatement(query);
             stmt.setString(1, token.getToken());
-            stmt.setInt(2, user.getID());
+            stmt.setInt(2, match.get().getID());
             ResultSet result = stmt.executeQuery();
 
             if (result.next()) {
@@ -65,20 +78,23 @@ public class TokenService {
         return Optional.empty();
     }
 
-    public void generate(User user) {
+    public void generate(User user) throws InvalidCredentialsException, TokenTimeoutException {
+        UserService user_svc = new UserService();
+        Optional<User> match = user_svc.fetchOne(user);
+
+        if (!match.isPresent()) {
+            throw new InvalidCredentialsException("This user doesn't exist.");
+        }
+
         Date date = new Date();
         Timestamp now = new Timestamp(date.getTime());
-        Optional<Token> mostRecentToken = getMostRecent(user);
+        Optional<Token> mostRecentToken = getMostRecent(match.get());
 
         if (mostRecentToken.isPresent()) {
             Timestamp lastCreated = mostRecentToken.get().getCreated();
             long diff = TimeUnit.MILLISECONDS.toSeconds(now.getTime() - lastCreated.getTime());
             if (diff < 120) {
-                Debugger.log(
-                        "Failed to generate a new password reset token, too many tries. (last one sent "
-                                + diff
-                                + " seconds ago)");
-                return;
+                throw new TokenTimeoutException("Too many tries, last token sent " + diff + "seconds ago.");
             }
         }
 
@@ -88,7 +104,7 @@ public class TokenService {
 
         String query =
                 "INSERT INTO `Tokens` (`userID`, `token`, `created`) VALUES ('"
-                        + user.getID()
+                        + match.get().getID()
                         + "','"
                         + token
                         + "','"
@@ -106,15 +122,44 @@ public class TokenService {
         String subject = "Reset your password";
         String text =
                 "Hi, "
-                        + user.getUsername()
+                        + match.get().getUsername()
                         + "!\n"
                         + "You recently asked to reset your password, the following token can be used to"
                         + " recover your account:\n"
                         + token
                         + "\n"
                         + "Do not share this with anyone, and hurry up, this token will expire after 24 hours!";
-        Mail.send(user.getEmail(), subject, text, false);
+        Mail.send(match.get().getEmail(), subject, text, false);
     }
+
+    public void validate(Token inputToken, User user) throws ExpiredTokenException, InvalidTokenException, ConsumedTokenException, InvalidCredentialsException {
+        TokenService token_svc = new TokenService();
+        Token token = token_svc.get(inputToken, user).orElse(null);
+
+        if (token == null) {
+            throw new InvalidTokenException("This token is invalid.");
+        }
+
+        Date date = new Date();
+        Timestamp now = new Timestamp(date.getTime());
+        long diff = TimeUnit.MILLISECONDS.toHours(now.getTime() - token.getCreated().getTime());
+
+        // Verify that the token hasn't
+        // reached its maximum lifetime.
+        if (diff > 24) {
+            throw new ExpiredTokenException("This token is expired.");
+        }
+
+        // Verify that the token hasn't
+        // already been consumed.
+        if (token.isConsumed()) {
+            throw new ConsumedTokenException("This token has already been used before.");
+        }
+
+        token.setConsumed(true);
+        token_svc.update(token);
+    }
+
 
     public void update(Token t) {
         int consumed = t.isConsumed() ? 1 : 0;

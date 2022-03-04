@@ -1,8 +1,10 @@
 package com.druid.controllers;
 
+import com.druid.errors.login.BannedUserException;
+import com.druid.errors.login.InvalidCredentialsException;
 import com.druid.models.User;
-import com.druid.utils.Clearable;
 import com.druid.services.UserService;
+import com.druid.utils.Clearable;
 import com.druid.utils.ConnectedUser;
 import com.druid.utils.Debugger;
 import javafx.event.ActionEvent;
@@ -13,7 +15,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Hyperlink;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
-import javafx.scene.input.MouseEvent;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -32,6 +34,8 @@ public class LoginController implements Initializable {
     private Hyperlink signUp;
     @FXML
     private Button confirm;
+    @FXML
+    private Text errorAlert;
     @FXML
     private TextField username;
     @FXML
@@ -67,20 +71,27 @@ public class LoginController implements Initializable {
             public void handle(ActionEvent event) {
                 connectedUser.setUsername(username.getText());
                 connectedUser.setPassword(password.getText());
-                Debugger.log(connectedUser.getPassword());
-                Optional<User> match = user_svc.authenticate(connectedUser);
-                if (match.isPresent()) {
-                    connectedUser.setStatus(match.get().getStatus());
-                    connectedUser.setEmail(match.get().getEmail());
-                    connectedUser.setID(match.get().getID());
-                    connectedUser.setAvatar(match.get().getAvatar());
-                    Debugger.log("User (with ID="+connectedUser.getID()+") successfully logged in.");
-                    SceneSwitcher sceneController = new SceneSwitcher();
-                    try {
-                        sceneController.showMain(event);
-                    } catch (IOException e) {
-                        e.printStackTrace();
+                try {
+                    Optional<User> match = user_svc.authenticate(connectedUser);
+                    if (match.isPresent()) {
+                        connectedUser.setStatus(match.get().getStatus());
+                        connectedUser.setEmail(match.get().getEmail());
+                        connectedUser.setID(match.get().getID());
+                        connectedUser.setAvatar(match.get().getAvatar());
+                        Debugger.log("User (with ID=" + connectedUser.getID() + ") successfully logged in.");
+                        SceneSwitcher sceneController = new SceneSwitcher();
+                        try {
+                            sceneController.showMain(event);
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
                     }
+                } catch (BannedUserException err) {
+                    errorAlert.setOpacity(100);
+                    errorAlert.setText(err.getMessage());
+                } catch (InvalidCredentialsException err) {
+                    errorAlert.setOpacity(100);
+                    errorAlert.setText(err.getMessage());
                 }
             }
         });
@@ -96,8 +107,5 @@ public class LoginController implements Initializable {
                 }
             }
         });
-    }
-
-    public void login(MouseEvent mouseEvent) {
     }
 }

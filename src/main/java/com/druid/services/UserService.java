@@ -3,9 +3,10 @@ package com.druid.services;
 import at.favre.lib.crypto.bcrypt.BCrypt;
 import com.druid.enums.HistoryActivity;
 import com.druid.enums.UserStatus;
+import com.druid.errors.login.BannedUserException;
+import com.druid.errors.login.InvalidCredentialsException;
 import com.druid.interfaces.IUser;
 import com.druid.models.History;
-import com.druid.models.Token;
 import com.druid.models.User;
 import com.druid.utils.Debugger;
 import com.druid.utils.Mail;
@@ -16,7 +17,6 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
-import java.util.concurrent.TimeUnit;
 
 public class UserService {
 
@@ -120,38 +120,6 @@ public class UserService {
         return Optional.empty();
     }
 
-    public void resetPassword(Token inputToken, User user) {
-        TokenService token_svc = new TokenService();
-        Token token = token_svc.get(inputToken, user).orElse(null);
-
-        if (token == null) {
-            Debugger.log("The provided token is not valid.");
-            return;
-        }
-
-        Date date = new Date();
-        Timestamp now = new Timestamp(date.getTime());
-        long diff = TimeUnit.MILLISECONDS.toHours(now.getTime() - token.getCreated().getTime());
-
-        // Verify that the token hasn't
-        // reached its maximum lifetime.
-        if (diff > 24) {
-            Debugger.log("The provided token is expired.");
-            return;
-        }
-
-        // Verify that the token hasn't
-        // already been consumed.
-        if (token.isConsumed()) {
-            Debugger.log("The provided token is no longer valid.");
-            return;
-        }
-
-        token.setConsumed(true);
-        token_svc.update(token);
-        this.update(user);
-    }
-
     /**
      * This function sends a mail containing the username of a particular user.
      *
@@ -239,7 +207,7 @@ public class UserService {
      * @param user A user to be compared against existing users in the database.
      * @return If a match is found, a User object, with their full details is returned.
      */
-    public Optional<User> authenticate(User user) {
+    public Optional<User> authenticate(User user) throws BannedUserException, InvalidCredentialsException {
         String query = "SELECT * FROM `Users` WHERE `username` = ?";
         try {
             PreparedStatement stmt = IUser.con.prepareStatement(query);
@@ -261,13 +229,14 @@ public class UserService {
 
                 // Do not authenticate if the
                 // passwords do not match.
-                if (!BResult.verified) return Optional.empty();
+                if (!BResult.verified) {
+                    throw new InvalidCredentialsException("The username/password is incorrect");
+                }
 
                 // Do not authenticate if the user
                 // has been previously banned.
                 if (match.getStatus().equals(UserStatus.BANNED)) {
-                    Debugger.log("Unable to authenticate as this user has been banned.");
-                    return Optional.empty();
+                    throw new BannedUserException("This user has been banned.");
                 }
 
                 // Re-enable the user if their account
