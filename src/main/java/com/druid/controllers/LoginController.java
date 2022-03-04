@@ -74,8 +74,6 @@ public class LoginController implements Initializable {
                     connectedUser.setEmail(match.get().getEmail());
                     connectedUser.setID(match.get().getID());
                     connectedUser.setAvatar(match.get().getAvatar());
-                    // User successfully logged in.
-                    // TODO: Switch to the discover scene.
                     Debugger.log("User (with ID="+connectedUser.getID()+") successfully logged in.");
                     SceneSwitcher sceneController = new SceneSwitcher();
                     try {
