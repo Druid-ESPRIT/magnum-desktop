@@ -51,7 +51,7 @@ public class OrderManagerController implements Initializable {
     List<Order> orders = ors.getOrders();
     Order or = new Order();
     ObservableList<Order> orderModelSearch = FXCollections.observableArrayList();
-    Connection con = DBConnection.getInstance().getCon();
+    Connection con = DBConnection.getInstance().getConnection();
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {

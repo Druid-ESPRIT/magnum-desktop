@@ -14,7 +14,7 @@ import java.util.stream.Collectors;
 
 public class OfferService implements IOffer {
 
-    Connection con = DBConnection.getInstance().getCon();
+    Connection con = DBConnection.getInstance().getConnection();
     List<Offer> Offers = new ArrayList<>();
 
     public void addOffer(Offer s) {

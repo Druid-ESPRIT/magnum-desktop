@@ -10,7 +10,7 @@ import java.util.List;
 import java.util.Optional;
 
 public class OrderService {
-    Connection con = DBConnection.getInstance().getCon();
+    Connection con = DBConnection.getInstance().getConnection();
 
 
     public int addOrder(Order or) {

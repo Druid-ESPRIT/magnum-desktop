@@ -12,7 +12,7 @@ import java.util.Optional;
 
 public class SubscriptionService implements ISubscription {
 
-    Connection con = DBConnection.getInstance().getCon();
+    Connection con = DBConnection.getInstance().getConnection();
 
 
     public Optional<Subscription> findSubscription(int ID) {

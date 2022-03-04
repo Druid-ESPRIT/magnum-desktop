@@ -12,7 +12,7 @@ import java.util.stream.Collectors;
 import org.apache.commons.lang3.RandomStringUtils;
 
 public class CouponService {
-    Connection con = DBConnection.getInstance().getCon();
+    Connection con = DBConnection.getInstance().getConnection();
     List<Coupon> coupons = new ArrayList<>();
 
     public void generateCoupon(Coupon coupon) {
