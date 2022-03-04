@@ -64,7 +64,7 @@ public class LoginController implements Initializable {
 
         confirm.setOnAction(new EventHandler<ActionEvent>() {
             @Override
-            public void handle(ActionEvent actionEvent) {
+            public void handle(ActionEvent event) {
                 connectedUser.setUsername(username.getText());
                 connectedUser.setPassword(password.getText());
                 Debugger.log(connectedUser.getPassword());
@@ -76,7 +76,13 @@ public class LoginController implements Initializable {
                     connectedUser.setAvatar(match.get().getAvatar());
                     // User successfully logged in.
                     // TODO: Switch to the discover scene.
-                    Debugger.log(connectedUser.getID());
+                    Debugger.log("User (with ID="+connectedUser.getID()+") successfully logged in.");
+                    SceneSwitcher sceneController = new SceneSwitcher();
+                    try {
+                        sceneController.showMain(event);
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
                 }
             }
         });
