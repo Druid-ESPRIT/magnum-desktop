@@ -17,25 +17,25 @@ import com.druid.models.User;
  * </pre>
  */
 public class ConnectedUser {
-    private static ConnectedUser instance = null;
-    private User user;
+  private static ConnectedUser instance = null;
+  private User user;
 
-    private ConnectedUser() {
-        user = new User();
-    }
+  private ConnectedUser() {
+    user = new User();
+  }
 
-    public static ConnectedUser getInstance() {
-        if (instance == null) {
-            instance = new ConnectedUser();
-        }
-        return instance;
+  public static ConnectedUser getInstance() {
+    if (instance == null) {
+      instance = new ConnectedUser();
     }
+    return instance;
+  }
 
-    public User getUser() {
-        return user;
-    }
+  public User getUser() {
+    return user;
+  }
 
-    public void setUser(User user) {
-        this.user = user;
-    }
+  public void setUser(User user) {
+    this.user = user;
+  }
 }
