@@ -6,6 +6,8 @@ package com.druid.services;
 
 import at.favre.lib.crypto.bcrypt.BCrypt;
 import com.druid.enums.UserStatus;
+import com.druid.errors.register.EmailTakenException;
+import com.druid.errors.register.UsernameTakenException;
 import com.druid.interfaces.IUser;
 import com.druid.models.Administrator;
 import com.druid.utils.Debugger;
@@ -20,7 +22,7 @@ import java.util.List;
 import java.util.Optional;
 
 public class AdministratorService implements IUser<Administrator> {
-    public void add(Administrator administrator) {
+    public void add(Administrator administrator) throws EmailTakenException, UsernameTakenException {
         // Check that the user being passed doesn't
         // already exist in the database.
         if (this.fetchOne(administrator).isPresent()) {

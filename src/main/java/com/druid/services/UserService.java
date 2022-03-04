@@ -5,6 +5,8 @@ import com.druid.enums.HistoryActivity;
 import com.druid.enums.UserStatus;
 import com.druid.errors.login.BannedUserException;
 import com.druid.errors.login.InvalidCredentialsException;
+import com.druid.errors.register.EmailTakenException;
+import com.druid.errors.register.UsernameTakenException;
 import com.druid.interfaces.IUser;
 import com.druid.models.History;
 import com.druid.models.User;
@@ -20,11 +22,21 @@ import java.util.Optional;
 
 public class UserService {
 
-    public void add(User user) {
+    public void add(User user) throws UsernameTakenException, EmailTakenException {
         // Check that the user being passed doesn't
         // already exist in the database.
-        if (this.fetchOne(user).isPresent()) {
-            return;
+        Optional<User> match = this.fetchOne(user);
+
+        // We got a match
+        if (match.isPresent()) {
+            // Compare against username
+            if (match.get().getUsername().equals(user.getUsername())) {
+                throw new UsernameTakenException("This username is already in use.");
+            }
+            // Compare against email
+            else if (match.get().getEmail().equals(user.getEmail())) {
+                throw new EmailTakenException("This email is already in use.");
+            }
         }
 
         String query =
@@ -33,7 +45,7 @@ public class UserService {
                         + user.getUsername()
                         + "','"
                         + user.getEmail()
-                        + "' ,'"
+                        + "','"
                         + encrypt(user.getPassword())
                         + "','"
                         + user.getAvatar()

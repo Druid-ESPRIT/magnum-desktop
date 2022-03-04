@@ -14,6 +14,7 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.Hyperlink;
 import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
@@ -34,7 +35,6 @@ public class TokenInputController implements Initializable {
     private Button confirm;
     @FXML
     private Button cancel;
-
 
     public Stage getStage() {
         return stage;
@@ -84,6 +84,7 @@ public class TokenInputController implements Initializable {
                 }
             }
         });
+
 
         cancel.setOnAction(new EventHandler<ActionEvent>() {
             @Override

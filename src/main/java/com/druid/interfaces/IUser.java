@@ -1,6 +1,8 @@
 package com.druid.interfaces;
 
 import at.favre.lib.crypto.bcrypt.BCrypt;
+import com.druid.errors.register.EmailTakenException;
+import com.druid.errors.register.UsernameTakenException;
 import com.druid.models.User;
 import com.druid.utils.DBConnection;
 
@@ -14,7 +16,7 @@ public interface IUser<T extends User> {
         return BCrypt.with(BCrypt.Version.VERSION_2Y).hashToString(12, password.toCharArray());
     }
 
-    public void add(T o);
+    public void add(T o) throws EmailTakenException, UsernameTakenException;
 
     public List<T> fetchAll();
 

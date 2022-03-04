@@ -1,6 +1,8 @@
 package com.druid.controllers;
 
 import com.druid.enums.UserStatus;
+import com.druid.errors.register.EmailTakenException;
+import com.druid.errors.register.UsernameTakenException;
 import com.druid.models.User;
 import com.druid.services.UserService;
 import com.druid.utils.Clearable;
@@ -60,32 +62,6 @@ public class RegisterController implements Initializable {
         field.setOpacity(0);
     }
 
-    private void register() {
-        if (!password.getText().equals(passwordConfirm.getText())) {
-            alert(passwordConfirmAlert, "The password and its confirmation don't match.");
-        } else {
-            hideAlert(passwordConfirmAlert);
-        }
-
-        if (!isAlphaNumeric(username.getText())) {
-            alert(usernameAlert, "This field can only contain letters and digits.");
-        } else if (username.getText().length() > 40) {
-            alert(usernameAlert, "Your username can't be longer than 40 characters.");
-        } else if (username.getText().isEmpty()) {
-            alert(usernameAlert, "This field is required");
-        } else {
-            hideAlert(usernameAlert);
-        }
-
-        // Create the user.
-        User user = new User();
-        user.setEmail(email.getText().trim());
-        user.setUsername(username.getText().trim());
-        user.setPassword(password.getText());
-        user.setStatus(UserStatus.ACTIVE);
-        user_svc.add(user);
-    }
-
     public boolean isAlphaNumeric(String text) {
         return text.matches("^[a-zA-Z0-9]*$");
     }
@@ -100,7 +76,39 @@ public class RegisterController implements Initializable {
         register.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-                register();
+                if (!password.getText().equals(passwordConfirm.getText())) {
+                    alert(passwordConfirmAlert, "The password and its confirmation don't match.");
+                } else {
+                    hideAlert(passwordConfirmAlert);
+                }
+
+                if (!isAlphaNumeric(username.getText())) {
+                    alert(usernameAlert, "This field can only contain letters and digits.");
+                }
+
+                if (username.getText().isEmpty()) {
+                    alert(usernameAlert, "This field is required.");
+                } else if (username.getText().length() > 40) {
+                    alert(usernameAlert, "Your username can't be longer than 40 characters.");
+                } else {
+                    hideAlert(usernameAlert);
+                }
+
+                try {
+                    // Create the user.
+                    User user = new User();
+                    user.setEmail(email.getText().trim());
+                    user.setUsername(username.getText().trim());
+                    user.setPassword(password.getText());
+                    user.setStatus(UserStatus.ACTIVE);
+                    user_svc.add(user);
+                } catch (EmailTakenException err) {
+                    alert(emailAlert, err.getMessage());
+                    return;
+                } catch (UsernameTakenException err) {
+                    alert(usernameAlert, err.getMessage());
+                    return;
+                }
 
                 // Switch to the login scene.
                 SceneSwitcher sceneController = new SceneSwitcher();
@@ -111,7 +119,6 @@ public class RegisterController implements Initializable {
                 }
             }
         });
-
 
         cancel.setOnAction(new EventHandler<ActionEvent>() {
             @Override
@@ -129,7 +136,7 @@ public class RegisterController implements Initializable {
             @Override
             public void handle(KeyEvent event) {
                 if (event.getCode() == KeyCode.ENTER) {
-                    register();
+                    register.fire();
                 }
             }
         });
@@ -181,7 +188,7 @@ public class RegisterController implements Initializable {
                     return;
                 }
 
-                hideAlert(passwordConfirmAlert);
+                hideAlert(passwordAlert);
                 register.setDisable(false);
             }
         });
