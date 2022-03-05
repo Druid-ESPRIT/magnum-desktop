@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Slider?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<AnchorPane prefHeight="491.0" prefWidth="403.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.druid.Controllers.PlaceOrderController">
+   <children>
+      <AnchorPane fx:id="anchorPaneConfirm" prefHeight="421.0" prefWidth="400.0">
+         <children>
+            <VBox alignment="CENTER" prefHeight="341.0" prefWidth="400.0" AnchorPane.bottomAnchor="107.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+               <children>
+                  <HBox alignment="CENTER" prefHeight="61.0" prefWidth="400.0">
+                     <children>
+                        <Label text="Offer id: " />
+                        <Label fx:id="lbofferid" />
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER" prefHeight="30.0" prefWidth="400.0">
+                     <children>
+                        <Label contentDisplay="RIGHT" text="Podcaster Name:" />
+                        <Label />
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER" prefHeight="30.0" prefWidth="400.0">
+                     <children>
+                        <Label text="Price: " />
+                        <Label fx:id="lbOrderPrice" />
+                     </children>
+                  </HBox>
+                  <VBox alignment="CENTER" prefHeight="146.0" prefWidth="400.0">
+                     <children>
+                        <Slider fx:id="sliderId" majorTickUnit="1.0" max="12.0" min="1.0" minorTickCount="1" onMouseClicked="#sliderClicked" showTickLabels="true" value="1.0">
+                           <VBox.margin>
+                              <Insets left="30.0" right="30.0" />
+                           </VBox.margin>
+                        </Slider>
+                        <HBox alignment="CENTER" prefHeight="30.0" prefWidth="400.0">
+                           <children>
+                              <Label text="Duration: " />
+                              <Label fx:id="lbPlan" />
+                           </children>
+                        </HBox>
+                     </children>
+                  </VBox>
+                  <VBox alignment="CENTER" prefHeight="111.0" prefWidth="400.0">
+                     <children>
+                        <HBox alignment="CENTER" prefHeight="133.0" prefWidth="400.0">
+                           <children>
+                              <Label text="Coupon :" />
+                              <TextField fx:id="tfcoupon" stylesheets="@style.css" />
+                           </children>
+                        </HBox>
+                        <Label fx:id="errormsg">
+                           <VBox.margin>
+                              <Insets bottom="20.0" />
+                           </VBox.margin>
+                        </Label>
+                     </children>
+                  </VBox>
+                  <HBox alignment="CENTER" prefHeight="39.0" prefWidth="400.0">
+                     <children>
+                        <Label text="Total: " />
+                        <Label fx:id="lbTotal" />
+                     </children>
+                  </HBox>
+                  <Button mnemonicParsing="false" onAction="#btnConfirmOrder" styleClass="search-button" stylesheets="@style.css" text="Confirm" />
+               </children>
+            </VBox>
+         </children>
+      </AnchorPane>
+      <AnchorPane fx:id="anchorPaneCircle" layoutX="60.0" layoutY="86.0" prefHeight="200.0" prefWidth="264.0">
+         <children>
+            <VBox fx:id="turnVbox" alignment="CENTER" layoutX="-2.0" prefHeight="106.0" prefWidth="271.0">
+               <children>
+                  <FontAwesomeIconView fill="#3bbc25" glyphName="SPINNER" size="60" wrappingWidth="58.99999858438969" />
+               </children>
+            </VBox>
+            <VBox fx:id="vboxText" alignment="CENTER" layoutY="115.0" prefHeight="85.0" prefWidth="271.0">
+               <children>
+                  <Label text="Your order has been place." />
+                  <Label text="Please pay here to complete your tansaction..." />
+               </children>
+            </VBox>
+         </children>
+      </AnchorPane>
+      <AnchorPane fx:id="anchorPanePay" layoutX="2.0" layoutY="284.0" prefHeight="188.0" prefWidth="403.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="284.0">
+         <children>
+            <VBox alignment="CENTER_LEFT" prefHeight="200.0" prefWidth="403.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+               <children>
+                  <Label text="Card information">
+                     <VBox.margin>
+                        <Insets left="50.0" />
+                     </VBox.margin>
+                  </Label>
+                  <TextField fx:id="cardNum" prefHeight="25.0" prefWidth="355.0" promptText="1234 1234 1234 1234">
+                     <VBox.margin>
+                        <Insets left="50.0" right="100.0" />
+                     </VBox.margin>
+                  </TextField>
+                  <HBox alignment="CENTER_LEFT" prefHeight="36.0" prefWidth="260.0">
+                     <children>
+                        <TextField fx:id="getmonth" promptText="MM">
+                           <HBox.margin>
+                              <Insets />
+                           </HBox.margin>
+                        </TextField>
+                        <TextField fx:id="getYear" promptText="YY" />
+                        <TextField fx:id="getcvc" promptText="CVC" />
+                     </children>
+                     <VBox.margin>
+                        <Insets left="50.0" />
+                     </VBox.margin>
+                  </HBox>
+                  <Button contentDisplay="TOP" mnemonicParsing="false" onAction="#PayClicked" prefHeight="48.0" prefWidth="81.0" styleClass="card-bar" stylesheets="@style.css" text="Pay">
+                     <VBox.margin>
+                        <Insets left="150.0" />
+                     </VBox.margin>
+                     <graphic>
+                        <FontAwesomeIconView glyphName="CREDIT_CARD" size="25" />
+                     </graphic>
+                  </Button>
+               </children>
+            </VBox>
+         </children>
+      </AnchorPane>
+      <AnchorPane fx:id="anchorPaneCheck" minHeight="-Infinity" minWidth="-Infinity" prefHeight="386.0" prefWidth="403.0">
+         <children>
+            <Label fx:id="event2" layoutX="174.0" layoutY="115.0" prefHeight="61.0" prefWidth="32.0">
+               <graphic>
+                  <FontAwesomeIconView fill="#e80909" glyphName="CHECK" size="40" text="" />
+               </graphic>
+            </Label>
+            <Label fx:id="event1" layoutX="158.0" layoutY="105.0">
+               <graphic>
+                  <FontAwesomeIconView fill="#1fc919" glyphName="CIRCLE_THIN" size="80" wrappingWidth="71.85714340209961" />
+               </graphic>
+            </Label>
+            <Label layoutX="83.0" layoutY="185.0" text="Your payment has completed successfully." />
+            <Label fx:id="getOrderId" />
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>
