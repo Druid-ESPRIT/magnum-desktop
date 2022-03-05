@@ -1,4 +1,4 @@
-package com.druid.Controllers;
+package com.druid.controllers;
 
 
 import javafx.application.Application;
@@ -19,10 +19,10 @@ public class TestHomeController extends Application {
         try {
             Parent home_page_parent = FXMLLoader.load(getClass().getResource("/placeorder.fxml"));
 
-        Scene home_page_scene = new Scene(home_page_parent);
-        Stage app_stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        app_stage.setScene(home_page_scene);
-        app_stage.show();
+            Scene home_page_scene = new Scene(home_page_parent);
+            Stage app_stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            app_stage.setScene(home_page_scene);
+            app_stage.show();
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -32,20 +32,21 @@ public class TestHomeController extends Application {
     @FXML
     void gotooffer(ActionEvent event) {
         try {
-        Parent home_page_parent = FXMLLoader.load(getClass().getResource("/offermanager.fxml"));
-        Scene home_page_scene = new Scene(home_page_parent);
-        Stage app_stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        app_stage.setScene(home_page_scene);
-        app_stage.show();
-    } catch (IOException e) {
-        e.printStackTrace();
-    }
+            Parent home_page_parent = FXMLLoader.load(getClass().getResource("/views/offermanager.fxml"));
+            Scene home_page_scene = new Scene(home_page_parent);
+            Stage app_stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            app_stage.setScene(home_page_scene);
+            app_stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
     }
+
     @FXML
     void OrderList(ActionEvent event) {
         try {
-            Parent home_page_parent = FXMLLoader.load(getClass().getResource("/OrderManager.fxml"));
+            Parent home_page_parent = FXMLLoader.load(getClass().getResource("/views/OrderManager.fxml"));
             Scene home_page_scene = new Scene(home_page_parent);
             Stage app_stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
             app_stage.setScene(home_page_scene);
@@ -54,6 +55,7 @@ public class TestHomeController extends Application {
             e.printStackTrace();
         }
     }
+
     @FXML
     void gotosubs(ActionEvent event) {
         try {
@@ -70,8 +72,8 @@ public class TestHomeController extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-        Parent root  = FXMLLoader.load(getClass().getResource(
-                "/testHome.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource(
+                "/views/testHome.fxml"));
         primaryStage.setTitle("test");
         primaryStage.setScene(new Scene(root));
         primaryStage.show();

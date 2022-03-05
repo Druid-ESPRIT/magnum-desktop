@@ -18,20 +18,20 @@ public class PdOffer {
         return id;
     }
 
-    public int getPodcast_id() {
-        return podcast_id;
-    }
-
-    public int getOffer_id() {
-        return offer_id;
-    }
-
     public void setId(int id) {
         this.id = id;
     }
 
+    public int getPodcast_id() {
+        return podcast_id;
+    }
+
     public void setPodcast_id(int podcast_id) {
         this.podcast_id = podcast_id;
+    }
+
+    public int getOffer_id() {
+        return offer_id;
     }
 
     public void setOffer_id(int offer_id) {

@@ -1,15 +1,15 @@
 package com.druid.services;
+
 import com.druid.models.Coupon;
 import com.druid.utils.DBConnection;
-
-import java.nio.file.Paths;
-import java.sql.*;
-import java.util.*;
-import java.util.Date;
-import java.util.concurrent.TimeUnit;
-import java.util.stream.Collectors;
-
 import org.apache.commons.lang3.RandomStringUtils;
+
+import java.sql.*;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+import java.util.Random;
+import java.util.stream.Collectors;
 
 public class CouponService {
     Connection con = DBConnection.getInstance().getConnection();
@@ -25,7 +25,7 @@ public class CouponService {
         String token = RandomStringUtils.randomAlphanumeric(12);
 
         String query =
-                "INSERT INTO `coupon` (`user_id`, `code`,`reduction`,`used`, `created`) VALUES ('"+ coupon.getId() +"','"+token+ "','"+coupon.getReduction()+"','"+coupon.getUsed()+"','" +now+"')";
+                "INSERT INTO `coupon` (`user_id`, `code`,`reduction`,`used`, `created`) VALUES ('" + coupon.getId() + "','" + token + "','" + coupon.getReduction() + "','" + coupon.getUsed() + "','" + now + "')";
 
         try {
             Statement stmt = con.createStatement();
@@ -39,7 +39,7 @@ public class CouponService {
     }
 
     public void cleanCoupons() {
-        String query = "DELETE FROM `coupon` WHERE `used` = '"+true+"'";
+        String query = "DELETE FROM `coupon` WHERE `used` = '" + true + "'";
         try {
             Statement stmt = con.createStatement();
             stmt.executeUpdate(query);
@@ -48,13 +48,14 @@ public class CouponService {
             ex.printStackTrace();
         }
     }
-    public int getReduction(String code){
-        int reduction=0;
-        String query = "SELECT `reduction` from `coupon` where code ='"+code+"'";
+
+    public int getReduction(String code) {
+        int reduction = 0;
+        String query = "SELECT `reduction` from `coupon` where code ='" + code + "'";
         try {
             Statement stmt = con.createStatement();
             ResultSet result = stmt.executeQuery(query);
-            while(result.next()) {
+            while (result.next()) {
                 return (
                         result.getInt("reduction"));
             }
@@ -62,15 +63,16 @@ public class CouponService {
         } catch (SQLException ex) {
             ex.printStackTrace();
         }
-       return reduction;
+        return reduction;
     }
-    public List<Coupon> getCoupons(){
+
+    public List<Coupon> getCoupons() {
         String query = "SELECT * FROM Coupon";
 
         try {
             Statement stmt = con.createStatement();
             ResultSet result = stmt.executeQuery(query);
-            while(result.next()) {
+            while (result.next()) {
                 coupons.add(new Coupon(
                         result.getInt("id"),
                         result.getInt("user_id"),
@@ -86,17 +88,18 @@ public class CouponService {
         }
         return null;
     }
-    public List<Coupon> checkValidity(String search){
+
+    public List<Coupon> checkValidity(String search) {
         List<Coupon> result = getCoupons().stream()
-                .filter(su-> su.getCode().equals(search))
+                .filter(su -> su.getCode().equals(search))
                 .filter(su -> su.getUsed().equals("false"))
                 .collect(Collectors.toList());
         return result;
 
     }
 
-    public void useCoupon(String code){
-        String query = "UPDATE `coupon`set `used`='"+true+"' where code ='"+code+"'";
+    public void useCoupon(String code) {
+        String query = "UPDATE `coupon`set `used`='" + true + "' where code ='" + code + "'";
         try {
             Statement stmt = con.createStatement();
             stmt.executeUpdate(query);

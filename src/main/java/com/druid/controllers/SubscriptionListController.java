@@ -1,7 +1,5 @@
-package com.druid.Controllers;
+package com.druid.controllers;
 
-import com.druid.interfaces.MyListener;
-import com.druid.models.Offer;
 import com.druid.models.Subscription;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
@@ -28,7 +26,7 @@ public class SubscriptionListController {
     @FXML
     private Label status;
 
-    public void setData(Subscription subscription){
+    public void setData(Subscription subscription) {
 
 
         File file = new File("C:/Users/asus/Desktop/Git/magnum-desktop/src/main/resources/img/test1.png");

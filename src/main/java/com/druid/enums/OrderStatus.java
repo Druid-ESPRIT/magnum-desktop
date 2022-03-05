@@ -1,27 +1,27 @@
 package com.druid.enums;
 
 public enum OrderStatus {
-    PENDING{
+    PENDING {
         @Override
-        public String toString(){
+        public String toString() {
             return "Pending";
         }
     },
-    COMPLETED{
+    COMPLETED {
         @Override
-        public  String toString(){
+        public String toString() {
             return "Completed";
         }
     },
-    CANCELED{
+    CANCELED {
         @Override
-        public String toString(){
+        public String toString() {
             return "Canceled";
         }
     },
-    REFUNDED{
+    REFUNDED {
         @Override
-         public String toString(){
+        public String toString() {
             return "Refunded";
         }
     };
@@ -40,7 +40,6 @@ public enum OrderStatus {
                 throw new IllegalArgumentException();
         }
     }
-
 
 
 }

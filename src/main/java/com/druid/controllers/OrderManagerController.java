@@ -1,4 +1,4 @@
-package com.druid.Controllers;
+package com.druid.controllers;
 
 import com.druid.enums.OrderStatus;
 import com.druid.models.Order;
@@ -23,48 +23,41 @@ import java.util.ResourceBundle;
 
 public class OrderManagerController implements Initializable {
 
-    @FXML
-    private TextField tfsearch;
-
-    @FXML
-    private TableView<Order> Ordertable;
-
-    @FXML
-    private TableColumn<Order, Integer> tab_id;
-
-    @FXML
-    private TableColumn<Order, Integer> tab_offer_ref;
-
-    @FXML
-    private TableColumn<Order, Integer> tab_plan;
-    @FXML
-    private TableColumn<Order, Float> tab_total;
-
-    @FXML
-    private TableColumn<Order, Timestamp> order_date;
-
-    @FXML
-    private TableColumn<Order, OrderStatus> status;
-
-
     OrderService ors = new OrderService();
     List<Order> orders = ors.getOrders();
     Order or = new Order();
     ObservableList<Order> orderModelSearch = FXCollections.observableArrayList();
     Connection con = DBConnection.getInstance().getConnection();
+    @FXML
+    private TextField tfsearch;
+    @FXML
+    private TableView<Order> Ordertable;
+    @FXML
+    private TableColumn<Order, Integer> tab_id;
+    @FXML
+    private TableColumn<Order, Integer> tab_offer_ref;
+    @FXML
+    private TableColumn<Order, Integer> tab_plan;
+    @FXML
+    private TableColumn<Order, Float> tab_total;
+    @FXML
+    private TableColumn<Order, Timestamp> order_date;
+    @FXML
+    private TableColumn<Order, OrderStatus> status;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
         loadTable();
     }
-    public void loadTable(){
+
+    public void loadTable() {
         String query = "SELECT * FROM `order`";
 
         try {
             Statement stmt = con.createStatement();
             ResultSet result = stmt.executeQuery(query);
-            while(result.next()) {
+            while (result.next()) {
 
                 Integer querryID = result.getInt("id");
                 Integer querryOfferID = result.getInt("offer_id");
@@ -73,7 +66,7 @@ public class OrderManagerController implements Initializable {
                 Timestamp querryOrderdate = result.getTimestamp("orderdate");
                 OrderStatus querryStatus = OrderStatus.fromString(result.getString("status"));
 
-                orderModelSearch.add(new Order(querryID,querryOfferID,querryPlan,querryTotal,querryOrderdate,querryStatus));
+                orderModelSearch.add(new Order(querryID, querryOfferID, querryPlan, querryTotal, querryOrderdate, querryStatus));
             }
 
             tab_id.setCellValueFactory(new PropertyValueFactory<>("id"));
@@ -94,18 +87,17 @@ public class OrderManagerController implements Initializable {
                     String searchKeyword = newValue.toLowerCase();
                     if (or.getStatus().toString().toLowerCase().indexOf(searchKeyword) > -1) {
                         return true;
-                    }else if (or.getOrderDate().toString().toLowerCase().indexOf(searchKeyword) > -1) {
+                    } else if (or.getOrderDate().toString().toLowerCase().indexOf(searchKeyword) > -1) {
                         return true;
-                    } else if(String.valueOf(or.getPlan()).toLowerCase().indexOf(searchKeyword) > -1){
+                    } else if (String.valueOf(or.getPlan()).toLowerCase().indexOf(searchKeyword) > -1) {
                         return true;
-                    }else if(String.valueOf(or.getTotal()).toLowerCase().indexOf(searchKeyword) > -1){
+                    } else if (String.valueOf(or.getTotal()).toLowerCase().indexOf(searchKeyword) > -1) {
                         return true;
-                    }else if(String.valueOf(or.getId()).toLowerCase().indexOf(searchKeyword) > -1){
+                    } else if (String.valueOf(or.getId()).toLowerCase().indexOf(searchKeyword) > -1) {
                         return true;
-                    }else if(String.valueOf(or.getofferId()).toLowerCase().indexOf(searchKeyword) > -1){
+                    } else if (String.valueOf(or.getofferId()).toLowerCase().indexOf(searchKeyword) > -1) {
                         return true;
-                    }
-                    else
+                    } else
                         return false;
                 });
 
@@ -124,14 +116,14 @@ public class OrderManagerController implements Initializable {
     @FXML
     void btnmarkCanceled(ActionEvent event) {
         Order o1 = Ordertable.getSelectionModel().getSelectedItem();
-        ors.updateOrderStatus(OrderStatus.CANCELED,o1.getId());
+        ors.updateOrderStatus(OrderStatus.CANCELED, o1.getId());
         Ordertable.refresh();
     }
 
     @FXML
     void btnmarkCompleted(ActionEvent event) {
         Order o1 = Ordertable.getSelectionModel().getSelectedItem();
-        ors.updateOrderStatus(OrderStatus.COMPLETED,o1.getId());
+        ors.updateOrderStatus(OrderStatus.COMPLETED, o1.getId());
         loadTable();
 
     }

@@ -1,6 +1,4 @@
 package com.druid.models;
-import java.nio.file.Path;
-
 
 public class Offer {
     private int id;
@@ -20,7 +18,6 @@ public class Offer {
     }
 
 
-
     public Offer(int id, int podcasterID, float price, String description, String image) {
         this.id = id;
         this.podcasterID = podcasterID;
@@ -29,36 +26,44 @@ public class Offer {
         this.image = image;
     }
 
-
-
-
+    public String getImage() {
+        return image;
+    }
 
     public void setImage(String image) {
         this.image = image;
-    }
-
-    public String getImage() {
-        return image;
     }
 
     public int getId() {
         return id;
     }
 
+    public void setId(int id) {
+        this.id = id;
+    }
+
     public int getPodcasterID() {
         return podcasterID;
+    }
+
+    public void setPodcasterID(int podcasterID) {
+        this.podcasterID = podcasterID;
     }
 
     public float getPrice() {
         return price;
     }
 
+    public void setPrice(float price) {
+        this.price = price;
+    }
+
     public String getDescription() {
         return description;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     @Override
@@ -70,17 +75,5 @@ public class Offer {
                 ", description='" + description + '\'' +
                 ", image=" + image +
                 '}';
-    }
-
-    public void setPodcasterID(int podcasterID) {
-        this.podcasterID = podcasterID;
-    }
-
-    public void setPrice(float price) {
-        this.price = price;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
     }
 }

@@ -14,14 +14,14 @@ public class OrderService {
 
 
     public int addOrder(Order or) {
-        int risultato=0;
-        String query = "INSERT INTO `order`(`offer_id`,`user_id`,`plan`, `total`, `orderdate`,`status`)VALUES ('"+or.getofferId()+"','"+or.getUser_id()+"','"+or.getPlan()+"','"+or.getTotal()+"','"+or.getOrderDate()+"','"+or.getStatus().toString()+"')";
+        int risultato = 0;
+        String query = "INSERT INTO `order`(`offer_id`,`user_id`,`plan`, `total`, `orderdate`,`status`)VALUES ('" + or.getofferId() + "','" + or.getUser_id() + "','" + or.getPlan() + "','" + or.getTotal() + "','" + or.getOrderDate() + "','" + or.getStatus().toString() + "')";
         try {
             Statement stmt = con.createStatement();
-            stmt.executeUpdate(query,Statement.RETURN_GENERATED_KEYS);
+            stmt.executeUpdate(query, Statement.RETURN_GENERATED_KEYS);
             ResultSet rs = stmt.getGeneratedKeys();
-            if (rs.next()){
-                risultato=rs.getInt(1);
+            if (rs.next()) {
+                risultato = rs.getInt(1);
             }
             rs.close();
 
@@ -33,15 +33,14 @@ public class OrderService {
     }
 
 
-
-    public List<Order> getOrders(){
+    public List<Order> getOrders() {
         List<Order> orders = new ArrayList<>();
         String query = "SELECT * FROM `order`";
 
         try {
             Statement stmt = con.createStatement();
             ResultSet result = stmt.executeQuery(query);
-            while(result.next()) {
+            while (result.next()) {
                 orders.add(new Order(
                         result.getInt("id"),
                         result.getInt("offer_id"),
@@ -88,8 +87,8 @@ public class OrderService {
     }
 
 
-    public void updateOrder(Order or,int id) {
-        String query = "UPDATE `order`set `offer_id`='"+or.getofferId()+"', `user_id`='"+or.getUser_id()+"',`plan`= '"+or.getPlan()+"',`total`= '"+or.getTotal()+"',`orderdate`='"+or.getOrderDate()+"',`status`='"+or.getStatus().toString()+"' where id ='"+id+"'";
+    public void updateOrder(Order or, int id) {
+        String query = "UPDATE `order`set `offer_id`='" + or.getofferId() + "', `user_id`='" + or.getUser_id() + "',`plan`= '" + or.getPlan() + "',`total`= '" + or.getTotal() + "',`orderdate`='" + or.getOrderDate() + "',`status`='" + or.getStatus().toString() + "' where id ='" + id + "'";
         try {
             Statement stmt = con.createStatement();
             stmt.executeUpdate(query);
@@ -101,7 +100,7 @@ public class OrderService {
 
 
     public void deleteOrder(int id) {
-        String query = "DELETE from `order` where id ='"+id+"'";
+        String query = "DELETE from `order` where id ='" + id + "'";
         try {
             Statement stmt = con.createStatement();
             stmt.executeUpdate(query);
@@ -110,12 +109,13 @@ public class OrderService {
             ex.printStackTrace();
         }
     }
-    public Timestamp getOrderTimeById(int id){
-        String query = "SELECT `orderdate` from `order` where id ='"+id+"'";
+
+    public Timestamp getOrderTimeById(int id) {
+        String query = "SELECT `orderdate` from `order` where id ='" + id + "'";
         try {
             Statement stmt = con.createStatement();
             ResultSet result = stmt.executeQuery(query);
-            while(result.next()) {
+            while (result.next()) {
                 return (
                         result.getTimestamp("orderdate"));
             }
@@ -125,8 +125,9 @@ public class OrderService {
         }
         return null;
     }
-    public void renewOrder(Timestamp t,int id){
-        String query = "UPDATE `order`set `orderdate`='"+t+"' where id ='"+id+"'";
+
+    public void renewOrder(Timestamp t, int id) {
+        String query = "UPDATE `order`set `orderdate`='" + t + "' where id ='" + id + "'";
         try {
             Statement stmt = con.createStatement();
             stmt.executeUpdate(query);
@@ -136,12 +137,12 @@ public class OrderService {
         }
     }
 
-    public int getOfferPrice(int id){
-        String query = "SELECT offer.price from `order` inner join `offer` on order.offer_id = offer.id where order.id ='"+id+"'";
+    public int getOfferPrice(int id) {
+        String query = "SELECT offer.price from `order` inner join `offer` on order.offer_id = offer.id where order.id ='" + id + "'";
         try {
             Statement stmt = con.createStatement();
             ResultSet result = stmt.executeQuery(query);
-            while(result.next()) {
+            while (result.next()) {
                 return (
                         result.getInt("price"));
 
@@ -152,12 +153,13 @@ public class OrderService {
         }
         return id;
     }
-    public int getOfferId(int id){
-        String query = "SELECT offer_id from `order` where id ='"+id+"'";
+
+    public int getOfferId(int id) {
+        String query = "SELECT offer_id from `order` where id ='" + id + "'";
         try {
             Statement stmt = con.createStatement();
             ResultSet result = stmt.executeQuery(query);
-            while(result.next()) {
+            while (result.next()) {
                 return (
                         result.getInt("offer_id"));
 
@@ -169,8 +171,8 @@ public class OrderService {
         return id;
     }
 
-    public void updateOrderStatus(OrderStatus st,int id) {
-        String query = "UPDATE `order`set `status`='"+st.toString()+"' where id ='"+id+"'";
+    public void updateOrderStatus(OrderStatus st, int id) {
+        String query = "UPDATE `order`set `status`='" + st.toString() + "' where id ='" + id + "'";
         try {
             Statement stmt = con.createStatement();
             stmt.executeUpdate(query);

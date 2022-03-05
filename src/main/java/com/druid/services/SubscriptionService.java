@@ -31,7 +31,7 @@ public class SubscriptionService implements ISubscription {
                                 result.getTimestamp("start_date"),
                                 result.getTimestamp("expire_date"),
                                 SubscriptionStatus.fromString(result.getString("status"))
- ));
+                        ));
             }
         } catch (SQLException ex) {
             ex.printStackTrace();
@@ -41,12 +41,10 @@ public class SubscriptionService implements ISubscription {
     }
 
 
-
-
     @Override
     public void addSubscription(Subscription sub) {
 
-        String query = "INSERT INTO `subscription`(`order_id`,`start_date`,`expire_date`,`status`) VALUES ('"+sub.getorder_id()+"','"+sub.getStart_date()+"','"+sub.getExpire_date()+"','"+sub.getStatus().toString()+"')";
+        String query = "INSERT INTO `subscription`(`order_id`,`start_date`,`expire_date`,`status`) VALUES ('" + sub.getorder_id() + "','" + sub.getStart_date() + "','" + sub.getExpire_date() + "','" + sub.getStatus().toString() + "')";
         try {
             Statement stmt = con.createStatement();
             stmt.executeUpdate(query);
@@ -66,7 +64,7 @@ public class SubscriptionService implements ISubscription {
             Statement stmt = con.createStatement();
             ResultSet result = stmt.executeQuery(query);
 
-            while(result.next()) {
+            while (result.next()) {
                 Subscriptions.add(new Subscription(
                         result.getInt("id"),
                         result.getInt("order_id"),
@@ -89,34 +87,34 @@ public class SubscriptionService implements ISubscription {
     @Override
     public void updateSubscription(Subscription sub) {
 
-            String query = "UPDATE `subscription`set `order_id` = '" + sub.getorder_id() + "',`start_date`='"+sub.getStart_date()+"',`expire_date`='"+sub.getExpire_date()+"', `status`='" + sub.getStatus().toString()+"' where id ='" + sub.getId() + "'";
-            try {
-                Statement stmt = con.createStatement();
-                stmt.executeUpdate(query);
-                System.out.println("INFO: sub Updated.");
-            } catch (SQLException ex) {
-                ex.printStackTrace();
-            }
+        String query = "UPDATE `subscription`set `order_id` = '" + sub.getorder_id() + "',`start_date`='" + sub.getStart_date() + "',`expire_date`='" + sub.getExpire_date() + "', `status`='" + sub.getStatus().toString() + "' where id ='" + sub.getId() + "'";
+        try {
+            Statement stmt = con.createStatement();
+            stmt.executeUpdate(query);
+            System.out.println("INFO: sub Updated.");
+        } catch (SQLException ex) {
+            ex.printStackTrace();
         }
+    }
 
     @Override
     public void deleteSubscription(int id) {
-            String query = "DELETE from `subscription` where id ='"+id+"'";
-            try {
-                Statement stmt = con.createStatement();
-                stmt.executeUpdate(query);
-                System.out.println("INFO: sub Deleted.");
-            } catch (SQLException ex) {
-                ex.printStackTrace();
-            }
+        String query = "DELETE from `subscription` where id ='" + id + "'";
+        try {
+            Statement stmt = con.createStatement();
+            stmt.executeUpdate(query);
+            System.out.println("INFO: sub Deleted.");
+        } catch (SQLException ex) {
+            ex.printStackTrace();
         }
+    }
 
-    public Timestamp getSubscriptionTimeById(int id){
-        String query = "SELECT `expire_date` from `subscription` where id ='"+id+"'";
+    public Timestamp getSubscriptionTimeById(int id) {
+        String query = "SELECT `expire_date` from `subscription` where id ='" + id + "'";
         try {
             Statement stmt = con.createStatement();
             ResultSet result = stmt.executeQuery(query);
-            while(result.next()) {
+            while (result.next()) {
                 return (
                         result.getTimestamp("expire_date"));
             }
@@ -127,8 +125,8 @@ public class SubscriptionService implements ISubscription {
         return null;
     }
 
-    public void renewSubscription(Timestamp t,int id){
-        String query = "UPDATE `subscription`set `expire_date`='"+t+"' where id ='"+id+"'";
+    public void renewSubscription(Timestamp t, int id) {
+        String query = "UPDATE `subscription`set `expire_date`='" + t + "' where id ='" + id + "'";
         try {
             Statement stmt = con.createStatement();
             stmt.executeUpdate(query);
@@ -137,12 +135,13 @@ public class SubscriptionService implements ISubscription {
             ex.printStackTrace();
         }
     }
-    public int getOrderId(int id){
-        String query = "SELECT order_id from `subscription` where id ='"+id+"'";
+
+    public int getOrderId(int id) {
+        String query = "SELECT order_id from `subscription` where id ='" + id + "'";
         try {
             Statement stmt = con.createStatement();
             ResultSet result = stmt.executeQuery(query);
-            while(result.next()) {
+            while (result.next()) {
                 return (
                         result.getInt("order_id"));
             }
@@ -152,7 +151,8 @@ public class SubscriptionService implements ISubscription {
         }
         return id;
     }
-    public void UpdateSubStatus(SubscriptionStatus st,int id) {
+
+    public void UpdateSubStatus(SubscriptionStatus st, int id) {
         String query = "UPDATE `subscription` set `status`='" + st.toString() + "' where order_id ='" + id + "'";
         try {
             Statement stmt = con.createStatement();
@@ -162,8 +162,9 @@ public class SubscriptionService implements ISubscription {
             ex.printStackTrace();
         }
     }
+
     public void deleteSubByOrder(int id) {
-        String query = "DELETE from `subscription` where order_id ='"+id+"'";
+        String query = "DELETE from `subscription` where order_id ='" + id + "'";
         try {
             Statement stmt = con.createStatement();
             stmt.executeUpdate(query);

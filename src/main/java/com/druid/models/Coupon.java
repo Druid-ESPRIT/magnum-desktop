@@ -42,33 +42,29 @@ public class Coupon {
         return id;
     }
 
-    public int getUserID() {
-        return userID;
-    }
-
-    public String getCode() {
-        return code;
-    }
-
-
-
-    public Timestamp getCreated() {
-        return created;
-    }
-
     public void setId(int id) {
         this.id = id;
+    }
+
+    public int getUserID() {
+        return userID;
     }
 
     public void setUserID(int userID) {
         this.userID = userID;
     }
 
+    public String getCode() {
+        return code;
+    }
+
     public void setCode(String code) {
         this.code = code;
     }
 
-
+    public Timestamp getCreated() {
+        return created;
+    }
 
     public void setCreated(Timestamp created) {
         this.created = created;

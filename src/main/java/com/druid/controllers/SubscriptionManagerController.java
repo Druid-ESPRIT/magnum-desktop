@@ -1,6 +1,5 @@
-package com.druid.Controllers;
+package com.druid.controllers;
 
-import com.druid.Controllers.SubscriptionListController;
 import com.druid.models.Subscription;
 import com.druid.services.SubscriptionService;
 import javafx.event.ActionEvent;
@@ -21,17 +20,14 @@ import java.util.ResourceBundle;
 
 public class SubscriptionManagerController implements Initializable {
 
-    @FXML
-    private TextField tfsearch;
-
-    @FXML
-    private Label chid;
-
-    @FXML
-    private GridPane grid;
-
     SubscriptionService subs = new SubscriptionService();
     List<Subscription> subscriptions = subs.getSubscriptions();
+    @FXML
+    private TextField tfsearch;
+    @FXML
+    private Label chid;
+    @FXML
+    private GridPane grid;
 
     @FXML
     void SearchClicked(ActionEvent event) {
@@ -40,8 +36,9 @@ public class SubscriptionManagerController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-     loadData(subscriptions);
+        loadData(subscriptions);
     }
+
     public void loadData(List<Subscription> subs) {
 
         int column = 0;

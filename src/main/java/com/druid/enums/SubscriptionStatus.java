@@ -1,21 +1,21 @@
 package com.druid.enums;
 
 public enum SubscriptionStatus {
-    ON_HOLD{
+    ON_HOLD {
         @Override
-        public String toString(){
+        public String toString() {
             return "On Hold";
         }
     },
-    ACTIVE{
+    ACTIVE {
         @Override
-        public  String toString(){
+        public String toString() {
             return "Active";
         }
     },
-    EXPIRED{
+    EXPIRED {
         @Override
-        public String toString(){
+        public String toString() {
             return "Expired";
         }
     };

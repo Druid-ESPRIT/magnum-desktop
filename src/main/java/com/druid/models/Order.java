@@ -2,18 +2,17 @@ package com.druid.models;
 
 import com.druid.enums.OrderStatus;
 
-import java.util.Date;
 import java.sql.Timestamp;
+import java.util.Date;
 
 public class Order {
+    OrderStatus status;
     private int id;
     private int offerId;
     private int user_id;
     private int plan;
     private float total;
     private Timestamp orderDate;
-    OrderStatus status;
-
 
 
     public Order() {
@@ -50,12 +49,12 @@ public class Order {
         return offerId;
     }
 
-    public int getPlan() {
-        return plan;
-    }
-
     public void setOfferId(int offerId) {
         this.offerId = offerId;
+    }
+
+    public int getPlan() {
+        return plan;
     }
 
     public void setPlan(int plan) {
@@ -74,37 +73,32 @@ public class Order {
         return id;
     }
 
+    public void setId(int id) {
+        this.id = id;
+    }
 
     public int getofferId() {
         return offerId;
     }
 
-
     public float getTotal() {
         return total;
+    }
+
+    public void setTotal(float total) {
+        this.total = total;
     }
 
     public Date getOrderDate() {
         return orderDate;
     }
 
-
-    public void setId(int id) {
-        this.id = id;
+    public void setOrderDate(Timestamp orderDate) {
+        this.orderDate = orderDate;
     }
-
 
     public void setofferId(int offerId) {
         this.offerId = offerId;
-    }
-
-
-    public void setTotal(float total) {
-        this.total = total;
-    }
-
-    public void setOrderDate(Timestamp orderDate) {
-        this.orderDate = orderDate;
     }
 
     @Override
