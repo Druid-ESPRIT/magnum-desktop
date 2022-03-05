@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Pagination?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane id="AnchorPane" prefHeight="450.0" prefWidth="550.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.druid.controllers.AcceuilController">
+   <children>
+      <TabPane prefHeight="585.0" prefWidth="799.0" tabClosingPolicy="UNAVAILABLE">
+        <tabs>
+          <Tab text="list article">
+            <content>
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="465.0" prefWidth="776.0">
+                     <children>
+                        <Text fx:id="title4" layoutX="609.0" layoutY="342.0" strokeType="OUTSIDE" strokeWidth="0.0" text="hhh" wrappingWidth="79.13671875" />
+                        <Text fx:id="title3" layoutX="448.0" layoutY="343.0" strokeType="OUTSIDE" strokeWidth="0.0" text="hhh" wrappingWidth="64.13671875" />
+                        <Text fx:id="title2" layoutX="273.0" layoutY="342.0" strokeType="OUTSIDE" strokeWidth="0.0" text="hhh" wrappingWidth="64.13671875" />
+                        <Text fx:id="title1" layoutX="82.0" layoutY="342.0" strokeType="OUTSIDE" strokeWidth="0.0" text="hhh" wrappingWidth="64.13671875" />
+                        <ImageView fx:id="image4" fitHeight="150.0" fitWidth="150.0" layoutX="595.0" layoutY="159.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="https://th.bing.com/th/id/OIP.n9DOhS1uNkrMVpULQqomugHaEY?pid=ImgDet&amp;rs=1" />
+                           </image>
+                        </ImageView>
+                        <ImageView fx:id="image3" fitHeight="150.0" fitWidth="150.0" layoutX="424.0" layoutY="159.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="https://th.bing.com/th/id/OIP.n9DOhS1uNkrMVpULQqomugHaEY?pid=ImgDet&amp;rs=1" />
+                           </image>
+                        </ImageView>
+                        <ImageView fx:id="image2" fitHeight="150.0" fitWidth="150.0" layoutX="230.0" layoutY="159.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="https://th.bing.com/th/id/OIP.n9DOhS1uNkrMVpULQqomugHaEY?pid=ImgDet&amp;rs=1" />
+                           </image>
+                        </ImageView>
+                        <ImageView fx:id="image1" fitHeight="150.0" fitWidth="150.0" layoutX="39.0" layoutY="159.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="https://th.bing.com/th/id/OIP.n9DOhS1uNkrMVpULQqomugHaEY?pid=ImgDet&amp;rs=1" />
+                           </image>
+                        </ImageView>
+                        <Pagination fx:id="pagination" layoutX="8.0" prefHeight="536.0" prefWidth="833.0" />
+                        <Button fx:id="delete1" layoutX="68.0" layoutY="361.0" mnemonicParsing="false" onAction="#delete1" text="delete" />
+                        <Button fx:id="delete2" layoutX="256.0" layoutY="361.0" mnemonicParsing="false" onAction="#delete2" text="delete" />
+                        <Button fx:id="delete3" layoutX="430.0" layoutY="361.0" mnemonicParsing="false" onAction="#delete3" text="delete" />
+                        <Button fx:id="delete4" layoutX="583.0" layoutY="361.0" mnemonicParsing="false" onAction="#delete4" text="delete" />
+                        <Button fx:id="Pdf1" layoutX="76.0" layoutY="440.0" mnemonicParsing="false" onAction="#pdf1" text="pdf" />
+                        <Button fx:id="Pdf2" layoutX="256.0" layoutY="440.0" mnemonicParsing="false" onAction="#pdf2" text="pdf" />
+                        <Button fx:id="Pdf3" layoutX="431.0" layoutY="440.0" mnemonicParsing="false" onAction="#pdf3" text="pdf" />
+                        <Button fx:id="pdf4" layoutX="578.0" layoutY="440.0" mnemonicParsing="false" onAction="#pdf4" text="pdf" />
+                        <TextField fx:id="getByAuthor" layoutX="246.0" layoutY="85.0" />
+                        <Button fx:id="get" layoutX="425.0" layoutY="85.0" mnemonicParsing="false" onAction="#get" text="Button" />
+                        <Button fx:id="update1" layoutX="67.0" layoutY="398.0" mnemonicParsing="false" onAction="#update1" text="Button" />
+                        <Button fx:id="update2" layoutX="255.0" layoutY="398.0" mnemonicParsing="false" onAction="#update2" text="Button" />
+                        <Button fx:id="update3" layoutX="429.0" layoutY="398.0" mnemonicParsing="false" onAction="#update3" text="Button" />
+                        <Button fx:id="update4" layoutX="582.0" layoutY="398.0" mnemonicParsing="false" onAction="#update4" text="Button" />
+                        <Button fx:id="add" layoutX="506.0" layoutY="85.0" mnemonicParsing="false" onAction="#add" text="add" />
+                     </children>
+                  </AnchorPane>
+            </content>
+          </Tab>
+        </tabs>
+      </TabPane>
+   </children>
+</AnchorPane>
