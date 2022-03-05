@@ -55,7 +55,6 @@ public class TokenInputController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-
         token.setOnKeyPressed(Clearable.clear(token));
 
         confirm.setOnAction(new EventHandler<ActionEvent>() {

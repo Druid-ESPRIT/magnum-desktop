@@ -1,8 +1,7 @@
 package com.druid.controllers;
 
 import com.druid.enums.UserStatus;
-import com.druid.errors.register.EmailTakenException;
-import com.druid.errors.register.UsernameTakenException;
+import com.druid.errors.register.*;
 import com.druid.models.User;
 import com.druid.services.UserService;
 import com.druid.utils.Clearable;
@@ -59,11 +58,37 @@ public class RegisterController implements Initializable {
     }
 
     private void hideAlert(Text field) {
-        field.setOpacity(0);
+        if (field.getOpacity() == 100) {
+            field.setOpacity(0);
+        }
     }
 
     public boolean isAlphaNumeric(String text) {
-        return text.matches("^[a-zA-Z0-9]*$");
+        return text.matches("^[a-z0-9]*$");
+    }
+
+    public void verifyEmail() throws AddressException {
+        new InternetAddress(email.getText()).validate();
+    }
+
+    public void verifyUsername() throws UsernameLengthException, UsernameIllegalSymbols {
+        if (username.getText().isEmpty()) {
+            throw new UsernameLengthException("This field is required.");
+        }
+
+        if (username.getText().length() > 40) {
+            throw new UsernameLengthException("Your username can't be longer than 40 characters.");
+        }
+
+        if (!isAlphaNumeric(username.getText())) {
+            throw new UsernameIllegalSymbols("This field can only contain lowercase letters and digits.");
+        }
+    }
+
+    public void verifyPassword() throws PasswordCheckException {
+        if (!password.getText().equals(passwordConfirm.getText())) {
+            throw new PasswordCheckException("The password and its confirmation don't match.");
+        }
     }
 
     @Override
@@ -76,26 +101,38 @@ public class RegisterController implements Initializable {
         register.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-                if (!password.getText().equals(passwordConfirm.getText())) {
-                    alert(passwordConfirmAlert, "The password and its confirmation don't match.");
-                } else {
-                    hideAlert(passwordConfirmAlert);
-                }
-
-                if (!isAlphaNumeric(username.getText())) {
-                    alert(usernameAlert, "This field can only contain letters and digits.");
-                }
-
-                if (username.getText().isEmpty()) {
-                    alert(usernameAlert, "This field is required.");
-                } else if (username.getText().length() > 40) {
-                    alert(usernameAlert, "Your username can't be longer than 40 characters.");
-                } else {
-                    hideAlert(usernameAlert);
-                }
-
+                // Email verification
                 try {
-                    // Create the user.
+                    verifyEmail();
+                    hideAlert(emailAlert);
+                } catch (AddressException e) {
+                    alert(emailAlert, "This is not a valid email.");
+                    return;
+                }
+
+                // Username verification
+                try {
+                    verifyUsername();
+                    hideAlert(usernameAlert);
+                } catch (UsernameLengthException err) {
+                    alert(usernameAlert, err.getMessage());
+                    return;
+                } catch (UsernameIllegalSymbols err) {
+                    alert(usernameAlert, err.getMessage());
+                    return;
+                }
+
+                // Password verification
+                try {
+                    verifyPassword();
+                    hideAlert(passwordConfirmAlert);
+                } catch (PasswordCheckException err) {
+                    alert(passwordConfirmAlert, err.getMessage());
+                    return;
+                }
+
+                // Register the user
+                try {
                     User user = new User();
                     user.setEmail(email.getText().trim());
                     user.setUsername(username.getText().trim());
@@ -110,7 +147,7 @@ public class RegisterController implements Initializable {
                     return;
                 }
 
-                // Switch to the login scene.
+                // Switch to the login scene
                 SceneSwitcher sceneController = new SceneSwitcher();
                 try {
                     sceneController.showLogin(event);
@@ -142,54 +179,42 @@ public class RegisterController implements Initializable {
         });
 
         email.focusedProperty().addListener((_arg, input, output) -> {
-            if (!output) { // When we lose focus
+            if (!output) {
                 try {
-                    new InternetAddress(email.getText()).validate();
+                    verifyEmail();
                     hideAlert(emailAlert);
-                    register.setDisable(false);
-                } catch (AddressException ex) {
+                } catch (AddressException e) {
                     alert(emailAlert, "This is not a valid email.");
-                    register.setDisable(true);
                 }
             }
         });
 
         username.focusedProperty().addListener((_arg, input, output) -> {
-            if (!output) { // When we lose focus
-                String text = username.getText();
-                if (!isAlphaNumeric(text)) {
-                    alert(usernameAlert, "Your username can only contain letters and digits.");
-                    register.setDisable(true);
-                    return;
+            if (!output) {
+                try {
+                    verifyUsername();
+                    hideAlert(usernameAlert);
+                } catch (UsernameLengthException err) {
+                    alert(usernameAlert, err.getMessage());
+                } catch (UsernameIllegalSymbols err) {
+                    alert(usernameAlert, err.getMessage());
                 }
 
-                if (text.isEmpty()) {
-                    alert(usernameAlert, "This field is required.");
-                    register.setDisable(true);
-                    return;
-                }
-
-                hideAlert(usernameAlert);
-                register.setDisable(false);
             }
         });
 
         password.focusedProperty().addListener((_arg, input, output) -> {
             if (!output) { // When we lose focus
-                if (!password.getText().equals(passwordConfirm.getText())) {
-                    alert(passwordConfirmAlert, "The password and its confirmation don't match.");
-                    register.setDisable(true);
-                    return;
-                }
-
                 if (password.getText().isEmpty()) {
                     alert(passwordAlert, "This field is required.");
-                    register.setDisable(true);
-                    return;
                 }
 
-                hideAlert(passwordAlert);
-                register.setDisable(false);
+                try {
+                    verifyPassword();
+                    hideAlert(passwordConfirmAlert);
+                } catch (PasswordCheckException err) {
+                    alert(passwordConfirmAlert, err.getMessage());
+                }
             }
         });
 
@@ -197,12 +222,9 @@ public class RegisterController implements Initializable {
             if (!output) {
                 if (passwordConfirm.getText().isEmpty()) {
                     alert(passwordConfirmAlert, "This field is required.");
-                    register.setDisable(true);
-                    return;
+                } else {
+                    hideAlert(passwordConfirmAlert);
                 }
-
-                hideAlert(passwordConfirmAlert);
-                register.setDisable(false);
             }
         });
     }
