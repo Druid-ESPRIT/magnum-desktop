@@ -1,4 +1,5 @@
-        package com.druid.controllers;
+package com.druid.controllers;
+
 
         import com.druid.models.Commentaire;
         import com.druid.models.User;
@@ -17,24 +18,26 @@
         import javafx.scene.control.Button;
         import javafx.scene.control.ListView;
 
-        import javafx.scene.control.TextArea;
-        import javafx.scene.control.TextField;
-        import javafx.scene.text.Text;
-        import javafx.stage.Stage;
+import java.io.IOException;
+import java.net.URL;
+import java.util.List;
+import java.util.ResourceBundle;
+import java.util.stream.Collectors;
 
-        import java.io.IOException;
-        import java.net.URL;
-        import java.util.List;
-        import java.util.ResourceBundle;
-        import java.util.stream.Collectors;
+import javafx.scene.control.TextArea;
+import javafx.scene.text.Text;
+import javafx.stage.Stage;
 
-        public class commentListController  implements Initializable {
+
+public class commentListController implements Initializable {
+
+    private User connectedUser= ConnectedUser.getInstance().getUser();
         CommentaireService cs =new CommentaireService();
         ArticleService as=new ArticleService();
         UserService us=new UserService();
         static Commentaire selectedComment;
-            LoginController lc=new LoginController();
-            User user=lc.getConnectedUser();
+        LoginController lc=new LoginController();
+        User user=lc.getConnectedUser();
         @FXML
         private Button retour;
 
@@ -56,31 +59,29 @@
         private Button addC;
         @FXML
         private TextArea message;
-            @FXML
-            private Button flag;
-
-            private User connectedUser= ConnectedUser.getInstance().getUser();
+        @FXML
+        private Button flag;
 
         @FXML
         void deletec(ActionEvent event) throws IOException {
-                selectedComment=ownComments.getSelectionModel().getSelectedItem();
-                if(selectedComment!=null)
-                {
-                    Stage stage = (Stage) retour.getScene().getWindow();
-                    stage.close();
-                    Stage Stage = new Stage();
-                    Parent root = FXMLLoader.load(getClass().getResource("/views/delete.fxml"));
-                    Stage.setTitle("update comment");
-                    Stage.setScene(new Scene(root));
-                    Stage.show();
+            selectedComment=ownComments.getSelectionModel().getSelectedItem();
+            if(selectedComment!=null)
+            {
+                Stage stage = (Stage) retour.getScene().getWindow();
+                stage.close();
+                Stage Stage = new Stage();
+                Parent root = FXMLLoader.load(getClass().getResource("/views/delete.fxml"));
+                Stage.setTitle("update comment");
+                Stage.setScene(new Scene(root));
+                Stage.show();
 
-                        //cs.cancelCommentaire(selectedComment);
+                //cs.cancelCommentaire(selectedComment);
 
-                }
+            }
 
         }
-         @FXML
-         public void addC(){
+        @FXML
+        public void addC(){
             String content=message.getText();
             Commentaire com=new Commentaire();
             com.setArticleID(as.getArticle(CommentCotroller.ids));
@@ -91,62 +92,57 @@
             commentaires=commentaires.stream().filter(c->c.getArticleID().getId()==CommentCotroller.ids).collect(Collectors.toList());
             ObservableList<Commentaire> items2 = FXCollections.observableArrayList(commentaires);
             commentList.setItems(items2);
-             List<Commentaire> commentaires2=cs.afficherCommentaire().stream().filter(
-                     w->w.getArticleID().getId()==CommentCotroller.ids  && w.getUserID().getID()==user.getID() ).collect(Collectors.toList());
-             ObservableList<Commentaire> items = FXCollections.observableArrayList(commentaires2);
-             ownComments.setItems(items);
-             message.setText("");
+            List<Commentaire> commentaires2=cs.afficherCommentaire().stream().filter(
+                    w->w.getArticleID().getId()==CommentCotroller.ids  && w.getUserID().getID()==user.getID() ).collect(Collectors.toList());
+            ObservableList<Commentaire> items = FXCollections.observableArrayList(commentaires2);
+            ownComments.setItems(items);
+            message.setText("");
 
-         }
+        }
         @FXML
         void updatec(ActionEvent event) throws IOException {
             selectedComment=ownComments.getSelectionModel().getSelectedItem();
             if(selectedComment!=null)
             {
+                Stage stage = (Stage) retour.getScene().getWindow();
+                stage.close();
+                Stage Stage = new Stage();
+                Parent root = FXMLLoader.load(getClass().getResource("/views/upcomment.fxml"));
+                Stage.setTitle("update comment");
+                Stage.setScene(new Scene(root));
+                Stage.show();}
+
+        }
+
+        @Override
+        public void initialize(URL location, ResourceBundle resources) {
+            ///a commentee
+            user=us.getUser(1);
+            /////////////
+            title.setText(as.getArticle(CommentCotroller.ids).getTitle());
+            List<Commentaire> commentaires=cs.afficherCommentaire();
+            commentaires=commentaires.stream().filter(c->c.getArticleID().getId()==CommentCotroller.ids).collect(Collectors.toList());
+            ObservableList<Commentaire> items2 = FXCollections.observableArrayList(commentaires);
+            commentList.setItems(items2);
+            List<Commentaire> commentaires2=cs.afficherCommentaire().stream().filter(
+                    c->c.getArticleID().getId()==CommentCotroller.ids && c.getUserID().getID()==user.getID() ).collect(Collectors.toList());
+            ObservableList<Commentaire> items = FXCollections.observableArrayList(commentaires2);
+            ownComments.setItems(items);
+            selectedComment=commentList.getSelectionModel().getSelectedItem();
+        }
+        @FXML
+        void retour(ActionEvent event) throws IOException {
             Stage stage = (Stage) retour.getScene().getWindow();
             stage.close();
             Stage Stage = new Stage();
-            Parent root = FXMLLoader.load(getClass().getResource("/views/upcomment.fxml"));
-            Stage.setTitle("update comment");
+            Parent root = FXMLLoader.load(getClass().getResource("/views/userAcceuil.fxml"));
+            Stage.setTitle("article list");
             Stage.setScene(new Scene(root));
-            Stage.show();}
-
+            Stage.show();
         }
 
-            @Override
-            public void initialize(URL location, ResourceBundle resources) {
-            ///a commentee
-                //user=us.getUser(3);
-
-                connectedUser.getID();
-
-                /////////////
-                title.setText(as.getArticle(CommentCotroller.ids).getTitle());
-                List<Commentaire> commentaires=cs.afficherCommentaire();
-                       commentaires=commentaires.stream().filter(c->c.getArticleID().getId()==CommentCotroller.ids).collect(Collectors.toList());
-                ObservableList<Commentaire> items2 = FXCollections.observableArrayList(commentaires);
-                commentList.setItems(items2);
-                List<Commentaire> commentaires2=cs.afficherCommentaire().stream().filter(
-                        c->c.getArticleID().getId()==CommentCotroller.ids && c.getUserID().getID()==user.getID() ).collect(Collectors.toList());
-                ObservableList<Commentaire> items = FXCollections.observableArrayList(commentaires2);
-                ownComments.setItems(items);
-                selectedComment=commentList.getSelectionModel().getSelectedItem();
-            }
-                @FXML
-                void retour(ActionEvent event) throws IOException {
-                    Stage stage = (Stage) retour.getScene().getWindow();
-                    stage.close();
-                    Stage Stage = new Stage();
-                    Parent root = FXMLLoader.load(getClass().getResource("/views/userAcceuil.fxml"));
-                    Stage.setTitle("article list");
-                    Stage.setScene(new Scene(root));
-                    Stage.show();
-                }
-
-            @FXML
-            void flag(ActionEvent event) throws IOException {
-                selectedComment=commentList.getSelectionModel().getSelectedItem();
-            }
+        @FXML
+        void flag(ActionEvent event) throws IOException {
+            selectedComment=commentList.getSelectionModel().getSelectedItem();
         }
-
-
+    }

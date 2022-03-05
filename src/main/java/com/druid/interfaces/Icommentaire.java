@@ -5,19 +5,18 @@
  */
 package com.druid.interfaces;
 
-import java.util.List;
 import com.druid.models.Commentaire;
+import java.util.List;
 
-/**
- *
- * @author zeineb
- */
+/** @author zeineb */
 public interface Icommentaire {
-      public boolean addCommentaire(Commentaire C);
-    public boolean updateCommentaire(Commentaire C);
-    public boolean cancelCommentaire(Commentaire C);
-    public Commentaire getCommentaire(int id);
-    public List<Commentaire> afficherCommentaire();
-    
-    
+  public boolean addCommentaire(Commentaire C);
+
+  public boolean updateCommentaire(Commentaire C);
+
+  public boolean cancelCommentaire(Commentaire C);
+
+  public Commentaire getCommentaire(int id);
+
+  public List<Commentaire> afficherCommentaire();
 }

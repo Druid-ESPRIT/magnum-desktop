@@ -81,24 +81,24 @@ public class AddArticle implements Initializable {
         }
         else{
 
-                if(podcaster==null) {
-                    alert(authornameControl, "invalid author Name");
-                    valid = false;
-                }
-                else
-                    hideAlert(authornameControl);
+            if(podcaster==null) {
+                alert(authornameControl, "invalid author Name");
+                valid = false;
             }
+            else
+                hideAlert(authornameControl);
+        }
 
 
 
         if(!content.getText().equals(""))
         {
-           hideAlert( contentControl);
+            hideAlert( contentControl);
 
         }
         if(!url.getText().equals(""))
         {
-           hideAlert( urlcontrol);
+            hideAlert( urlcontrol);
 
         }
         if(!title.getText().equals("")) {
@@ -128,14 +128,14 @@ public class AddArticle implements Initializable {
 
         if(valid)
         {
-        as.addArticle(a);
-        Stage stage = (Stage) retour.getScene().getWindow();
-        stage.close();
-        Stage Stage = new Stage();
-        Parent root = FXMLLoader.load(getClass().getResource("/views/acceuil.fxml"));
-        Stage.setTitle("list Article");
-        Stage.setScene(new Scene(root));
-        Stage.show();}
+            as.addArticle(a);
+            Stage stage = (Stage) retour.getScene().getWindow();
+            stage.close();
+            Stage Stage = new Stage();
+            Parent root = FXMLLoader.load(getClass().getResource("/views/acceuil.fxml"));
+            Stage.setTitle("list Article");
+            Stage.setScene(new Scene(root));
+            Stage.show();}
     }
 
     @FXML
@@ -154,3 +154,4 @@ public class AddArticle implements Initializable {
 
     }
 }
+

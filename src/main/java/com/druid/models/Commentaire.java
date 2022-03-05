@@ -7,68 +7,60 @@ package com.druid.models;
 
 import java.sql.Date;
 
-/**
- *
- * @author zeineb
- */
+/** @author zeineb */
 public class Commentaire {
-    
-    private int id;
-    private User userID;
-    private Article articleID;
-    private String message;
-    private Date submitDate;
 
-    public Commentaire() {
-    }
+  private int id;
+  private User userID;
+  private Article articleID;
+  private String message;
+  private Date submitDate;
 
-    public Commentaire(User userID, Article articleID, String message, Date submitDate) {
-        this.userID = userID;
-        this.articleID = articleID;
-        this.message = message;
-        this.submitDate = submitDate;
-    }
+  public Commentaire() {}
 
-    public int getId() {
-        return id;
-    }
+  public Commentaire(User userID, Article articleID, String message, Date submitDate) {
+    this.userID = userID;
+    this.articleID = articleID;
+    this.message = message;
+    this.submitDate = submitDate;
+  }
 
-    public void setId(int id) {
-        this.id = id;
-    }
+  public int getId() {
+    return id;
+  }
 
-    public User getUserID() {
-        return userID;
-    }
+  public void setId(int id) {
+    this.id = id;
+  }
 
-    public void setUserID(User userID) {
-        this.userID = userID;
-    }
+  public User getUserID() {
+    return userID;
+  }
 
-    public Article getArticleID() {
-        return articleID;
-    }
+  public void setUserID(User userID) {
+    this.userID = userID;
+  }
 
-    public void setArticleID(Article articleID) {
-        this.articleID = articleID;
-    }
+  public Article getArticleID() {
+    return articleID;
+  }
 
-    public String getMessage() {
-        return message;
-    }
+  public void setArticleID(Article articleID) {
+    this.articleID = articleID;
+  }
 
-    public void setMessage(String message) {
-        this.message = message;
-    }
+  public String getMessage() {
+    return message;
+  }
 
-   
-    public Date getSubmitDate() {
-        return submitDate;
-    }
+  public void setMessage(String message) {
+    this.message = message;
+  }
 
-    public void setSubmitDate(Date submitDate) {
-        this.submitDate = submitDate;
-    }
+  public Date getSubmitDate() {
+    return submitDate;
+  }
+
 
     @Override
     public String toString() {
@@ -76,4 +68,10 @@ public class Commentaire {
                  userID.getUsername() +
                 ": "+submitDate+" :"+message;
     }
+
+  public void setSubmitDate(Date submitDate) {
+    this.submitDate = submitDate;
+  }
+
+
 }

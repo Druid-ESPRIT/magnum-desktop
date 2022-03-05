@@ -5,82 +5,73 @@
  */
 package com.druid.models;
 
-
-/**
- *
- * @author zeineb
- */
+/** @author zeineb */
 public class Article {
-    private int id;
-    private Podcaster authorID;
-    private String title;
-    private String content;
-    private String url;
+  private int id;
+  private Podcaster authorID;
+  private String title;
+  private String content;
+  private String url;
 
-    public String getUrl() {
-        return url;
-    }
+  public String getUrl() {
+    return url;
+  }
 
-    public void setUrl(String url) {
-        this.url = url;
-    }
+  public void setUrl(String url) {
+    this.url = url;
+  }
 
-    public Article() {
-    }
-    
-    public Article(Podcaster authorID, String title, String content) {
-        this.authorID = authorID;
-        this.title = title;
-        this.content = content;
-    }
+  public Article() {}
 
-    public int getId() {
-        return id;
-    }
+  public Article(Podcaster authorID, String title, String content) {
+    this.authorID = authorID;
+    this.title = title;
+    this.content = content;
+  }
 
-    public Podcaster getAuthorID() {
-        return authorID;
-    }
+  public int getId() {
+    return id;
+  }
 
-    public void setAuthorID(Podcaster authorID) {
-        this.authorID = authorID;
-    }
+  public Podcaster getAuthorID() {
+    return authorID;
+  }
 
+  public void setAuthorID(Podcaster authorID) {
+    this.authorID = authorID;
+  }
 
+  public String getTitle() {
+    return title;
+  }
 
-    public String getTitle() {
-        return title;
-    }
+  public String getContent() {
+    return content;
+  }
 
-    public String getContent() {
-        return content;
-    }
+  public void setId(int id) {
+    this.id = id;
+  }
 
-    public void setId(int id) {
-        this.id = id;
-    }
+  public void setTitle(String title) {
+    this.title = title;
+  }
 
-  
-    public void setTitle(String title) {
-        this.title = title;
-    }
+  public void setContent(String content) {
+    this.content = content;
+  }
 
-    public void setContent(String content) {
-        this.content = content;
-    }
-
-    @Override
-    public String toString() {
-        return "Article{" + "id=" + id + ", authorID=" + authorID + ", title=" + title + ", content=" + content + '}';
-    }
-
-   
-    
-    
-    
-    
-    
-    
-    
-    
+  @Override
+  public String toString() {
+    return "Article{"
+        + "id="
+        + id
+        + ", authorID="
+        + authorID
+        + ", title="
+        + title
+        + ", content="
+        + content
+        + '}';
+  }
 }

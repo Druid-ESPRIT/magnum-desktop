@@ -5,6 +5,9 @@
  */
 package com.druid.controllers;
 
+import com.druid.models.Article;
+import com.druid.services.ArticleService;
+import com.druid.services.PodcasterService;
 import java.io.IOException;
 import java.net.URL;
 import java.util.List;
@@ -21,9 +24,6 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
-import com.druid.models.Article;
-import com.druid.services.ArticleService;
-import com.druid.services.PodcasterService;
 
 /**
  * FXML Controller class
@@ -31,6 +31,7 @@ import com.druid.services.PodcasterService;
  * @author zeineb
  */
 public class UpdateArticleController implements Initializable {
+
 
     @FXML
     private TextField titleUp;
@@ -41,13 +42,12 @@ public class UpdateArticleController implements Initializable {
     @FXML
     private TextField urlUp;
     AcceuilController ac;
-    ArticleService as=new ArticleService();
-    PodcasterService ps=new PodcasterService();
+    ArticleService as = new ArticleService();
+    PodcasterService ps = new PodcasterService();
     @FXML
     private Button update;
     @FXML
     private Button retour;
-
 
 
     @FXML
@@ -60,9 +60,6 @@ public class UpdateArticleController implements Initializable {
 
     @FXML
     private Text titlectrl;
-
-
-
     private void alert(Text field, String content) {
         field.setOpacity(100);
         field.setText(content);
@@ -72,11 +69,8 @@ public class UpdateArticleController implements Initializable {
             field.setOpacity(0);
         }
     }
-    
 
-    /**
-     * Initializes the controller class.
-     */
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         Article a=as.getArticle(AcceuilController.ids);
@@ -85,8 +79,8 @@ public class UpdateArticleController implements Initializable {
         AuthorUp.setText(String.valueOf(a.getAuthorID().getFirstName()));
         System.err.println(a.getUrl());
         urlUp.setText(a.getUrl());
-        
-    }    
+
+    }
 
     @FXML
     private void update(ActionEvent event) throws IOException {
@@ -167,5 +161,8 @@ public class UpdateArticleController implements Initializable {
         Stage.show();
 
     }
-    
+
 }
+
+
+
