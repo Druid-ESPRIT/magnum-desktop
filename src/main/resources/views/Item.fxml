@@ -5,7 +5,7 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.*?>
 <AnchorPane xmlns:fx="http://javafx.com/fxml/1" fx:id="anchorPane" onMousePressed="#selectedOffer" prefHeight="200.0"
-            prefWidth="180.0" styleClass="card-bar" stylesheets="@../style.css"
+            prefWidth="180.0" styleClass="card-bar" stylesheets="@../css/style.css"
             xmlns="http://javafx.com/javafx/8.0.171" fx:controller="com.druid.controllers.ItemController">
     <children>
         <VBox layoutX="14.0" layoutY="10.0" prefHeight="200.0" prefWidth="100.0" AnchorPane.bottomAnchor="0.0"

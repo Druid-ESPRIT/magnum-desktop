@@ -51,7 +51,7 @@
                                 <HBox alignment="CENTER" prefHeight="133.0" prefWidth="400.0">
                                     <children>
                                         <Label text="Coupon :"/>
-                                        <TextField fx:id="tfcoupon" stylesheets="@../style.css"/>
+                                        <TextField fx:id="tfcoupon" stylesheets="@../css/style.css"/>
                                     </children>
                                 </HBox>
                                 <Label fx:id="errormsg">
@@ -68,7 +68,7 @@
                             </children>
                         </HBox>
                         <Button mnemonicParsing="false" onAction="#btnConfirmOrder" styleClass="search-button"
-                                stylesheets="@../style.css" text="Confirm"/>
+                                stylesheets="@../css/style.css" text="Confirm"/>
                     </children>
                 </VBox>
             </children>
@@ -121,7 +121,7 @@
                             </VBox.margin>
                         </HBox>
                         <Button contentDisplay="TOP" mnemonicParsing="false" onAction="#PayClicked" prefHeight="48.0"
-                                prefWidth="81.0" styleClass="card-bar" stylesheets="@../style.css" text="Pay">
+                                prefWidth="81.0" styleClass="card-bar" stylesheets="@../css/style.css" text="Pay">
                             <VBox.margin>
                                 <Insets left="150.0"/>
                             </VBox.margin>

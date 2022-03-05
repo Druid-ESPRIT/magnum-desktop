@@ -5,7 +5,7 @@
 <?import javafx.scene.text.*?>
 <AnchorPane xmlns:fx="http://javafx.com/fxml/1" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity"
             minWidth="-Infinity"
-            prefHeight="600.0" prefWidth="500.0" stylesheets="@../general.css"
+            prefHeight="600.0" prefWidth="500.0" stylesheets="@../css/general.css"
             xmlns="http://javafx.com/javafx/8.0.171" fx:controller="com.druid.controllers.LoginController">
     <children>
         <Button fx:id="confirm" layoutX="211.0" layoutY="376.0" mnemonicParsing="false" prefHeight="28.0"

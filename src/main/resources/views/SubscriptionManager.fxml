@@ -13,15 +13,15 @@
     <children>
         <BorderPane prefHeight="720.0" prefWidth="1282.0">
             <left>
-                <VBox prefHeight="720.0" prefWidth="288.0" styleClass="right-bar" stylesheets="@../style.css"
+                <VBox prefHeight="720.0" prefWidth="288.0" styleClass="right-bar" stylesheets="@../css/style.css"
                       BorderPane.alignment="CENTER">
                     <children>
                         <HBox prefHeight="112.0" prefWidth="288.0"/>
-                        <HBox alignment="CENTER" prefHeight="58.0" prefWidth="245.0" stylesheets="@../style.css">
+                        <HBox alignment="CENTER" prefHeight="58.0" prefWidth="245.0" stylesheets="@../css/style.css">
                             <children>
                                 <TextField fx:id="tfsearch" prefHeight="30.0" prefWidth="140.0"
                                            promptText="Type here to search" styleClass="transparent"
-                                           stylesheets="@../style.css">
+                                           stylesheets="@../css/style.css">
                                     <HBox.margin>
                                         <Insets left="20.0"/>
                                     </HBox.margin>
@@ -30,7 +30,7 @@
                                     </font>
                                 </TextField>
                                 <Button mnemonicParsing="false" onAction="#SearchClicked" styleClass="search-button"
-                                        stylesheets="@../style.css" text="Search" textFill="WHITE"/>
+                                        stylesheets="@../css/style.css" text="Search" textFill="WHITE"/>
                             </children>
                             <VBox.margin>
                                 <Insets left="20.0" right="20.0"/>
@@ -53,7 +53,7 @@
                         <HBox alignment="CENTER" prefHeight="623.0" prefWidth="994.0">
                             <children>
                                 <ScrollPane prefHeight="600.0" prefWidth="920.0" styleClass="transparent"
-                                            stylesheets="@../style.css">
+                                            stylesheets="@../css/style.css">
                                     <content>
                                         <GridPane fx:id="grid">
                                             <rowConstraints>

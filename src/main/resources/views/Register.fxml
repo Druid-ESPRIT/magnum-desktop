@@ -5,7 +5,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 <AnchorPane xmlns:fx="http://javafx.com/fxml/1" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="500.0"
-            styleClass="root" stylesheets="@../general.css" xmlns="http://javafx.com/javafx/8.0.171"
+            styleClass="root" stylesheets="@../css/general.css" xmlns="http://javafx.com/javafx/8.0.171"
             fx:controller="com.druid.controllers.RegisterController">
     <children>
         <GridPane alignment="CENTER" layoutX="150.0" layoutY="90.0" AnchorPane.bottomAnchor="100.0"
@@ -36,7 +36,7 @@
                 <TextField fx:id="username" prefHeight="28.0" prefWidth="200.0" styleClass="form-button"
                            GridPane.columnSpan="2" GridPane.rowIndex="5"/>
                 <PasswordField fx:id="password" prefHeight="30.0" prefWidth="200.0" styleClass="form-button"
-                               stylesheets="@../general.css" GridPane.columnSpan="2" GridPane.rowIndex="8"/>
+                               stylesheets="@../css/general.css" GridPane.columnSpan="2" GridPane.rowIndex="8"/>
                 <Label text="Email" GridPane.rowIndex="1">
                     <font>
                         <Font size="18.0"/>

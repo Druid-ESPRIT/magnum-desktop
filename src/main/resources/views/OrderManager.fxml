@@ -10,15 +10,15 @@
         <BorderPane layoutX="58.0" layoutY="14.0" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0"
                     AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
             <left>
-                <VBox prefHeight="720.0" prefWidth="272.0" styleClass="right-bar" stylesheets="@../style.css"
+                <VBox prefHeight="720.0" prefWidth="272.0" styleClass="right-bar" stylesheets="@../css/style.css"
                       BorderPane.alignment="CENTER">
                     <children>
                         <VBox prefHeight="200.0" prefWidth="100.0"/>
                         <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" styleClass="buttons-card"
-                              stylesheets="@../style.css">
+                              stylesheets="@../css/style.css">
                             <children>
                                 <Button mnemonicParsing="false" onAction="#btnmarkCompleted" prefHeight="40.0"
-                                        prefWidth="130.0" styleClass="add-btn" stylesheets="@../style.css"
+                                        prefWidth="130.0" styleClass="add-btn" stylesheets="@../css/style.css"
                                         text="Mark as Completed">
                                     <VBox.margin>
                                         <Insets bottom="20.0"/>
@@ -28,7 +28,7 @@
                                     </font>
                                 </Button>
                                 <Button mnemonicParsing="false" onAction="#btnmarkCanceled" prefHeight="40.0"
-                                        prefWidth="124.0" styleClass="add-btn" stylesheets="@../style.css"
+                                        prefWidth="124.0" styleClass="add-btn" stylesheets="@../css/style.css"
                                         text="Mark as Canceled">
                                     <font>
                                         <Font size="13.0"/>
@@ -48,16 +48,16 @@
                         <VBox prefHeight="128.0" prefWidth="1008.0">
                             <children>
                                 <HBox alignment="CENTER" prefHeight="130.0" prefWidth="1008.0" styleClass="right-bar"
-                                      stylesheets="@../style.css">
+                                      stylesheets="@../css/style.css">
                                     <children>
-                                        <Label styleClass="shadow" stylesheets="@../style.css" text="Search Orders : ">
+                                        <Label styleClass="shadow" stylesheets="@../css/style.css" text="Search Orders : ">
                                             <font>
                                                 <Font name="Brush Script MT Italic" size="17.0"/>
                                             </font>
                                         </Label>
                                         <TextField fx:id="tfsearch" prefHeight="40.0" prefWidth="380.0"
                                                    promptText="Type here to search..." styleClass="search-box"
-                                                   stylesheets="@../style.css">
+                                                   stylesheets="@../css/style.css">
                                             <HBox.margin>
                                                 <Insets/>
                                             </HBox.margin>

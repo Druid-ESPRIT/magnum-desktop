@@ -11,15 +11,15 @@
     <children>
         <BorderPane prefHeight="720.0" prefWidth="1282.0">
             <left>
-                <VBox prefHeight="720.0" prefWidth="288.0" styleClass="right-bar" stylesheets="@../style.css"
+                <VBox prefHeight="720.0" prefWidth="288.0" styleClass="right-bar" stylesheets="@../css/style.css"
                       BorderPane.alignment="CENTER">
                     <children>
                         <HBox alignment="CENTER" prefHeight="18.0" prefWidth="288.0"/>
                         <VBox fx:id="myVbox" alignment="CENTER" prefHeight="51.0" prefWidth="188.0" spacing="20.0"
-                              stylesheets="@../style.css">
+                              stylesheets="@../css/style.css">
                             <children>
                                 <Button fx:id="newoffer" mnemonicParsing="false" onAction="#btnNewOfferClicked"
-                                        prefHeight="41.0" prefWidth="148.0" stylesheets="@../style.css"
+                                        prefHeight="41.0" prefWidth="148.0" stylesheets="@../css/style.css"
                                         text="Create a new offer">
                                     <styleClass>
                                         <String fx:value="add-btn"/>
@@ -95,7 +95,7 @@
                                                             </HBox.margin>
                                                         </Label>
                                                         <Button mnemonicParsing="false" onAction="#fileselector1"
-                                                                styleClass="icon-button" stylesheets="@../style.css">
+                                                                styleClass="icon-button" stylesheets="@../css/style.css">
                                                             <graphic>
                                                                 <FontAwesomeIconView glyphName="FILE_PHOTO_ALT"
                                                                                      size="25"/>
@@ -107,7 +107,7 @@
                                         </VBox>
                                         <Button fx:id="addbutton1" layoutX="84.0" layoutY="259.0"
                                                 mnemonicParsing="false" prefHeight="12.0" prefWidth="10.0"
-                                                stylesheets="@../style.css">
+                                                stylesheets="@../css/style.css">
                                             <styleClass>
                                                 <String fx:value="icon-button"/>
                                                 <String fx:value="shadow"/>
@@ -120,7 +120,7 @@
                                             </graphic>
                                         </Button>
                                         <VBox alignment="CENTER" prefHeight="32.0" prefWidth="288.0"
-                                              styleClass="right-bar" stylesheets="@../style.css"
+                                              styleClass="right-bar" stylesheets="@../css/style.css"
                                               AnchorPane.bottomAnchor="300.0" AnchorPane.leftAnchor="0.0"
                                               AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                             <children>
@@ -129,7 +129,7 @@
                                                         <Insets/>
                                                     </VBox.margin>
                                                 </VBox>
-                                                <Label alignment="CENTER" stylesheets="@../style.css"
+                                                <Label alignment="CENTER" stylesheets="@../css/style.css"
                                                        text="Create your new Subscription offer !">
                                                     <font>
                                                         <Font name="Cambria" size="14.0"/>
@@ -139,7 +139,7 @@
                                         </VBox>
                                         <Button layoutX="179.0" layoutY="261.0" mnemonicParsing="false"
                                                 onAction="#CancelAdd" prefHeight="34.0" prefWidth="35.0"
-                                                stylesheets="@../style.css">
+                                                stylesheets="@../css/style.css">
                                             <styleClass>
                                                 <String fx:value="icon-button"/>
                                                 <String fx:value="shadow"/>
@@ -156,7 +156,7 @@
                         <VBox prefHeight="261.0" prefWidth="288.0">
                             <children>
                                 <AnchorPane fx:id="anchorPane2" prefHeight="256.0" prefWidth="288.0"
-                                            stylesheets="@../style.css">
+                                            stylesheets="@../css/style.css">
                                     <children>
                                         <VBox alignment="TOP_CENTER" layoutX="2.0" layoutY="7.0" prefHeight="80.0"
                                               prefWidth="260.0" AnchorPane.bottomAnchor="180.0"
@@ -195,7 +195,7 @@
                                                         </Label>
                                                         <Button mnemonicParsing="false" onAction="#fileselector"
                                                                 prefHeight="34.0" prefWidth="14.0"
-                                                                stylesheets="@../style.css">
+                                                                stylesheets="@../css/style.css">
                                                             <graphic>
                                                                 <FontAwesomeIconView glyphName="FILE_PHOTO_ALT"
                                                                                      size="25"/>
@@ -211,7 +211,7 @@
                                         </VBox>
                                         <Button fx:id="addbutton" layoutX="124.0" layoutY="239.0"
                                                 mnemonicParsing="false" prefHeight="36.0" prefWidth="24.0"
-                                                stylesheets="@../style.css">
+                                                stylesheets="@../css/style.css">
                                             <styleClass>
                                                 <String fx:value="icon-button"/>
                                                 <String fx:value="shadow"/>
@@ -244,7 +244,7 @@
                                         </VBox>
                                         <Button fx:id="deleteButton" layoutX="43.0" layoutY="238.0"
                                                 mnemonicParsing="false" prefHeight="35.0" prefWidth="35.0"
-                                                stylesheets="@../style.css">
+                                                stylesheets="@../css/style.css">
                                             <styleClass>
                                                 <String fx:value="icon-button"/>
                                                 <String fx:value="shadow"/>
@@ -259,7 +259,7 @@
                                         <Label fx:id="getid" layoutX="14.0" layoutY="284.0"/>
                                         <Button layoutX="195.0" layoutY="240.0" mnemonicParsing="false"
                                                 onAction="#CancelSelect" prefHeight="34.0" prefWidth="40.0"
-                                                stylesheets="@../style.css">
+                                                stylesheets="@../css/style.css">
                                             <styleClass>
                                                 <String fx:value="icon-button"/>
                                                 <String fx:value="shadow"/>
@@ -284,11 +284,11 @@
                                 <VBox alignment="CENTER" prefHeight="99.0" prefWidth="415.0">
                                     <children>
                                         <HBox alignment="CENTER" prefHeight="58.0" prefWidth="245.0"
-                                              stylesheets="@../style.css">
+                                              stylesheets="@../css/style.css">
                                             <children>
                                                 <TextField fx:id="tfsearch" prefHeight="30.0" prefWidth="288.0"
                                                            promptText="Type here to search..." styleClass="transparent"
-                                                           stylesheets="@../style.css">
+                                                           stylesheets="@../css/style.css">
                                                     <HBox.margin>
                                                         <Insets/>
                                                     </HBox.margin>
@@ -312,7 +312,7 @@
                         <HBox alignment="CENTER" prefHeight="623.0" prefWidth="994.0">
                             <children>
                                 <ScrollPane prefHeight="600.0" prefWidth="920.0" styleClass="transparent"
-                                            stylesheets="@../style.css">
+                                            stylesheets="@../css/style.css">
                                     <content>
                                         <GridPane fx:id="grid">
                                             <rowConstraints>
