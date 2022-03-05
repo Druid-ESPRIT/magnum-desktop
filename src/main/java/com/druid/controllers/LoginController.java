@@ -2,6 +2,8 @@ package com.druid.controllers;
 
 import com.druid.errors.login.BannedUserException;
 import com.druid.errors.login.InvalidCredentialsException;
+import com.druid.interfaces.IUser;
+import com.druid.models.Administrator;
 import com.druid.models.User;
 import com.druid.services.UserService;
 import com.druid.utils.Clearable;
@@ -26,7 +28,6 @@ import java.util.ResourceBundle;
 public class LoginController implements Initializable {
     private Stage stage;
     private UserService user_svc = new UserService();
-    private User connectedUser = ConnectedUser.getInstance().getUser();
 
     @FXML
     private Hyperlink forgotPassword;
@@ -43,6 +44,56 @@ public class LoginController implements Initializable {
 
     public Stage getStage() {
         return stage;
+    }
+
+    private boolean authUser() {
+        try {
+            User user = new User();
+            user.setUsername(username.getText());
+            user.setPassword(password.getText());
+            Optional<User> u_match = (Optional<User>) IUser.authenticate(user);
+
+            if (u_match.isPresent()) {
+                ConnectedUser connectedUser = ConnectedUser.getInstance(User.class);
+                connectedUser.setUser(u_match.get());
+                Debugger.log(connectedUser.getUser());
+                return true;
+            }
+
+        } catch (InvalidCredentialsException err) {
+            errorAlert.setOpacity(100);
+            errorAlert.setText(err.getMessage());
+        } catch (BannedUserException err) {
+            errorAlert.setOpacity(100);
+            errorAlert.setText(err.getMessage());
+        }
+
+        return false;
+    }
+
+    private boolean authAdmin() {
+        try {
+            Administrator admin = new Administrator();
+            admin.setUsername(username.getText());
+            admin.setPassword(password.getText());
+            Optional<Administrator> a_match = (Optional<Administrator>) IUser.authenticate(admin);
+
+            if (a_match.isPresent()) {
+                ConnectedUser connectedUser = ConnectedUser.getInstance(Administrator.class);
+                connectedUser.setUser(a_match.get());
+                Debugger.log(connectedUser.getUser());
+                return true;
+            }
+
+        } catch (InvalidCredentialsException err) {
+            errorAlert.setOpacity(100);
+            errorAlert.setText(err.getMessage());
+        } catch (BannedUserException err) {
+            errorAlert.setOpacity(100);
+            errorAlert.setText(err.getMessage());
+        }
+
+        return false;
     }
 
     public void setStage(Stage stage) {
@@ -69,29 +120,24 @@ public class LoginController implements Initializable {
         confirm.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-                connectedUser.setUsername(username.getText());
-                connectedUser.setPassword(password.getText());
-                try {
-                    Optional<User> match = user_svc.authenticate(connectedUser);
-                    if (match.isPresent()) {
-                        connectedUser.setStatus(match.get().getStatus());
-                        connectedUser.setEmail(match.get().getEmail());
-                        connectedUser.setID(match.get().getID());
-                        connectedUser.setAvatar(match.get().getAvatar());
-                        Debugger.log("User (with ID=" + connectedUser.getID() + ") successfully logged in.");
-                        SceneSwitcher sceneController = new SceneSwitcher();
-                        try {
-                            sceneController.showMain(event);
-                        } catch (IOException e) {
-                            e.printStackTrace();
-                        }
+                if (authAdmin()) {
+                    SceneSwitcher sceneController = new SceneSwitcher();
+                    try {
+                        sceneController.showMain(event);
+                        return;
+                    } catch (IOException e) {
+                        e.printStackTrace();
                     }
-                } catch (BannedUserException err) {
-                    errorAlert.setOpacity(100);
-                    errorAlert.setText(err.getMessage());
-                } catch (InvalidCredentialsException err) {
-                    errorAlert.setOpacity(100);
-                    errorAlert.setText(err.getMessage());
+                }
+
+                if (authUser()) {
+                    SceneSwitcher sceneController = new SceneSwitcher();
+                    try {
+                        sceneController.showMain(event);
+                        return;
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
                 }
             }
         });

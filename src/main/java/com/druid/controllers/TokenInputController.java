@@ -24,7 +24,7 @@ import java.util.ResourceBundle;
 
 public class TokenInputController implements Initializable {
     private TokenService token_svc = new TokenService();
-    private User connectedUser = ConnectedUser.getInstance().getUser();
+    private User connectedUser = ConnectedUser.getInstance(User.class).getUser();
     private Stage stage;
     @FXML
     private TextField token;

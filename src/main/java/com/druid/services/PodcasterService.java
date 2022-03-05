@@ -214,10 +214,11 @@ public class PodcasterService implements IUser<Podcaster> {
      */
     public Optional<Podcaster> authenticate(Podcaster podcaster) {
         String query =
-                "SELECT u.*, p.firstName, p.lastName, p.biography, p.avatar"
-                        + "FROM Users as u "
-                        + "INNER JOIN Podcaster AS p "
-                        + "WHERE p.id = u.id;";
+                "SELECT U.*, P.firstName, P.lastName "
+                        + "FROM Users as U "
+                        + "INNER JOIN Podcasters AS P "
+                        + "ON U.ID = P.ID "
+                        + "WHERE P.ID = (SELECT ID FROM Users WHERE username = ? )";
 
         try {
             PreparedStatement stmt = con.prepareStatement(query);

@@ -16,26 +16,32 @@ import com.druid.models.User;
  * connectedUser.getUsername(); // "grtcdr"
  * </pre>
  */
-public class ConnectedUser {
+public class ConnectedUser<T extends User> {
     private static ConnectedUser instance = null;
-    private User user;
+    private T user;
 
-    private ConnectedUser() {
-        user = new User();
+    public ConnectedUser(Class<T> UClass) {
+        try {
+            this.user = UClass.newInstance();
+        } catch (InstantiationException e) {
+            e.printStackTrace();
+        } catch (IllegalAccessException e) {
+            e.printStackTrace();
+        }
     }
 
-    public static ConnectedUser getInstance() {
+    public static <T> ConnectedUser getInstance(Class<T> UClass) {
         if (instance == null) {
-            instance = new ConnectedUser();
+            instance = new ConnectedUser(UClass);
         }
         return instance;
     }
 
-    public User getUser() {
-        return user;
+    public T getUser() {
+        return this.user;
     }
 
-    public void setUser(User user) {
+    public void setUser(T user) {
         this.user = user;
     }
 }

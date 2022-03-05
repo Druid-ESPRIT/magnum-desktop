@@ -21,7 +21,7 @@ import java.util.ResourceBundle;
 public class ResetPasswordController implements Initializable {
     private Stage stage;
     private UserService user_svc = new UserService();
-    private User connectedUser = ConnectedUser.getInstance().getUser();
+    private User connectedUser = ConnectedUser.getInstance(User.class).getUser();
 
     @FXML
     private Button confirm;

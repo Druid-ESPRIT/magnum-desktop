@@ -24,7 +24,7 @@ import java.util.ResourceBundle;
 public class ForgotPasswordController implements Initializable {
     TokenService token_svc = new TokenService();
     UserService user_svc = new UserService();
-    private User connectedUser = ConnectedUser.getInstance().getUser();
+    private User connectedUser = ConnectedUser.getInstance(User.class).getUser();
 
     @FXML
     private TextField username;
