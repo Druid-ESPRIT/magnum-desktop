@@ -15,9 +15,11 @@
 .right-bar{
     -fx-background-color: #D3D3D3;
 }
+
 .shadow{
     -fx-effect: dropShadow(three-pass-box,rgba(0,0,0,0.1), 10.0 , 0.0 , 0.0 ,10.0);
 }
+
 .buttons-card{
     -fx-background-color: #828282;
     -fx-background-radius: 30;
@@ -30,6 +32,7 @@
     -fx-background-color: green;
     -fx-background-radius: 100;
 }
+
 .card-bar{
     -fx-background-color: #D3D3D3;
 }

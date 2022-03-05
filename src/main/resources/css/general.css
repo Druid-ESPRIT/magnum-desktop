@@ -20,3 +20,7 @@
   -fx-text-fill:        #2E3440;
   -fx-background-color: transparent;
 }
+
+.form-field:hover {
+  -fx-background-color: #E5E9F0;
+}
