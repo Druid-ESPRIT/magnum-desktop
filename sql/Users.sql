@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Mar 01, 2022 at 09:11 PM
+-- Generation Time: Mar 05, 2022 at 12:41 PM
 -- Server version: 8.0.28-0ubuntu0.20.04.3
 -- PHP Version: 7.4.3
 
@@ -33,7 +33,7 @@ CREATE TABLE `Users` (
   `username` varchar(40) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `email` varchar(80) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `password` varchar(72) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `avatar` varchar(120) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `avatar` varchar(120) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT 'The name and extension of the image file that represents the avatar of the user, e.g. "grtcdr.png"',
   `status` enum('Active','Disabled','Banned','') CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -55,7 +55,7 @@ ALTER TABLE `Users`
 -- AUTO_INCREMENT for table `Users`
 --
 ALTER TABLE `Users`
-  MODIFY `ID` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1;
+  MODIFY `ID` int NOT NULL AUTO_INCREMENT;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Mar 01, 2022 at 09:07 PM
+-- Generation Time: Mar 05, 2022 at 12:42 PM
 -- Server version: 8.0.28-0ubuntu0.20.04.3
 -- PHP Version: 7.4.3
 
@@ -55,7 +55,7 @@ ALTER TABLE `Flags`
 -- AUTO_INCREMENT for table `Flags`
 --
 ALTER TABLE `Flags`
-  MODIFY `ID` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1;
+  MODIFY `ID` int NOT NULL AUTO_INCREMENT;
 
 --
 -- Constraints for dumped tables
@@ -65,7 +65,7 @@ ALTER TABLE `Flags`
 -- Constraints for table `Flags`
 --
 ALTER TABLE `Flags`
-  ADD CONSTRAINT `fk_userID_flags` FOREIGN KEY (`userID`) REFERENCES `Users` (`ID`);
+  ADD CONSTRAINT `fk_userID_flags` FOREIGN KEY (`userID`) REFERENCES `Users` (`ID`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

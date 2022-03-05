@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Mar 01, 2022 at 09:07 PM
+-- Generation Time: Mar 05, 2022 at 12:42 PM
 -- Server version: 8.0.28-0ubuntu0.20.04.3
 -- PHP Version: 7.4.3
 
@@ -37,10 +37,6 @@ CREATE TABLE `History` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `History`
---
-
---
 -- Indexes for dumped tables
 --
 
@@ -59,7 +55,7 @@ ALTER TABLE `History`
 -- AUTO_INCREMENT for table `History`
 --
 ALTER TABLE `History`
-  MODIFY `ID` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1;
+  MODIFY `ID` int NOT NULL AUTO_INCREMENT;
 
 --
 -- Constraints for dumped tables
@@ -69,7 +65,7 @@ ALTER TABLE `History`
 -- Constraints for table `History`
 --
 ALTER TABLE `History`
-  ADD CONSTRAINT `fk_userID_hist` FOREIGN KEY (`userID`) REFERENCES `Users` (`ID`) ON DELETE CASCADE ON UPDATE RESTRICT;
+  ADD CONSTRAINT `fk_userID_hist` FOREIGN KEY (`userID`) REFERENCES `Users` (`ID`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Mar 01, 2022 at 09:11 PM
+-- Generation Time: Mar 05, 2022 at 12:41 PM
 -- Server version: 8.0.28-0ubuntu0.20.04.3
 -- PHP Version: 7.4.3
 
@@ -31,7 +31,7 @@ SET time_zone = "+00:00";
 CREATE TABLE `Tokens` (
   `ID` int NOT NULL,
   `userID` int NOT NULL,
-  `token` varchar(128) COLLATE utf8mb4_general_ci NOT NULL,
+  `token` varchar(128) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   `consumed` tinyint(1) NOT NULL DEFAULT '0',
   `created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
@@ -65,7 +65,7 @@ ALTER TABLE `Tokens`
 -- Constraints for table `Tokens`
 --
 ALTER TABLE `Tokens`
-  ADD CONSTRAINT `fk_userID_tokens` FOREIGN KEY (`userID`) REFERENCES `Users` (`ID`) ON DELETE RESTRICT ON UPDATE RESTRICT;
+  ADD CONSTRAINT `fk_userID_tokens` FOREIGN KEY (`userID`) REFERENCES `Users` (`ID`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

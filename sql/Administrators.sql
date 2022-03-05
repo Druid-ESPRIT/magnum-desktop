@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Mar 01, 2022 at 09:11 PM
+-- Generation Time: Mar 05, 2022 at 12:42 PM
 -- Server version: 8.0.28-0ubuntu0.20.04.3
 -- PHP Version: 7.4.3
 
@@ -30,8 +30,8 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `Administrators` (
   `ID` int NOT NULL,
-  `firstName` varchar(40) COLLATE utf8mb4_general_ci NOT NULL,
-  `lastName` varchar(40) COLLATE utf8mb4_general_ci NOT NULL
+  `firstName` varchar(40) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `lastName` varchar(40) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -52,7 +52,7 @@ ALTER TABLE `Administrators`
 -- Constraints for table `Administrators`
 --
 ALTER TABLE `Administrators`
-  ADD CONSTRAINT `fk_userID_admin` FOREIGN KEY (`ID`) REFERENCES `Users` (`ID`) ON DELETE RESTRICT ON UPDATE RESTRICT;
+  ADD CONSTRAINT `fk_userID_admin` FOREIGN KEY (`ID`) REFERENCES `Users` (`ID`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
