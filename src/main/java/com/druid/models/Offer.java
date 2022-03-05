@@ -1,6 +1,5 @@
 package com.druid.models;
 
-
 public class Offer {
   private int id;
   private int podcasterID;
