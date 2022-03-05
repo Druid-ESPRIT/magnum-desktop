@@ -22,6 +22,28 @@ public class SceneSwitcher {
         stage.show();
     }
 
+    public void showChoix(ActionEvent event) throws IOException {
+        Parent root = FXMLLoader.load(getClass().getResource("/views/Choix.fxml"));
+        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+    }
+    public void showConsulter(ActionEvent event) throws IOException {
+        Parent root = FXMLLoader.load(getClass().getResource("/views/Consulter.fxml"));
+        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+    }
+    public void showResolver(ActionEvent event) throws IOException {
+        Parent root = FXMLLoader.load(getClass().getResource("/views/Resolver.fxml"));
+        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+    }
+
     public void showRegister(ActionEvent event) throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("/views/Register.fxml"));
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();

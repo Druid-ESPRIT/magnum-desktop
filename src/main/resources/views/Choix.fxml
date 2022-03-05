@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Accordion?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.druid.controllers.ChoixController">
+   <children>
+      <AnchorPane id="AnchorPane" layoutX="10.0" layoutY="10.0" prefHeight="518.0" prefWidth="687.0">
+         <children>
+            <Button fx:id="button" layoutX="455.0" layoutY="425.0" onAction="#handleButtonAction" prefHeight="26.0" prefWidth="180.0" text="NEXT" />
+            <Label fx:id="label" layoutX="126" layoutY="120" minHeight="16" minWidth="69" />
+            <Text layoutX="39.0" layoutY="67.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Envoyer une Reclamation" textAlignment="CENTER" wrappingWidth="634.9796905517578">
+               <font>
+                  <Font name="System Bold" size="49.0" />
+               </font>
+            </Text>
+            <Text fill="#d14e4e" layoutX="133.0" layoutY="109.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Quel que soit le souci, nous sommes là pour vous aider !Envoyez une requête ! À moins qu'elle tombe dans un portail, nous y répondrons très vite." textAlignment="CENTER" wrappingWidth="432.57972717285156">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Text>
+            <Accordion layoutX="301.0" layoutY="259.0" />
+            <ChoiceBox fx:id="Tcat1" layoutX="213.0" layoutY="307.0" prefHeight="26.0" prefWidth="280.0" />
+            <Text layoutX="195.0" layoutY="300.0" opacity="0.59" strokeType="OUTSIDE" strokeWidth="0.0" text="1. CHOISISSEZ UN TYPE DE REQUÊTE">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </Text>
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>
