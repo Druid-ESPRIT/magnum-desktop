@@ -15,7 +15,7 @@ public class OrderService {
 
     public int addOrder(Order or) {
         int risultato=0;
-        String query = "INSERT INTO `order`(`offer_id`,`plan`, `total`, `orderdate`,`status`)VALUES ('"+or.getofferId()+"','"+or.getPlan()+"','"+or.getTotal()+"','"+or.getOrderDate()+"','"+or.getStatus().toString()+"')";
+        String query = "INSERT INTO `order`(`offer_id`,`user_id`,`plan`, `total`, `orderdate`,`status`)VALUES ('"+or.getofferId()+"','"+or.getUser_id()+"','"+or.getPlan()+"','"+or.getTotal()+"','"+or.getOrderDate()+"','"+or.getStatus().toString()+"')";
         try {
             Statement stmt = con.createStatement();
             stmt.executeUpdate(query,Statement.RETURN_GENERATED_KEYS);
@@ -45,6 +45,7 @@ public class OrderService {
                 orders.add(new Order(
                         result.getInt("id"),
                         result.getInt("offer_id"),
+                        result.getInt("user_id"),
                         result.getInt("plan"),
                         result.getFloat("total"),
                         result.getTimestamp("orderdate"),
@@ -72,6 +73,7 @@ public class OrderService {
                         new Order(
                                 result.getInt("id"),
                                 result.getInt("offer_id"),
+                                result.getInt("user_id"),
                                 result.getInt("plan"),
                                 result.getFloat("total"),
                                 result.getTimestamp("orderdate"),
@@ -87,7 +89,7 @@ public class OrderService {
 
 
     public void updateOrder(Order or,int id) {
-        String query = "UPDATE `order`set `offer_id`='"+or.getofferId()+"', `plan`= '"+or.getPlan()+"',`total`= '"+or.getTotal()+"',`orderdate`='"+or.getOrderDate()+"',`status`='"+or.getStatus().toString()+"' where id ='"+id+"'";
+        String query = "UPDATE `order`set `offer_id`='"+or.getofferId()+"', `user_id`='"+or.getUser_id()+"',`plan`= '"+or.getPlan()+"',`total`= '"+or.getTotal()+"',`orderdate`='"+or.getOrderDate()+"',`status`='"+or.getStatus().toString()+"' where id ='"+id+"'";
         try {
             Statement stmt = con.createStatement();
             stmt.executeUpdate(query);

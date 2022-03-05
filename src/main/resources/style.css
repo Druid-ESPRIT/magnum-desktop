@@ -36,3 +36,15 @@
 .card-bar:hover{
     -fx-background-color: green;
 }
+
+.icon-button{
+    -fx-background-color:#FFFFFF;
+    -fx-background-radius: 100;
+}
+.icon-button:hover{
+    -fx-background-color:grey;
+    -fx-background-radius: 100;
+}
+
+
+

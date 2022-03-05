@@ -1,7 +1,8 @@
 package com.druid.services;
 
+
+import com.druid.enums.SubscriptionStatus;
 import com.druid.interfaces.ISubscription;
-import com.druid.models.Offer;
 import com.druid.models.Subscription;
 import com.druid.utils.DBConnection;
 
@@ -27,9 +28,9 @@ public class SubscriptionService implements ISubscription {
                         new Subscription(
                                 result.getInt("id"),
                                 result.getInt("order_id"),
-                                result.getInt("user_id"),
                                 result.getTimestamp("start_date"),
-                                result.getTimestamp("expire_date")
+                                result.getTimestamp("expire_date"),
+                                SubscriptionStatus.fromString(result.getString("status"))
  ));
             }
         } catch (SQLException ex) {
@@ -45,7 +46,7 @@ public class SubscriptionService implements ISubscription {
     @Override
     public void addSubscription(Subscription sub) {
 
-        String query = "INSERT INTO `subscription`(`order_id`, `user_id`,`start_date`,`expire_date`) VALUES ('"+sub.getorder_id()+"','"+sub.getUser_id()+"','"+sub.getStart_date()+"','"+sub.getExpire_date()+"')";
+        String query = "INSERT INTO `subscription`(`order_id`,`start_date`,`expire_date`,`status`) VALUES ('"+sub.getorder_id()+"','"+sub.getStart_date()+"','"+sub.getExpire_date()+"','"+sub.getStatus().toString()+"')";
         try {
             Statement stmt = con.createStatement();
             stmt.executeUpdate(query);
@@ -69,9 +70,9 @@ public class SubscriptionService implements ISubscription {
                 Subscriptions.add(new Subscription(
                         result.getInt("id"),
                         result.getInt("order_id"),
-                        result.getInt("user_id"),
                         result.getTimestamp("start_date"),
-                        result.getTimestamp("expire_date")
+                        result.getTimestamp("expire_date"),
+                        SubscriptionStatus.fromString(result.getString("status"))
                 ));
             }
             return Subscriptions;
@@ -88,7 +89,7 @@ public class SubscriptionService implements ISubscription {
     @Override
     public void updateSubscription(Subscription sub) {
 
-            String query = "UPDATE `subscription`set `order_id` = '" + sub.getorder_id() + "', `user_id`='" + sub.getUser_id() + "',`start_date`='"+sub.getStart_date()+"',`expire_date`='"+sub.getExpire_date()+"' where id ='" + sub.getId() + "'";
+            String query = "UPDATE `subscription`set `order_id` = '" + sub.getorder_id() + "',`start_date`='"+sub.getStart_date()+"',`expire_date`='"+sub.getExpire_date()+"', `status`='" + sub.getStatus().toString()+"' where id ='" + sub.getId() + "'";
             try {
                 Statement stmt = con.createStatement();
                 stmt.executeUpdate(query);
@@ -150,6 +151,26 @@ public class SubscriptionService implements ISubscription {
             ex.printStackTrace();
         }
         return id;
+    }
+    public void UpdateSubStatus(SubscriptionStatus st,int id) {
+        String query = "UPDATE `subscription` set `status`='" + st.toString() + "' where order_id ='" + id + "'";
+        try {
+            Statement stmt = con.createStatement();
+            stmt.executeUpdate(query);
+            System.out.println("INFO: sub Updated.");
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+    }
+    public void deleteSubByOrder(int id) {
+        String query = "DELETE from `subscription` where order_id ='"+id+"'";
+        try {
+            Statement stmt = con.createStatement();
+            stmt.executeUpdate(query);
+            System.out.println("INFO: sub Deleted.");
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
     }
 
 }
