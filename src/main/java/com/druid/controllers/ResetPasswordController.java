@@ -1,10 +1,5 @@
 package com.druid.controllers;
 
-import com.druid.errors.login.InvalidCredentialsException;
-import com.druid.errors.token.ConsumedTokenException;
-import com.druid.errors.token.ExpiredTokenException;
-import com.druid.errors.token.InvalidTokenException;
-import com.druid.models.Token;
 import com.druid.models.User;
 import com.druid.services.UserService;
 import com.druid.utils.Clearable;
@@ -14,7 +9,6 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
-import javafx.scene.control.Hyperlink;
 import javafx.scene.control.PasswordField;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
