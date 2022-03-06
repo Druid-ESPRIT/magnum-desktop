@@ -15,6 +15,8 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.Optional;
 import java.util.ResourceBundle;
+
+import com.druid.utils.QuickHistory;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -118,7 +120,7 @@ public class LoginController implements Initializable {
                 ConnectedUser.getInstance().setUser(user.get());
               }
 
-              Debugger.log(ConnectedUser.getInstance().getUser());
+              QuickHistory.logAccountLogin(user.get());
 
               SceneSwitcher sceneController = new SceneSwitcher();
               try {

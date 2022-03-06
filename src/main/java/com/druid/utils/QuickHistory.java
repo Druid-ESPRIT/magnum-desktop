@@ -26,4 +26,14 @@ public class QuickHistory {
         hist.setDescription("The moment you created your account");
         hist_svc.add(hist, user);
     }
+
+    public static void logAccountLogin(User user) {
+        HistoryService hist_svc = new HistoryService();
+        History hist = new History();
+        hist.setTime(new Timestamp(new Date().getTime()));
+        hist.setUserID(user.getID());
+        hist.setActivity(HistoryActivity.SECURITY);
+        hist.setDescription("You signed in");
+        hist_svc.add(hist, user);
+    }
 }

@@ -21,7 +21,7 @@
                 <Font size="24.0" />
             </font>
         </Text>
-        <Text fx:id="tokenAlert" fill="#bf616a" layoutX="127.0" layoutY="324.0" opacity="0.0" strokeType="OUTSIDE" strokeWidth="0.0" text="This is reserved for errors." textAlignment="CENTER" wrappingWidth="256.99999928474426">
+        <Text fx:id="tokenAlert" fill="#bf616a" layoutX="84.0" layoutY="323.0" opacity="0.0" strokeType="OUTSIDE" strokeWidth="0.0" text="This is reserved for errors." textAlignment="CENTER" wrappingWidth="343.99999928474426">
             <font>
                 <Font size="11.0" />
             </font>

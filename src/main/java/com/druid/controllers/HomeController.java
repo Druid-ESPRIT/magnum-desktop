@@ -3,6 +3,8 @@ package com.druid.controllers;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+
+import com.druid.utils.ConnectedUser;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -25,7 +27,16 @@ public class HomeController implements Initializable {
   }
 
   @FXML
-  void acccountPressed(ActionEvent event) {}
+  void acccountPressed(ActionEvent event) {
+    try {
+      AnchorPane newPane =
+              FXMLLoader.load(getClass().getResource("/views/Profile.fxml"));
+      workingPane.getChildren().clear();
+      workingPane.getChildren().add(newPane);
+    } catch (IOException e) {
+      e.printStackTrace();
+    }
+  }
 
   @FXML
   void articlePressed(ActionEvent event) {}
@@ -34,7 +45,15 @@ public class HomeController implements Initializable {
   void discoverPressed(ActionEvent event) {}
 
   @FXML
-  void logoutPressed(ActionEvent event) {}
+  void logoutPressed(ActionEvent event) {
+    ConnectedUser.getInstance().disconnect();
+    SceneSwitcher sceneController = new SceneSwitcher();
+    try {
+      sceneController.showLogin(event);
+    } catch (IOException e) {
+      e.printStackTrace();
+    }
+  }
 
   @FXML
   void playlistPressed(ActionEvent event) {}
