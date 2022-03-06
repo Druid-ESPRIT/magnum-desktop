@@ -11,6 +11,10 @@ import com.druid.services.UserService;
 import com.druid.utils.Clearable;
 import com.druid.utils.ConnectedUser;
 import com.druid.utils.Debugger;
+import java.io.IOException;
+import java.net.URL;
+import java.util.Optional;
+import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -22,131 +26,122 @@ import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
-import java.io.IOException;
-import java.net.URL;
-import java.util.Optional;
-import java.util.ResourceBundle;
-
 public class LoginController implements Initializable {
-    private Stage stage;
-    private UserService user_svc = new UserService();
-    private ConnectedUser connectedUser = ConnectedUser.getInstance(User.class);
+  private Stage stage;
+  private UserService user_svc = new UserService();
+  private ConnectedUser connectedUser = ConnectedUser.getInstance(User.class);
 
-    @FXML
-    private Hyperlink forgotPassword;
-    @FXML
-    private Hyperlink signUp;
-    @FXML
-    private Button confirm;
-    @FXML
-    private Text errorAlert;
-    @FXML
-    private TextField username;
-    @FXML
-    private PasswordField password;
+  @FXML private Hyperlink forgotPassword;
+  @FXML private Hyperlink signUp;
+  @FXML private Button confirm;
+  @FXML private Text errorAlert;
+  @FXML private TextField username;
+  @FXML private PasswordField password;
 
-    public Stage getStage() {
-        return stage;
+  public Stage getStage() {
+    return stage;
+  }
+
+  private Optional<User> authUser() {
+    try {
+      UserService user_svc = new UserService();
+      User user = new User();
+      user.setUsername(username.getText());
+      user.setPassword(password.getText());
+
+      return user_svc.authenticate(user);
+    } catch (InvalidCredentialsException err) {
+      errorAlert.setOpacity(100);
+      errorAlert.setText(err.getMessage());
+    } catch (BannedUserException err) {
+      errorAlert.setOpacity(100);
+      errorAlert.setText(err.getMessage());
     }
 
-    private Optional<User> authUser() {
-        try {
-            UserService user_svc = new UserService();
-            User user = new User();
-            user.setUsername(username.getText());
-            user.setPassword(password.getText());
+    return Optional.empty();
+  }
 
-            return user_svc.authenticate(user);
-        } catch (InvalidCredentialsException err) {
-            errorAlert.setOpacity(100);
-            errorAlert.setText(err.getMessage());
-        } catch (BannedUserException err) {
-            errorAlert.setOpacity(100);
-            errorAlert.setText(err.getMessage());
-        }
+  private Optional<Administrator> authAdmin(User user) {
+    AdministratorService admin_svc = new AdministratorService();
+    Administrator admin = new Administrator();
+    admin.setID(user.getID());
+    admin.setUsername(user.getUsername());
+    admin.setEmail(user.getEmail());
+    return admin_svc.fetchOne(admin);
+  }
 
-        return Optional.empty();
-    }
+  private Optional<Podcaster> authPodcaster(User user) {
+    PodcasterService podcaster_svc = new PodcasterService();
+    Podcaster podcaster = new Podcaster();
+    podcaster.setID(user.getID());
+    podcaster.setUsername(user.getUsername());
+    podcaster.setEmail(user.getEmail());
+    return podcaster_svc.fetchOne(podcaster);
+  }
 
-    private Optional<Administrator> authAdmin(User user) {
-        AdministratorService admin_svc = new AdministratorService();
-        Administrator admin = new Administrator();
-        admin.setID(user.getID());
-        admin.setUsername(user.getUsername());
-        admin.setEmail(user.getEmail());
-        return admin_svc.fetchOne(admin);
-    }
+  public void setStage(Stage stage) {
+    this.stage = stage;
+  }
 
-    private Optional<Podcaster> authPodcaster(User user) {
-        PodcasterService podcaster_svc = new PodcasterService();
-        Podcaster podcaster = new Podcaster();
-        podcaster.setID(user.getID());
-        podcaster.setUsername(user.getUsername());
-        podcaster.setEmail(user.getEmail());
-        return podcaster_svc.fetchOne(podcaster);
-    }
+  @Override
+  public void initialize(URL url, ResourceBundle resourceBundle) {
+    password.setOnKeyPressed(Clearable.clear(password));
+    username.setOnKeyPressed(Clearable.clear(username));
 
-    public void setStage(Stage stage) {
-        this.stage = stage;
-    }
-
-    @Override
-    public void initialize(URL url, ResourceBundle resourceBundle) {
-        password.setOnKeyPressed(Clearable.clear(password));
-        username.setOnKeyPressed(Clearable.clear(username));
-
-        forgotPassword.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent actionEvent) {
-                SceneSwitcher sceneController = new SceneSwitcher();
-                try {
-                    sceneController.showForgotPassword(actionEvent);
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
+    forgotPassword.setOnAction(
+        new EventHandler<ActionEvent>() {
+          @Override
+          public void handle(ActionEvent actionEvent) {
+            SceneSwitcher sceneController = new SceneSwitcher();
+            try {
+              sceneController.showForgotPassword(actionEvent);
+            } catch (IOException e) {
+              e.printStackTrace();
             }
+          }
         });
 
-        confirm.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent event) {
-                Optional<User> user = authUser();
+    confirm.setOnAction(
+        new EventHandler<ActionEvent>() {
+          @Override
+          public void handle(ActionEvent event) {
+            Optional<User> user = authUser();
 
-                if (user.isPresent()) {
-                    Optional<Administrator> admin = authAdmin(user.get());
-                    Optional<Podcaster> podcaster = authPodcaster(user.get());
+            if (user.isPresent()) {
+              Optional<Administrator> admin = authAdmin(user.get());
+              Optional<Podcaster> podcaster = authPodcaster(user.get());
 
-                    if (admin.isPresent()) {
-                        ConnectedUser.getInstance(Administrator.class).setUser(admin.get());
-                    } else if (podcaster.isPresent()) {
-                        ConnectedUser.getInstance(Podcaster.class).setUser(podcaster.get());
-                    } else {
-                        ConnectedUser.getInstance(User.class).setUser(user.get());
-                    }
+              if (admin.isPresent()) {
+                ConnectedUser.getInstance(Administrator.class).setUser(admin.get());
+              } else if (podcaster.isPresent()) {
+                ConnectedUser.getInstance(Podcaster.class).setUser(podcaster.get());
+              } else {
+                ConnectedUser.getInstance(User.class).setUser(user.get());
+              }
 
-                    Debugger.log(ConnectedUser.getInstance(Podcaster.class).getUser());
+              Debugger.log(ConnectedUser.getInstance(Podcaster.class).getUser());
 
-                    SceneSwitcher sceneController = new SceneSwitcher();
-                    try {
-                        sceneController.showMain(event);
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
-                }
-
+              SceneSwitcher sceneController = new SceneSwitcher();
+              try {
+                sceneController.showMain(event);
+              } catch (IOException e) {
+                e.printStackTrace();
+              }
             }
+          }
         });
 
-        signUp.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent actionEvent) {
-                SceneSwitcher sceneController = new SceneSwitcher();
-                try {
-                    sceneController.showRegister(actionEvent);
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
+    signUp.setOnAction(
+        new EventHandler<ActionEvent>() {
+          @Override
+          public void handle(ActionEvent actionEvent) {
+            SceneSwitcher sceneController = new SceneSwitcher();
+            try {
+              sceneController.showRegister(actionEvent);
+            } catch (IOException e) {
+              e.printStackTrace();
             }
+          }
         });
-    }
+  }
 }
