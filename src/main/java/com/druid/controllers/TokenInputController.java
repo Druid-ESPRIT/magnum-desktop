@@ -22,13 +22,17 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 public class TokenInputController implements Initializable {
-  private TokenService token_svc = new TokenService();
-  private User connectedUser = ConnectedUser.getInstance(User.class).getUser();
-  private Stage stage;
-  @FXML private TextField token;
-  @FXML private Text tokenAlert;
-  @FXML private Button confirm;
-  @FXML private Button cancel;
+    private TokenService token_svc = new TokenService();
+    private User connectedUser = ConnectedUser.getInstance().getUser();
+    private Stage stage;
+    @FXML
+    private TextField token;
+    @FXML
+    private Text tokenAlert;
+    @FXML
+    private Button confirm;
+    @FXML
+    private Button cancel;
 
   public Stage getStage() {
     return stage;
