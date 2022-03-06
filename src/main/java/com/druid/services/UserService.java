@@ -247,13 +247,13 @@ public class UserService {
 
                 // Do not authenticate if the user
                 // has been previously banned.
-                if (match.getStatus().equals(UserStatus.BANNED)) {
+                if (match.isBanned()) {
                     throw new BannedUserException("This user has been banned.");
                 }
 
                 // Re-enable the user if their account
                 // has been previously disabled.
-                if (match.getStatus().equals(UserStatus.DISABLED)) {
+                if (match.isDisabled()) {
                     match.setStatus(UserStatus.ACTIVE);
                     update(match);
                 }
