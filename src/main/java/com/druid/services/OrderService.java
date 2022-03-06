@@ -1,9 +1,7 @@
 package com.druid.services;
 
 import com.druid.enums.OrderStatus;
-import com.druid.enums.SubscriptionStatus;
 import com.druid.models.Order;
-import com.druid.models.Subscription;
 import com.druid.models.User;
 import com.druid.utils.ConnectedUser;
 import com.druid.utils.DBConnection;
@@ -234,6 +232,7 @@ public class OrderService {
     }
     return count;
   }
+
   public List<Order> getOrderByUser(int id) {
     List<Order> orders = new ArrayList<>();
     String query = "SELECT * from `order` where user_id ='" + id + "'";
@@ -242,14 +241,14 @@ public class OrderService {
       ResultSet result = stmt.executeQuery(query);
       while (result.next()) {
         orders.add(
-                new Order(
-                        result.getInt("id"),
-                        result.getInt("offer_id"),
-                        result.getInt("user_id"),
-                        result.getInt("plan"),
-                        result.getFloat("total"),
-                        result.getTimestamp("orderdate"),
-                        OrderStatus.fromString(result.getString("status"))));
+            new Order(
+                result.getInt("id"),
+                result.getInt("offer_id"),
+                result.getInt("user_id"),
+                result.getInt("plan"),
+                result.getFloat("total"),
+                result.getTimestamp("orderdate"),
+                OrderStatus.fromString(result.getString("status"))));
       }
       System.out.println(orders);
       return orders;
@@ -261,7 +260,8 @@ public class OrderService {
   }
 
   public List<Order> searchOrders(String search) {
-    List<Order> result = getOrderByUser(connectedUser.getID()).stream()
+    List<Order> result =
+        getOrderByUser(connectedUser.getID()).stream()
             .filter(su -> su.getStatus().toString().toLowerCase().contains(search))
             .collect(Collectors.toList());
 

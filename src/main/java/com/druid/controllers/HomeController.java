@@ -25,12 +25,10 @@ public class HomeController implements Initializable {
   }
 
   @FXML
-  void acccountPressed(ActionEvent event) {
-  }
+  void acccountPressed(ActionEvent event) {}
 
   @FXML
-  void articlePressed(ActionEvent event) {
-  }
+  void articlePressed(ActionEvent event) {}
 
   @FXML
   void discoverPressed(ActionEvent event) {}
