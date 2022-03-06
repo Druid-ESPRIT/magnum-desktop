@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1
--- Généré le : mer. 02 mars 2022 à 12:28
+-- Généré le : Dim 06 mars 2022 à 22:27
 -- Version du serveur :  10.4.17-MariaDB
 -- Version de PHP : 7.4.15
 
@@ -32,40 +32,17 @@ CREATE TABLE `subscription` (
   `order_id` int(11) NOT NULL,
   `user_id` int(11) NOT NULL,
   `start_date` date NOT NULL,
-  `expire_date` date NOT NULL
+  `expire_date` date NOT NULL,
+  `status` enum('On hold','Active','Expired') NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Déchargement des données de la table `subscription`
 --
 
-INSERT INTO `subscription` (`id`, `order_id`, `user_id`, `start_date`, `expire_date`) VALUES
-(70, 47, 3, '2022-02-27', '2022-04-28'),
-(71, 47, 3, '2022-02-27', '2022-04-28'),
-(72, 47, 3, '2022-02-27', '2022-04-28'),
-(73, 47, 3, '2022-02-27', '2022-04-28'),
-(74, 47, 3, '2022-02-27', '2022-04-28'),
-(75, 47, 3, '2022-02-27', '2022-04-28'),
-(76, 47, 3, '2022-02-27', '2022-04-28'),
-(77, 47, 3, '2022-02-27', '2022-04-28'),
-(78, 47, 3, '2022-02-27', '2022-04-28'),
-(79, 47, 3, '2022-02-27', '2022-04-28'),
-(80, 47, 3, '2022-02-27', '2022-04-28'),
-(81, 47, 3, '2022-02-27', '2022-04-28'),
-(82, 47, 3, '2022-02-27', '2022-04-28'),
-(83, 47, 3, '2022-02-27', '2022-04-28'),
-(84, 47, 3, '2022-02-27', '2022-04-28'),
-(85, 47, 3, '2022-02-27', '2022-04-28'),
-(86, 47, 3, '2022-02-27', '2022-04-28'),
-(87, 47, 3, '2022-02-27', '2022-04-28'),
-(88, 47, 3, '2022-02-27', '2022-04-28'),
-(89, 47, 3, '2022-02-27', '2022-04-28'),
-(90, 47, 3, '2022-02-27', '2022-04-28'),
-(91, 47, 3, '2022-02-27', '2022-04-28'),
-(92, 47, 3, '2022-02-27', '2022-04-28'),
-(93, 47, 3, '2022-02-27', '2022-04-28'),
-(94, 47, 3, '2022-02-27', '2022-04-28'),
-(95, 47, 3, '2022-02-27', '2022-04-28');
+INSERT INTO `subscription` (`id`, `order_id`, `user_id`, `start_date`, `expire_date`, `status`) VALUES
+(165, 142, 1, '2022-03-06', '2022-08-03', 'Active'),
+(166, 143, 1, '2022-03-06', '2022-10-02', 'Active');
 
 --
 -- Index pour les tables déchargées
@@ -86,7 +63,7 @@ ALTER TABLE `subscription`
 -- AUTO_INCREMENT pour la table `subscription`
 --
 ALTER TABLE `subscription`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=96;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=173;
 
 --
 -- Contraintes pour les tables déchargées
