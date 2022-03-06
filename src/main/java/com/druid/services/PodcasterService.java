@@ -42,8 +42,7 @@ public class PodcasterService implements IUser<Podcaster> {
 
     // Second, insert a new podcaster.
     String query =
-        "INSERT INTO `Podcasters` (`ID`, `firstName`, `lastName`, `biography`,"
-            + " `avatar`) VALUES ('"
+        "INSERT INTO `Podcasters` (`ID`, `firstName`, `lastName`, `biography`) VALUES ('"
             + podcaster.getID()
             + "','"
             + podcaster.getFirstName()
@@ -51,8 +50,6 @@ public class PodcasterService implements IUser<Podcaster> {
             + podcaster.getLastName()
             + "','"
             + podcaster.getBiography()
-            + "','"
-            + podcaster.getAvatar()
             + "')";
 
     try {

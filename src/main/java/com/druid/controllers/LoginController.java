@@ -136,7 +136,7 @@ public class LoginController implements Initializable {
           public void handle(ActionEvent actionEvent) {
             SceneSwitcher sceneController = new SceneSwitcher();
             try {
-              sceneController.showRegister(actionEvent);
+              sceneController.showAccountTypePicker(actionEvent);
             } catch (IOException e) {
               e.printStackTrace();
             }
