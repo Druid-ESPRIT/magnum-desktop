@@ -1,6 +1,7 @@
 package com.druid.services;
 
 import com.druid.enums.OrderStatus;
+import com.druid.models.Offer;
 import com.druid.models.Order;
 import com.druid.utils.DBConnection;
 
@@ -180,5 +181,28 @@ public class OrderService {
         } catch (SQLException ex) {
             ex.printStackTrace();
         }
+    }
+    public int getOrderCount(int id) {
+        List<Order> orders = new ArrayList<>();
+        int count=0;
+
+        String query = "SELECT id from `order` where offer_id ='" + id + "' and status = '"+OrderStatus.COMPLETED+"'";
+
+        try {
+            Statement stmt = con.createStatement();
+            ResultSet result = stmt.executeQuery(query);
+            while (result.next()) {
+                orders.add(new Order(
+                        result.getInt("id")
+
+
+                ));
+                count++;
+            }
+
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+        return count;
     }
 }

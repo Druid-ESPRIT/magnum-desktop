@@ -2,14 +2,13 @@ package com.druid.controllers;
 
 import com.druid.enums.OrderStatus;
 import com.druid.enums.SubscriptionStatus;
-import com.druid.models.Coupon;
-import com.druid.models.Offer;
-import com.druid.models.Order;
-import com.druid.models.Subscription;
+import com.druid.models.*;
 import com.druid.services.CouponService;
 import com.druid.services.OfferService;
 import com.druid.services.OrderService;
 import com.druid.services.SubscriptionService;
+import com.druid.utils.ConnectedUser;
+import com.druid.utils.Mail;
 import com.stripe.Stripe;
 import com.stripe.exception.StripeException;
 import com.stripe.model.Card;
@@ -18,17 +17,22 @@ import com.stripe.model.Customer;
 import com.stripe.model.Token;
 import javafx.animation.Animation;
 import javafx.animation.RotateTransition;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Label;
-import javafx.scene.control.Slider;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
+import javafx.scene.text.Text;
 import javafx.util.Duration;
 
+import java.io.IOException;
 import java.net.URL;
 import java.sql.Timestamp;
 import java.util.*;
@@ -43,66 +47,115 @@ public class PlaceOrderController implements Initializable {
     Order or;
     Subscription sub;
     @FXML
-    private AnchorPane anchorPanePay;
-    @FXML
     private AnchorPane anchorPaneConfirm;
+
     @FXML
     private Label lbofferid;
-    @FXML
-    private Label lbOrderPrice;
+
+
     @FXML
     private Slider sliderId;
+
     @FXML
     private Label lbPlan;
+
     @FXML
     private TextField tfcoupon;
+
+    @FXML
+    private CheckBox Mychecker;
+
     @FXML
     private Label errormsg;
+
+    @FXML
+    private Label lbTotal;
+
+    @FXML
+    private Label oldPrice;
+
     @FXML
     private AnchorPane anchorPaneCircle;
+
     @FXML
     private VBox turnVbox;
+
+    @FXML
+    private VBox vboxText;
+
+    @FXML
+    private AnchorPane anchorPanePay;
+
     @FXML
     private TextField cardNum;
+
     @FXML
     private TextField getmonth;
+
     @FXML
     private TextField getYear;
+
     @FXML
     private TextField getcvc;
+
     @FXML
     private AnchorPane anchorPaneCheck;
+
     @FXML
     private Label event2;
+
     @FXML
     private Label event1;
     @FXML
-    private VBox vboxText;
+    private HBox myVbox;
+
     @FXML
     private Label getOrderId;
-    @FXML
-    private Label lbTotal;
-    private OfferService os;
+    private OfferService os = new OfferService();
     private Offer o;
     private Coupon c;
+    int price = os.getOfferPrice(96);
+    Offer selected = os.findOffer(96);
+
+    private User connectedUser = ConnectedUser.getInstance().getUser();
+
+    @FXML
+    void checked(ActionEvent event) {
+
+        if(Mychecker.isSelected()){
+            tfcoupon.setDisable(false);
+        }
+        else
+            tfcoupon.setDisable(true);
+            errormsg.setText("");
+            tfcoupon.setText("");
+        errormsg.setText("");
+
+    }
 
     @FXML
     void btnConfirmOrder(ActionEvent event) {
-        Order or = new Order(Integer.parseInt(lbofferid.getText()), 1, Integer.parseInt(lbPlan.getText()), Float.parseFloat(lbTotal.getText()), d1, OrderStatus.PENDING);
-        int getid = ors.addOrder(or);
-        Subscription sub = new Subscription(getid, d1, Timestamp.valueOf(d1.toLocalDateTime().plusDays(Integer.parseInt(lbPlan.getText()) * 30)), SubscriptionStatus.ON_HOLD);
-        subs.addSubscription(sub);
-        System.out.println(getid);
-        getOrderId.setText(String.valueOf(getid));
-        cps.useCoupon(tfcoupon.getText());
-        anchorPaneConfirm.setVisible(false);
-        anchorPanePay.setVisible(true);
-        anchorPaneCircle.setVisible(true);
+        Alert alert1 = new Alert(Alert.AlertType.CONFIRMATION);
+        alert1.setTitle("Place Order ");
+        alert1.setHeaderText("Do you really want to place your order?");
+        alert1.setContentText("Order will be placed !");
+        Optional<ButtonType> option = alert1.showAndWait();
+        if (option.isPresent() && option.get() == ButtonType.OK) {
+            Order or = new Order(Integer.parseInt(lbofferid.getText()), connectedUser.getID(), Integer.parseInt(lbPlan.getText()), Float.parseFloat(lbTotal.getText()), d1, OrderStatus.PENDING);
+            int getid = ors.addOrder(or);
+            Subscription sub = new Subscription(getid, d1, Timestamp.valueOf(d1.toLocalDateTime().plusDays(Integer.parseInt(lbPlan.getText()) * 30)), SubscriptionStatus.ON_HOLD);
+            subs.addSubscription(sub);
+            System.out.println(getid);
+            getOrderId.setText(String.valueOf(getid));
+            anchorPaneConfirm.setVisible(false);
+            anchorPanePay.setVisible(true);
+            anchorPaneCircle.setVisible(true);
 
-        RotateTransition rt = new RotateTransition(Duration.millis(2000), turnVbox);
-        rt.setByAngle(360);
-        rt.setCycleCount(Animation.INDEFINITE);
-        rt.play();
+            RotateTransition rt = new RotateTransition(Duration.millis(2000), turnVbox);
+            rt.setByAngle(360);
+            rt.setCycleCount(Animation.INDEFINITE);
+            rt.play();
+        }
 
     }
 
@@ -184,44 +237,107 @@ public class PlaceOrderController implements Initializable {
         if (charge.getStatus().equals(success)) {
             ors.updateOrderStatus(OrderStatus.COMPLETED, Integer.parseInt(getOrderId.getText()));
             subs.UpdateSubStatus(SubscriptionStatus.ACTIVE, Integer.parseInt(getOrderId.getText()));
+            cps.useCoupon(tfcoupon.getText());
+            if ((Integer.parseInt(lbPlan.getText()) >= 3) && (Integer.parseInt(lbPlan.getText()) <=5) ){
+                cps.generateCoupon(new Coupon(connectedUser.getID(),"",10,"false",d1));
+            }
+              else if (Integer.parseInt(lbPlan.getText())>= 6){
+                cps.generateCoupon(new Coupon(connectedUser.getID(),"",20,"false",d1));
+            }
         } else {
             ors.updateOrderStatus(OrderStatus.CANCELED, Integer.parseInt(getOrderId.getText()));
             subs.deleteSubByOrder(Integer.parseInt(getOrderId.getText()));
         }
-
-
     }
-
     public void useCoupon() {
         tfcoupon.textProperty().addListener((observable, oldValue, newValue) -> {
-            if (cps.checkValidity(newValue).isEmpty()) {
+            if (cps.checkValidity(newValue,connectedUser.getID()).isEmpty()) {
                 errormsg.setText("Invalid coupon !");
+                sliderId.setValue(1);
+                lbTotal.setText(String.valueOf(price));
             } else {
-                errormsg.setText("Valid coupon !");
-                int total = Integer.parseInt(lbTotal.getText());
+                oldPrice.setVisible(true);
+                errormsg.setText("Reduction by "+ cps.getReduction(newValue) +"%");
+                float total = Float.parseFloat(lbTotal.getText());
                 double reduction = (cps.getReduction(newValue) * 0.01);
                 float r2 = (total * (float) reduction);
-                System.out.println(reduction);
-                System.out.println(r2);
-                String ntotal = String.valueOf(total - r2);
+                String ntotal = String.valueOf(Math.round(total - r2));
                 lbTotal.setText(ntotal);
             }
         });
     }
-
+    public void Slider(){
+        oldPrice.setVisible(false);
+        lbofferid.setText("96");
+        //lbOrderPrice.setText(Stprice);
+        sliderId.valueProperty().addListener(new ChangeListener<Number>() {
+            public void changed(ObservableValue<?extends Number> observable, Number oldValue, Number newValue){
+                lbPlan.setText(String.valueOf(newValue.intValue()));
+                String total = String.valueOf((newValue.intValue())* price);
+                lbTotal.setText(total);
+            }});
+    }
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        try {
+        FXMLLoader fxmlLoader = new FXMLLoader();
+        fxmlLoader.setLocation(getClass().getResource("/views/item.fxml"));
+
+            AnchorPane anchorPane = fxmlLoader.load();
+            ItemController itemController = fxmlLoader.getController();
+            itemController.setDataSingle(selected);
+            myVbox.getChildren().add(anchorPane);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+       Slider();
+        cardNum.textProperty().addListener(new ChangeListener<String>() {
+            @Override
+            public void changed(final ObservableValue<? extends String> ov, final String oldValue, final String newValue) {
+                if (cardNum.getText().length() > 16) {
+                    String s = cardNum.getText().substring(0, 16);
+                    cardNum.setText(s);
+                }
+            }
+        });
+        getmonth.textProperty().addListener(new ChangeListener<String>() {
+            @Override
+            public void changed(final ObservableValue<? extends String> ov, final String oldValue, final String newValue) {
+                if (getmonth.getText().length() > 2) {
+                    String s = getmonth.getText().substring(0, 2);
+                    getmonth.setText(s);
+                }
+            }
+        });
+        getYear.textProperty().addListener(new ChangeListener<String>() {
+            @Override
+            public void changed(final ObservableValue<? extends String> ov, final String oldValue, final String newValue) {
+                if (getYear.getText().length() > 4) {
+                    String s = getYear.getText().substring(0, 4);
+                    getYear.setText(s);
+                }
+            }
+        });
+        getcvc.textProperty().addListener(new ChangeListener<String>() {
+            @Override
+            public void changed(final ObservableValue<? extends String> ov, final String oldValue, final String newValue) {
+                if (getcvc.getText().length() > 3) {
+                    String s = getcvc.getText().substring(0, 3);
+                    getcvc.setText(s);
+                }
+            }
+        });
+
         anchorPaneConfirm.setVisible(true);
         anchorPanePay.setVisible(false);
         anchorPaneCircle.setVisible(false);
         anchorPaneCheck.setVisible(false);
-        String price = String.valueOf(20);
-        lbofferid.setText("44");
-        lbOrderPrice.setText(price);
-        this.useCoupon();
+        tfcoupon.setDisable(true);
+
+       useCoupon();
     }
 
-    @FXML
+   /* @FXML
     void sliderClicked(MouseEvent event) {
         int dure = (int) sliderId.getValue();
         String plan = String.valueOf(dure);
@@ -229,7 +345,7 @@ public class PlaceOrderController implements Initializable {
         String total = String.valueOf(dure * 20);
         lbTotal.setText(total);
         this.useCoupon();
-    }
+    }*/
 
 }
 

@@ -17,7 +17,7 @@ public class TestHomeController extends Application {
     @FXML
     void gotoOrder(ActionEvent event) {
         try {
-            Parent home_page_parent = FXMLLoader.load(getClass().getResource("/placeorder.fxml"));
+            Parent home_page_parent = FXMLLoader.load(getClass().getResource("/views/placeorder.fxml"));
 
             Scene home_page_scene = new Scene(home_page_parent);
             Stage app_stage = (Stage) ((Node) event.getSource()).getScene().getWindow();

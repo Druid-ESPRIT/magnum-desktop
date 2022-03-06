@@ -1,7 +1,10 @@
 package com.druid.services;
 
+import com.druid.enums.SubscriptionStatus;
 import com.druid.interfaces.IOffer;
 import com.druid.models.Offer;
+import com.druid.models.User;
+import com.druid.utils.ConnectedUser;
 import com.druid.utils.DBConnection;
 
 import java.sql.*;
@@ -14,14 +17,13 @@ import java.util.stream.Collectors;
 public class OfferService implements IOffer {
 
     Connection con = DBConnection.getInstance().getConnection();
+    private User connectedUser = ConnectedUser.getInstance().getUser();
     List<Offer> Offers = new ArrayList<>();
 
     public void addOffer(Offer s) {
 
-        if (this.findOffer(s.getId()).isPresent()) {
-            return;
-        }
-        String query = "INSERT INTO `Offer`(`podcaster_id`, `price`, `description`, `image`) VALUES ('" + s.getPodcasterID() + "','" + s.getPrice() + "','" + s.getDescription() + "','" + s.getImage() + "')";
+
+        String query = "INSERT INTO `Offer`(`user_id`, `price`, `description`, `image`) VALUES ('" + s.getUser_id() + "','" + s.getPrice() + "','" + s.getDescription() + "','" + s.getImage() + "')";
         try {
             Statement stmt = con.createStatement();
             stmt.executeUpdate(query);
@@ -42,7 +44,30 @@ public class OfferService implements IOffer {
             while (result.next()) {
                 Offers.add(new Offer(
                         result.getInt("id"),
-                        result.getInt("podcaster_id"),
+                        result.getInt("user_id"),
+                        result.getFloat("price"),
+                        result.getString("description"),
+                        result.getString("image")
+                ));
+            }
+            return Offers;
+
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+        return null;
+    }
+    public List<Offer> getOffersByUser(int id) {
+
+        String query = "SELECT * FROM Offer where user_id ='"+id+"'";
+
+        try {
+            Statement stmt = con.createStatement();
+            ResultSet result = stmt.executeQuery(query);
+            while (result.next()) {
+                Offers.add(new Offer(
+                        result.getInt("id"),
+                        result.getInt("user_id"),
                         result.getFloat("price"),
                         result.getString("description"),
                         result.getString("image")
@@ -56,7 +81,7 @@ public class OfferService implements IOffer {
         return null;
     }
 
-    public Optional<Offer> findOffer(int ID) {
+    public Offer findOffer(int ID) {
         String query = "SELECT * FROM `offer` WHERE `ID` = ?";
         try {
             PreparedStatement stmt = con.prepareStatement(query);
@@ -64,24 +89,25 @@ public class OfferService implements IOffer {
             ResultSet result = stmt.executeQuery();
 
             if (result.next()) {
-                return Optional.of(
+               return
                         new Offer(
                                 result.getInt("id"),
-                                result.getInt("podcaster_id"),
+                                result.getInt("user_id"),
                                 result.getFloat("price"),
                                 result.getString("description"),
-                                result.getString("image")));
+                                result.getString("image"));
             }
+
         } catch (SQLException ex) {
             ex.printStackTrace();
         }
 
-        return Optional.empty();
+        return null;
     }
 
     @Override
     public void updateOffer(Offer s, int id) {
-        String query = "UPDATE `offer`set `podcaster_id` = '" + s.getPodcasterID() + "', `price`='" + s.getPrice() + "', `description`='" + s.getDescription() + "', `image`= '" + s.getImage() + "' where id ='" + id + "'";
+        String query = "UPDATE `offer`set `user_id` = '" + s.getUser_id() + "', `price`='" + s.getPrice() + "', `description`='" + s.getDescription() + "', `image`= '" + s.getImage() + "' where id ='" + id + "'";
         try {
             Statement stmt = con.createStatement();
             stmt.executeUpdate(query);
@@ -104,13 +130,30 @@ public class OfferService implements IOffer {
     }
 
     public List<Offer> searchOffer(String search) {
-        List<Offer> result = getOffers().stream()
+        List<Offer> result = getOffersByUser(connectedUser.getID()).stream()
                 .filter(su -> su.getDescription().contains(search))
                 .collect(Collectors.toList());
 
         System.out.println(result);
         return result;
 
+    }
+
+    public int getOfferPrice(int id) {
+        String query = "SELECT price from `offer` where id ='" + id + "'";
+        try {
+            Statement stmt = con.createStatement();
+            ResultSet result = stmt.executeQuery(query);
+            while (result.next()) {
+                return (
+                        result.getInt("price"));
+
+            }
+
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+        return id;
     }
 
 }

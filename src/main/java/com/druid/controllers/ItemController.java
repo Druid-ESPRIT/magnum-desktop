@@ -24,6 +24,11 @@ public class ItemController {
     @FXML
     private AnchorPane anchorPane;
 
+<<<<<<< Updated upstream
+=======
+
+
+>>>>>>> Stashed changes
     private Offer offer;
     private MyListener myListener;
 
@@ -38,7 +43,16 @@ public class ItemController {
         this.offer = offer;
         this.myListener = myListener;
 
-        File file = new File("C:/Users/asus/Desktop/Git/magnum-desktop/src/main/resources/img/" + offer.getImage());
+        File file = new File("C:/Users/asus/Desktop/Git/magnum-desktop/src/main/resources/assets/" + offer.getImage());
+        Image image = new Image(file.toURI().toString());
+        lbdesc.setText(offer.getDescription());
+        lbprice.setText(OfferWindow.CURRENCY + offer.getPrice());
+        imgView.setImage(image);
+    }
+    public void setDataSingle(Offer offer) {
+        this.offer = offer;
+        anchorPane.setDisable(true);
+        File file = new File("C:/Users/asus/Desktop/Git/magnum-desktop/src/main/resources/assets/" + offer.getImage());
         Image image = new Image(file.toURI().toString());
         lbdesc.setText(offer.getDescription());
         lbprice.setText(OfferWindow.CURRENCY + offer.getPrice());

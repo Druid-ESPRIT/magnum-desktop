@@ -22,6 +22,14 @@ public class Coupon {
         this.created = created;
     }
 
+    public Coupon(int userID, String code, int reduction, String used, Timestamp created) {
+        this.userID = userID;
+        this.code = code;
+        this.reduction = reduction;
+        this.used = used;
+        this.created = created;
+    }
+
     public String getUsed() {
         return used;
     }

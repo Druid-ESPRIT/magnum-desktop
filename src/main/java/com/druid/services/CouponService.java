@@ -1,7 +1,10 @@
 package com.druid.services;
 
 import com.druid.models.Coupon;
+import com.druid.models.User;
+import com.druid.utils.ConnectedUser;
 import com.druid.utils.DBConnection;
+import com.druid.utils.Mail;
 import org.apache.commons.lang3.RandomStringUtils;
 
 import java.sql.*;
@@ -14,6 +17,7 @@ import java.util.stream.Collectors;
 public class CouponService {
     Connection con = DBConnection.getInstance().getConnection();
     List<Coupon> coupons = new ArrayList<>();
+    private User connectedUser = ConnectedUser.getInstance().getUser();
 
     public void generateCoupon(Coupon coupon) {
         Date date = new Date();
@@ -25,7 +29,7 @@ public class CouponService {
         String token = RandomStringUtils.randomAlphanumeric(12);
 
         String query =
-                "INSERT INTO `coupon` (`user_id`, `code`,`reduction`,`used`, `created`) VALUES ('" + coupon.getId() + "','" + token + "','" + coupon.getReduction() + "','" + coupon.getUsed() + "','" + now + "')";
+                "INSERT INTO `coupon` (`user_id`, `code`,`reduction`,`used`, `created`) VALUES ('" + coupon.getUserID() + "','" + token + "','" + coupon.getReduction() + "','" + coupon.getUsed() + "','" + now + "')";
 
         try {
             Statement stmt = con.createStatement();
@@ -35,7 +39,7 @@ public class CouponService {
         } catch (SQLException ex) {
             ex.printStackTrace();
         }
-
+        //Mail.send(connectedUser.getEmail(),"Free Coupon","Here is your discount ("+coupon.getReduction()+"%) coupon : "+ token ,false);
     }
 
     public void cleanCoupons() {
@@ -89,8 +93,9 @@ public class CouponService {
         return null;
     }
 
-    public List<Coupon> checkValidity(String search) {
+    public List<Coupon> checkValidity(String search,int id) {
         List<Coupon> result = getCoupons().stream()
+                .filter(su -> su.getUserID() == id)
                 .filter(su -> su.getCode().equals(search))
                 .filter(su -> su.getUsed().equals("false"))
                 .collect(Collectors.toList());

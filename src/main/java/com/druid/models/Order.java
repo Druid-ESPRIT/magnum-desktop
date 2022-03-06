@@ -18,6 +18,10 @@ public class Order {
     public Order() {
     }
 
+    public Order(int id) {
+        this.id = id;
+    }
+
     public Order(int id, int offerId, int user_id, int plan, float total, Timestamp orderDate, OrderStatus status) {
         this.id = id;
         this.offerId = offerId;

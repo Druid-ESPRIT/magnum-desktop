@@ -2,7 +2,7 @@ package com.druid.models;
 
 public class Offer {
     private int id;
-    private int podcasterID;
+    private int user_id;
     private float price;
     private String description;
     private String image;
@@ -10,20 +10,27 @@ public class Offer {
     public Offer() {
     }
 
-    public Offer(int podcasterID, float price, String description, String image) {
-        this.podcasterID = podcasterID;
+    public Offer(int id, int user_id, float price, String description, String image) {
+        this.id = id;
+        this.user_id = user_id;
         this.price = price;
         this.description = description;
         this.image = image;
     }
 
-
-    public Offer(int id, int podcasterID, float price, String description, String image) {
-        this.id = id;
-        this.podcasterID = podcasterID;
+    public Offer(int user_id, float price, String description, String image) {
+        this.user_id = user_id;
         this.price = price;
         this.description = description;
         this.image = image;
+    }
+
+    public int getUser_id() {
+        return user_id;
+    }
+
+    public void setUser_id(int user_id) {
+        this.user_id = user_id;
     }
 
     public String getImage() {
@@ -42,13 +49,6 @@ public class Offer {
         this.id = id;
     }
 
-    public int getPodcasterID() {
-        return podcasterID;
-    }
-
-    public void setPodcasterID(int podcasterID) {
-        this.podcasterID = podcasterID;
-    }
 
     public float getPrice() {
         return price;
@@ -70,10 +70,10 @@ public class Offer {
     public String toString() {
         return "Offer{" +
                 "id=" + id +
-                ", podcasterID=" + podcasterID +
+                ", user_id=" + user_id +
                 ", price=" + price +
                 ", description='" + description + '\'' +
-                ", image=" + image +
+                ", image='" + image + '\'' +
                 '}';
     }
 }
