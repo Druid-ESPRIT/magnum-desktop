@@ -118,4 +118,16 @@ public class User {
     public void setStatus(UserStatus status) {
         this.status = status;
     }
+
+    public boolean isDisabled() {
+        return this.status.equals(UserStatus.DISABLED);
+    }
+
+    public boolean isBanned() {
+        return this.status.equals(UserStatus.BANNED);
+    }
+
+    public boolean isActive() {
+        return this.status.equals(UserStatus.ACTIVE);
+    }
 }

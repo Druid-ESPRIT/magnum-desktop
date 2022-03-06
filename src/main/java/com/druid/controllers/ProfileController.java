@@ -17,7 +17,7 @@ import javafx.scene.text.Text;
 
 public class ProfileController implements Initializable {
   ConnectedUser connectedUser = ConnectedUser.getInstance();
-  HomeController homeController = new HomeController();
+
   @FXML private AnchorPane pane;
   @FXML private Text name;
   @FXML private Text username;

@@ -1,9 +1,12 @@
 package com.druid.controllers;
 
+import com.druid.enums.UserStatus;
 import com.druid.errors.register.PasswordCheckException;
 import com.druid.models.User;
 import com.druid.services.UserService;
 import com.druid.utils.ConnectedUser;
+
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
@@ -11,6 +14,7 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.Hyperlink;
 import javafx.scene.control.PasswordField;
 import javafx.scene.text.Text;
 
@@ -23,6 +27,7 @@ public class SecurityController implements Initializable {
   @FXML private PasswordField passwordConfirm;
   @FXML private PasswordField password;
   @FXML private Button save;
+  @FXML private Hyperlink disableAccount;
 
   public void verifyPassword() throws PasswordCheckException {
     if (!password.getText().equals(passwordConfirm.getText())) {
@@ -41,8 +46,28 @@ public class SecurityController implements Initializable {
     }
   }
 
+  private void disableAccountListener() {
+    disableAccount.setOnAction(new EventHandler<ActionEvent>() {
+      @Override
+      public void handle(ActionEvent event) {
+        User user = connectedUser.getUser();
+        user.setStatus(UserStatus.DISABLED);
+        user_svc.update(user);
+
+        connectedUser.disconnect();
+        SceneSwitcher sceneController = new SceneSwitcher();
+        try {
+          sceneController.showLogin(event);
+        } catch (IOException e) {
+          e.printStackTrace();
+        }
+      }
+    });
+  }
+
   @Override
   public void initialize(URL url, ResourceBundle resourceBundle) {
+    disableAccountListener();
     password
         .focusedProperty()
         .addListener(
