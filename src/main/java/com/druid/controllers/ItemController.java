@@ -24,7 +24,6 @@ public class ItemController {
     @FXML
     private AnchorPane anchorPane;
 
-
     private Offer offer;
     private MyListener myListener;
 
