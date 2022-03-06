@@ -1,9 +1,11 @@
         package com.druid.controllers;
 
         import com.druid.models.Commentaire;
+        import com.druid.models.User;
         import com.druid.services.ArticleService;
         import com.druid.services.CommentaireService;
         import com.druid.services.UserService;
+        import com.druid.utils.ConnectedUser;
         import javafx.collections.FXCollections;
         import javafx.collections.ObservableList;
         import javafx.event.ActionEvent;
@@ -31,6 +33,8 @@
         ArticleService as=new ArticleService();
         UserService us=new UserService();
         static Commentaire selectedComment;
+            LoginController lc=new LoginController();
+            User user=lc.getConnectedUser();
         @FXML
         private Button retour;
 
@@ -55,20 +59,23 @@
             @FXML
             private Button flag;
 
+            private User connectedUser= ConnectedUser.getInstance().getUser();
+
         @FXML
-        void deletec(ActionEvent event) {
+        void deletec(ActionEvent event) throws IOException {
                 selectedComment=ownComments.getSelectionModel().getSelectedItem();
                 if(selectedComment!=null)
                 {
-                        cs.cancelCommentaire(selectedComment);
-                        List<Commentaire> commentaires=cs.afficherCommentaire();
-                        commentaires=commentaires.stream().filter(c->c.getArticleID().getId()==CommentCotroller.ids).collect(Collectors.toList());
-                        ObservableList<Commentaire> items2 = FXCollections.observableArrayList(commentaires);
-                        commentList.setItems(items2);
-                        List<Commentaire> commentaires2=cs.afficherCommentaire().stream().filter(
-                                c->c.getArticleID().getId()==CommentCotroller.ids ).collect(Collectors.toList());
-                        ObservableList<Commentaire> items = FXCollections.observableArrayList(commentaires);
-                        ownComments.setItems(items);
+                    Stage stage = (Stage) retour.getScene().getWindow();
+                    stage.close();
+                    Stage Stage = new Stage();
+                    Parent root = FXMLLoader.load(getClass().getResource("/views/delete.fxml"));
+                    Stage.setTitle("update comment");
+                    Stage.setScene(new Scene(root));
+                    Stage.show();
+
+                        //cs.cancelCommentaire(selectedComment);
+
                 }
 
         }
@@ -77,7 +84,7 @@
             String content=message.getText();
             Commentaire com=new Commentaire();
             com.setArticleID(as.getArticle(CommentCotroller.ids));
-            com.setUserID(us.getUser(1));
+            com.setUserID(user);
             com.setMessage(content);
             cs.addCommentaire(com);
             List<Commentaire> commentaires=cs.afficherCommentaire();
@@ -85,8 +92,8 @@
             ObservableList<Commentaire> items2 = FXCollections.observableArrayList(commentaires);
             commentList.setItems(items2);
              List<Commentaire> commentaires2=cs.afficherCommentaire().stream().filter(
-                     w->w.getArticleID().getId()==CommentCotroller.ids ).collect(Collectors.toList());
-             ObservableList<Commentaire> items = FXCollections.observableArrayList(commentaires);
+                     w->w.getArticleID().getId()==CommentCotroller.ids  && w.getUserID().getID()==user.getID() ).collect(Collectors.toList());
+             ObservableList<Commentaire> items = FXCollections.observableArrayList(commentaires2);
              ownComments.setItems(items);
              message.setText("");
 
@@ -108,15 +115,20 @@
 
             @Override
             public void initialize(URL location, ResourceBundle resources) {
+            ///a commentee
+                //user=us.getUser(3);
 
+                connectedUser.getID();
+
+                /////////////
                 title.setText(as.getArticle(CommentCotroller.ids).getTitle());
                 List<Commentaire> commentaires=cs.afficherCommentaire();
                        commentaires=commentaires.stream().filter(c->c.getArticleID().getId()==CommentCotroller.ids).collect(Collectors.toList());
                 ObservableList<Commentaire> items2 = FXCollections.observableArrayList(commentaires);
                 commentList.setItems(items2);
                 List<Commentaire> commentaires2=cs.afficherCommentaire().stream().filter(
-                        c->c.getArticleID().getId()==CommentCotroller.ids ).collect(Collectors.toList());
-                ObservableList<Commentaire> items = FXCollections.observableArrayList(commentaires);
+                        c->c.getArticleID().getId()==CommentCotroller.ids && c.getUserID().getID()==user.getID() ).collect(Collectors.toList());
+                ObservableList<Commentaire> items = FXCollections.observableArrayList(commentaires2);
                 ownComments.setItems(items);
                 selectedComment=commentList.getSelectionModel().getSelectedItem();
             }

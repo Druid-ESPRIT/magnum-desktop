@@ -126,7 +126,7 @@ public class CommentCotroller implements Initializable {
                         this.image3.setImage(new Image(this.articles.get(page+2).getUrl()));
                         id3=this.articles.get(page+2).getId();
                         this.title4.setText(this.articles.get(page+3).getTitle());
-                        this.image4.setImage(new Image(this.articles.get(page+3).getUrl()));
+                       this.image4.setImage(new Image(this.articles.get(page+3).getUrl()));
                         id4=this.articles.get(page+3).getId();
                 }
                 if(this.articles.size()-page>=3)

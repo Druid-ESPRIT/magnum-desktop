@@ -12,6 +12,9 @@ import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.List;
 import java.util.ResourceBundle;
+
+import com.druid.models.User;
+import com.druid.utils.ConnectedUser;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Pagination;
@@ -19,6 +22,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import com.druid.models.Article;
+import com.druid.models.Podcaster;
 import com.druid.services.ArticleService;
 import java.net.URL;
 import java.util.logging.Level;
@@ -47,15 +51,19 @@ import com.druid.services.UserService;
  */
 public class AcceuilController implements Initializable {
 
+
+
+
     @FXML
     private Pagination pagination;
     @FXML
     private Text title1;
     @FXML
     private Button add;
-   
+
     ArticleService as=new ArticleService();
     PodcasterService ps=new PodcasterService();
+    CommentaireService cs=new CommentaireService();
     List<Article> articles=as.afficherArticle();
      List<Article> articles2=as.afficherArticle();
      static int id1=0;
@@ -167,6 +175,7 @@ public class AcceuilController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
         //pagination=new
+
         if(this.articles.size()%4==0)
         pagination.setPageCount(this.articles.size()/4);
         else
@@ -289,8 +298,8 @@ public class AcceuilController implements Initializable {
 
         if(!"".equals(this.getByAuthor.getText()))
         {
-            this.articles=this.articles.stream().filter(a -> a.getAuthorID().getFirstName().toUpperCase().equals(this.getByAuthor.getText().toUpperCase()))
-                .collect(Collectors.toList());
+            this.articles=this.articles.stream().filter(a -> a.getAuthorID().getFirstName().toUpperCase().
+                            equals(this.getByAuthor.getText().toUpperCase())).sorted((v,u)->cs.getNbComment(u.getId())-cs.getNbComment(v.getId())).collect(Collectors.toList());
              this.title1.setText("");
                this.image1.setImage(null);
                this.title2.setText("");

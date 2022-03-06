@@ -12,47 +12,52 @@
 
 <AnchorPane id="AnchorPane" prefHeight="450.0" prefWidth="550.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.druid.controllers.CommentCotroller">
    <children>
-      <TabPane prefHeight="585.0" prefWidth="799.0" tabClosingPolicy="UNAVAILABLE">
+      <TabPane layoutY="6.0" prefHeight="585.0" prefWidth="799.0" tabClosingPolicy="UNAVAILABLE">
         <tabs>
           <Tab text="list article">
             <content>
-              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="465.0" prefWidth="776.0">
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="465.0" prefWidth="776.0" style="-fx-background-color: #FFFFFF;">
                      <children>
-                        <Text fx:id="title4" layoutX="619.0" layoutY="123.0" strokeType="OUTSIDE" strokeWidth="0.0" text="hhh" wrappingWidth="79.13671875" />
-                        <Text fx:id="title3" layoutX="448.0" layoutY="343.0" strokeType="OUTSIDE" strokeWidth="0.0" text="hhh" wrappingWidth="64.13671875" />
-                        <Text fx:id="title2" layoutX="273.0" layoutY="342.0" strokeType="OUTSIDE" strokeWidth="0.0" text="hhh" wrappingWidth="64.13671875" />
-                        <Text fx:id="title1" layoutX="82.0" layoutY="342.0" strokeType="OUTSIDE" strokeWidth="0.0" text="hhh" wrappingWidth="64.13671875" />
-                        <ImageView fx:id="image4" fitHeight="150.0" fitWidth="150.0" layoutX="595.0" layoutY="159.0" pickOnBounds="true" preserveRatio="true">
+                        <Text fx:id="title4" layoutX="613.0" layoutY="172.0" strokeType="OUTSIDE" strokeWidth="0.0" text="hhh" wrappingWidth="79.13671875" />
+                        <Text fx:id="title3" layoutX="425.0" layoutY="171.0" strokeType="OUTSIDE" strokeWidth="0.0" text="hhh" wrappingWidth="64.13671875" />
+                        <Text fx:id="title2" layoutX="257.0" layoutY="173.0" strokeType="OUTSIDE" strokeWidth="0.0" text="hhh" wrappingWidth="64.13671875" />
+                        <Text fx:id="title1" layoutX="61.0" layoutY="174.0" strokeType="OUTSIDE" strokeWidth="0.0" text="hhh" wrappingWidth="64.13671875" />
+                        <ImageView fx:id="image4" fitHeight="150.0" fitWidth="150.0" layoutX="601.0" layoutY="194.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="https://th.bing.com/th/id/OIP.n9DOhS1uNkrMVpULQqomugHaEY?pid=ImgDet&amp;rs=1" />
                            </image>
                         </ImageView>
-                        <ImageView fx:id="image3" fitHeight="150.0" fitWidth="150.0" layoutX="424.0" layoutY="159.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fx:id="image3" fitHeight="150.0" fitWidth="150.0" layoutX="416.0" layoutY="194.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="https://th.bing.com/th/id/OIP.n9DOhS1uNkrMVpULQqomugHaEY?pid=ImgDet&amp;rs=1" />
                            </image>
                         </ImageView>
-                        <ImageView fx:id="image2" fitHeight="150.0" fitWidth="150.0" layoutX="230.0" layoutY="159.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fx:id="image2" fitHeight="150.0" fitWidth="150.0" layoutX="246.0" layoutY="194.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="https://th.bing.com/th/id/OIP.n9DOhS1uNkrMVpULQqomugHaEY?pid=ImgDet&amp;rs=1" />
                            </image>
                         </ImageView>
-                        <ImageView fx:id="image1" fitHeight="150.0" fitWidth="150.0" layoutX="39.0" layoutY="159.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fx:id="image1" fitHeight="150.0" fitWidth="150.0" layoutX="50.0" layoutY="194.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="https://th.bing.com/th/id/OIP.n9DOhS1uNkrMVpULQqomugHaEY?pid=ImgDet&amp;rs=1" />
                            </image>
                         </ImageView>
-                        <Pagination fx:id="pagination" layoutY="10.0" prefHeight="536.0" prefWidth="833.0" />
-                        <Button fx:id="Pdf1" layoutX="76.0" layoutY="440.0" mnemonicParsing="false" onAction="#pdf1" text="pdf" />
-                        <Button fx:id="Pdf2" layoutX="256.0" layoutY="440.0" mnemonicParsing="false" onAction="#pdf2" text="pdf" />
-                        <Button fx:id="Pdf3" layoutX="431.0" layoutY="440.0" mnemonicParsing="false" onAction="#pdf3" text="pdf" />
-                        <Button fx:id="pdf4" layoutX="578.0" layoutY="440.0" mnemonicParsing="false" onAction="#pdf4" text="pdf" />
+                        <Pagination fx:id="pagination" layoutX="9.0" prefHeight="536.0" prefWidth="833.0" />
+                        <Button fx:id="Pdf1" layoutX="68.0" layoutY="356.0" mnemonicParsing="false" onAction="#pdf1" style="-fx-background-color: #FF0000;" styleClass="icon-button" stylesheets="@../css/style.css" text="pdf" />
+                        <Button fx:id="Pdf2" layoutX="272.0" layoutY="356.0" mnemonicParsing="false" onAction="#pdf2" style="-fx-background-color: #FF0000;" styleClass="icon-button" stylesheets="@../css/style.css" text="pdf" />
+                        <Button fx:id="Pdf3" layoutX="451.0" layoutY="356.0" mnemonicParsing="false" onAction="#pdf3" style="-fx-background-color: #FF0000;" styleClass="icon-button" stylesheets="@../css/style.css" text="pdf" />
+                        <Button fx:id="pdf4" layoutX="636.0" layoutY="356.0" mnemonicParsing="false" onAction="#pdf4" style="-fx-background-color: #FF0000;" styleClass="icon-button" stylesheets="@../css/style.css" text="pdf" />
                         <TextField fx:id="getByAuthor" layoutX="246.0" layoutY="85.0" />
-                        <Button fx:id="get" layoutX="425.0" layoutY="85.0" mnemonicParsing="false" onAction="#get" text="Button" />
-                        <Button fx:id="show1" layoutX="65.0" layoutY="386.0" mnemonicParsing="false" onAction="#show1" text="show comment" />
-                        <Button fx:id="show2" layoutX="256.0" layoutY="386.0" mnemonicParsing="false" onAction="#show2" text="show comment" />
-                        <Button fx:id="show3" layoutX="428.0" layoutY="386.0" mnemonicParsing="false" onAction="#show3" text="show comment" />
-                        <Button fx:id="show4" layoutX="578.0" layoutY="386.0" mnemonicParsing="false" onAction="#show4" text="show comment" />
+                        <Button fx:id="get" layoutX="425.0" layoutY="85.0" mnemonicParsing="false" onAction="#get" styleClass="icon-button" stylesheets="@../css/style.css" text="Search" />
+                        <Button fx:id="show1" layoutX="44.0" layoutY="400.0" mnemonicParsing="false" onAction="#show1" styleClass="icon-button" stylesheets="@../css/style.css" text="show comment" />
+                        <Button fx:id="show2" layoutX="240.0" layoutY="400.0" mnemonicParsing="false" onAction="#show2" styleClass="icon-button" stylesheets="@../css/style.css" text="show comment" />
+                        <Button fx:id="show3" layoutX="419.0" layoutY="400.0" mnemonicParsing="false" onAction="#show3" styleClass="icon-button" stylesheets="@../css/style.css" text="show comment" />
+                        <Button fx:id="show4" layoutX="617.0" layoutY="400.0" mnemonicParsing="false" onAction="#show4" styleClass="icon-button" stylesheets="@../css/style.css" text="show comment" />
+                        <ImageView fitHeight="83.0" fitWidth="97.0" layoutX="24.0" layoutY="34.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../assets/1.png" />
+                           </image>
+                        </ImageView>
                      </children>
                   </AnchorPane>
             </content>

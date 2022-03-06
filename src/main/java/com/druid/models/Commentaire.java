@@ -74,6 +74,6 @@ public class Commentaire {
     public String toString() {
         return
                  userID.getUsername() +
-                ": "+message;
+                ": "+submitDate+" :"+message;
     }
 }

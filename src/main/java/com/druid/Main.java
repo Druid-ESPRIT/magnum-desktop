@@ -10,7 +10,7 @@ import javafx.stage.Stage;
 import java.io.IOException;
 
 public class Main extends Application {
-   /* public static void main(String[] args) {
+   /*public static void main(String[] args) {
         launch(args);
     }
 
@@ -28,7 +28,7 @@ public class Main extends Application {
     @Override
     public void start(Stage primaryStage) throws IOException {
         this.stage=primaryStage;
-        parent=FXMLLoader.load(getClass().getResource("/views/userAcceuil.fxml"));
+        parent=FXMLLoader.load(getClass().getResource("/views/login.fxml"));
         Scene scene=new Scene(parent);
         stage.setScene(scene);
         stage.show();

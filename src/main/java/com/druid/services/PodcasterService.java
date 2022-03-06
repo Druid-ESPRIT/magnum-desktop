@@ -274,7 +274,7 @@ public class PodcasterService implements IUser<Podcaster> {
 
      */
     public Podcaster getPodcaster(int id){
-        String request = "select * from podcaster where id=" + id;
+        String request = "select * from podcasters where id=" + id;
         Statement st;
         try {
             st = con.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
