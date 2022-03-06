@@ -5,145 +5,133 @@
  */
 package com.druid.models;
 
-/**
- *
- * @author tahaj
- */
+/** @author tahaj */
 public class Podcast {
-    //att
-    
-    private int id;
-    private String title;
-    private String description;
-    private String file;
-    private int rating;
-    private int views;
-    private int idcateg;
-    private String image;
-   //
+  // att
 
-    
-    //constructors
+  private int id;
+  private String title;
+  private String description;
+  private String file;
+  private int rating;
+  private int views;
+  private int idcateg;
+  private String image;
+  //
 
-    public Podcast(String title, String description, String file, int rating, int views, int idcateg) {
-        this.title = title;
-        this.description = description;
-       
-        this.file = file;
-        this.rating = rating;
-        this.views = views;
-        this.idcateg = idcateg;        
-    }
-    
-    
-    //...
-    
-    public Podcast(){
-        
-    }
+  // constructors
 
-    public Podcast(int id,String title, String description, String file, int rating, int views, int idcateg) {
-        this.id = id;
-        this.description = description;
-        this.file = file;
-        this.rating = rating;
-        this.views = views;
-        this.idcateg = idcateg;
-        
+  public Podcast(
+      String title, String description, String file, int rating, int views, int idcateg) {
+    this.title = title;
+    this.description = description;
 
-    }
+    this.file = file;
+    this.rating = rating;
+    this.views = views;
+    this.idcateg = idcateg;
+  }
 
-    public Podcast(String title, String description, String file, int rating, int views, int idcateg, String image) {
-        this.title = title;
-        this.description = description;
-        this.file = file;
-        this.rating = rating;
-        this.views = views;
-        this.idcateg = idcateg;
-        this.image = image;
-    }
-    
-    
-    public String getImage() {
-        return image;
-    }
+  // ...
 
-    //Getters and setters
-    public void setImage(String image) {
-        this.image = image;
-    }
+  public Podcast() {}
 
-    public int getId() {
-        return id;
-    }
+  public Podcast(
+      int id, String title, String description, String file, int rating, int views, int idcateg) {
+    this.id = id;
+    this.description = description;
+    this.file = file;
+    this.rating = rating;
+    this.views = views;
+    this.idcateg = idcateg;
+  }
 
-    public void setId(int id) {
-        this.id = id;
-    }
+  public Podcast(
+      String title,
+      String description,
+      String file,
+      int rating,
+      int views,
+      int idcateg,
+      String image) {
+    this.title = title;
+    this.description = description;
+    this.file = file;
+    this.rating = rating;
+    this.views = views;
+    this.idcateg = idcateg;
+    this.image = image;
+  }
 
-    public String getTitle() {
-        return title;
-    }
+  public String getImage() {
+    return image;
+  }
 
-    public void setTitle(String title) {
-        this.title = title;
-    }
+  // Getters and setters
+  public void setImage(String image) {
+    this.image = image;
+  }
 
-    public String getDescription() {
-        return description;
-    }
+  public int getId() {
+    return id;
+  }
 
-    public void setDescription(String description) {
-        this.description = description;
-    }
+  public void setId(int id) {
+    this.id = id;
+  }
 
-    public int getRating() {
-        return rating;
-    }
+  public String getTitle() {
+    return title;
+  }
 
-    public void setRating(int rating) {
-        this.rating = rating;
-    }
+  public void setTitle(String title) {
+    this.title = title;
+  }
 
-    public int getViews() {
-        return views;
-    }
+  public String getDescription() {
+    return description;
+  }
 
-    public void setViews(int views) {
-        this.views = views;
-    }
+  public void setDescription(String description) {
+    this.description = description;
+  }
 
-   
+  public int getRating() {
+    return rating;
+  }
 
-    public String getFile() {
-        return file;
-    }
+  public void setRating(int rating) {
+    this.rating = rating;
+  }
 
-    public void setFile(String file) {
-        this.file = file;
-    }
+  public int getViews() {
+    return views;
+  }
 
-    public int getIdcateg() {
-        return idcateg;
-    }
+  public void setViews(int views) {
+    this.views = views;
+  }
 
-    public void setIdcateg(int idcateg) {
-        this.idcateg = idcateg;
-    }
-    
+  public String getFile() {
+    return file;
+  }
 
-    //AFF
+  public void setFile(String file) {
+    this.file = file;
+  }
 
-    @Override
-    public String toString() {
-        return title + " :" +rating+" ( "+description+" )";
-    }
+  public int getIdcateg() {
+    return idcateg;
+  }
 
+  public void setIdcateg(int idcateg) {
+    this.idcateg = idcateg;
+  }
 
+  // AFF
 
-    
-    
-    
-    
-    
+  @Override
+  public String toString() {
+    return title + " :" + rating + " ( " + description + " )";
+  }
 }
