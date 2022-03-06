@@ -10,13 +10,11 @@ import com.druid.services.PodcasterService;
 import com.druid.services.UserService;
 import com.druid.utils.Clearable;
 import com.druid.utils.ConnectedUser;
-import com.druid.utils.Debugger;
+import com.druid.utils.QuickHistory;
 import java.io.IOException;
 import java.net.URL;
 import java.util.Optional;
 import java.util.ResourceBundle;
-
-import com.druid.utils.QuickHistory;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
