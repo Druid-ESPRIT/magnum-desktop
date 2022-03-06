@@ -23,7 +23,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class RegisterController implements Initializable {
+public class RegisterUserController implements Initializable {
     public Stage stage;
 
     private UserService user_svc = new UserService();

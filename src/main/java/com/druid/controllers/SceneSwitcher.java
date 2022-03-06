@@ -22,8 +22,24 @@ public class SceneSwitcher {
         stage.show();
     }
 
-    public void showRegister(ActionEvent event) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("/views/Register.fxml"));
+    public void showRegisterPodcaster(ActionEvent event) throws IOException {
+        Parent root = FXMLLoader.load(getClass().getResource("/views/RegisterPodcaster.fxml"));
+        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+    }
+
+    public void showAccountTypePicker(ActionEvent event) throws IOException {
+        Parent root = FXMLLoader.load(getClass().getResource("/views/AccountTypePicker.fxml"));
+        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+    }
+
+    public void showRegisterUser(ActionEvent event) throws IOException {
+        Parent root = FXMLLoader.load(getClass().getResource("/views/RegisterUser.fxml"));
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         scene = new Scene(root);
         stage.setScene(scene);
