@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane id="AnchorPane" prefHeight="500.0" prefWidth="900.0" stylesheets="@../css/style.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.druid.controllers.HomeController">
+<AnchorPane id="AnchorPane" prefHeight="600.0" prefWidth="1080.0" stylesheets="@../css/style.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.druid.controllers.HomeController">
    <children>
       <BorderPane layoutX="7.0" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <left>
@@ -97,7 +97,7 @@
             </VBox>
          </left>
          <center>
-            <Pane fx:id="workingPane" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER" />
+            <Pane fx:id="workingPane" prefHeight="600.0" prefWidth="900.0" BorderPane.alignment="CENTER" />
          </center>
       </BorderPane>
    </children>

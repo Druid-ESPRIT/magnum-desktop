@@ -5,28 +5,40 @@ import com.druid.enums.SubscriptionStatus;
 import java.sql.Timestamp;
 
 public class Subscription {
-    SubscriptionStatus status;
+
     private int id;
     private int order_id;
+    private int user_id;
     private Timestamp start_date;
     private Timestamp expire_date;
+    SubscriptionStatus status;
 
     public Subscription() {
     }
 
-    public Subscription(int id, int order_id, Timestamp start_date, Timestamp expire_date, SubscriptionStatus status) {
+    public Subscription(int id, int order_id, int user_id, Timestamp start_date, Timestamp expire_date, SubscriptionStatus status) {
         this.id = id;
         this.order_id = order_id;
+        this.user_id = user_id;
         this.start_date = start_date;
         this.expire_date = expire_date;
         this.status = status;
     }
 
-    public Subscription(int order_id, Timestamp start_date, Timestamp expire_date, SubscriptionStatus status) {
+    public Subscription(int order_id, int user_id, Timestamp start_date, Timestamp expire_date, SubscriptionStatus status) {
         this.order_id = order_id;
+        this.user_id = user_id;
         this.start_date = start_date;
         this.expire_date = expire_date;
         this.status = status;
+    }
+
+    public int getUser_id() {
+        return user_id;
+    }
+
+    public void setUser_id(int user_id) {
+        this.user_id = user_id;
     }
 
     public Timestamp getStart_date() {
@@ -82,6 +94,7 @@ public class Subscription {
         return "Subscription{" +
                 "id=" + id +
                 ", order_id=" + order_id +
+                ", user_id=" + user_id +
                 ", start_date=" + start_date +
                 ", expire_date=" + expire_date +
                 ", status=" + status +

@@ -1,19 +1,25 @@
 package com.druid.services;
 
 
+import com.druid.enums.OrderStatus;
 import com.druid.enums.SubscriptionStatus;
 import com.druid.interfaces.ISubscription;
+import com.druid.models.Offer;
 import com.druid.models.Subscription;
+import com.druid.models.User;
+import com.druid.utils.ConnectedUser;
 import com.druid.utils.DBConnection;
 
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 public class SubscriptionService implements ISubscription {
 
     Connection con = DBConnection.getInstance().getConnection();
+    private User connectedUser = ConnectedUser.getInstance().getUser();
 
 
     public Optional<Subscription> findSubscription(int ID) {
@@ -87,7 +93,7 @@ public class SubscriptionService implements ISubscription {
     @Override
     public void updateSubscription(Subscription sub) {
 
-        String query = "UPDATE `subscription`set `order_id` = '" + sub.getorder_id() + "',`start_date`='" + sub.getStart_date() + "',`expire_date`='" + sub.getExpire_date() + "', `status`='" + sub.getStatus().toString() + "' where id ='" + sub.getId() + "'";
+        String query = "UPDATE `subscription`set `order_id` = '" + sub.getorder_id() + "',`user_id` = '" + sub.getUser_id() + "',`start_date`='" + sub.getStart_date() + "',`expire_date`='" + sub.getExpire_date() + "', `status`='" + sub.getStatus().toString() + "' where id ='" + sub.getId() + "'";
         try {
             Statement stmt = con.createStatement();
             stmt.executeUpdate(query);
@@ -173,5 +179,37 @@ public class SubscriptionService implements ISubscription {
             ex.printStackTrace();
         }
     }
+    public List<Subscription> getSubsByUser(int id) {
+        List<Subscription> Subscriptions = new ArrayList<>();
+        String query = "SELECT * from `subscription` where user_id ='" + id + "'";
+        try {
+            Statement stmt = con.createStatement();
+            ResultSet result = stmt.executeQuery(query);
+            while (result.next()) {
+                Subscriptions.add(
+                        new Subscription(
+                                result.getInt("id"),
+                                result.getInt("order_id"),
+                                result.getInt("user_id"),
+                                result.getTimestamp("start_date"),
+                                result.getTimestamp("expire_date"),
+                                SubscriptionStatus.fromString(result.getString("status"))));
+            }
+            System.out.println(Subscriptions);
+            return Subscriptions;
 
-}
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+    return null;
+    }
+
+    public List<Subscription> searchSubs(String search) {
+        List<Subscription> result = getSubsByUser(connectedUser.getID()).stream()
+                        .filter(su -> su.getStatus().toString().toLowerCase().contains(search))
+                        .collect(Collectors.toList());
+
+        System.out.println(result);
+        return result;
+    }
+    }

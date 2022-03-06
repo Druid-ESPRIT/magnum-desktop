@@ -120,12 +120,7 @@ public class PlaceOrderController implements Initializable {
               OrderStatus.PENDING);
       int getid = ors.addOrder(or);
       Subscription sub =
-          new Subscription(
-              getid,
-              d1,
-              Timestamp.valueOf(
-                  d1.toLocalDateTime().plusDays(Integer.parseInt(lbPlan.getText()) * 30)),
-              SubscriptionStatus.ON_HOLD);
+          new Subscription(getid,connectedUser.getID(),d1,Timestamp.valueOf(d1.toLocalDateTime().plusDays(Integer.parseInt(lbPlan.getText()) * 30)),SubscriptionStatus.ON_HOLD);
       subs.addSubscription(sub);
       System.out.println(getid);
       getOrderId.setText(String.valueOf(getid));
