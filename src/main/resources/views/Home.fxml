@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
+<?import java.lang.String?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+
+<AnchorPane id="AnchorPane" prefHeight="500.0" prefWidth="900.0" stylesheets="@../css/style.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.druid.controllers.HomeController">
+   <children>
+      <BorderPane layoutX="7.0" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <left>
+            <VBox alignment="CENTER" prefHeight="500.0" prefWidth="150.0" styleClass="right-bar" stylesheets="@../css/style.css" BorderPane.alignment="CENTER">
+               <children>
+                  <Button fx:id="discoverButton" mnemonicParsing="false" onAction="#discoverPressed" prefHeight="35.0" prefWidth="120.0" stylesheets="@../css/style.css" text="Discover">
+                     <VBox.margin>
+                        <Insets bottom="20.0" />
+                     </VBox.margin>
+                     <styleClass>
+                        <String fx:value="icon-button" />
+                        <String fx:value="shadow" />
+                     </styleClass>
+                     <graphic>
+                        <FontAwesomeIconView glyphName="HEADPHONES" />
+                     </graphic>
+                  </Button>
+                  <Button mnemonicParsing="false" onAction="#playlistPressed" prefHeight="35.0" prefWidth="120.0" stylesheets="@../css/style.css" text="Playlists">
+                     <VBox.margin>
+                        <Insets bottom="20.0" />
+                     </VBox.margin>
+                     <styleClass>
+                        <String fx:value="icon-button" />
+                        <String fx:value="shadow" />
+                     </styleClass>
+                     <graphic>
+                        <FontAwesomeIconView glyphName="LIST" />
+                     </graphic>
+                  </Button>
+                  <Button mnemonicParsing="false" onAction="#acccountPressed" prefHeight="35.0" prefWidth="120.0" stylesheets="@../css/style.css" text="My account">
+                     <VBox.margin>
+                        <Insets bottom="20.0" />
+                     </VBox.margin>
+                     <styleClass>
+                        <String fx:value="icon-button" />
+                        <String fx:value="shadow" />
+                     </styleClass>
+                     <graphic>
+                        <FontAwesomeIconView glyphName="USER" />
+                     </graphic>
+                  </Button>
+                  <Button mnemonicParsing="false" onAction="#articlePressed" prefHeight="35.0" prefWidth="120.0" stylesheets="@../css/style.css" text="Articles">
+                     <VBox.margin>
+                        <Insets bottom="20.0" />
+                     </VBox.margin>
+                     <styleClass>
+                        <String fx:value="icon-button" />
+                        <String fx:value="shadow" />
+                     </styleClass>
+                     <graphic>
+                        <FontAwesomeIconView glyphName="NEWSPAPER_ALT" />
+                     </graphic>
+                  </Button>
+                  <Button mnemonicParsing="false" onAction="#offerManagementPressed" prefHeight="35.0" prefWidth="120.0" stylesheets="@../css/style.css" text="Offer Managment">
+                     <VBox.margin>
+                        <Insets bottom="20.0" />
+                     </VBox.margin>
+                     <styleClass>
+                        <String fx:value="icon-button" />
+                        <String fx:value="shadow" />
+                     </styleClass>
+                  </Button>
+                  <Button mnemonicParsing="false" prefWidth="100.0" stylesheets="@../css/style.css" text="Button">
+                     <VBox.margin>
+                        <Insets bottom="20.0" />
+                     </VBox.margin>
+                     <styleClass>
+                        <String fx:value="icon-button" />
+                        <String fx:value="shadow" />
+                     </styleClass>
+                  </Button>
+                  <Button mnemonicParsing="false" onAction="#logoutPressed" prefWidth="100.0" stylesheets="@../css/style.css" text="Logout">
+                     <VBox.margin>
+                        <Insets />
+                     </VBox.margin>
+                     <styleClass>
+                        <String fx:value="icon-button" />
+                        <String fx:value="shadow" />
+                     </styleClass>
+                     <graphic>
+                        <FontAwesomeIconView glyphName="SIGN_OUT" />
+                     </graphic>
+                  </Button>
+               </children>
+            </VBox>
+         </left>
+         <center>
+            <Pane fx:id="workingPane" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER" />
+         </center>
+      </BorderPane>
+   </children>
+</AnchorPane>

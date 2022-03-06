@@ -45,9 +45,42 @@
     -fx-background-radius: 100;
 }
 .icon-button:hover{
-    -fx-background-color:grey;
+    -fx-background-color:#C9BFA6;
     -fx-background-radius: 100;
 }
+.slider{
+    -fx-pref-width: 400px;
+}
+.slider .track {
+    -fx-pref-width: 5px;
+    -fx-background-color: linear-gradient(to right,darkcyan,blueviolet);
+    -fx-background-radius: 0;
+}
 
+.slider .thumb {
+    -fx-pref-height: 20px;
+    -fx-pref-width: 10px;
+    -fx-background-radius: 5;
+    -fx-background-color: linear-gradient(to top,darkcyan,blueviolet);
+}
 
+.outline.label .text {
+    -fx-fill: lightseagreen;
+    -fx-stroke: green;
+    -fx-stroke-width: 2px;
+}
+.stroke.label .text {
+    -fx-fill: lightseagreen;
+    -fx-stroke: firebrick;
+    -fx-stroke-width: 2px;
+    -fx-strikethrough: true;
+}
+
+.display-cards{
+    -fx-background-color: #D3D3D3;
+    -fx-background-radius: 20;
+}
+.display-cards:hover{
+    -fx-background-color: #C9BFA6;
+}
 

@@ -122,7 +122,7 @@ public class LoginController implements Initializable {
 
               SceneSwitcher sceneController = new SceneSwitcher();
               try {
-                sceneController.showMain(event);
+                sceneController.showHome(event);
               } catch (IOException e) {
                 e.printStackTrace();
               }
