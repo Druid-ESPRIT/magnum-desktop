@@ -54,11 +54,13 @@ public class SceneSwitcher {
         stage.show();
     }
 
-    public void showMain(ActionEvent event) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("/views/Main.fxml"));
+    public void showFXML(ActionEvent event) throws IOException {
+        Parent root = FXMLLoader.load(getClass().getResource("/views/FXML.fxml"));
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
     }
+
+
 }

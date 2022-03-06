@@ -1,0 +1,16 @@
+/*
+ * Empty Stylesheet file.
+ */
+
+.mainFxmlClass {
+ -fx-background-color: slateblue; 
+ -fx-text-fill: white;
+}
+
+.btn{
+    -fx-background-color:  rgb(2,0,36);
+    -fx-background-radius: 30;
+    -fx-background-insets: 0;
+    -fx-text-fill: white;   
+    
+}

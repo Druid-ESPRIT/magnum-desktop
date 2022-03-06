@@ -81,7 +81,7 @@ public class LoginController implements Initializable {
                         Debugger.log("User (with ID=" + connectedUser.getID() + ") successfully logged in.");
                         SceneSwitcher sceneController = new SceneSwitcher();
                         try {
-                            sceneController.showMain(event);
+                            sceneController.showFXML(event);
                         } catch (IOException e) {
                             e.printStackTrace();
                         }
