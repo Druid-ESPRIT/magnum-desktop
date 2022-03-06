@@ -16,7 +16,7 @@
          </image></ImageView>
       <Text fx:id="username" layoutX="179.0" layoutY="68.0" strokeType="OUTSIDE" strokeWidth="0.0" text="\@username" wrappingWidth="199.41600036621094">
          <font>
-            <Font size="16.0" />
+            <Font name="System Italic" size="16.0" />
          </font>
       </Text>
       <Text layoutX="178.0" layoutY="33.0" strokeType="OUTSIDE" strokeWidth="0.0" text="My Profile">
@@ -28,7 +28,7 @@
          <font>
             <Font size="16.0" />
          </font></Text>
-      <Text fx:id="name" layoutX="180.0" layoutY="131.0" strokeType="OUTSIDE" strokeWidth="0.0" text="First &amp; last name" wrappingWidth="255.06400299072266">
+      <Text fx:id="name" layoutX="180.0" layoutY="131.0" strokeType="OUTSIDE" strokeWidth="0.0" text="First &amp; last name" visible="false" wrappingWidth="255.06400299072266">
          <font>
             <Font size="16.0" />
          </font></Text>

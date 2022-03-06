@@ -34,16 +34,18 @@ public class ProfileController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        username.setText(connectedUser.getUser().getUsername());
+        username.setText("@" + connectedUser.getUser().getUsername());
         email.setText(connectedUser.getUser().getEmail());
 
         if (connectedUser.isPodcaster()) {
             Podcaster podcaster = (Podcaster) connectedUser.getUser();
+            name.setVisible(true);
             name.setText(podcaster.getFirstName() + " " + podcaster.getLastName());
         }
 
         if (connectedUser.isAdministrator()) {
             Administrator admin = (Administrator) connectedUser.getUser();
+            name.setVisible(true);
             name.setText(admin.getFirstName() + " " + admin.getLastName());
         }
 

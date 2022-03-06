@@ -31,10 +31,10 @@
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <PasswordField fx:id="confirmPassword" styleClass="form-field" GridPane.columnSpan="2" GridPane.rowIndex="6" />
+            <PasswordField fx:id="passwordConfirm" styleClass="form-field" GridPane.columnSpan="2" GridPane.rowIndex="6" />
             <PasswordField fx:id="password" prefHeight="28.0" prefWidth="209.0" styleClass="form-field" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="3" />
             <Text fx:id="passwordAlert" fill="#bf616a" opacity="0.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="alert" text="This is reserved for errors." textAlignment="CENTER" wrappingWidth="264.5749969482422" GridPane.columnSpan="2147483647" GridPane.halignment="CENTER" GridPane.rowIndex="4" />
-            <Text fx:id="confirmPasswordAlert" fill="#bf616a" opacity="0.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="alert" text="This is reserved for errors." textAlignment="CENTER" wrappingWidth="262.5749969482422" GridPane.columnSpan="2147483647" GridPane.halignment="CENTER" GridPane.rowIndex="7" />
+            <Text fx:id="passwordConfirmAlert" fill="#bf616a" opacity="0.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="alert" text="This is reserved for errors." textAlignment="CENTER" wrappingWidth="262.5749969482422" GridPane.columnSpan="2147483647" GridPane.halignment="CENTER" GridPane.rowIndex="7" />
             <Label text="Password" GridPane.columnSpan="2147483647" GridPane.rowIndex="2">
                <font>
                   <Font size="18.0" />
@@ -51,7 +51,7 @@
                   <Insets top="20.0" />
                </GridPane.margin>
             </Label>
-            <Button mnemonicParsing="false" prefHeight="30.0" prefWidth="76.0" styleClass="form-button" text="Save" GridPane.columnSpan="2147483647" GridPane.halignment="CENTER" GridPane.rowIndex="8" GridPane.valignment="CENTER" />
+            <Button fx:id="save" mnemonicParsing="false" prefHeight="30.0" prefWidth="76.0" styleClass="form-button" text="Save" GridPane.columnSpan="2147483647" GridPane.halignment="CENTER" GridPane.rowIndex="8" GridPane.valignment="CENTER" />
             <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Security" GridPane.columnSpan="2147483647" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
                <font>
                   <Font size="24.0" />
