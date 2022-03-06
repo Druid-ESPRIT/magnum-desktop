@@ -24,11 +24,7 @@ public class ItemController {
     @FXML
     private AnchorPane anchorPane;
 
-<<<<<<< Updated upstream
-=======
 
-
->>>>>>> Stashed changes
     private Offer offer;
     private MyListener myListener;
 

@@ -100,7 +100,6 @@ public class LoginController implements Initializable {
           }
         });
 
-<<<<<<< Updated upstream
     confirm.setOnAction(
         new EventHandler<ActionEvent>() {
           @Override
@@ -123,39 +122,11 @@ public class LoginController implements Initializable {
 
               SceneSwitcher sceneController = new SceneSwitcher();
               try {
-                sceneController.showMain(event);
+                sceneController.showOrder(event);
               } catch (IOException e) {
                 e.printStackTrace();
               }
-=======
-        confirm.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent event) {
-                connectedUser.setUsername(username.getText());
-                connectedUser.setPassword(password.getText());
-                try {
-                    Optional<User> match = user_svc.authenticate(connectedUser);
-                    if (match.isPresent()) {
-                        connectedUser.setStatus(match.get().getStatus());
-                        connectedUser.setEmail(match.get().getEmail());
-                        connectedUser.setID(match.get().getID());
-                        connectedUser.setAvatar(match.get().getAvatar());
-                        Debugger.log("User (with ID=" + connectedUser.getID() + ") successfully logged in.");
-                        SceneSwitcher sceneController = new SceneSwitcher();
-                        try {
-                            sceneController.showOrder(event);
-                        } catch (IOException e) {
-                            e.printStackTrace();
-                        }
-                    }
-                } catch (BannedUserException err) {
-                    errorAlert.setOpacity(100);
-                    errorAlert.setText(err.getMessage());
-                } catch (InvalidCredentialsException err) {
-                    errorAlert.setOpacity(100);
-                    errorAlert.setText(err.getMessage());
-                }
->>>>>>> Stashed changes
+
             }
           }
         });
