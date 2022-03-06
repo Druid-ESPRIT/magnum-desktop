@@ -99,16 +99,14 @@ public class AdministratorService implements IUser<Administrator> {
 
     public Optional<Administrator> fetchOne(Administrator administrator) {
         String query =
-                "SELECT u.*, a.firstName, a.lastName"
-                        + "FROM `Users` as u "
-                        + "INNER JOIN `Administrators` AS a "
-                        + "ON `a.ID` = `u.ID` "
-                        + "WHERE `u.ID` = ? OR `u.username` = ? OR `u.email` = ?";
+                "SELECT U.*, A.firstName, A.lastName "
+                        + "FROM Users AS U "
+                        + "INNER JOIN Administrators AS A "
+                        + "ON A.ID = U.ID "
+                        + "WHERE A.ID = ?";
         try {
             PreparedStatement stmt = IUser.con.prepareStatement(query);
             stmt.setInt(1, administrator.getID());
-            stmt.setString(2, administrator.getUsername());
-            stmt.setString(3, administrator.getEmail());
             ResultSet result = stmt.executeQuery();
 
             if (result.next()) {

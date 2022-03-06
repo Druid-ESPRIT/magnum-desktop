@@ -1,20 +1,35 @@
 package com.druid.utils;
 
+import com.druid.models.Administrator;
+import com.druid.models.Podcaster;
 import com.druid.models.User;
 
 /**
  * This is a singleton class that holds the user session.
  * <br>
  * <br>
- * <h2>Usage</h2>
+ * <h2>Instantiation</h2>
  * <pre>{@code
- * // Instantiation
- * private User connectedUser = ConnectedUser.getInstance().getUser();
- *
- * // Retrieving information
- * connectedUser.getID(); // 1
- * connectedUser.getUsername(); // "grtcdr"
- * </pre>
+ * // Get a live instance of a user/podcaster/administrator.
+ * private ConnectedUser connectedUser = ConnectedUser.getInstance(User.class);
+ * }</pre>
+ * <br>
+ * <h2>Checking the type of the connected user</h2>
+ * <pre>{@code
+ * if (connectedUser.isAdministrator() {
+ *     // User is an administrator.
+ *     // ...
+ * } else if (connectedUser.isPodcaster() {
+ *     // User is a podcaster.
+ *     // ...
+ * }
+ * }</pre>
+ * <br>
+ * <h2>Retrieving user information</h2>
+ * <pre>{@code
+ * connectedUser.getUser().getID(); // 1
+ * connectedUser.getUser().getUsername(); // "grtcdr"
+ * }</pre>
  */
 public class ConnectedUser<T extends User> {
     private static ConnectedUser instance = null;
@@ -43,5 +58,17 @@ public class ConnectedUser<T extends User> {
 
     public void setUser(T user) {
         this.user = user;
+    }
+
+    public boolean isAdministrator() {
+        return user.getClass().equals(Administrator.class);
+    }
+
+    public boolean isPodcaster() {
+        return user.getClass().equals(Podcaster.class);
+    }
+
+    public boolean isUser() {
+        return user.getClass().equals(User.class);
     }
 }

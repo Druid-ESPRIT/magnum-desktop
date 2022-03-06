@@ -101,12 +101,15 @@ public class PodcasterService implements IUser<Podcaster> {
     }
 
     public Optional<Podcaster> fetchOne(Podcaster podcaster) {
-        String query = "SELECT * FROM `Users` WHERE `ID` = ? OR `username` = ? OR `email` = ?";
+        String query =
+                "SELECT U.*, P.firstName, P.lastName, P.biography "
+                        + "FROM Users AS U "
+                        + "INNER JOIN Podcasters AS P "
+                        + "ON P.ID = U.ID "
+                        + "WHERE P.ID = ?";
         try {
             PreparedStatement stmt = con.prepareStatement(query);
             stmt.setInt(1, podcaster.getID());
-            stmt.setString(2, podcaster.getUsername());
-            stmt.setString(3, podcaster.getEmail());
             ResultSet result = stmt.executeQuery();
 
             if (result.next()) {

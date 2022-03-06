@@ -2,9 +2,11 @@ package com.druid.controllers;
 
 import com.druid.errors.login.BannedUserException;
 import com.druid.errors.login.InvalidCredentialsException;
-import com.druid.interfaces.IUser;
 import com.druid.models.Administrator;
+import com.druid.models.Podcaster;
 import com.druid.models.User;
+import com.druid.services.AdministratorService;
+import com.druid.services.PodcasterService;
 import com.druid.services.UserService;
 import com.druid.utils.Clearable;
 import com.druid.utils.ConnectedUser;
@@ -28,6 +30,7 @@ import java.util.ResourceBundle;
 public class LoginController implements Initializable {
     private Stage stage;
     private UserService user_svc = new UserService();
+    private ConnectedUser connectedUser = ConnectedUser.getInstance(User.class);
 
     @FXML
     private Hyperlink forgotPassword;
@@ -46,20 +49,14 @@ public class LoginController implements Initializable {
         return stage;
     }
 
-    private boolean authUser() {
+    private Optional<User> authUser() {
         try {
+            UserService user_svc = new UserService();
             User user = new User();
             user.setUsername(username.getText());
             user.setPassword(password.getText());
-            Optional<User> u_match = (Optional<User>) IUser.authenticate(user);
 
-            if (u_match.isPresent()) {
-                ConnectedUser connectedUser = ConnectedUser.getInstance(User.class);
-                connectedUser.setUser(u_match.get());
-                Debugger.log(connectedUser.getUser());
-                return true;
-            }
-
+            return user_svc.authenticate(user);
         } catch (InvalidCredentialsException err) {
             errorAlert.setOpacity(100);
             errorAlert.setText(err.getMessage());
@@ -68,32 +65,25 @@ public class LoginController implements Initializable {
             errorAlert.setText(err.getMessage());
         }
 
-        return false;
+        return Optional.empty();
     }
 
-    private boolean authAdmin() {
-        try {
-            Administrator admin = new Administrator();
-            admin.setUsername(username.getText());
-            admin.setPassword(password.getText());
-            Optional<Administrator> a_match = (Optional<Administrator>) IUser.authenticate(admin);
+    private Optional<Administrator> authAdmin(User user) {
+        AdministratorService admin_svc = new AdministratorService();
+        Administrator admin = new Administrator();
+        admin.setID(user.getID());
+        admin.setUsername(user.getUsername());
+        admin.setEmail(user.getEmail());
+        return admin_svc.fetchOne(admin);
+    }
 
-            if (a_match.isPresent()) {
-                ConnectedUser connectedUser = ConnectedUser.getInstance(Administrator.class);
-                connectedUser.setUser(a_match.get());
-                Debugger.log(connectedUser.getUser());
-                return true;
-            }
-
-        } catch (InvalidCredentialsException err) {
-            errorAlert.setOpacity(100);
-            errorAlert.setText(err.getMessage());
-        } catch (BannedUserException err) {
-            errorAlert.setOpacity(100);
-            errorAlert.setText(err.getMessage());
-        }
-
-        return false;
+    private Optional<Podcaster> authPodcaster(User user) {
+        PodcasterService podcaster_svc = new PodcasterService();
+        Podcaster podcaster = new Podcaster();
+        podcaster.setID(user.getID());
+        podcaster.setUsername(user.getUsername());
+        podcaster.setEmail(user.getEmail());
+        return podcaster_svc.fetchOne(podcaster);
     }
 
     public void setStage(Stage stage) {
@@ -120,25 +110,30 @@ public class LoginController implements Initializable {
         confirm.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-                if (authAdmin()) {
+                Optional<User> user = authUser();
+
+                if (user.isPresent()) {
+                    Optional<Administrator> admin = authAdmin(user.get());
+                    Optional<Podcaster> podcaster = authPodcaster(user.get());
+
+                    if (admin.isPresent()) {
+                        ConnectedUser.getInstance(Administrator.class).setUser(admin.get());
+                    } else if (podcaster.isPresent()) {
+                        ConnectedUser.getInstance(Podcaster.class).setUser(podcaster.get());
+                    } else {
+                        ConnectedUser.getInstance(User.class).setUser(user.get());
+                    }
+
+                    Debugger.log(ConnectedUser.getInstance(Podcaster.class).getUser());
+
                     SceneSwitcher sceneController = new SceneSwitcher();
                     try {
                         sceneController.showMain(event);
-                        return;
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
                 }
 
-                if (authUser()) {
-                    SceneSwitcher sceneController = new SceneSwitcher();
-                    try {
-                        sceneController.showMain(event);
-                        return;
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
-                }
             }
         });
 
