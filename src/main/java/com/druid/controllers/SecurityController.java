@@ -5,7 +5,6 @@ import com.druid.errors.register.PasswordCheckException;
 import com.druid.models.User;
 import com.druid.services.UserService;
 import com.druid.utils.ConnectedUser;
-
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -47,22 +46,23 @@ public class SecurityController implements Initializable {
   }
 
   private void disableAccountListener() {
-    disableAccount.setOnAction(new EventHandler<ActionEvent>() {
-      @Override
-      public void handle(ActionEvent event) {
-        User user = connectedUser.getUser();
-        user.setStatus(UserStatus.DISABLED);
-        user_svc.update(user);
+    disableAccount.setOnAction(
+        new EventHandler<ActionEvent>() {
+          @Override
+          public void handle(ActionEvent event) {
+            User user = connectedUser.getUser();
+            user.setStatus(UserStatus.DISABLED);
+            user_svc.update(user);
 
-        connectedUser.disconnect();
-        SceneSwitcher sceneController = new SceneSwitcher();
-        try {
-          sceneController.showLogin(event);
-        } catch (IOException e) {
-          e.printStackTrace();
-        }
-      }
-    });
+            connectedUser.disconnect();
+            SceneSwitcher sceneController = new SceneSwitcher();
+            try {
+              sceneController.showLogin(event);
+            } catch (IOException e) {
+              e.printStackTrace();
+            }
+          }
+        });
   }
 
   @Override
