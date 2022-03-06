@@ -61,6 +61,10 @@ public class ConnectedUser<T extends User> {
     return instance;
   }
 
+  public void disconnect() {
+    instance = null;
+  }
+
   public T getUser() {
     return this.user;
   }

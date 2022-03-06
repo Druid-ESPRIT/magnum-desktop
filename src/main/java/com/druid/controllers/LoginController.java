@@ -10,7 +10,7 @@ import com.druid.services.PodcasterService;
 import com.druid.services.UserService;
 import com.druid.utils.Clearable;
 import com.druid.utils.ConnectedUser;
-import com.druid.utils.Debugger;
+import com.druid.utils.QuickHistory;
 import java.io.IOException;
 import java.net.URL;
 import java.util.Optional;
@@ -118,7 +118,7 @@ public class LoginController implements Initializable {
                 ConnectedUser.getInstance().setUser(user.get());
               }
 
-              Debugger.log(ConnectedUser.getInstance().getUser());
+              QuickHistory.logAccountLogin(user.get());
 
               SceneSwitcher sceneController = new SceneSwitcher();
               try {
