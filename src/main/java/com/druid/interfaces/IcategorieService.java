@@ -6,19 +6,14 @@
 package com.druid.interfaces;
 
 import com.druid.models.Categorie;
-
 import java.util.List;
 
-/**
- *
- * @author tahaj
- */
+/** @author tahaj */
 public interface IcategorieService {
-       // ADD
-    public void ajouterCategorie(Categorie c);
-    //select
-    public List<Categorie> afficherCategorie();
-    //SUPP
-    public void supprimerCategorie(int id);
-    
+  // ADD
+  public void ajouterCategorie(Categorie c);
+  // select
+  public List<Categorie> afficherCategorie();
+  // SUPP
+  public void supprimerCategorie(int id);
 }

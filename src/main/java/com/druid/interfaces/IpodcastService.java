@@ -6,21 +6,16 @@
 package com.druid.interfaces;
 
 import com.druid.models.Podcast;
-
 import java.util.List;
 
-/**
- *
- * @author tahaj
- */
+/** @author tahaj */
 public interface IpodcastService {
-    // ADD
-    public void ajouterPodcast(Podcast p);
-    //select
-    public List<Podcast> afficherPodcast();
-    //SUPP
-    public void supprimerPodcast(int id);
-    //MODIF
-    public void modifierPodcast(Podcast p);
-    
+  // ADD
+  public void ajouterPodcast(Podcast p);
+  // select
+  public List<Podcast> afficherPodcast();
+  // SUPP
+  public void supprimerPodcast(int id);
+  // MODIF
+  public void modifierPodcast(Podcast p);
 }

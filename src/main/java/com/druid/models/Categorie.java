@@ -5,64 +5,56 @@
  */
 package com.druid.models;
 
-/**
- *
- * @author tahaj
- */
+/** @author tahaj */
 public class Categorie {
-    
-    private int idcateg;
-    private String namecateg;
-    private String descriptioncateg; 
-    
-    //constructors
 
-    public Categorie(String namecateg, String descriptioncateg) {
-        this.namecateg = namecateg;
-        this.descriptioncateg = descriptioncateg;
-    }
+  private int idcateg;
+  private String namecateg;
+  private String descriptioncateg;
 
-    public Categorie() {
+  // constructors
 
-    }    
-    //getters&setters
+  public Categorie(String namecateg, String descriptioncateg) {
+    this.namecateg = namecateg;
+    this.descriptioncateg = descriptioncateg;
+  }
 
-    public Categorie(int idcateg,String namecateg, String descriptioncateg) {
-        this.idcateg = idcateg;
-        this.namecateg = namecateg;
-        this.descriptioncateg = descriptioncateg;
-    }
+  public Categorie() {}
 
-    public int getIdcateg() {
-        return idcateg;
-    }
+  // getters&setters
 
-    public void setIdcateg(int idcateg) {
-        this.idcateg = idcateg;
-    }
+  public Categorie(int idcateg, String namecateg, String descriptioncateg) {
+    this.idcateg = idcateg;
+    this.namecateg = namecateg;
+    this.descriptioncateg = descriptioncateg;
+  }
 
-    public String getNamecateg() {
-        return namecateg;
-    }
+  public int getIdcateg() {
+    return idcateg;
+  }
 
-    public void setNamecateg(String namecateg) {
-        this.namecateg = namecateg;
-    }
+  public void setIdcateg(int idcateg) {
+    this.idcateg = idcateg;
+  }
 
-    public String getDescriptioncateg() {
-        return descriptioncateg;
-    }
+  public String getNamecateg() {
+    return namecateg;
+  }
 
-    public void setDescriptioncateg(String descriptioncateg) {
-        this.descriptioncateg = descriptioncateg;
-    }
+  public void setNamecateg(String namecateg) {
+    this.namecateg = namecateg;
+  }
 
-    @Override
-    public String toString() {
-        return  namecateg + " (" + descriptioncateg + ')';
-    }
-    
-    
-    
-    
+  public String getDescriptioncateg() {
+    return descriptioncateg;
+  }
+
+  public void setDescriptioncateg(String descriptioncateg) {
+    this.descriptioncateg = descriptioncateg;
+  }
+
+  @Override
+  public String toString() {
+    return namecateg + " (" + descriptioncateg + ')';
+  }
 }

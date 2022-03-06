@@ -6,21 +6,15 @@
 package com.druid.interfaces;
 
 import com.druid.models.Playlist;
-
 import java.util.List;
 
-/**
- *
- * @author tahaj
- */
+/** @author tahaj */
 public interface IplaylistService {
-    
-    //ADD
-    public void ajouterPlaylist(Playlist pl);
-    //Select
-    public List<Playlist> afficherPlaylist();
-    //Delete
-    public void supprimerPlaylist(int id);
-    
-    
+
+  // ADD
+  public void ajouterPlaylist(Playlist pl);
+  // Select
+  public List<Playlist> afficherPlaylist();
+  // Delete
+  public void supprimerPlaylist(int id);
 }
