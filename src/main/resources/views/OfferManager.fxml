@@ -17,7 +17,7 @@
 
 <AnchorPane fx:id="offerPane" prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.druid.controllers.OfferManagerController">
    <children>
-      <ScrollPane layoutX="14.0" layoutY="81.0" prefHeight="387.0" prefWidth="445.0" styleClass="transparent" stylesheets="@../css/style.css">
+      <ScrollPane layoutX="14.0" layoutY="81.0" prefHeight="504.0" prefWidth="559.0" styleClass="transparent" stylesheets="@../css/style.css">
          <content>
             <GridPane fx:id="grid">
                <rowConstraints>
@@ -246,7 +246,7 @@
             <String fx:value="shadow" />
          </styleClass>
       </HBox>
-      <Button fx:id="newoffer" layoutX="649.0" layoutY="54.0" mnemonicParsing="false" onAction="#btnNewOfferClicked" prefHeight="41.0" prefWidth="148.0" stylesheets="@../css/style.css" text="Create a new offer">
+      <Button fx:id="newoffer" layoutX="682.0" layoutY="54.0" mnemonicParsing="false" onAction="#btnNewOfferClicked" prefHeight="41.0" prefWidth="148.0" stylesheets="@../css/style.css" text="Create a new offer">
          <styleClass>
             <String fx:value="add-btn" />
             <String fx:value="shadow" />

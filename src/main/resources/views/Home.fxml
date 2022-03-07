@@ -27,7 +27,7 @@
                         <FontAwesomeIconView glyphName="HEADPHONES" />
                      </graphic>
                   </Button>
-                  <Button mnemonicParsing="false" onAction="#playlistPressed" prefHeight="35.0" prefWidth="120.0" stylesheets="@../css/style.css" text="Playlists">
+                  <Button fx:id="playListButton" mnemonicParsing="false" onAction="#playlistPressed" prefHeight="35.0" prefWidth="120.0" stylesheets="@../css/style.css" text="Playlists">
                      <VBox.margin>
                         <Insets bottom="20.0" />
                      </VBox.margin>
@@ -39,7 +39,7 @@
                         <FontAwesomeIconView glyphName="LIST" />
                      </graphic>
                   </Button>
-                  <Button mnemonicParsing="false" onAction="#acccountPressed" prefHeight="35.0" prefWidth="120.0" stylesheets="@../css/style.css" text="My account">
+                  <Button fx:id="accountButton" mnemonicParsing="false" onAction="#acccountPressed" prefHeight="35.0" prefWidth="120.0" stylesheets="@../css/style.css" text="My account">
                      <VBox.margin>
                         <Insets bottom="20.0" />
                      </VBox.margin>
@@ -51,7 +51,7 @@
                         <FontAwesomeIconView glyphName="USER" />
                      </graphic>
                   </Button>
-                  <Button mnemonicParsing="false" onAction="#articlePressed" prefHeight="35.0" prefWidth="120.0" stylesheets="@../css/style.css" text="Articles">
+                  <Button fx:id="articleButton" mnemonicParsing="false" onAction="#articlePressed" prefHeight="35.0" prefWidth="120.0" stylesheets="@../css/style.css" text="Articles">
                      <VBox.margin>
                         <Insets bottom="20.0" />
                      </VBox.margin>
@@ -63,7 +63,7 @@
                         <FontAwesomeIconView glyphName="NEWSPAPER_ALT" />
                      </graphic>
                   </Button>
-                  <Button mnemonicParsing="false" onAction="#offerManagementPressed" prefHeight="35.0" prefWidth="120.0" stylesheets="@../css/style.css" text="Offer Managment">
+                  <Button fx:id="offermanagerButton" mnemonicParsing="false" onAction="#offerManagementPressed" prefHeight="35.0" prefWidth="120.0" stylesheets="@../css/style.css" text="Offer Managment">
                      <VBox.margin>
                         <Insets bottom="20.0" />
                      </VBox.margin>
@@ -72,7 +72,7 @@
                         <String fx:value="shadow" />
                      </styleClass>
                   </Button>
-                  <Button mnemonicParsing="false" prefWidth="100.0" stylesheets="@../css/style.css" text="Button">
+                  <Button fx:id="podcastersButton" mnemonicParsing="false" onAction="#podcastersPressed" prefWidth="100.0" stylesheets="@../css/style.css" text="Podcasters">
                      <VBox.margin>
                         <Insets bottom="20.0" />
                      </VBox.margin>
@@ -81,7 +81,7 @@
                         <String fx:value="shadow" />
                      </styleClass>
                   </Button>
-                  <Button mnemonicParsing="false" onAction="#logoutPressed" prefWidth="100.0" stylesheets="@../css/style.css" text="Logout">
+                  <Button fx:id="logoutButton" mnemonicParsing="false" onAction="#logoutPressed" prefWidth="100.0" stylesheets="@../css/style.css" text="Logout">
                      <VBox.margin>
                         <Insets />
                      </VBox.margin>
