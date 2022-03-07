@@ -19,7 +19,7 @@ public class OfferService implements IOffer {
   public void addOffer(Offer s) {
 
     String query =
-        "INSERT INTO `Offer`(`user_id`, `price`, `description`, `image`) VALUES ('"
+        "INSERT INTO `offer`(`user_id`, `price`, `description`, `image`) VALUES ('"
             + s.getUser_id()
             + "','"
             + s.getPrice()
@@ -39,7 +39,7 @@ public class OfferService implements IOffer {
 
   public List<Offer> getOffers() {
 
-    String query = "SELECT * FROM Offer";
+    String query = "SELECT * FROM offer";
 
     try {
       Statement stmt = con.createStatement();
@@ -63,7 +63,7 @@ public class OfferService implements IOffer {
 
   public List<Offer> getOffersByUser(int id) {
 
-    String query = "SELECT * FROM Offer where user_id ='" + id + "'";
+    String query = "SELECT * FROM offer where user_id ='" + id + "'";
 
     try {
       Statement stmt = con.createStatement();

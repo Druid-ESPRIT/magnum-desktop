@@ -7,11 +7,11 @@ import java.util.Properties;
 
 public class DBConnection {
   // MYSQL User.
-  static final String USERNAME = "root";
-  static final String PASSWORD = "";
+  static final String USERNAME = "grtcdr";
+  static final String PASSWORD = "ohma8chuth6zeiCh";
 
   // Your Host.
-  static final String HOST = "localhost";
+  static final String HOST = "ubuntu.localdomain";
   static final String DB_NAME = "magnum";
 
   static DBConnection instance = null;

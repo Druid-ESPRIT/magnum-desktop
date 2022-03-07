@@ -35,4 +35,24 @@ public class QuickHistory {
     hist.setDescription("You signed in");
     hist_svc.add(hist, user);
   }
+
+  public static void logAccountDisable(User user) {
+    HistoryService hist_svc = new HistoryService();
+    History hist = new History();
+    hist.setTime(new Timestamp(new Date().getTime()));
+    hist.setUserID(user.getID());
+    hist.setActivity(HistoryActivity.CORE);
+    hist.setDescription("You disabled your account");
+    hist_svc.add(hist, user);
+  }
+
+  public static void securityCredentialsUpdated(User user) {
+    HistoryService hist_svc = new HistoryService();
+    History hist = new History();
+    hist.setTime(new Timestamp(new Date().getTime()));
+    hist.setUserID(user.getID());
+    hist.setActivity(HistoryActivity.SECURITY);
+    hist.setDescription("You updated your security credentials");
+    hist_svc.add(hist, user);
+  }
 }

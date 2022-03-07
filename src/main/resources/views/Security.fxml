@@ -12,7 +12,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="500.0" prefWidth="750.0" stylesheets="@../css/general.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.druid.controllers.SecurityController">
+<AnchorPane fx:id="pane" prefHeight="500.0" prefWidth="750.0" stylesheets="@../css/general.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.druid.controllers.SecurityController">
    <children>
       <GridPane layoutX="284.0" layoutY="107.0" prefHeight="293.0" prefWidth="295.0" AnchorPane.bottomAnchor="100.0" AnchorPane.leftAnchor="200.0" AnchorPane.rightAnchor="200.0" AnchorPane.topAnchor="100.0">
         <columnConstraints>
@@ -54,7 +54,7 @@
             <Button fx:id="save" mnemonicParsing="false" prefHeight="30.0" prefWidth="76.0" styleClass="form-button" text="Save" GridPane.columnSpan="2147483647" GridPane.halignment="CENTER" GridPane.rowIndex="8" GridPane.valignment="CENTER" />
             <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Security" GridPane.columnSpan="2147483647" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
                <font>
-                  <Font size="24.0" />
+                  <Font name="System Bold" size="24.0" />
                </font>
                <GridPane.margin>
                   <Insets bottom="60.0" />
@@ -71,5 +71,6 @@
          </children>
       </GridPane>
       <Hyperlink fx:id="disableAccount" layoutX="611.0" layoutY="463.0" text="Disable my account" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="611.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="463.0" />
+      <Hyperlink fx:id="back" layoutX="702.0" layoutY="10.0" text="Back" />
    </children>
 </AnchorPane>

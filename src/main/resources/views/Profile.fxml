@@ -33,13 +33,15 @@
          <font>
             <Font size="16.0" />
          </font></Text>
-      <Hyperlink fx:id="history" layoutX="773.0" layoutY="12.0" text="History" />
-      <Separator layoutX="767.0" layoutY="14.0" orientation="VERTICAL" prefHeight="18.0" prefWidth="3.0" />
-      <Hyperlink fx:id="orders" layoutX="716.0" layoutY="12.0" text="Orders" />
-      <Separator layoutX="710.0" layoutY="15.0" orientation="VERTICAL" prefHeight="18.0" prefWidth="3.0" />
-      <Hyperlink fx:id="subscriptions" layoutX="631.0" layoutY="12.0" text="Subscriptions" />
-      <ScrollPane fx:id="userPane" layoutX="180.0" layoutY="135.0" prefHeight="437.0" prefWidth="690.0" />
-      <Hyperlink fx:id="security" layoutX="683.0" layoutY="12.0" text="Security" />
-      <Hyperlink fx:id="flag" layoutX="562.0" layoutY="10.0" text="Flag" />
+      <Hyperlink fx:id="history" layoutX="830.0" layoutY="12.0" text="History" />
+      <Separator layoutX="747.0" layoutY="16.0" orientation="VERTICAL" prefHeight="18.0" prefWidth="3.0" />
+      <Hyperlink fx:id="orders" layoutX="582.0" layoutY="11.0" text="Orders" />
+      <Separator layoutX="820.0" layoutY="16.0" orientation="VERTICAL" prefHeight="18.0" prefWidth="3.0" />
+      <Hyperlink fx:id="subscriptions" layoutX="649.0" layoutY="11.0" text="Subscriptions" />
+      <ScrollPane fx:id="userPane" layoutX="180.0" layoutY="160.0" prefHeight="412.0" prefWidth="690.0" />
+      <Hyperlink fx:id="security" layoutX="755.0" layoutY="11.0" text="Security" />
+      <Hyperlink fx:id="flag" layoutX="531.0" layoutY="10.0" text="Flag" />
+      <Separator layoutX="640.0" layoutY="17.0" orientation="VERTICAL" prefHeight="18.0" prefWidth="3.0" />
+      <Separator layoutX="572.0" layoutY="17.0" orientation="VERTICAL" prefHeight="18.0" prefWidth="3.0" />
    </children>
 </AnchorPane>

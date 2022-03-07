@@ -19,10 +19,7 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
-import javafx.scene.control.RadioButton;
-import javafx.scene.control.TextArea;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
 
@@ -40,6 +37,7 @@ public class FlagController implements Initializable {
   @FXML private RadioButton harassment;
   @FXML private RadioButton spam;
   @FXML private RadioButton violence;
+  @FXML private Hyperlink back;
 
   private void alert(Text field, String content) {
     field.setVisible(true);
@@ -160,5 +158,20 @@ public class FlagController implements Initializable {
             }
           }
         });
+
+      back.setOnAction(
+              new EventHandler<ActionEvent>() {
+                  @Override
+                  public void handle(ActionEvent event) {
+                      try {
+                          AnchorPane profilePane =
+                                  FXMLLoader.load(getClass().getResource("/views/Profile.fxml"));
+                          pane.getChildren().clear();
+                          pane.getChildren().add(profilePane);
+                      } catch (IOException e) {
+                          e.printStackTrace();
+                      }
+                  }
+              });
   }
 }
