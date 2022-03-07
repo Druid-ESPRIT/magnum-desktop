@@ -61,17 +61,12 @@ public class Commentaire {
     return submitDate;
   }
 
-
-    @Override
-    public String toString() {
-        return
-                 userID.getUsername() +
-                ": "+submitDate+" :"+message;
-    }
+  @Override
+  public String toString() {
+    return userID.getUsername() + ": " + submitDate + " :" + message;
+  }
 
   public void setSubmitDate(Date submitDate) {
     this.submitDate = submitDate;
   }
-
-
 }

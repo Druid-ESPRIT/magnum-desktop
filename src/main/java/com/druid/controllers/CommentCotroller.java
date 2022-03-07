@@ -83,7 +83,6 @@ public class CommentCotroller implements Initializable {
   static int ids;
   int itemsPerPage = 4;
 
-
   public VBox createPage(int pageIndex) {
     VBox box = new VBox();
     this.title1.setText("");
@@ -133,7 +132,6 @@ public class CommentCotroller implements Initializable {
       this.image1.setImage(new Image(this.articles.get(page).getUrl()));
       id1 = this.articles.get(page).getId();
     }
-
 
     return box;
   }

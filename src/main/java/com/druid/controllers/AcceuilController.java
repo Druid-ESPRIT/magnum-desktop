@@ -7,6 +7,7 @@ package com.druid.controllers;
 
 import com.druid.models.Article;
 import com.druid.services.ArticleService;
+import com.druid.services.CommentaireService;
 import com.druid.services.PodcasterService;
 import java.awt.Desktop;
 import java.io.IOException;
@@ -15,18 +16,6 @@ import java.net.URISyntaxException;
 import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
-
-
-import com.druid.models.User;
-import com.druid.utils.ConnectedUser;
-import com.druid.utils.DBConnection;
-import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
-import javafx.scene.control.Pagination;
-import javafx.scene.image.ImageView;
-import javafx.scene.layout.VBox;
-import javafx.scene.text.Text;
-
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.stream.Collectors;
@@ -44,8 +33,6 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
-import com.druid.models.Commentaire;
-import com.druid.services.CommentaireService;
 
 /**
  * FXML Controller class
@@ -54,69 +41,42 @@ import com.druid.services.CommentaireService;
  */
 public class AcceuilController implements Initializable {
 
-    @FXML
-    private Pagination pagination;
-    @FXML
-    private Text title1;
-    @FXML
-    private Button add;
+  @FXML private Pagination pagination;
+  @FXML private Text title1;
+  @FXML private Button add;
 
-    ArticleService as=new ArticleService();
-    PodcasterService ps=new PodcasterService();
-    CommentaireService cs=new CommentaireService();
-    List<Article> articles=as.afficherArticle();
-    List<Article> articles2=as.afficherArticle();
-     static int id1=0;
-     static int id2=0;
-     static int id3=0;
-     static int id4=0;
-     static int ids;
-     int itemsPerPage=4;
-    @FXML
-    private ImageView image1;
-    @FXML
-    private ImageView image2;
-    @FXML
-    private ImageView image3;
-    @FXML
-    private ImageView image4;
-    @FXML
-    private Text title2;
-    @FXML
-    private Text title3;
-    @FXML
-    private Text title4;
-    @FXML
-    private Button delete1;
-    @FXML
-    private Button delete2;
-    @FXML
-    private Button delete3;
-    @FXML
-    private Button delete4;
-    @FXML
-    private Button Pdf1;
-    @FXML
-    private Button Pdf2;
-    @FXML
-    private Button Pdf3;
-    @FXML
-    private Button pdf4;
-    @FXML
-    private TextField getByAuthor;
-    @FXML
-    private Button get;
-    @FXML
-    private Button update1;
-    @FXML
-    private Button update2;
-    @FXML
-    private Button update3;
-    @FXML
-    private Button update4;
-
-       
-
+  ArticleService as = new ArticleService();
+  PodcasterService ps = new PodcasterService();
+  CommentaireService cs = new CommentaireService();
+  List<Article> articles = as.afficherArticle();
+  List<Article> articles2 = as.afficherArticle();
+  static int id1 = 0;
+  static int id2 = 0;
+  static int id3 = 0;
+  static int id4 = 0;
+  static int ids;
+  int itemsPerPage = 4;
+  @FXML private ImageView image1;
+  @FXML private ImageView image2;
+  @FXML private ImageView image3;
+  @FXML private ImageView image4;
+  @FXML private Text title2;
+  @FXML private Text title3;
+  @FXML private Text title4;
+  @FXML private Button delete1;
+  @FXML private Button delete2;
+  @FXML private Button delete3;
+  @FXML private Button delete4;
+  @FXML private Button Pdf1;
+  @FXML private Button Pdf2;
+  @FXML private Button Pdf3;
+  @FXML private Button pdf4;
+  @FXML private TextField getByAuthor;
+  @FXML private Button get;
+  @FXML private Button update1;
+  @FXML private Button update2;
+  @FXML private Button update3;
+  @FXML private Button update4;
 
   public VBox createPage(int pageIndex) {
     VBox box = new VBox();
@@ -166,7 +126,6 @@ public class AcceuilController implements Initializable {
       this.title1.setText(this.articles.get(page).getTitle());
       this.image1.setImage(new Image(this.articles.get(page).getUrl()));
       id1 = this.articles.get(page).getId();
-
     }
 
     return box;
@@ -273,8 +232,6 @@ public class AcceuilController implements Initializable {
     }
   }
 
-
-
   @FXML
   private void update1(ActionEvent event) throws IOException {
     if (id1 != 0) {
@@ -317,29 +274,34 @@ public class AcceuilController implements Initializable {
     }
   }
 
+  @FXML
+  private void get(ActionEvent event) {
+    this.articles = this.articles2;
 
-
-    @FXML
-    private void get(ActionEvent event) {
-        this.articles=this.articles2;
-
-        if(!"".equals(this.getByAuthor.getText()))
-        {
-            this.articles=this.articles.stream().filter(a -> a.getAuthorID().getFirstName().toUpperCase().
-                    equals(this.getByAuthor.getText().toUpperCase())).sorted((v,u)->cs.getNbComment(u.getId())-cs.getNbComment(v.getId())).collect(Collectors.toList());
-            this.title1.setText("");
-            this.image1.setImage(null);
-            this.title2.setText("");
-            this.image2.setImage(null);
-            this.title3.setText("");
-            this.image3.setImage(null);
-            this.title4.setText("");
-            this.image4.setImage(null);
-            this.createPage(0);
-        }
-
-        this.createPage(0);
+    if (!"".equals(this.getByAuthor.getText())) {
+      this.articles =
+          this.articles.stream()
+              .filter(
+                  a ->
+                      a.getAuthorID()
+                          .getFirstName()
+                          .toUpperCase()
+                          .equals(this.getByAuthor.getText().toUpperCase()))
+              .sorted((v, u) -> cs.getNbComment(u.getId()) - cs.getNbComment(v.getId()))
+              .collect(Collectors.toList());
+      this.title1.setText("");
+      this.image1.setImage(null);
+      this.title2.setText("");
+      this.image2.setImage(null);
+      this.title3.setText("");
+      this.image3.setImage(null);
+      this.title4.setText("");
+      this.image4.setImage(null);
+      this.createPage(0);
     }
+
+    this.createPage(0);
+  }
 
   @FXML
   private void update4(ActionEvent event) throws IOException {
@@ -352,7 +314,6 @@ public class AcceuilController implements Initializable {
       Stage.setTitle("Update Article");
       Stage.setScene(new Scene(root));
       Stage.show();
-
     }
   }
 
