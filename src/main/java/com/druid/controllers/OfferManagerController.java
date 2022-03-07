@@ -2,6 +2,7 @@ package com.druid.controllers;
 
 import com.druid.interfaces.MyListener;
 import com.druid.models.Offer;
+import com.druid.models.Podcaster;
 import com.druid.models.User;
 import com.druid.services.OfferService;
 import com.druid.services.OrderService;
@@ -47,6 +48,7 @@ public class OfferManagerController implements Initializable {
   @FXML private GridPane grid;
   @FXML private AnchorPane offerPane;
   @FXML private Label soldcount;
+
 
   private MyListener myListener;
   private Offer offer;
@@ -135,7 +137,7 @@ public class OfferManagerController implements Initializable {
             }
 
             @Override
-            public void onClickListener2(User user) {}
+            public void onClickListener2(Podcaster podcaster) {}
           };
     }
 

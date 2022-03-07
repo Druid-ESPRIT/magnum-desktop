@@ -32,6 +32,7 @@ public class ProfileController implements Initializable {
   @FXML private Text email;
   @FXML private Hyperlink history;
   @FXML private Hyperlink orders;
+    @FXML private Hyperlink security;
 
   @FXML private Hyperlink subscriptions;
 
@@ -75,7 +76,12 @@ public class ProfileController implements Initializable {
               AnchorPane anchor =
                   FXMLLoader.load(getClass().getResource("/views/SubscriptionManager.fxml"));
               userPane.setContent(anchor);
-              
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+          }
+        });
+
     history.setOnAction(
         new EventHandler<ActionEvent>() {
           @Override
@@ -90,14 +96,20 @@ public class ProfileController implements Initializable {
             }
           }
         });
-              
+
     orders.setOnAction(
         new EventHandler<ActionEvent>() {
           @Override
           public void handle(ActionEvent actionEvent) {
-            try {
-              AnchorPane anchor = FXMLLoader.load(getClass().getResource("/views/OrderView.fxml"));
-              userPane.setContent(anchor);
+              try {
+                  AnchorPane anchor = FXMLLoader.load(getClass().getResource("/views/OrderView.fxml"));
+                  userPane.setContent(anchor);
+              } catch (IOException e) {
+                  e.printStackTrace();
+              }
+          }
+          });
+
 
     flag.setOnAction(
         new EventHandler<ActionEvent>() {

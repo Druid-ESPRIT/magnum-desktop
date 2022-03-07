@@ -26,6 +26,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
@@ -86,8 +87,11 @@ public class PlaceOrderController implements Initializable {
   private OfferService os = new OfferService();
   private Offer o;
   private Coupon c;
-  int price = os.getOfferPrice(96);
-  Offer selected = os.findOffer(96);
+
+
+  int price = os.getOfferPrice(99);
+  Offer selected = os.findOffer(99);
+
 
   private User connectedUser = ConnectedUser.getInstance().getUser();
 
@@ -101,6 +105,16 @@ public class PlaceOrderController implements Initializable {
     tfcoupon.setText("");
     errormsg.setText("");
   }
+  public int myFunction(String text){
+    lbofferid.setText(text);
+    System.out.println(lbofferid.getText());
+    return Integer.parseInt(lbofferid.getText());
+   // price = os.getOfferPrice(Integer.parseInt(lbofferid.getText()));
+   // Offer selected = os.findOffer(Integer.parseInt(lbofferid.getText()));
+  }
+
+
+
 
   @FXML
   void btnConfirmOrder(ActionEvent event) {
@@ -241,7 +255,7 @@ public class PlaceOrderController implements Initializable {
               if (cps.checkValidity(newValue, connectedUser.getID()).isEmpty()) {
                 errormsg.setText("Invalid coupon !");
                 sliderId.setValue(1);
-                lbTotal.setText(String.valueOf(price));
+              lbTotal.setText(String.valueOf(price));
               } else {
                 oldPrice.setVisible(true);
                 errormsg.setText("Reduction by " + cps.getReduction(newValue) + "%");
@@ -273,6 +287,8 @@ public class PlaceOrderController implements Initializable {
 
   @Override
   public void initialize(URL location, ResourceBundle resources) {
+
+
     try {
       FXMLLoader fxmlLoader = new FXMLLoader();
       fxmlLoader.setLocation(getClass().getResource("/views/Item.fxml"));
