@@ -5,7 +5,7 @@
 <?import javafx.scene.control.Separator?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="50.0" prefWidth="523.0" styleClass="right-bar" stylesheets="@../css/style.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.druid.controllers.SingleOrderController">
+<AnchorPane prefHeight="50.0" prefWidth="523.0" styleClass="display-cards" stylesheets="@../css/style.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.druid.controllers.SingleOrderController">
    <children>
       <Label fx:id="orderId" layoutX="14.0" layoutY="17.0" text="Label" />
       <Label fx:id="orderPlan" layoutX="72.0" layoutY="17.0" text="Label" />
