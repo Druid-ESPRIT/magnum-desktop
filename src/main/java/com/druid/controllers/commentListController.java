@@ -23,6 +23,7 @@ import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
 import java.util.stream.Collectors;
+import com.druid.utils.ConnectedUser;
 
 import javafx.scene.control.TextArea;
 import javafx.scene.text.Text;
@@ -32,12 +33,13 @@ import javafx.stage.Stage;
 public class commentListController implements Initializable {
 
     private User connectedUser= ConnectedUser.getInstance().getUser();
+
         CommentaireService cs =new CommentaireService();
         ArticleService as=new ArticleService();
         UserService us=new UserService();
         static Commentaire selectedComment;
-        LoginController lc=new LoginController();
-        User user=lc.getConnectedUser();
+
+
         @FXML
         private Button retour;
 
@@ -85,7 +87,7 @@ public class commentListController implements Initializable {
             String content=message.getText();
             Commentaire com=new Commentaire();
             com.setArticleID(as.getArticle(CommentCotroller.ids));
-            com.setUserID(user);
+            com.setUserID(connectedUser);
             com.setMessage(content);
             cs.addCommentaire(com);
             List<Commentaire> commentaires=cs.afficherCommentaire();
@@ -93,7 +95,7 @@ public class commentListController implements Initializable {
             ObservableList<Commentaire> items2 = FXCollections.observableArrayList(commentaires);
             commentList.setItems(items2);
             List<Commentaire> commentaires2=cs.afficherCommentaire().stream().filter(
-                    w->w.getArticleID().getId()==CommentCotroller.ids  && w.getUserID().getID()==user.getID() ).collect(Collectors.toList());
+                    w->w.getArticleID().getId()==CommentCotroller.ids  && w.getUserID().getID()==connectedUser.getID() ).collect(Collectors.toList());
             ObservableList<Commentaire> items = FXCollections.observableArrayList(commentaires2);
             ownComments.setItems(items);
             message.setText("");
@@ -117,7 +119,7 @@ public class commentListController implements Initializable {
         @Override
         public void initialize(URL location, ResourceBundle resources) {
             ///a commentee
-            user=us.getUser(1);
+            connectedUser.getUsername();
             /////////////
             title.setText(as.getArticle(CommentCotroller.ids).getTitle());
             List<Commentaire> commentaires=cs.afficherCommentaire();
@@ -125,7 +127,7 @@ public class commentListController implements Initializable {
             ObservableList<Commentaire> items2 = FXCollections.observableArrayList(commentaires);
             commentList.setItems(items2);
             List<Commentaire> commentaires2=cs.afficherCommentaire().stream().filter(
-                    c->c.getArticleID().getId()==CommentCotroller.ids && c.getUserID().getID()==user.getID() ).collect(Collectors.toList());
+                    c->c.getArticleID().getId()==CommentCotroller.ids && c.getUserID().getID()==connectedUser.getID() ).collect(Collectors.toList());
             ObservableList<Commentaire> items = FXCollections.observableArrayList(commentaires2);
             ownComments.setItems(items);
             selectedComment=commentList.getSelectionModel().getSelectedItem();
