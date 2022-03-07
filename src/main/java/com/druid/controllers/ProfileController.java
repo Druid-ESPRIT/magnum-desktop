@@ -41,13 +41,13 @@ public class ProfileController implements Initializable {
     if (connectedUser.isPodcaster()) {
       Podcaster podcaster = (Podcaster) connectedUser.getUser();
       name.setVisible(true);
-      name.setText(podcaster.getFirstName() + " " + podcaster.getLastName());
+      name.setText(podcaster.getFirstName() + " " + podcaster.getLastName() + " (Podcaster)");
     }
 
     if (connectedUser.isAdministrator()) {
       Administrator admin = (Administrator) connectedUser.getUser();
       name.setVisible(true);
-      name.setText(admin.getFirstName() + " " + admin.getLastName());
+      name.setText(admin.getFirstName() + " " + admin.getLastName() + " (Administrator)");
     }
 
     security.setOnAction(
