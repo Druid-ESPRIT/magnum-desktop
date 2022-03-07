@@ -5,6 +5,8 @@ import com.druid.errors.register.PasswordCheckException;
 import com.druid.models.User;
 import com.druid.services.UserService;
 import com.druid.utils.ConnectedUser;
+import com.druid.utils.Debugger;
+import com.druid.utils.QuickHistory;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -64,7 +66,9 @@ public class SecurityController implements Initializable {
             public void handle(ActionEvent event) {
                 User user = connectedUser.getUser();
                 user.setStatus(UserStatus.DISABLED);
-                user_svc.update(user);
+                user_svc.updateStatus(user);
+
+                QuickHistory.logAccountDisable(user);
 
                 connectedUser.disconnect();
                 SceneSwitcher sceneController = new SceneSwitcher();
@@ -127,6 +131,8 @@ public class SecurityController implements Initializable {
                         User user = connectedUser.getUser();
                         user.setPassword(password.getText());
                         user_svc.update(user);
+
+                        QuickHistory.securityCredentialsUpdated(user);
 
                         try {
                             AnchorPane profilePane =

@@ -150,6 +150,24 @@ public class UserService {
         Mail.send(user.getEmail(), subject, text, false);
     }
 
+    public void updateStatus(User user) {
+        String query =
+                "UPDATE `Users` SET "
+                        + "`status` = '"
+                        + user.getStatus().toString()
+                        + "' "
+                        + "WHERE `ID` = '"
+                        + user.getID()
+                        + "'";
+
+        try {
+            Statement stmt = IUser.con.createStatement();
+            stmt.executeUpdate(query);
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+    }
+
     public void update(User user) {
         String query =
                 "UPDATE `Users` SET "

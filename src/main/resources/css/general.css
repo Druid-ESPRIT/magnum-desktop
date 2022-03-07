@@ -18,6 +18,11 @@
 }
 
 .scroll-pane {
+   -fx-hbar-policy: NEVER;
+   -fx-vbar-policy: NEVER;
+}
+
+.scroll-pane {
    -fx-background-color: transparent;
 }
 
