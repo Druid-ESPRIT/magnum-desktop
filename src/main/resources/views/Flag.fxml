@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Hyperlink?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.RadioButton?>
 <?import javafx.scene.control.TextArea?>
@@ -38,5 +39,6 @@
       <RadioButton fx:id="harassment" layoutX="249.0" layoutY="194.0" mnemonicParsing="false" prefHeight="18.0" prefWidth="102.0" text="Harassment" />
       <RadioButton fx:id="spam" layoutX="249.0" layoutY="226.0" mnemonicParsing="false" prefHeight="18.0" prefWidth="102.0" text="Spam" />
       <RadioButton fx:id="violence" layoutX="249.0" layoutY="259.0" mnemonicParsing="false" prefHeight="18.0" prefWidth="102.0" text="Violence" />
+      <Hyperlink fx:id="back" layoutX="701.0" layoutY="12.0" text="Back" />
    </children>
 </AnchorPane>

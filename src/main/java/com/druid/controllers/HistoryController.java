@@ -22,8 +22,7 @@ public class HistoryController implements Initializable {
 
   @FXML private AnchorPane pane;
   @FXML private GridPane gridPane;
-  @FXML private Hyperlink profile;
-  @FXML private Hyperlink security;
+  @FXML private Hyperlink back;
   @FXML private Hyperlink clear;
 
   private void reload() {
@@ -39,7 +38,7 @@ public class HistoryController implements Initializable {
   @Override
   public void initialize(URL location, ResourceBundle resources) {
 
-    profile.setOnAction(
+    back.setOnAction(
         new EventHandler<ActionEvent>() {
           @Override
           public void handle(ActionEvent event) {
@@ -60,21 +59,6 @@ public class HistoryController implements Initializable {
           public void handle(ActionEvent event) {
             hist_svc.clear(connectedUser.getUser());
             reload();
-          }
-        });
-
-    security.setOnAction(
-        new EventHandler<ActionEvent>() {
-          @Override
-          public void handle(ActionEvent event) {
-            try {
-              AnchorPane securityPane =
-                  FXMLLoader.load(getClass().getResource("/views/Security.fxml"));
-              pane.getChildren().clear();
-              pane.getChildren().add(securityPane);
-            } catch (IOException e) {
-              e.printStackTrace();
-            }
           }
         });
 
