@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.Button?>
 <?import javafx.scene.layout.AnchorPane?>
-<AnchorPane xmlns:fx="http://javafx.com/fxml"
-            xmlns="http://javafx.com/javafx"
-            fx:controller="com.druid.Main"
-            prefHeight="400.0" prefWidth="600.0">
 
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.druid.controllers.MenuController">
+   <children>
+      <Button fx:id="pageusercomment" layoutX="138.0" layoutY="139.0" mnemonicParsing="false" onAction="#useracceuil" text="Article" />
+   </children>
 </AnchorPane>

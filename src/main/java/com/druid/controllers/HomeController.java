@@ -16,6 +16,7 @@ public class HomeController implements Initializable {
 
   @FXML private Pane workingPane;
   @FXML private Button discoverButton;
+  @FXML private Button articleButton;
 
   public Pane getWorkingPane() {
     return workingPane;

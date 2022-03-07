@@ -19,6 +19,8 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class PodcasterService implements IUser<Podcaster> {
   public void add(Podcaster podcaster) throws EmailTakenException, UsernameTakenException {
@@ -263,7 +265,61 @@ public class PodcasterService implements IUser<Podcaster> {
     } catch (SQLException ex) {
       ex.printStackTrace();
     }
-
     return Optional.empty();
+  }
+
+  /** This function provides the mechanism for user authentication. */
+  public Podcaster getPodcaster(int id) {
+    String request = "select * from podcasters where id=" + id;
+    Statement st;
+    try {
+      st = con.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
+      ResultSet rs = st.executeQuery(request);
+      rs.last();
+      int nb = rs.getRow();
+      rs.beforeFirst();
+      if (nb != 0) {
+        rs.next();
+        Podcaster P = new Podcaster();
+        P.setID(rs.getInt(1));
+        P.setFirstName(rs.getNString(2));
+
+        return P;
+      }
+
+    } catch (SQLException ex) {
+      Logger.getLogger(PodcasterService.class.getName()).log(Level.SEVERE, null, ex);
+      return null;
+    }
+
+    return null;
+  }
+
+  public List<Podcaster> getPodcasters() {
+    String request = "select * from podcaster ";
+    Statement st;
+    List<Podcaster> list = new ArrayList();
+    try {
+      st = con.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
+      ResultSet rs = st.executeQuery(request);
+
+      while (rs.next()) {
+
+        Podcaster P = new Podcaster();
+        P.setID(rs.getInt(1));
+        P.setFirstName(rs.getNString(2));
+        list.add(P);
+      }
+      return list;
+
+    } catch (SQLException ex) {
+      Logger.getLogger(PodcasterService.class.getName()).log(Level.SEVERE, null, ex);
+      return null;
+    }
+  }
+
+  public Podcaster getName(String name) {
+    List<Podcaster> list = (List<Podcaster>) this.getPodcasters();
+    return list.stream().filter(p -> p.getFirstName().equals(name)).findFirst().orElse(null);
   }
 }

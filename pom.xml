@@ -14,6 +14,9 @@
             <artifactId>fontawesomefx</artifactId>
             <version>8.9</version>
         </dependency>
+
+
+
         <dependency>
             <groupId>com.stripe</groupId>
             <artifactId>stripe-java</artifactId>
