@@ -86,7 +86,7 @@ public class ProfileController implements Initializable {
                   FXMLLoader.load(getClass().getResource("/views/SubscriptionManager.fxml"));
               userPane.setContent(anchor);
             } catch (IOException e) {
-                e.printStackTrace();
+              e.printStackTrace();
             }
           }
         });
@@ -105,7 +105,7 @@ public class ProfileController implements Initializable {
             }
           }
         });
-              
+
     orders.setOnAction(
         new EventHandler<ActionEvent>() {
           @Override
@@ -114,7 +114,7 @@ public class ProfileController implements Initializable {
               AnchorPane anchor = FXMLLoader.load(getClass().getResource("/views/OrderView.fxml"));
               userPane.setContent(anchor);
             } catch (IOException e) {
-                e.printStackTrace();
+              e.printStackTrace();
             }
           }
         });
