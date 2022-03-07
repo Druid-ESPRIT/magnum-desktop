@@ -125,7 +125,7 @@ public class TokenService {
                         + match.get().getUsername()
                         + "!\n"
                         + "You recently asked to reset your password, the following token can be used to"
-                        + " recover your account:\n"
+                        + " recover your account:\n\n"
                         + token
                         + "\n"
                         + "Do not share this with anyone, and hurry up, this token will expire after 24 hours!";

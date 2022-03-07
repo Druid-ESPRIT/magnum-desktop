@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Hyperlink?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -26,6 +27,9 @@
               <rowConstraints>
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
               </rowConstraints>
+               <padding>
+                  <Insets left="60.0" />
+               </padding>
             </GridPane>
          </content></ScrollPane>
       <Hyperlink fx:id="clear" layoutX="14.0" layoutY="48.0" text="Clear" />
