@@ -2,9 +2,12 @@ package com.druid.controllers;
 
 import com.druid.models.Administrator;
 import com.druid.models.Podcaster;
+import com.druid.services.UserService;
 import com.druid.utils.ConnectedUser;
+import java.io.File;
 import java.io.IOException;
 import java.net.URL;
+import java.nio.file.Paths;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -15,16 +18,19 @@ import javafx.scene.control.Hyperlink;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
+import javafx.stage.FileChooser;
+import javafx.stage.Stage;
 
 public class ProfileController implements Initializable {
   ConnectedUser connectedUser = ConnectedUser.getInstance();
 
+  @FXML private AnchorPane fileChooserPane;
   @FXML private AnchorPane pane;
   @FXML private Text name;
+  @FXML private Hyperlink flag;
   @FXML private Text username;
   @FXML private Text email;
   @FXML private Hyperlink history;
-  @FXML private Hyperlink edit;
   @FXML private Hyperlink orders;
 
   @FXML private Hyperlink subscriptions;
@@ -48,7 +54,7 @@ public class ProfileController implements Initializable {
       name.setText(admin.getFirstName() + " " + admin.getLastName());
     }
 
-    edit.setOnAction(
+    security.setOnAction(
         new EventHandler<ActionEvent>() {
           @Override
           public void handle(ActionEvent actionEvent) {
@@ -69,11 +75,22 @@ public class ProfileController implements Initializable {
               AnchorPane anchor =
                   FXMLLoader.load(getClass().getResource("/views/SubscriptionManager.fxml"));
               userPane.setContent(anchor);
+              
+    history.setOnAction(
+        new EventHandler<ActionEvent>() {
+          @Override
+          public void handle(ActionEvent event) {
+            try {
+              AnchorPane historyPane =
+                  FXMLLoader.load(getClass().getResource("/views/History.fxml"));
+              pane.getChildren().clear();
+              pane.getChildren().add(historyPane);
             } catch (IOException e) {
               e.printStackTrace();
             }
           }
         });
+              
     orders.setOnAction(
         new EventHandler<ActionEvent>() {
           @Override
@@ -81,6 +98,15 @@ public class ProfileController implements Initializable {
             try {
               AnchorPane anchor = FXMLLoader.load(getClass().getResource("/views/OrderView.fxml"));
               userPane.setContent(anchor);
+
+    flag.setOnAction(
+        new EventHandler<ActionEvent>() {
+          @Override
+          public void handle(ActionEvent event) {
+            try {
+              AnchorPane flagService = FXMLLoader.load(getClass().getResource("/views/Flag.fxml"));
+              pane.getChildren().clear();
+              pane.getChildren().add(flagService);
             } catch (IOException e) {
               e.printStackTrace();
             }

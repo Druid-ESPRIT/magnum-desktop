@@ -65,10 +65,10 @@ public class PodcasterService implements IUser<Podcaster> {
   public List<Podcaster> fetchAll() {
     List<Podcaster> podcasters = new ArrayList<>();
     String query =
-        "SELECT u.*, p.firstName, p.lastName, p.biography"
-            + "FROM Users AS u "
-            + "INNER JOIN Podcasters AS p "
-            + "WHERE p.id = u.id";
+        "SELECT U.*, P.firstName, P.lastName, P.biography "
+            + "FROM Users AS U "
+            + "INNER JOIN Podcasters AS P "
+            + "ON P.ID = U.ID";
 
     try {
       Statement stmt = con.createStatement();
