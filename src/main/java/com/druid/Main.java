@@ -1,6 +1,9 @@
 package com.druid;
 
 import com.druid.controllers.LoginController;
+import com.druid.services.AdministratorService;
+import com.druid.services.PodcasterService;
+import com.druid.utils.Debugger;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
