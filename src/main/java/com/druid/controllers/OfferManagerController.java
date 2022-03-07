@@ -142,7 +142,7 @@ public class OfferManagerController implements Initializable {
     try {
       for (int i = 0; i < offers.size(); i++) {
         FXMLLoader fxmlLoader = new FXMLLoader();
-        fxmlLoader.setLocation(getClass().getResource("/views/item.fxml"));
+        fxmlLoader.setLocation(getClass().getResource("/views/Item.fxml"));
         AnchorPane anchorPane = fxmlLoader.load();
         ItemController itemController = fxmlLoader.getController();
         itemController.setData(offers.get(i), myListener);

@@ -26,7 +26,7 @@ public class SubscriptionListController {
   public void setData(Subscription subscription) {
     try {
       FXMLLoader fxmlLoader = new FXMLLoader();
-      fxmlLoader.setLocation(getClass().getResource("/views/item.fxml"));
+      fxmlLoader.setLocation(getClass().getResource("/views/Item.fxml"));
 
       AnchorPane anchorPane = fxmlLoader.load();
       ItemController itemController = fxmlLoader.getController();
