@@ -2,7 +2,6 @@ package com.druid.controllers;
 
 import com.druid.interfaces.MyListener;
 import com.druid.models.Offer;
-import java.io.File;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import javafx.fxml.FXML;
