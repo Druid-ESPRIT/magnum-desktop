@@ -18,7 +18,7 @@ public class Main extends Application {
     Parent root = FXMLLoader.load(getClass().getResource("/views/Login.fxml"));
     LoginController loginController = new LoginController();
     loginController.setStage(stage);
-    stage.setScene(new Scene(root, 300, 200));
+    stage.setScene(new Scene(root));
     stage.setTitle("Welcome to Magnum");
     stage.show();
   }
