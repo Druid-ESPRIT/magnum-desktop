@@ -2,12 +2,9 @@ package com.druid.controllers;
 
 import com.druid.models.Administrator;
 import com.druid.models.Podcaster;
-import com.druid.services.UserService;
 import com.druid.utils.ConnectedUser;
-import java.io.File;
 import java.io.IOException;
 import java.net.URL;
-import java.nio.file.Paths;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -18,8 +15,6 @@ import javafx.scene.control.Hyperlink;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
-import javafx.stage.FileChooser;
-import javafx.stage.Stage;
 
 public class ProfileController implements Initializable {
   ConnectedUser connectedUser = ConnectedUser.getInstance();
@@ -32,7 +27,7 @@ public class ProfileController implements Initializable {
   @FXML private Text email;
   @FXML private Hyperlink history;
   @FXML private Hyperlink orders;
-    @FXML private Hyperlink security;
+  @FXML private Hyperlink security;
 
   @FXML private Hyperlink subscriptions;
 
@@ -77,7 +72,7 @@ public class ProfileController implements Initializable {
                   FXMLLoader.load(getClass().getResource("/views/SubscriptionManager.fxml"));
               userPane.setContent(anchor);
             } catch (IOException e) {
-                e.printStackTrace();
+              e.printStackTrace();
             }
           }
         });
@@ -101,15 +96,14 @@ public class ProfileController implements Initializable {
         new EventHandler<ActionEvent>() {
           @Override
           public void handle(ActionEvent actionEvent) {
-              try {
-                  AnchorPane anchor = FXMLLoader.load(getClass().getResource("/views/OrderView.fxml"));
-                  userPane.setContent(anchor);
-              } catch (IOException e) {
-                  e.printStackTrace();
-              }
+            try {
+              AnchorPane anchor = FXMLLoader.load(getClass().getResource("/views/OrderView.fxml"));
+              userPane.setContent(anchor);
+            } catch (IOException e) {
+              e.printStackTrace();
+            }
           }
-          });
-
+        });
 
     flag.setOnAction(
         new EventHandler<ActionEvent>() {

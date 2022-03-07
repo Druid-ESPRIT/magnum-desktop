@@ -49,7 +49,6 @@ public class OfferManagerController implements Initializable {
   @FXML private AnchorPane offerPane;
   @FXML private Label soldcount;
 
-
   private MyListener myListener;
   private Offer offer;
 

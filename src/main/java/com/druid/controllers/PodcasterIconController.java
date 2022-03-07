@@ -2,7 +2,6 @@ package com.druid.controllers;
 
 import com.druid.interfaces.MyListener;
 import com.druid.models.Podcaster;
-import com.druid.models.User;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import javafx.fxml.FXML;
@@ -25,7 +24,8 @@ public class PodcasterIconController {
     this.myListener = myListener;
     this.podcaster = podcaster;
     Path assests =
-        Paths.get("src", "main", "resources", "assets", "avatars", podcaster.getAvatar().toString());
+        Paths.get(
+            "src", "main", "resources", "assets", "avatars", podcaster.getAvatar().toString());
     Image image = new Image(assests.toFile().toURI().toString());
     avatar.setImage(image);
   }

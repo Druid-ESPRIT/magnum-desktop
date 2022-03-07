@@ -2,7 +2,6 @@ package com.druid.interfaces;
 
 import com.druid.models.Offer;
 import com.druid.models.Podcaster;
-import com.druid.models.User;
 
 public interface MyListener {
   public void onClickListener(Offer offer);
