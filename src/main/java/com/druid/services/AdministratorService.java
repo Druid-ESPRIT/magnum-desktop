@@ -66,10 +66,10 @@ public class AdministratorService implements IUser<Administrator> {
   public List<Administrator> fetchAll() {
     List<Administrator> administrators = new ArrayList<>();
     String query =
-        "SELECT u.*, p.firstName, p.lastName, p.biography, p.avatar"
-            + "FROM Users as u "
-            + "INNER JOIN Administrators AS a "
-            + "WHERE a.id = u.id";
+        "SELECT U.*, A.firstName, A.lastName "
+            + "FROM Users AS U "
+            + "INNER JOIN Administrators AS A "
+            + "ON A.ID = U.ID";
 
     try {
       Statement stmt = IUser.con.createStatement();

@@ -6,7 +6,11 @@
   -fx-border-radius:    4px;
   -fx-border-color:     #2E3440;
   -fx-text-fill:        #2E3440;
-  -fx-background-color: transparent;
+  -fx-background-color: #ECEFF4;
+}
+
+.history-card {
+  -fx-background-color: #E5E9F0;
 }
 
 .avatar {
