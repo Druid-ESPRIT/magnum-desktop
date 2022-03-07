@@ -9,6 +9,10 @@
   -fx-background-color: transparent;
 }
 
+.history-card {
+  -fx-background-color: #E5E9F0;
+}
+
 .avatar {
     -fx-background-radius: 5;
 }
