@@ -6,7 +6,8 @@ import java.sql.Timestamp;
 
 public class Flag {
     private int ID;
-    private int userID;
+    private int flaggerID;
+    private int flaggedID;
     private FlagOffense offense;
     private String description;
     private Timestamp time;
@@ -14,9 +15,10 @@ public class Flag {
     public Flag() {
     }
 
-    public Flag(int ID, int userID, FlagOffense offenseID, String description, Timestamp time) {
+    public Flag(int ID, int flaggerID, int flaggedID, FlagOffense offenseID, String description, Timestamp time) {
         this.ID = ID;
-        this.userID = userID;
+        this.flaggerID = flaggerID;
+        this.flaggedID = flaggedID;
         this.offense = offenseID;
         this.description = description;
         this.time = time;
@@ -27,8 +29,10 @@ public class Flag {
         return "Flag{"
                 + "ID="
                 + ID
-                + ", userID="
-                + userID
+                + ", flaggerID="
+                + flaggerID
+                + ", flaggedID="
+                + flaggedID
                 + ", offense="
                 + offense
                 + ", description='"
@@ -45,14 +49,6 @@ public class Flag {
 
     public void setID(int ID) {
         this.ID = ID;
-    }
-
-    public int getUserID() {
-        return userID;
-    }
-
-    public void setUserID(int userID) {
-        this.userID = userID;
     }
 
     public FlagOffense getOffense() {
@@ -77,5 +73,21 @@ public class Flag {
 
     public void setTime(Timestamp time) {
         this.time = time;
+    }
+
+    public int getFlaggerID() {
+        return flaggerID;
+    }
+
+    public void setFlaggerID(int flaggerID) {
+        this.flaggerID = flaggerID;
+    }
+
+    public int getFlaggedID() {
+        return flaggedID;
+    }
+
+    public void setFlaggedID(int flaggedID) {
+        this.flaggedID = flaggedID;
     }
 }

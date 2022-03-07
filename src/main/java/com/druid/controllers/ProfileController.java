@@ -24,13 +24,15 @@ public class ProfileController implements Initializable {
     @FXML
     private Text name;
     @FXML
+    private Hyperlink flag;
+    @FXML
     private Text username;
     @FXML
     private Text email;
     @FXML
     private Hyperlink history;
     @FXML
-    private Hyperlink edit;
+    private Hyperlink security;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -49,7 +51,7 @@ public class ProfileController implements Initializable {
             name.setText(admin.getFirstName() + " " + admin.getLastName());
         }
 
-        edit.setOnAction(
+        security.setOnAction(
                 new EventHandler<ActionEvent>() {
                     @Override
                     public void handle(ActionEvent actionEvent) {
@@ -74,6 +76,19 @@ public class ProfileController implements Initializable {
               e.printStackTrace();
             }
           }
+        });
+
+        flag.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                try {
+                    AnchorPane flagService = FXMLLoader.load(getClass().getResource("/views/Flag.fxml"));
+                    pane.getChildren().clear();
+                    pane.getChildren().add(flagService);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
         });
     }
 }

@@ -1,9 +1,15 @@
 package com.druid.components;
 
+import com.druid.models.History;
 import javafx.fxml.FXML;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
 
+import java.util.Locale;
+
 public class HistoryCard {
+    @FXML
+    private AnchorPane anchorPane;
     @FXML
     private Text activity;
     @FXML
@@ -11,27 +17,9 @@ public class HistoryCard {
     @FXML
     private Text description;
 
-    public Text getActivity() {
-        return activity;
-    }
-
-    public void setActivity(Text activity) {
-        this.activity = activity;
-    }
-
-    public Text getTime() {
-        return time;
-    }
-
-    public void setTime(Text time) {
-        this.time = time;
-    }
-
-    public Text getDescription() {
-        return description;
-    }
-
-    public void setDescription(Text description) {
-        this.description = description;
+    public void load(History hist) {
+        activity.setText(String.valueOf(hist.getActivity()));
+        description.setText(hist.getDescription());
+        time.setText(hist.getTime().toString());
     }
 }

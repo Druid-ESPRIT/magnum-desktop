@@ -5,7 +5,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="13.0" prefWidth="398.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.druid.components.HistoryCard">
+<AnchorPane fx:id="anchorPane" prefHeight="13.0" prefWidth="398.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.druid.components.HistoryCard">
    <children>
       <Pane prefHeight="83.0" prefWidth="430.0" styleClass="history-card" stylesheets="@../../css/general.css">
          <children>

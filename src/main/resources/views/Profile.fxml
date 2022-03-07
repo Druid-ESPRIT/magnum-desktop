@@ -32,8 +32,10 @@
          <font>
             <Font size="16.0" />
          </font></Text>
-      <Hyperlink fx:id="edit" layoutX="683.0" layoutY="12.0" text="Security" />
+      <Hyperlink fx:id="security" layoutX="683.0" layoutY="12.0" text="Security" />
       <Hyperlink fx:id="history" layoutX="615.0" layoutY="11.0" text="History" />
       <Separator layoutX="677.0" layoutY="16.0" orientation="VERTICAL" prefHeight="18.0" prefWidth="3.0" />
+      <Separator layoutX="604.0" layoutY="17.0" orientation="VERTICAL" prefHeight="18.0" prefWidth="3.0" />
+      <Hyperlink fx:id="flag" layoutX="562.0" layoutY="10.0" text="Flag" />
    </children>
 </AnchorPane>
