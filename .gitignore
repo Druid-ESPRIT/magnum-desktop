@@ -1,1 +1,6 @@
-# Empty for now.
+out/
+target/
+.idea/
+*.iml
+
+src/main/java/com/druid/utils/DBConnection.java

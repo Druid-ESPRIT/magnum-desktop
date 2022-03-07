@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.Font?>
+<AnchorPane xmlns:fx="http://javafx.com/fxml/1" prefHeight="720.0" prefWidth="1280.0"
+            xmlns="http://javafx.com/javafx/8.0.171" fx:controller="com.druid.controllers.OrderManagerController">
+    <children>
+        <BorderPane layoutX="58.0" layoutY="14.0" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0"
+                    AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <left>
+                <VBox prefHeight="720.0" prefWidth="272.0" styleClass="right-bar" stylesheets="@../css/style.css"
+                      BorderPane.alignment="CENTER">
+                    <children>
+                        <VBox prefHeight="200.0" prefWidth="100.0"/>
+                        <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" styleClass="buttons-card"
+                              stylesheets="@../css/style.css">
+                            <children>
+                                <Button mnemonicParsing="false" onAction="#btnmarkCompleted" prefHeight="40.0"
+                                        prefWidth="130.0" styleClass="add-btn" stylesheets="@../css/style.css"
+                                        text="Mark as Completed">
+                                    <VBox.margin>
+                                        <Insets bottom="20.0"/>
+                                    </VBox.margin>
+                                    <font>
+                                        <Font name="Cambria" size="13.0"/>
+                                    </font>
+                                </Button>
+                                <Button mnemonicParsing="false" onAction="#btnmarkCanceled" prefHeight="40.0"
+                                        prefWidth="124.0" styleClass="add-btn" stylesheets="@../css/style.css"
+                                        text="Mark as Canceled">
+                                    <font>
+                                        <Font size="13.0"/>
+                                    </font>
+                                </Button>
+                            </children>
+                            <VBox.margin>
+                                <Insets left="20.0" right="20.0"/>
+                            </VBox.margin>
+                        </VBox>
+                    </children>
+                </VBox>
+            </left>
+            <center>
+                <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
+                    <children>
+                        <VBox prefHeight="128.0" prefWidth="1008.0">
+                            <children>
+                                <HBox alignment="CENTER" prefHeight="130.0" prefWidth="1008.0" styleClass="right-bar"
+                                      stylesheets="@../css/style.css">
+                                    <children>
+                                        <Label styleClass="shadow" stylesheets="@../css/style.css" text="Search Orders : ">
+                                            <font>
+                                                <Font name="Brush Script MT Italic" size="17.0"/>
+                                            </font>
+                                        </Label>
+                                        <TextField fx:id="tfsearch" prefHeight="40.0" prefWidth="380.0"
+                                                   promptText="Type here to search..." styleClass="search-box"
+                                                   stylesheets="@../css/style.css">
+                                            <HBox.margin>
+                                                <Insets/>
+                                            </HBox.margin>
+                                            <font>
+                                                <Font name="Cambria" size="18.0"/>
+                                            </font>
+                                        </TextField>
+                                    </children>
+                                </HBox>
+                            </children>
+                        </VBox>
+                        <TableView fx:id="Ordertable" prefHeight="575.0" prefWidth="1008.0">
+                            <columns>
+                                <TableColumn fx:id="tab_id" prefWidth="130.0" text="ID"/>
+                                <TableColumn fx:id="tab_offer_ref" prefWidth="138.0" text="Offer ref"/>
+                                <TableColumn fx:id="tab_plan" prefWidth="125.0" text="Plan"/>
+                                <TableColumn fx:id="tab_total" prefWidth="155.0" text="Total"/>
+                                <TableColumn fx:id="order_date" prefWidth="298.0" text="Order Date"/>
+                                <TableColumn fx:id="status" prefWidth="161.0" text="Status"/>
+                            </columns>
+                            <opaqueInsets>
+                                <Insets/>
+                            </opaqueInsets>
+                            <VBox.margin>
+                                <Insets/>
+                            </VBox.margin>
+                        </TableView>
+                    </children>
+                </VBox>
+            </center>
+        </BorderPane>
+    </children>
+</AnchorPane>
