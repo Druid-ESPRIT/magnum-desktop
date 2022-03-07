@@ -45,11 +45,8 @@ public class ItemController {
   public void setDataSingle(Offer offer) {
     this.offer = offer;
     anchorPane.setDisable(true);
-    File file =
-        new File(
-            "C:/Users/asus/Desktop/Git/magnum-desktop/src/main/resources/assets/"
-                + offer.getImage());
-    Image image = new Image(file.toURI().toString());
+    Path path = Paths.get("src", "main", "resources", "assets", offer.getImage());
+    Image image = new Image(path.toFile().toURI().toString());
     lbdesc.setText(offer.getDescription());
     lbprice.setText(OfferWindow.CURRENCY + offer.getPrice());
     imgView.setImage(image);
@@ -58,11 +55,8 @@ public class ItemController {
   public void setDataImg(Offer offer) {
     this.offer = offer;
     anchorPane.setDisable(true);
-    File file =
-        new File(
-            "C:/Users/asus/Desktop/Git/magnum-desktop/src/main/resources/assets/"
-                + offer.getImage());
-    Image image = new Image(file.toURI().toString());
+    Path path = Paths.get("src", "main", "resources", "assets", offer.getImage());
+    Image image = new Image(path.toFile().toURI().toString());
     imgView.setImage(image);
     descTitle.setVisible(false);
     priceTtile.setVisible(false);
