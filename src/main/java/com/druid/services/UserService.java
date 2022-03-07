@@ -273,7 +273,7 @@ public class UserService {
                 // has been previously disabled.
                 if (match.isDisabled()) {
                     match.setStatus(UserStatus.ACTIVE);
-                    update(match);
+                    this.updateStatus(match);
                 }
 
                 return Optional.of(match);
