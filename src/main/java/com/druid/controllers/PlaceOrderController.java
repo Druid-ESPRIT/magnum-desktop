@@ -122,6 +122,7 @@ public class PlaceOrderController implements Initializable {
       Subscription sub =
           new Subscription(
               getid,
+              connectedUser.getID(),
               d1,
               Timestamp.valueOf(
                   d1.toLocalDateTime().plusDays(Integer.parseInt(lbPlan.getText()) * 30)),
@@ -274,7 +275,7 @@ public class PlaceOrderController implements Initializable {
   public void initialize(URL location, ResourceBundle resources) {
     try {
       FXMLLoader fxmlLoader = new FXMLLoader();
-      fxmlLoader.setLocation(getClass().getResource("/views/item.fxml"));
+      fxmlLoader.setLocation(getClass().getResource("/views/Item.fxml"));
 
       AnchorPane anchorPane = fxmlLoader.load();
       ItemController itemController = fxmlLoader.getController();

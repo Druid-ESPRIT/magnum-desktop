@@ -1,8 +1,8 @@
 package com.druid.controllers;
 
-import com.druid.models.Subscription;
+import com.druid.models.Order;
 import com.druid.models.User;
-import com.druid.services.SubscriptionService;
+import com.druid.services.OrderService;
 import com.druid.utils.ConnectedUser;
 import java.io.IOException;
 import java.net.URL;
@@ -18,49 +18,30 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Region;
 
-public class SubscriptionManagerController implements Initializable {
+public class OrderViewController implements Initializable {
 
   private User connectedUser = ConnectedUser.getInstance().getUser();
-  SubscriptionService subs = new SubscriptionService();
-  List<Subscription> subscriptions = subs.getSubsByUser(connectedUser.getID());
+  OrderService ors = new OrderService();
+  List<Order> orders = ors.getOrderByUser(connectedUser.getID());
+
   @FXML private TextField tfsearch;
-  @FXML private Label chid;
+
   @FXML private GridPane grid;
 
-  @Override
-  public void initialize(URL location, ResourceBundle resources) {
-    tfsearch
-        .textProperty()
-        .addListener(
-            (observable, previouslySearched, searchInput) -> {
-              if (!searchInput.isEmpty()) {
-                refreshData();
-                loadData(subs.searchSubs(searchInput));
-              } else {
-                loadData(subscriptions);
-              }
-            });
+  @FXML private Label chid;
 
-    loadData(subscriptions);
-  }
-
-  public void refreshData() {
-    grid.getChildren().clear();
-    subscriptions.clear();
-  }
-
-  public void loadData(List<Subscription> subs) {
+  public void loadData(List<Order> orders) {
 
     int column = 0;
     int row = 1;
     try {
-      for (int i = 0; i < subs.size(); i++) {
+      for (int i = 0; i < orders.size(); i++) {
         FXMLLoader fxmlLoader = new FXMLLoader();
-        fxmlLoader.setLocation(getClass().getResource("/views/subscriptionList.fxml"));
+        fxmlLoader.setLocation(getClass().getResource("/views/SingleOrder.fxml"));
 
         AnchorPane anchorPaneSb = fxmlLoader.load();
-        SubscriptionListController itemController = fxmlLoader.getController();
-        itemController.setData(subs.get(i));
+        SingleOrderController itemController = fxmlLoader.getController();
+        itemController.setData(orders.get(i));
 
         if (column == 1) {
           column = 0;
@@ -81,5 +62,30 @@ public class SubscriptionManagerController implements Initializable {
     } catch (IOException e) {
       e.printStackTrace();
     }
+  }
+
+  public void refreshData() {
+    grid.getChildren().clear();
+    orders.clear();
+  }
+
+  public void listenForSearchInput() {
+    tfsearch
+        .textProperty()
+        .addListener(
+            (observable, previouslySearched, searchInput) -> {
+              if (!searchInput.isEmpty()) {
+                refreshData();
+                loadData(ors.searchOrders(searchInput));
+              } else {
+                loadData(orders);
+              }
+            });
+  }
+
+  @Override
+  public void initialize(URL location, ResourceBundle resources) {
+    listenForSearchInput();
+    loadData(orders);
   }
 }

@@ -2,14 +2,18 @@ package com.druid.services;
 
 import com.druid.enums.OrderStatus;
 import com.druid.models.Order;
+import com.druid.models.User;
+import com.druid.utils.ConnectedUser;
 import com.druid.utils.DBConnection;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 public class OrderService {
   Connection con = DBConnection.getInstance().getConnection();
+  private User connectedUser = ConnectedUser.getInstance().getUser();
 
   public int addOrder(Order or) {
     int risultato = 0;
@@ -227,5 +231,41 @@ public class OrderService {
       ex.printStackTrace();
     }
     return count;
+  }
+
+  public List<Order> getOrderByUser(int id) {
+    List<Order> orders = new ArrayList<>();
+    String query = "SELECT * from `order` where user_id ='" + id + "'";
+    try {
+      Statement stmt = con.createStatement();
+      ResultSet result = stmt.executeQuery(query);
+      while (result.next()) {
+        orders.add(
+            new Order(
+                result.getInt("id"),
+                result.getInt("offer_id"),
+                result.getInt("user_id"),
+                result.getInt("plan"),
+                result.getFloat("total"),
+                result.getTimestamp("orderdate"),
+                OrderStatus.fromString(result.getString("status"))));
+      }
+      System.out.println(orders);
+      return orders;
+
+    } catch (SQLException ex) {
+      ex.printStackTrace();
+    }
+    return null;
+  }
+
+  public List<Order> searchOrders(String search) {
+    List<Order> result =
+        getOrderByUser(connectedUser.getID()).stream()
+            .filter(su -> su.getStatus().toString().toLowerCase().contains(search))
+            .collect(Collectors.toList());
+
+    System.out.println(result);
+    return result;
   }
 }

@@ -18,6 +18,8 @@ public class ItemController {
 
   @FXML private Label lbprice;
   @FXML private AnchorPane anchorPane;
+  @FXML private Label priceTtile;
+  @FXML private Label descTitle;
 
   private Offer offer;
   private MyListener myListener;
@@ -52,5 +54,18 @@ public class ItemController {
     lbdesc.setText(offer.getDescription());
     lbprice.setText(OfferWindow.CURRENCY + offer.getPrice());
     imgView.setImage(image);
+  }
+
+  public void setDataImg(Offer offer) {
+    this.offer = offer;
+    anchorPane.setDisable(true);
+    File file =
+        new File(
+            "C:/Users/asus/Desktop/Git/magnum-desktop/src/main/resources/assets/"
+                + offer.getImage());
+    Image image = new Image(file.toURI().toString());
+    imgView.setImage(image);
+    descTitle.setVisible(false);
+    priceTtile.setVisible(false);
   }
 }

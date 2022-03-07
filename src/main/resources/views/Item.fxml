@@ -27,8 +27,8 @@
                               <Insets left="5.0" right="5.0" top="5.0" />
                           </VBox.margin>
                           <children>
-                              <Label text="Description: " />
-                              <Label fx:id="lbdesc" text="Label" />
+                              <Label fx:id="descTitle" text="Description: " />
+                              <Label fx:id="lbdesc" />
                           </children>
                       </HBox>
                       <HBox alignment="CENTER" prefHeight="50.0" prefWidth="210.0">
@@ -36,8 +36,8 @@
                               <Insets left="5.0" right="5.0" top="5.0" />
                           </VBox.margin>
                           <children>
-                              <Label text="Price: " />
-                              <Label fx:id="lbprice" text="Label" />
+                              <Label fx:id="priceTtile" text="Price: " />
+                              <Label fx:id="lbprice" />
                           </children>
                       </HBox>
                   </children>
