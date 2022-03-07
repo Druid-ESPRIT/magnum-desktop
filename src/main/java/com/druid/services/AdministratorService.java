@@ -65,7 +65,8 @@ public class AdministratorService implements IUser<Administrator> {
 
   public List<Administrator> fetchAll() {
     List<Administrator> administrators = new ArrayList<>();
-    String query = "SELECT U.*, A.firstName, A.lastName "
+    String query =
+        "SELECT U.*, A.firstName, A.lastName "
             + "FROM Users AS U "
             + "INNER JOIN Administrators AS A "
             + "ON A.ID = U.ID";

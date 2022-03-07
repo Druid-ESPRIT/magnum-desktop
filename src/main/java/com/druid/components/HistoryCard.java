@@ -5,21 +5,15 @@ import javafx.fxml.FXML;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
 
-import java.util.Locale;
-
 public class HistoryCard {
-    @FXML
-    private AnchorPane anchorPane;
-    @FXML
-    private Text activity;
-    @FXML
-    private Text time;
-    @FXML
-    private Text description;
+  @FXML private AnchorPane anchorPane;
+  @FXML private Text activity;
+  @FXML private Text time;
+  @FXML private Text description;
 
-    public void load(History hist) {
-        activity.setText(String.valueOf(hist.getActivity()));
-        description.setText(hist.getDescription());
-        time.setText(hist.getTime().toString());
-    }
+  public void load(History hist) {
+    activity.setText(String.valueOf(hist.getActivity()));
+    description.setText(hist.getDescription());
+    time.setText(hist.getTime().toString());
+  }
 }
