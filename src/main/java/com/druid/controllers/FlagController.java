@@ -159,19 +159,19 @@ public class FlagController implements Initializable {
           }
         });
 
-      back.setOnAction(
-              new EventHandler<ActionEvent>() {
-                  @Override
-                  public void handle(ActionEvent event) {
-                      try {
-                          AnchorPane profilePane =
-                                  FXMLLoader.load(getClass().getResource("/views/Profile.fxml"));
-                          pane.getChildren().clear();
-                          pane.getChildren().add(profilePane);
-                      } catch (IOException e) {
-                          e.printStackTrace();
-                      }
-                  }
-              });
+    back.setOnAction(
+        new EventHandler<ActionEvent>() {
+          @Override
+          public void handle(ActionEvent event) {
+            try {
+              AnchorPane profilePane =
+                  FXMLLoader.load(getClass().getResource("/views/Profile.fxml"));
+              pane.getChildren().clear();
+              pane.getChildren().add(profilePane);
+            } catch (IOException e) {
+              e.printStackTrace();
+            }
+          }
+        });
   }
 }
