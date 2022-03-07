@@ -15,6 +15,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Hyperlink;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
 import javafx.stage.FileChooser;
@@ -30,26 +31,11 @@ public class ProfileController implements Initializable {
   @FXML private Text username;
   @FXML private Text email;
   @FXML private Hyperlink history;
-  @FXML private Hyperlink security;
+  @FXML private Hyperlink orders;
 
-  @FXML
-  void fileChooser() {
-    FileChooser fileChooser = new FileChooser();
-    fileChooser.setTitle("Open Resource File");
-    fileChooser
-        .getExtensionFilters()
-        .addAll(
-            new FileChooser.ExtensionFilter("All Images", "*.*"),
-            new FileChooser.ExtensionFilter("JPG", "*.jpg"),
-            new FileChooser.ExtensionFilter("PNG", "*.png"));
-    Stage stage = (Stage) fileChooserPane.getScene().getWindow();
-    File file = fileChooser.showOpenDialog(stage);
-    if (file != null) {
-      UserService user_svc = new UserService();
-      connectedUser.getUser().setAvatar(Paths.get(file.getPath()));
-      user_svc.update(connectedUser.getUser());
-    }
-  }
+  @FXML private Hyperlink subscriptions;
+
+  @FXML private ScrollPane userPane;
 
   @Override
   public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -81,7 +67,15 @@ public class ProfileController implements Initializable {
             }
           }
         });
-
+    subscriptions.setOnAction(
+        new EventHandler<ActionEvent>() {
+          @Override
+          public void handle(ActionEvent actionEvent) {
+            try {
+              AnchorPane anchor =
+                  FXMLLoader.load(getClass().getResource("/views/SubscriptionManager.fxml"));
+              userPane.setContent(anchor);
+              
     history.setOnAction(
         new EventHandler<ActionEvent>() {
           @Override
@@ -96,6 +90,14 @@ public class ProfileController implements Initializable {
             }
           }
         });
+              
+    orders.setOnAction(
+        new EventHandler<ActionEvent>() {
+          @Override
+          public void handle(ActionEvent actionEvent) {
+            try {
+              AnchorPane anchor = FXMLLoader.load(getClass().getResource("/views/OrderView.fxml"));
+              userPane.setContent(anchor);
 
     flag.setOnAction(
         new EventHandler<ActionEvent>() {

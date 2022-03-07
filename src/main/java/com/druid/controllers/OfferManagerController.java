@@ -133,6 +133,9 @@ public class OfferManagerController implements Initializable {
               soldcount.setText(
                   String.valueOf(or.getOrderCount(Integer.parseInt(getid.getText()))));
             }
+
+            @Override
+            public void onClickListener2(User user) {}
           };
     }
 
@@ -146,7 +149,7 @@ public class OfferManagerController implements Initializable {
         AnchorPane anchorPane = fxmlLoader.load();
         ItemController itemController = fxmlLoader.getController();
         itemController.setData(offers.get(i), myListener);
-        if (column == 2) {
+        if (column == 3) {
           column = 0;
           row++;
         }

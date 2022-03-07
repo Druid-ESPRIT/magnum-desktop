@@ -3,6 +3,8 @@ package com.druid.controllers;
 import com.druid.interfaces.MyListener;
 import com.druid.models.Offer;
 import java.io.File;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
@@ -33,11 +35,8 @@ public class ItemController {
     this.offer = offer;
     this.myListener = myListener;
 
-    File file =
-        new File(
-            "C:/Users/asus/Desktop/Git/magnum-desktop/src/main/resources/assets/"
-                + offer.getImage());
-    Image image = new Image(file.toURI().toString());
+    Path assests = Paths.get("src", "main", "resources", "assets", offer.getImage());
+    Image image = new Image(assests.toFile().toURI().toString());
     lbdesc.setText(offer.getDescription());
     lbprice.setText(OfferWindow.CURRENCY + offer.getPrice());
     imgView.setImage(image);
