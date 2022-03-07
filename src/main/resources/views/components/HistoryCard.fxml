@@ -9,13 +9,13 @@
    <children>
       <Pane prefHeight="83.0" prefWidth="430.0" styleClass="history-card" stylesheets="@../../css/general.css">
          <children>
-            <Text layoutX="16.0" layoutY="65.0" strokeType="OUTSIDE" strokeWidth="0.0" text="You updated your account information." wrappingWidth="402.38299560546875" />
-            <Text layoutX="245.0" layoutY="30.0" strokeType="OUTSIDE" strokeWidth="0.0" text="10/10/2000 10:10:10 AM">
+            <Text fx:id="description" layoutX="16.0" layoutY="65.0" strokeType="OUTSIDE" strokeWidth="0.0" text="You updated your account information." wrappingWidth="402.38299560546875" />
+            <Text fx:id="time" layoutX="245.0" layoutY="30.0" strokeType="OUTSIDE" strokeWidth="0.0" text="10/10/2000 10:10:10 AM">
                <font>
                   <Font size="15.0" />
                </font>
             </Text>
-            <Text layoutX="15.0" layoutY="31.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Security">
+            <Text fx:id="activity" layoutX="15.0" layoutY="31.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Security">
                <font>
                   <Font name="System Bold" size="18.0" />
                </font>
