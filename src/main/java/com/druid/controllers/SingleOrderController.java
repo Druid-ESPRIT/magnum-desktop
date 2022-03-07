@@ -13,10 +13,8 @@ public class SingleOrderController {
 
   @FXML private Label orderTotal;
 
-
   @FXML private Label orderDate;
-  @FXML
-  private Hyperlink orderStatus;
+  @FXML private Hyperlink orderStatus;
 
   private Order order;
 
@@ -28,7 +26,7 @@ public class SingleOrderController {
     orderDate.setText(order.getOrderDate().toString());
     orderStatus.setText(order.getStatus().toString());
 
-    if (order.getStatus().toString().equals("Completed")){
+    if (order.getStatus().toString().equals("Completed")) {
       orderStatus.setDisable(true);
     }
   }

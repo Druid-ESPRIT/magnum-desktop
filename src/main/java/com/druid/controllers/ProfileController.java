@@ -25,14 +25,11 @@ public class ProfileController implements Initializable {
   @FXML private Text email;
   @FXML private Hyperlink history;
   @FXML private Hyperlink edit;
-  @FXML
-  private Hyperlink orders;
+  @FXML private Hyperlink orders;
 
-  @FXML
-  private Hyperlink subscriptions;
+  @FXML private Hyperlink subscriptions;
 
-  @FXML
-  private ScrollPane userPane;
+  @FXML private ScrollPane userPane;
 
   @Override
   public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -65,28 +62,29 @@ public class ProfileController implements Initializable {
           }
         });
     subscriptions.setOnAction(
-            new EventHandler<ActionEvent>() {
-              @Override
-              public void handle(ActionEvent actionEvent) {
-                try {
-                  AnchorPane anchor = FXMLLoader.load(getClass().getResource("/views/SubscriptionManager.fxml"));
-                  userPane.setContent(anchor);
-                } catch (IOException e) {
-                  e.printStackTrace();
-                }
-              }
-            });
+        new EventHandler<ActionEvent>() {
+          @Override
+          public void handle(ActionEvent actionEvent) {
+            try {
+              AnchorPane anchor =
+                  FXMLLoader.load(getClass().getResource("/views/SubscriptionManager.fxml"));
+              userPane.setContent(anchor);
+            } catch (IOException e) {
+              e.printStackTrace();
+            }
+          }
+        });
     orders.setOnAction(
-            new EventHandler<ActionEvent>() {
-              @Override
-              public void handle(ActionEvent actionEvent) {
-                try {
-                  AnchorPane anchor = FXMLLoader.load(getClass().getResource("/views/OrderView.fxml"));
-                  userPane.setContent(anchor);
-                } catch (IOException e) {
-                  e.printStackTrace();
-                }
-              }
-            });
+        new EventHandler<ActionEvent>() {
+          @Override
+          public void handle(ActionEvent actionEvent) {
+            try {
+              AnchorPane anchor = FXMLLoader.load(getClass().getResource("/views/OrderView.fxml"));
+              userPane.setContent(anchor);
+            } catch (IOException e) {
+              e.printStackTrace();
+            }
+          }
+        });
   }
 }

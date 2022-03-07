@@ -135,9 +135,7 @@ public class OfferManagerController implements Initializable {
             }
 
             @Override
-            public void onClickListener2(User user) {
-
-            }
+            public void onClickListener2(User user) {}
           };
     }
 

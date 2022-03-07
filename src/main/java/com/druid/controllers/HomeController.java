@@ -1,6 +1,5 @@
 package com.druid.controllers;
 
-import com.druid.models.User;
 import com.druid.utils.ConnectedUser;
 import java.io.IOException;
 import java.net.URL;
@@ -18,22 +17,16 @@ public class HomeController implements Initializable {
   @FXML private Pane workingPane;
   @FXML private Button discoverButton;
 
-  @FXML
-  private Button playListButton;
+  @FXML private Button playListButton;
 
-  @FXML
-  private Button accountButton;
+  @FXML private Button accountButton;
 
-  @FXML
-  private Button articleButton;
+  @FXML private Button articleButton;
 
-  @FXML
-  private Button offermanagerButton;
-  @FXML
-  private Button podcastersButton;
+  @FXML private Button offermanagerButton;
+  @FXML private Button podcastersButton;
 
-  @FXML
-  private Button logoutButton;
+  @FXML private Button logoutButton;
   ConnectedUser connectedUser = ConnectedUser.getInstance();
 
   public Pane getWorkingPane() {
@@ -62,7 +55,7 @@ public class HomeController implements Initializable {
   void discoverPressed(ActionEvent event) {
     try {
       AnchorPane newLoadedPane =
-              FXMLLoader.load(getClass().getResource("/views/DiscoverPage.fxml"));
+          FXMLLoader.load(getClass().getResource("/views/DiscoverPage.fxml"));
       workingPane.getChildren().clear();
       workingPane.getChildren().add(newLoadedPane);
     } catch (IOException e) {
@@ -100,13 +93,12 @@ public class HomeController implements Initializable {
   void podcastersPressed(ActionEvent event) {
     try {
       AnchorPane newLoadedPane =
-              FXMLLoader.load(getClass().getResource("/views/PodcasterList.fxml"));
+          FXMLLoader.load(getClass().getResource("/views/PodcasterList.fxml"));
       workingPane.getChildren().clear();
       workingPane.getChildren().add(newLoadedPane);
     } catch (IOException e) {
       e.printStackTrace();
     }
-
   }
 
   @Override
