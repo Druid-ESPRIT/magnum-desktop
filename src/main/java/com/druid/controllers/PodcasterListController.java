@@ -11,6 +11,8 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.List;
 import java.util.ResourceBundle;
+
+import com.druid.utils.SelectedOffer;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -66,6 +68,7 @@ public class PodcasterListController implements Initializable {
 
   private void setChosenOffer(Offer offer) {
     String id = String.valueOf(offer.getId());
+    SelectedOffer.getInstance().setOffer(offer);
     getid.setText(id);
     //  tfprice.setText(String.valueOf(offer.getPrice()));
     Path assests = Paths.get("src", "main", "resources", "assets", offer.getImage());

@@ -8,6 +8,7 @@ import com.druid.services.OfferService;
 import com.druid.services.OrderService;
 import com.druid.services.SubscriptionService;
 import com.druid.utils.ConnectedUser;
+import com.druid.utils.SelectedOffer;
 import com.stripe.Stripe;
 import com.stripe.exception.StripeException;
 import com.stripe.model.Card;
@@ -91,6 +92,7 @@ public class PlaceOrderController implements Initializable {
 
 
   private User connectedUser = ConnectedUser.getInstance().getUser();
+  private Offer selectedOffer = SelectedOffer.getInstance().getOffer();
 
   @FXML
   void checked(ActionEvent event) {
@@ -241,7 +243,7 @@ public class PlaceOrderController implements Initializable {
   }
 
   public void useCoupon() {
-    int price = os.getOfferPrice(100);
+    int price = os.getOfferPrice(selectedOffer.getId());
     tfcoupon
         .textProperty()
         .addListener(
@@ -263,9 +265,8 @@ public class PlaceOrderController implements Initializable {
   }
 
   public void Slider() {
-    int price = os.getOfferPrice(100);
+    int price = os.getOfferPrice(selectedOffer.getId());
     oldPrice.setVisible(false);
-    lbofferid.setText("100");
     // lbOrderPrice.setText(Stprice);
     sliderId
         .valueProperty()
@@ -282,7 +283,7 @@ public class PlaceOrderController implements Initializable {
 
   @Override
   public void initialize(URL location, ResourceBundle resources) {
-    Offer selected = os.findOffer(100);
+    Offer selected = os.findOffer(selectedOffer.getId());
 
     try {
       FXMLLoader fxmlLoader = new FXMLLoader();
