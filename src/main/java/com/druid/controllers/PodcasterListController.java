@@ -98,7 +98,7 @@ public class PodcasterListController implements Initializable {
         AnchorPane anchorPane = fxmlLoader.load();
         ItemController itemController = fxmlLoader.getController();
         itemController.setData(offers.get(i), myListener);
-        if (column == 3) {
+        if (column == 2) {
           column = 0;
           row++;
         }
@@ -127,7 +127,7 @@ public class PodcasterListController implements Initializable {
 
             @Override
             public void onClickListener2(Podcaster podcaster) {
-              List<Offer> clofs = os.getOffers();
+              List<Offer> clofs = os.getOffersByUser(podcaster.getID());
               clofs.clear();
               showOffers.setVisible(true);
               selectedPodcaster(podcaster);
@@ -135,6 +135,7 @@ public class PodcasterListController implements Initializable {
           };
     }
     int column = 0;
+    int row = 1;
     try {
       for (int i = 0; i < users.size(); i++) {
         FXMLLoader fxmlLoader = new FXMLLoader();
@@ -143,7 +144,12 @@ public class PodcasterListController implements Initializable {
         PodcasterIconController itemController = fxmlLoader.getController();
         itemController.showPodcaster(users.get(i), myListener);
 
-        grid.add(anchorPane, column++, 1);
+        if (column == 5) {
+          column = 0;
+          row++;
+        }
+
+        grid.add(anchorPane, column++, row);
         GridPane.setMargin(anchorPane, new Insets(10));
         grid.setMinWidth(Region.USE_COMPUTED_SIZE);
         grid.setPrefWidth(Region.USE_COMPUTED_SIZE);

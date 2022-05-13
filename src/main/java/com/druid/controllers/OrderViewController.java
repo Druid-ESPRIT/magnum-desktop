@@ -21,6 +21,7 @@ import javafx.scene.layout.Region;
 public class OrderViewController implements Initializable {
 
   private User connectedUser = ConnectedUser.getInstance().getUser();
+
   OrderService ors = new OrderService();
   List<Order> orders = ors.getOrderByUser(connectedUser.getID());
 

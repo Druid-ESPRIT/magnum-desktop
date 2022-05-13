@@ -21,7 +21,7 @@ public class SubscriptionListController {
 
   @FXML private Label status;
   private OfferService os = new OfferService();
-  Offer selected = os.findOffer(96);
+  Offer selected = os.findOffer(100);
 
   public void setData(Subscription subscription) {
     try {

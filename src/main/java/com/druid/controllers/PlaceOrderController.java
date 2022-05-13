@@ -87,8 +87,8 @@ public class PlaceOrderController implements Initializable {
   private Offer o;
   private Coupon c;
 
-  int price = os.getOfferPrice(99);
-  Offer selected = os.findOffer(99);
+
+
 
   private User connectedUser = ConnectedUser.getInstance().getUser();
 
@@ -107,8 +107,6 @@ public class PlaceOrderController implements Initializable {
     lbofferid.setText(text);
     System.out.println(lbofferid.getText());
     return Integer.parseInt(lbofferid.getText());
-    // price = os.getOfferPrice(Integer.parseInt(lbofferid.getText()));
-    // Offer selected = os.findOffer(Integer.parseInt(lbofferid.getText()));
   }
 
   @FXML
@@ -243,6 +241,7 @@ public class PlaceOrderController implements Initializable {
   }
 
   public void useCoupon() {
+    int price = os.getOfferPrice(100);
     tfcoupon
         .textProperty()
         .addListener(
@@ -264,8 +263,9 @@ public class PlaceOrderController implements Initializable {
   }
 
   public void Slider() {
+    int price = os.getOfferPrice(100);
     oldPrice.setVisible(false);
-    lbofferid.setText("96");
+    lbofferid.setText("100");
     // lbOrderPrice.setText(Stprice);
     sliderId
         .valueProperty()
@@ -282,6 +282,7 @@ public class PlaceOrderController implements Initializable {
 
   @Override
   public void initialize(URL location, ResourceBundle resources) {
+    Offer selected = os.findOffer(100);
 
     try {
       FXMLLoader fxmlLoader = new FXMLLoader();

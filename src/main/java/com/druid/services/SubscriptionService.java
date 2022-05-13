@@ -44,9 +44,11 @@ public class SubscriptionService implements ISubscription {
   public void addSubscription(Subscription sub) {
 
     String query =
-        "INSERT INTO `subscription`(`order_id`,`start_date`,`expire_date`,`status`) VALUES ('"
+        "INSERT INTO `subscription`(`order_id`,`user_id`,`start_date`,`expire_date`,`status`) VALUES ('"
             + sub.getorder_id()
             + "','"
+                + sub.getUser_id()
+                + "','"
             + sub.getStart_date()
             + "','"
             + sub.getExpire_date()
@@ -76,6 +78,7 @@ public class SubscriptionService implements ISubscription {
             new Subscription(
                 result.getInt("id"),
                 result.getInt("order_id"),
+                    result.getInt("user_id"),
                 result.getTimestamp("start_date"),
                 result.getTimestamp("expire_date"),
                 SubscriptionStatus.fromString(result.getString("status"))));
