@@ -87,9 +87,6 @@ public class PlaceOrderController implements Initializable {
   private Offer o;
   private Coupon c;
 
-
-
-
   private User connectedUser = ConnectedUser.getInstance().getUser();
 
   @FXML
