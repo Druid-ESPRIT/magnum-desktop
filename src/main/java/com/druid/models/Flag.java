@@ -46,7 +46,7 @@ public class Flag {
         + time
         + '}';
   }
-
+    
   public int getID() {
     return ID;
   }

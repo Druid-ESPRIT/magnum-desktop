@@ -12,6 +12,7 @@ import com.druid.utils.Clearable;
 import com.druid.utils.ConnectedUser;
 import com.druid.utils.QuickHistory;
 import java.io.IOException;
+import java.net.NoRouteToHostException;
 import java.net.URL;
 import java.util.Optional;
 import java.util.ResourceBundle;
@@ -51,18 +52,18 @@ public class LoginController implements Initializable {
       user.setPassword(password.getText());
 
       return user_svc.authenticate(user);
-    } catch (InvalidCredentialsException err) {
-      errorAlert.setOpacity(100);
-      errorAlert.setText(err.getMessage());
-    } catch (BannedUserException err) {
-      errorAlert.setOpacity(100);
-      errorAlert.setText(err.getMessage());
+    } catch (InvalidCredentialsException ex) {
+      errorAlert.setText(ex.getMessage());
+    } catch (BannedUserException ex) {
+      errorAlert.setText(ex.getMessage());
     }
+
+    errorAlert.setOpacity(100);
 
     return Optional.empty();
   }
 
-  private Optional<Administrator> authAdmin(User user) {
+  private Optional<Administrator> retrieveMappedAdministrator(User user) {
     AdministratorService admin_svc = new AdministratorService();
     Administrator admin = new Administrator();
     admin.setID(user.getID());
@@ -71,7 +72,7 @@ public class LoginController implements Initializable {
     return admin_svc.fetchOne(admin);
   }
 
-  private Optional<Podcaster> authPodcaster(User user) {
+  private Optional<Podcaster> retrieveMappedPodcaster(User user) {
     PodcasterService podcaster_svc = new PodcasterService();
     Podcaster podcaster = new Podcaster();
     podcaster.setID(user.getID());
@@ -111,8 +112,8 @@ public class LoginController implements Initializable {
             Optional<User> user = authUser();
 
             if (user.isPresent()) {
-              Optional<Administrator> admin = authAdmin(user.get());
-              Optional<Podcaster> podcaster = authPodcaster(user.get());
+              Optional<Administrator> admin = retrieveMappedAdministrator(user.get());
+              Optional<Podcaster> podcaster = retrieveMappedPodcaster(user.get());
 
               if (admin.isPresent()) {
                 ConnectedUser.getInstance().setUser(admin.get());

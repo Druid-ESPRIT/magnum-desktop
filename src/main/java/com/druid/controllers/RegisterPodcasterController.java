@@ -1,5 +1,6 @@
 package com.druid.controllers;
 
+import com.druid.enums.UserDiscriminator;
 import com.druid.enums.UserStatus;
 import com.druid.errors.register.*;
 import com.druid.models.Podcaster;
@@ -135,6 +136,7 @@ public class RegisterPodcasterController implements Initializable {
               podcaster.setUsername(username.getText().trim());
               podcaster.setPassword(password.getText());
               podcaster.setStatus(UserStatus.ACTIVE);
+              podcaster.setDiscriminator(UserDiscriminator.PODCASTERS);
               p_svc.add(podcaster);
             } catch (EmailTakenException err) {
               alert(emailAlert, err.getMessage());

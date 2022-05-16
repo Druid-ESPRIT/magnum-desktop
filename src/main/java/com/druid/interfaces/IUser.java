@@ -30,17 +30,4 @@ public interface IUser<T extends User> {
   public void update(T o);
 
   public boolean delete(T o);
-
-  public static <T extends User> Optional<? extends User> authenticate(T o)
-      throws InvalidCredentialsException, BannedUserException {
-    if (o.getClass().equals(User.class)) {
-      return new UserService().authenticate(o);
-    } else if (o.getClass().equals(Administrator.class)) {
-      return new AdministratorService().authenticate((Administrator) o);
-    } else if (o.getClass().equals(Podcaster.class)) {
-      return new PodcasterService().authenticate((Podcaster) o);
-    }
-
-    return Optional.empty();
-  }
 }

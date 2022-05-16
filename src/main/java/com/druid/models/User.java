@@ -1,5 +1,6 @@
 package com.druid.models;
 
+import com.druid.enums.UserDiscriminator;
 import com.druid.enums.UserStatus;
 
 import java.nio.file.Path;
@@ -12,31 +13,35 @@ public class User {
     private String username;
     private String password;
     private UserStatus status;
+    private UserDiscriminator discriminator;
 
     public User() {
     }
 
-    public User(String username, String email, String password, Path avatar, UserStatus status) {
+    public User(String username, String email, String password, Path avatar, UserStatus status,
+            UserDiscriminator discriminator) {
         this.avatar = avatar;
         this.email = email;
         this.username = username;
         this.password = password;
         this.status = status;
+        this.discriminator = discriminator;
     }
 
-    public User(
-            int id, String username, String email, String password, Path avatar, UserStatus status) {
+    public User(int id, String username, String email, String password, Path avatar, UserStatus status,
+            UserDiscriminator discriminator) {
         this.ID = id;
         this.avatar = avatar;
         this.email = email;
         this.username = username;
         this.password = password;
         this.status = status;
+        this.discriminator = discriminator;
     }
 
     @Override
     public String toString() {
-        return "User{"
+        return "User {"
                 + "id="
                 + ID
                 + ", avatar="
@@ -50,15 +55,20 @@ public class User {
                 + ", password='"
                 + password
                 + '\''
-                + ", status="
+                + ", status='"
                 + status
-                + '}';
+                + '\''
+                + ", discriminator='"
+                + discriminator
+                + "' }";
     }
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (this == o)
+            return true;
+        if (o == null || getClass() != o.getClass())
+            return false;
         User user = (User) o;
         return getID() == user.getID()
                 && getEmail().equals(user.getEmail())
@@ -117,6 +127,14 @@ public class User {
 
     public void setStatus(UserStatus status) {
         this.status = status;
+    }
+
+    public UserDiscriminator getDiscriminator() {
+        return this.discriminator;
+    }
+
+    public void setDiscriminator(UserDiscriminator discriminator) {
+        this.discriminator = discriminator;
     }
 
     public boolean isDisabled() {

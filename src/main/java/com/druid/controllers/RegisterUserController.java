@@ -1,5 +1,6 @@
 package com.druid.controllers;
 
+import com.druid.enums.UserDiscriminator;
 import com.druid.enums.UserStatus;
 import com.druid.errors.register.*;
 import com.druid.models.User;
@@ -128,6 +129,7 @@ public class RegisterUserController implements Initializable {
               user.setUsername(username.getText().trim());
               user.setPassword(password.getText());
               user.setStatus(UserStatus.ACTIVE);
+              user.setDiscriminator(UserDiscriminator.USERS);
               user_svc.add(user);
             } catch (EmailTakenException err) {
               alert(emailAlert, err.getMessage());
