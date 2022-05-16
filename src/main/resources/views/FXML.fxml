@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.String?>
 <?import java.net.URL?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ChoiceBox?>
@@ -8,7 +9,10 @@
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.control.TabPane?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
 <AnchorPane id="AnchorPane" fx:id="anchorPaneAddPod" prefHeight="670.0" prefWidth="871.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.druid.controllers.FXMLController">
@@ -20,17 +24,50 @@
         <tabs>
           <Tab text="podcast">
             <content>
-              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="343.0" prefWidth="443.0">
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="343.0" prefWidth="443.0" stylesheets="@../css/general.css">
                      <children>
-                        <Button fx:id="play" layoutX="309.0" layoutY="26.0" mnemonicParsing="false" onAction="#paly" styleClass="btn" stylesheets="@../../../../../../../../Downloads/maagnum-20220305T111909Z-001/maagnum/maagnum/src/controlleurs/fxml.css" text="play" />
-                        <Button fx:id="stop" layoutX="383.0" layoutY="26.0" mnemonicParsing="false" onAction="#stop" styleClass="btn" stylesheets="@../../../../../../../../Downloads/maagnum-20220305T111909Z-001/maagnum/maagnum/src/controlleurs/fxml.css" text="stop" />
-                        <ListView fx:id="listAudio" layoutX="62.0" layoutY="119.0" prefHeight="242.0" prefWidth="406.0" />
-                        <Button fx:id="plusvolume" layoutX="364.0" layoutY="68.0" mnemonicParsing="false" onAction="#plusvolume" text="+" />
-                        <Button fx:id="volumedown" layoutX="412.0" layoutY="68.0" mnemonicParsing="false" onAction="#volumedown" text="-" />
-                        <Text fx:id="volumeLevel" layoutX="289.0" layoutY="85.0" strokeType="OUTSIDE" strokeWidth="0.0" text="100" wrappingWidth="38.4609375" />
-                        <Button fx:id="mute" layoutX="457.0" layoutY="26.0" mnemonicParsing="false" onAction="#mute" text="mute" />
-                        <Button fx:id="deletep" layoutX="516.0" layoutY="106.0" mnemonicParsing="false" onAction="#deletep" text="delete" />
-                        <Button fx:id="updatep" layoutX="514.0" layoutY="155.0" mnemonicParsing="false" onAction="#updatep" text="update" />
+                        <Button fx:id="play" layoutX="309.0" layoutY="26.0" mnemonicParsing="false" onAction="#paly" text="play">
+                           <stylesheets>
+                              <URL value="@../../../../../Downloads/maagnum-20220305T111909Z-001/maagnum/maagnum/src/controlleurs/fxml.css" />
+                              <URL value="@../css/style.css" />
+                           </stylesheets>
+                           <styleClass>
+                              <String fx:value="add-btn" />
+                              <String fx:value="shadow" />
+                           </styleClass></Button>
+                        <Button fx:id="stop" layoutX="383.0" layoutY="26.0" mnemonicParsing="false" onAction="#stop" text="stop">
+                           <stylesheets>
+                              <URL value="@../../../../../Downloads/maagnum-20220305T111909Z-001/maagnum/maagnum/src/controlleurs/fxml.css" />
+                              <URL value="@../css/style.css" />
+                           </stylesheets>
+                           <styleClass>
+                              <String fx:value="add-btn" />
+                              <String fx:value="shadow" />
+                           </styleClass></Button>
+                        <ListView fx:id="listAudio" layoutX="72.0" layoutY="192.0" onMouseClicked="#immg" prefHeight="242.0" prefWidth="406.0" style="-fx-background-color: #FEF6FF;" />
+                        <Button fx:id="plusvolume" layoutX="391.0" layoutY="135.0" mnemonicParsing="false" onAction="#plusvolume" style="-fx-background-color: #4B4453;" text="+" />
+                        <Button fx:id="volumedown" layoutX="446.0" layoutY="135.0" mnemonicParsing="false" onAction="#volumedown" style="-fx-background-color: #4B4453;" text="-" />
+                        <Text fx:id="volumeLevel" layoutX="328.0" layoutY="152.0" strokeType="OUTSIDE" strokeWidth="0.0" text="100" wrappingWidth="38.4609375" />
+                        <Button fx:id="mute" layoutX="457.0" layoutY="26.0" mnemonicParsing="false" onAction="#mute" style="-fx-background-color: #FF8066;" styleClass="add-btn" stylesheets="@../css/style.css" text="mute" />
+                        <Button fx:id="deletep" layoutX="682.0" layoutY="245.0" mnemonicParsing="false" onAction="#deletep" style="-fx-background-color: #C34A36;" text="delete" />
+                        <Button fx:id="updatep" layoutX="680.0" layoutY="321.0" mnemonicParsing="false" onAction="#updatep" style="-fx-background-color: #845EC2;" text="update" />
+                        <Button fx:id="mapButton" layoutX="682.0" layoutY="126.0" mnemonicParsing="false" onAction="#map" prefHeight="26.0" prefWidth="105.0" text="Map Button" />
+                        <ImageView fx:id="imgPod" fitHeight="403.0" fitWidth="168.0" layoutX="501.0" layoutY="172.0" pickOnBounds="true" preserveRatio="true" />
+                        <ImageView fitHeight="181.0" fitWidth="169.0" layoutX="689.0" layoutY="453.0">
+                           <image>
+                              <Image url="@../../../../../../../../Downloads/LOGO.png" />
+                           </image>
+                        </ImageView>
+                        <Label fx:id="nameu" layoutX="682.0" layoutY="21.0" prefHeight="34.0" prefWidth="140.0" styleClass="shadow" stylesheets="@../css/style.css" text="Label">
+                           <font>
+                              <Font name="Franklin Gothic Medium" size="29.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="600.0" layoutY="20.0" prefHeight="34.0" prefWidth="86.0" text="USER:" textFill="#8c0b0b">
+                           <font>
+                              <Font name="Franklin Gothic Medium" size="29.0" />
+                           </font>
+                        </Label>
                      </children>
                   </AnchorPane>
             </content>
@@ -39,15 +76,24 @@
             <content>
               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="171.0" prefWidth="371.0">
                      <children>
-                        <Text layoutX="23.0" layoutY="173.0" strokeType="OUTSIDE" strokeWidth="0.0" text="description" />
-                        <TextField fx:id="namecatg" layoutX="109.0" layoutY="115.0" />
-                        <TextField fx:id="descatg" layoutX="109.0" layoutY="156.0" />
-                        <Button fx:id="addcateg" layoutX="147.0" layoutY="217.0" mnemonicParsing="false" onAction="#addateg" styleClass="btn" stylesheets="@../../../../../../../../Downloads/maagnum-20220305T111909Z-001/maagnum/maagnum/src/controlleurs/fxml.css" text="add" />
-                        <Text layoutX="31.0" layoutY="132.0" strokeType="OUTSIDE" strokeWidth="0.0" text="name" />
-                        <ListView fx:id="listCat" layoutX="331.0" layoutY="58.0" prefHeight="291.0" prefWidth="528.0" />
-                        <Text layoutX="558.0" layoutY="45.0" strokeType="OUTSIDE" strokeWidth="0.0" text="categorie list" />
-                        <Button fx:id="deleteCat" layoutX="97.0" layoutY="295.0" mnemonicParsing="false" onAction="#deleteCat" text="delete" />
-                        <Button fx:id="upcat" layoutX="185.0" layoutY="295.0" mnemonicParsing="false" onAction="#upcat" text="update" />
+                        <Text layoutX="168.0" layoutY="125.0" strokeType="OUTSIDE" strokeWidth="0.0" text="description">
+                           <font>
+                              <Font name="System Bold Italic" size="27.0" />
+                           </font></Text>
+                        <TextField fx:id="namecatg" layoutX="339.0" layoutY="37.0" />
+                        <TextField fx:id="descatg" layoutX="339.0" layoutY="102.0" />
+                        <Button fx:id="addcateg" layoutX="361.0" layoutY="159.0" mnemonicParsing="false" onAction="#addateg" style="-fx-background-color: #845EC2;" styleClass="btn" stylesheets="@../../../../../../../../Downloads/maagnum-20220305T111909Z-001/maagnum/maagnum/src/controlleurs/fxml.css" text="add" />
+                        <Text layoutX="205.0" layoutY="60.0" strokeType="OUTSIDE" strokeWidth="0.0" text="name">
+                           <font>
+                              <Font name="System Bold Italic" size="27.0" />
+                           </font></Text>
+                        <ListView fx:id="listCat" layoutX="184.0" layoutY="336.0" prefHeight="291.0" prefWidth="567.0" />
+                        <Text layoutX="354.0" layoutY="313.0" strokeType="OUTSIDE" strokeWidth="0.0" text="categorie list" wrappingWidth="188.3232421875">
+                           <font>
+                              <Font size="27.0" />
+                           </font></Text>
+                        <Button fx:id="deleteCat" layoutX="283.0" layoutY="211.0" mnemonicParsing="false" onAction="#deleteCat" style="-fx-background-color: #C34A36;" text="delete" />
+                        <Button fx:id="upcat" layoutX="462.0" layoutY="211.0" mnemonicParsing="false" onAction="#upcat" style="-fx-background-color: #4FFBDF;" text="update" />
                      </children>
                   </AnchorPane>
             </content>
@@ -56,18 +102,33 @@
               <content>
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="403.0" prefWidth="628.0">
                      <children>
-                        <Text layoutX="151.0" layoutY="45.0" strokeType="OUTSIDE" strokeWidth="0.0" text="title" />
-                        <Text layoutX="127.0" layoutY="79.0" strokeType="OUTSIDE" strokeWidth="0.0" text="description" wrappingWidth="102.90432739257812" />
-                        <Text layoutX="151.0" layoutY="121.0" strokeType="OUTSIDE" strokeWidth="0.0" text="file" />
-                        <Text layoutX="135.0" layoutY="163.0" strokeType="OUTSIDE" strokeWidth="0.0" text="categorie" />
-                        <TextField fx:id="titelp" layoutX="219.0" layoutY="28.0" />
-                        <TextField fx:id="desp" layoutX="219.0" layoutY="62.0" />
-                        <TextField fx:id="filep" layoutX="218.0" layoutY="104.0" />
-                        <Button fx:id="addpod" layoutX="261.0" layoutY="290.0" mnemonicParsing="false" onAction="#addpod" styleClass="btn" stylesheets="@../../../../../../../../Downloads/maagnum-20220305T111909Z-001/maagnum/maagnum/src/controlleurs/fxml.css" text="add" />
-                        <ChoiceBox fx:id="idcatp1" layoutX="218.0" layoutY="146.0" prefWidth="150.0" />
-                        <Label layoutX="141.0" layoutY="208.0" text="Image" />
-                        <Button layoutX="234.0" layoutY="203.0" mnemonicParsing="false" onAction="#uploadFile" prefHeight="26.0" prefWidth="115.0" text="Upload your File" />
-                        <Label fx:id="chosenfile" layoutX="385.0" layoutY="207.0" prefHeight="18.0" prefWidth="180.0" />
+                        <Text layoutX="151.0" layoutY="45.0" strokeType="OUTSIDE" strokeWidth="0.0" text="title">
+                           <font>
+                              <Font name="System Bold Italic" size="27.0" />
+                           </font></Text>
+                        <Text layoutX="69.0" layoutY="85.0" strokeType="OUTSIDE" strokeWidth="0.0" text="description" wrappingWidth="164.5043067932129">
+                           <font>
+                              <Font name="System Bold Italic" size="27.0" />
+                           </font></Text>
+                        <Text layoutX="151.0" layoutY="127.0" strokeType="OUTSIDE" strokeWidth="0.0" text="file" wrappingWidth="46.848388671875">
+                           <font>
+                              <Font size="27.0" />
+                           </font></Text>
+                        <Text layoutX="95.0" layoutY="169.0" strokeType="OUTSIDE" strokeWidth="0.0" text="categorie">
+                           <font>
+                              <Font size="27.0" />
+                           </font></Text>
+                        <TextField fx:id="titelp" layoutX="251.0" layoutY="21.0" />
+                        <TextField fx:id="desp" layoutX="251.0" layoutY="61.0" />
+                        <TextField fx:id="filep" layoutX="251.0" layoutY="103.0" />
+                        <Button fx:id="addpod" layoutX="283.0" layoutY="306.0" mnemonicParsing="false" onAction="#addpod" style="-fx-background-color: #845EC2;" styleClass="btn" stylesheets="@../../../../../../../../Downloads/maagnum-20220305T111909Z-001/maagnum/maagnum/src/controlleurs/fxml.css" text="add" />
+                        <ChoiceBox fx:id="idcatp1" layoutX="244.0" layoutY="145.0" prefWidth="150.0" />
+                        <Label layoutX="123.0" layoutY="195.0" prefHeight="39.0" prefWidth="85.0" text="Image">
+                           <font>
+                              <Font size="27.0" />
+                           </font></Label>
+                        <Button layoutX="268.0" layoutY="202.0" mnemonicParsing="false" onAction="#uploadFile" prefHeight="26.0" prefWidth="115.0" style="-fx-background-color: #FF9671;" text="Upload your File" />
+                        <Label fx:id="chosenfile" layoutX="419.0" layoutY="206.0" prefHeight="18.0" prefWidth="180.0" />
                      </children>
                   </AnchorPane>
               </content>

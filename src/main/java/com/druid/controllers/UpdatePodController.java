@@ -14,6 +14,7 @@ import java.net.URL;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Optional;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -21,9 +22,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.ChoiceBox;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.stage.Stage;
 
 /**
@@ -67,30 +66,37 @@ public class UpdatePodController implements Initializable {
 
   @FXML
   private void update(ActionEvent event) throws IOException {
+    Alert alert1 = new Alert(Alert.AlertType.CONFIRMATION);
+    alert1.setTitle("Update a podcast");
+    alert1.setHeaderText("Do you really want to update this Podcast ?");
+    alert1.setContentText("podcast will be Updated");
+    Optional<ButtonType> option = alert1.showAndWait();
+    if (option.isPresent() && option.get() == ButtonType.OK) {
 
-    String title = titleup.getText();
-    String file = fileup.getText();
-    String desc = descriptionUp.getText();
-    String cate = categorieName1.getSelectionModel().getSelectedItem();
-    // String cate=categorieName1.getSelectionModel().getSelectedItem();
+      String title = titleup.getText();
+      String file = fileup.getText();
+      String desc = descriptionUp.getText();
+      String cate = categorieName1.getSelectionModel().getSelectedItem();
+      // String cate=categorieName1.getSelectionModel().getSelectedItem();
 
-    Podcast p = new Podcast();
-    p.setId(FXMLController.paudio.getId());
-    p.setFile(file);
-    p.setDescription(desc);
-    p.setTitle(title);
-    System.err.println(cs.getCategorieByName(cate));
+      Podcast p = new Podcast();
+      p.setId(FXMLController.paudio.getId());
+      p.setFile(file);
+      p.setDescription(desc);
+      p.setTitle(title);
+      System.err.println(cs.getCategorieByName(cate));
 
-    p.setIdcateg(cs.getCategorieByName(cate).getIdcateg());
+      p.setIdcateg(cs.getCategorieByName(cate).getIdcateg());
 
-    ps.modifierPodcast(p);
-    Stage stage = (Stage) update.getScene().getWindow();
-    stage.close();
-    Stage Stage = new Stage();
-    Parent root = FXMLLoader.load(getClass().getResource("/views/FXML.fxml"));
-    Stage.setTitle("home");
-    Stage.setScene(new Scene(root));
-    Stage.show();
+      ps.modifierPodcast(p);
+      Stage stage = (Stage) update.getScene().getWindow();
+      stage.close();
+      Stage Stage = new Stage();
+      Parent root = FXMLLoader.load(getClass().getResource("/views/FXML.fxml"));
+      Stage.setTitle("home");
+      Stage.setScene(new Scene(root));
+      Stage.show();
+    }
   }
 
   @FXML

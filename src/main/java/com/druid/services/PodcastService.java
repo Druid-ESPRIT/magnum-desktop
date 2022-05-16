@@ -158,6 +158,7 @@ public class PodcastService implements IpodcastService {
         p.setViews(rs.getInt(5));
         p.setIdcateg(rs.getInt(6));
         p.setFile(rs.getString(7));
+        p.setImage(rs.getString(8));
 
         return p;
       }
@@ -222,6 +223,7 @@ public class PodcastService implements IpodcastService {
                 rs.getInt("rating"),
                 rs.getInt("views"),
                 rs.getInt("idcateg")));
+
       }
     } catch (SQLException ex) {
       ex.printStackTrace();
