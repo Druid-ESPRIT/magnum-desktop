@@ -4,7 +4,6 @@ package com.druid.services;
 // inheritance and borrows ideas found in:
 // https://docs.oracle.com/cd/E28280_01/apirefs.1111/e13946/ejb3_overview_mapping_inher.html#ejb3_overview_mapping_inher_single
 
-
 import com.druid.enums.UserDiscriminator;
 import com.druid.enums.UserStatus;
 import com.druid.errors.register.EmailTakenException;
