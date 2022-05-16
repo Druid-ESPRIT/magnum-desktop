@@ -21,6 +21,7 @@ public class SceneSwitcher {
     stage.show();
   }
 
+
   public void showRegisterPodcaster(ActionEvent event) throws IOException {
     Parent root = FXMLLoader.load(getClass().getResource("/views/RegisterPodcaster.fxml"));
     stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
@@ -28,6 +29,7 @@ public class SceneSwitcher {
     stage.setScene(scene);
     stage.show();
   }
+
 
   public void showRegisterUser(ActionEvent event) throws IOException {
     Parent root = FXMLLoader.load(getClass().getResource("/views/RegisterUser.fxml"));
@@ -37,6 +39,7 @@ public class SceneSwitcher {
     stage.show();
   }
 
+
   public void showAccountTypePicker(ActionEvent event) throws IOException {
     Parent root = FXMLLoader.load(getClass().getResource("/views/AccountTypePicker.fxml"));
     stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
@@ -45,6 +48,7 @@ public class SceneSwitcher {
     stage.show();
   }
 
+
   public void showResetPassword(ActionEvent event) throws IOException {
     Parent root = FXMLLoader.load(getClass().getResource("/views/ResetPassword.fxml"));
     stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
@@ -52,6 +56,7 @@ public class SceneSwitcher {
     stage.setScene(scene);
     stage.show();
   }
+
 
   public void showForgotPassword(ActionEvent event) throws IOException {
     Parent root = FXMLLoader.load(getClass().getResource("/views/ForgotPassword.fxml"));

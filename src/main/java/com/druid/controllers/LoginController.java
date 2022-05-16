@@ -30,6 +30,7 @@ public class LoginController implements Initializable {
   private Stage stage;
   private UserService user_svc = new UserService();
 
+
   @FXML private Hyperlink forgotPassword;
   @FXML private Hyperlink signUp;
   @FXML private Button confirm;
@@ -40,6 +41,7 @@ public class LoginController implements Initializable {
   public Stage getStage() {
     return stage;
   }
+
 
   private Optional<User> authUser() {
     try {
@@ -96,9 +98,11 @@ public class LoginController implements Initializable {
               sceneController.showForgotPassword(actionEvent);
             } catch (IOException e) {
               e.printStackTrace();
+
             }
           }
         });
+
 
     confirm.setOnAction(
         new EventHandler<ActionEvent>() {

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+
+
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/17" fx:controller="controlleurs.UpdateCatController">
+   <children>
+      <Pane layoutY="-1.0" prefHeight="400.0" prefWidth="602.0">
+         <children>
+            <TextField fx:id="nameup" layoutX="178.0" layoutY="62.0" />
+            <TextField fx:id="descup" layoutX="178.0" layoutY="104.0" />
+            <Button fx:id="updateC" layoutX="234.0" layoutY="167.0" mnemonicParsing="false" onAction="#updateC" text="update" />
+         </children>
+      </Pane>
+   </children>
+</AnchorPane>
