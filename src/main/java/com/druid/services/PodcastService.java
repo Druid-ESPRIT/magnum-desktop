@@ -16,7 +16,9 @@ import java.util.ArrayList;
 import java.util.List;
 import javafx.scene.media.AudioClip;
 
-/** @author tahaj */
+/**
+ * @author tahaj
+ */
 public class PodcastService implements IpodcastService {
 
   // var
@@ -223,7 +225,6 @@ public class PodcastService implements IpodcastService {
                 rs.getInt("rating"),
                 rs.getInt("views"),
                 rs.getInt("idcateg")));
-
       }
     } catch (SQLException ex) {
       ex.printStackTrace();

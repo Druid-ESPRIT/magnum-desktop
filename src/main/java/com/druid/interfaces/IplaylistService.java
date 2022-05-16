@@ -8,7 +8,9 @@ package com.druid.interfaces;
 import com.druid.models.Playlist;
 import java.util.List;
 
-/** @author tahaj */
+/**
+ * @author tahaj
+ */
 public interface IplaylistService {
 
   // ADD

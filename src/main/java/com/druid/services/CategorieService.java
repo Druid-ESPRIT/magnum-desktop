@@ -16,7 +16,9 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
-/** @author tahaj */
+/**
+ * @author tahaj
+ */
 public class CategorieService implements IcategorieService {
   // var
   Connection cnx = DBConnection.getInstance().getConnection();

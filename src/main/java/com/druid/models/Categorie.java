@@ -5,7 +5,9 @@
  */
 package com.druid.models;
 
-/** @author tahaj */
+/**
+ * @author tahaj
+ */
 public class Categorie {
 
   private int idcateg;
