@@ -7,7 +7,9 @@ package com.druid.models;
 
 import java.util.Date;
 
-/** @author tahaj */
+/**
+ * @author tahaj
+ */
 public class Playlist {
   private int idplaylist;
   private int userid;

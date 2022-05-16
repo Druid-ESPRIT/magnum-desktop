@@ -8,7 +8,9 @@ package com.druid.interfaces;
 import com.druid.models.Categorie;
 import java.util.List;
 
-/** @author tahaj */
+/**
+ * @author tahaj
+ */
 public interface IcategorieService {
   // ADD
   public void ajouterCategorie(Categorie c);

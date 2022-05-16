@@ -15,7 +15,9 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
-/** @author tahaj */
+/**
+ * @author tahaj
+ */
 public class PlaylistService implements IplaylistService {
   // var
   Connection cnx = DBConnection.getInstance().getConnection();
