@@ -6,7 +6,33 @@
   -fx-border-radius:    4px;
   -fx-border-color:     #2E3440;
   -fx-text-fill:        #2E3440;
-  -fx-background-color: transparent;
+  -fx-background-color: #ECEFF4;
+}
+
+.history-card {
+  -fx-background-color: #E5E9F0;
+}
+
+.scroll-pane > .viewport {
+   -fx-background-color: transparent;
+}
+
+.scroll-pane {
+   -fx-hbar-policy: NEVER;
+   -fx-vbar-policy: NEVER;
+}
+
+.scroll-pane {
+   -fx-background-color: transparent;
+}
+
+.avatar {
+    -fx-background-radius: 5;
+}
+
+.alert {
+    -fx-text-fill: #BF616A;
+    -fx-font-size: 11px;
 }
 
 .form-button:pressed {

@@ -1,40 +1,43 @@
 package com.druid.controllers;
 
+import com.druid.models.Offer;
 import com.druid.models.Subscription;
+import com.druid.services.OfferService;
+import java.io.IOException;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Label;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
-
-import java.io.File;
+import javafx.scene.layout.VBox;
 
 public class SubscriptionListController {
 
-    @FXML
-    private AnchorPane anchorPaneSb;
+  @FXML private AnchorPane anchorPaneSb;
 
-    @FXML
-    private ImageView imgV;
+  @FXML private VBox myVbox;
+  @FXML private Label lbSdate;
 
-    @FXML
-    private Label lbSdate;
+  @FXML private Label lbEdate;
 
-    @FXML
-    private Label lbEdate;
+  @FXML private Label status;
+  private OfferService os = new OfferService();
+  Offer selected = os.findOffer(100);
 
-    @FXML
-    private Label status;
+  public void setData(Subscription subscription) {
+    try {
+      FXMLLoader fxmlLoader = new FXMLLoader();
+      fxmlLoader.setLocation(getClass().getResource("/views/Item.fxml"));
 
-    public void setData(Subscription subscription) {
-
-
-        File file = new File("C:/Users/asus/Desktop/Git/magnum-desktop/src/main/resources/img/test1.png");
-        Image image = new Image(file.toURI().toString());
-        status.setText("Active");
-        lbSdate.setText(String.valueOf(subscription.getStart_date()));
-        lbEdate.setText(String.valueOf(subscription.getExpire_date()));
-        imgV.setImage(image);
+      AnchorPane anchorPane = fxmlLoader.load();
+      ItemController itemController = fxmlLoader.getController();
+      itemController.setDataImg(selected);
+      myVbox.getChildren().add(anchorPane);
+    } catch (IOException e) {
+      e.printStackTrace();
     }
 
+    status.setText(subscription.getStatus().toString());
+    lbSdate.setText(String.valueOf(subscription.getStart_date()));
+    lbEdate.setText(String.valueOf(subscription.getExpire_date()));
+  }
 }

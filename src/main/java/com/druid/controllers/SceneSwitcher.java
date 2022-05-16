@@ -21,24 +21,45 @@ public class SceneSwitcher {
     stage.show();
   }
 
-  public void showRegister(ActionEvent event) throws IOException {
-    Parent root = FXMLLoader.load(getClass().getResource("/views/Register.fxml"));
+
+  public void showRegisterPodcaster(ActionEvent event) throws IOException {
+    Parent root = FXMLLoader.load(getClass().getResource("/views/RegisterPodcaster.fxml"));
     stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
     scene = new Scene(root);
     stage.setScene(scene);
     stage.show();
   }
 
-  public void showForgotPassword(ActionEvent event) throws IOException {
-    Parent root = FXMLLoader.load(getClass().getResource("/views/ForgotPassword.fxml"));
+
+  public void showRegisterUser(ActionEvent event) throws IOException {
+    Parent root = FXMLLoader.load(getClass().getResource("/views/RegisterUser.fxml"));
     stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
     scene = new Scene(root);
     stage.setScene(scene);
     stage.show();
   }
+
+
+  public void showAccountTypePicker(ActionEvent event) throws IOException {
+    Parent root = FXMLLoader.load(getClass().getResource("/views/AccountTypePicker.fxml"));
+    stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+    scene = new Scene(root);
+    stage.setScene(scene);
+    stage.show();
+  }
+
 
   public void showResetPassword(ActionEvent event) throws IOException {
     Parent root = FXMLLoader.load(getClass().getResource("/views/ResetPassword.fxml"));
+    stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+    scene = new Scene(root);
+    stage.setScene(scene);
+    stage.show();
+  }
+
+
+  public void showForgotPassword(ActionEvent event) throws IOException {
+    Parent root = FXMLLoader.load(getClass().getResource("/views/ForgotPassword.fxml"));
     stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
     scene = new Scene(root);
     stage.setScene(scene);
@@ -53,8 +74,16 @@ public class SceneSwitcher {
     stage.show();
   }
 
-  public void showFXML(ActionEvent event) throws IOException {
-    Parent root = FXMLLoader.load(getClass().getResource("/views/FXML.fxml"));
+  public void showHome(ActionEvent event) throws IOException {
+    Parent root = FXMLLoader.load(getClass().getResource("/views/Home.fxml"));
+    stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+    scene = new Scene(root);
+    stage.setScene(scene);
+    stage.show();
+  }
+
+  public void showOrder(ActionEvent event) throws IOException {
+    Parent root = FXMLLoader.load(getClass().getResource("/views/placeOrder.fxml"));
     stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
     scene = new Scene(root);
     stage.setScene(scene);

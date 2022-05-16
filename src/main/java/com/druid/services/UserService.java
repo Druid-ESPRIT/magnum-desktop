@@ -150,6 +150,24 @@ public class UserService {
         Mail.send(user.getEmail(), subject, text, false);
     }
 
+    public void updateStatus(User user) {
+        String query =
+                "UPDATE `Users` SET "
+                        + "`status` = '"
+                        + user.getStatus().toString()
+                        + "' "
+                        + "WHERE `ID` = '"
+                        + user.getID()
+                        + "'";
+
+        try {
+            Statement stmt = IUser.con.createStatement();
+            stmt.executeUpdate(query);
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+    }
+
     public void update(User user) {
         String query =
                 "UPDATE `Users` SET "
@@ -247,15 +265,15 @@ public class UserService {
 
                 // Do not authenticate if the user
                 // has been previously banned.
-                if (match.getStatus().equals(UserStatus.BANNED)) {
+                if (match.isBanned()) {
                     throw new BannedUserException("This user has been banned.");
                 }
 
                 // Re-enable the user if their account
                 // has been previously disabled.
-                if (match.getStatus().equals(UserStatus.DISABLED)) {
+                if (match.isDisabled()) {
                     match.setStatus(UserStatus.ACTIVE);
-                    update(match);
+                    this.updateStatus(match);
                 }
 
                 return Optional.of(match);

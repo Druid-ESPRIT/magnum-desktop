@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.druid.controllers.PodcasterListController">
+   <children>
+      <Pane fx:id="orderPane" prefHeight="361.0" prefWidth="402.0" AnchorPane.bottomAnchor="50.0" AnchorPane.rightAnchor="20.0" />
+      <ScrollPane layoutX="47.0" layoutY="48.0" prefHeight="119.0" prefWidth="837.0">
+         <content>
+            <GridPane fx:id="grid">
+               <rowConstraints>
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+               </rowConstraints>
+            </GridPane>
+         </content>
+      </ScrollPane>
+      <ScrollPane fx:id="showOffers" layoutX="53.0" layoutY="186.0" prefHeight="370.0" prefWidth="414.0">
+         <content>
+            <GridPane fx:id="grid2">
+              <rowConstraints>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+              </rowConstraints>
+            </GridPane>
+         </content></ScrollPane>
+      <Pane fx:id="chosenOffer" layoutX="486.0" layoutY="186.0" prefHeight="370.0" prefWidth="396.0">
+         <children>
+            <Label layoutX="32.0" layoutY="226.0" prefHeight="26.0" prefWidth="332.0" text="For 3 to 5 months subscription you'll recieve a -10% coupon." />
+            <Button layoutX="131.0" layoutY="302.0" mnemonicParsing="false" onAction="#placeOrder" prefHeight="54.0" prefWidth="154.0" styleClass="icon-button" stylesheets="@../css/style.css" text="Place order">
+               <graphic>
+                  <FontAwesomeIconView glyphName="CART_PLUS" size="25" />
+               </graphic>
+               <font>
+                  <Font name="Cambria" size="13.0" />
+               </font>
+            </Button>
+            <ImageView fx:id="img" fitHeight="150.0" fitWidth="200.0" layoutX="114.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true" />
+            <Label layoutX="32.0" layoutY="252.0" prefHeight="26.0" prefWidth="332.0" text="For 6 to 12 months subscription you'll recieve a -20% coupon." />
+            <Label fx:id="getid" layoutX="25.0" layoutY="321.0" text="Label" />
+         </children>
+      </Pane>
+   </children>
+</AnchorPane>

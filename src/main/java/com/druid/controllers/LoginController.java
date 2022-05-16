@@ -2,11 +2,15 @@ package com.druid.controllers;
 
 import com.druid.errors.login.BannedUserException;
 import com.druid.errors.login.InvalidCredentialsException;
+import com.druid.models.Administrator;
+import com.druid.models.Podcaster;
 import com.druid.models.User;
+import com.druid.services.AdministratorService;
+import com.druid.services.PodcasterService;
 import com.druid.services.UserService;
 import com.druid.utils.Clearable;
 import com.druid.utils.ConnectedUser;
-import com.druid.utils.Debugger;
+import com.druid.utils.QuickHistory;
 import java.io.IOException;
 import java.net.URL;
 import java.util.Optional;
@@ -25,7 +29,7 @@ import javafx.stage.Stage;
 public class LoginController implements Initializable {
   private Stage stage;
   private UserService user_svc = new UserService();
-  private User connectedUser = ConnectedUser.getInstance().getUser();
+
 
   @FXML private Hyperlink forgotPassword;
   @FXML private Hyperlink signUp;
@@ -36,6 +40,44 @@ public class LoginController implements Initializable {
 
   public Stage getStage() {
     return stage;
+  }
+
+
+  private Optional<User> authUser() {
+    try {
+      UserService user_svc = new UserService();
+      User user = new User();
+      user.setUsername(username.getText());
+      user.setPassword(password.getText());
+
+      return user_svc.authenticate(user);
+    } catch (InvalidCredentialsException err) {
+      errorAlert.setOpacity(100);
+      errorAlert.setText(err.getMessage());
+    } catch (BannedUserException err) {
+      errorAlert.setOpacity(100);
+      errorAlert.setText(err.getMessage());
+    }
+
+    return Optional.empty();
+  }
+
+  private Optional<Administrator> authAdmin(User user) {
+    AdministratorService admin_svc = new AdministratorService();
+    Administrator admin = new Administrator();
+    admin.setID(user.getID());
+    admin.setUsername(user.getUsername());
+    admin.setEmail(user.getEmail());
+    return admin_svc.fetchOne(admin);
+  }
+
+  private Optional<Podcaster> authPodcaster(User user) {
+    PodcasterService podcaster_svc = new PodcasterService();
+    Podcaster podcaster = new Podcaster();
+    podcaster.setID(user.getID());
+    podcaster.setUsername(user.getUsername());
+    podcaster.setEmail(user.getEmail());
+    return podcaster_svc.fetchOne(podcaster);
   }
 
   public void setStage(Stage stage) {
@@ -56,38 +98,38 @@ public class LoginController implements Initializable {
               sceneController.showForgotPassword(actionEvent);
             } catch (IOException e) {
               e.printStackTrace();
+
             }
           }
         });
+
 
     confirm.setOnAction(
         new EventHandler<ActionEvent>() {
           @Override
           public void handle(ActionEvent event) {
-            connectedUser.setUsername(username.getText());
-            connectedUser.setPassword(password.getText());
-            try {
-              Optional<User> match = user_svc.authenticate(connectedUser);
-              if (match.isPresent()) {
-                connectedUser.setStatus(match.get().getStatus());
-                connectedUser.setEmail(match.get().getEmail());
-                connectedUser.setID(match.get().getID());
-                connectedUser.setAvatar(match.get().getAvatar());
-                Debugger.log(
-                    "User (with ID=" + connectedUser.getID() + ") successfully logged in.");
-                SceneSwitcher sceneController = new SceneSwitcher();
-                try {
-                  sceneController.showFXML(event);
-                } catch (IOException e) {
-                  e.printStackTrace();
-                }
+            Optional<User> user = authUser();
+
+            if (user.isPresent()) {
+              Optional<Administrator> admin = authAdmin(user.get());
+              Optional<Podcaster> podcaster = authPodcaster(user.get());
+
+              if (admin.isPresent()) {
+                ConnectedUser.getInstance().setUser(admin.get());
+              } else if (podcaster.isPresent()) {
+                ConnectedUser.getInstance().setUser(podcaster.get());
+              } else {
+                ConnectedUser.getInstance().setUser(user.get());
               }
-            } catch (BannedUserException err) {
-              errorAlert.setOpacity(100);
-              errorAlert.setText(err.getMessage());
-            } catch (InvalidCredentialsException err) {
-              errorAlert.setOpacity(100);
-              errorAlert.setText(err.getMessage());
+
+              QuickHistory.logAccountLogin(user.get());
+
+              SceneSwitcher sceneController = new SceneSwitcher();
+              try {
+                sceneController.showHome(event);
+              } catch (IOException e) {
+                e.printStackTrace();
+              }
             }
           }
         });
@@ -98,7 +140,7 @@ public class LoginController implements Initializable {
           public void handle(ActionEvent actionEvent) {
             SceneSwitcher sceneController = new SceneSwitcher();
             try {
-              sceneController.showRegister(actionEvent);
+              sceneController.showAccountTypePicker(actionEvent);
             } catch (IOException e) {
               e.printStackTrace();
             }

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1
--- Généré le : mer. 02 mars 2022 à 12:28
+-- Généré le : Dim 06 mars 2022 à 22:27
 -- Version du serveur :  10.4.17-MariaDB
 -- Version de PHP : 7.4.15
 
@@ -41,16 +41,14 @@ CREATE TABLE `coupon` (
 --
 
 INSERT INTO `coupon` (`id`, `user_id`, `code`, `reduction`, `used`, `created`) VALUES
-(3, 1, 'h9NiOBXoXNFu', 10, 'true', '2022-02-27'),
-(4, 1, '36JIcGskEE6M', 10, 'true', '2022-02-27'),
-(5, 1, 'KsYu6zbnUxRo', 20, 'true', '2022-02-27'),
-(19, 1, 'fup2ucBN13r7', 10, 'true', '2022-02-27'),
-(20, 1, 'ygNnyBCm5EwO', 10, 'true', '2022-02-27'),
-(21, 1, 'xFMGZDxl9yhD', 20, 'true', '2022-02-27'),
-(22, 1, 'TTyULH7j2UXP', 10, 'false', '2022-02-27'),
-(23, 1, 'B8gPJE4KSXPs', 10, 'false', '2022-02-28'),
-(24, 1, 'VwePi1PfcYKd', 10, 'false', '2022-02-28'),
-(25, 1, 'XPWU2Yfp1Qew', 10, 'false', '2022-03-02');
+(40, 3, 'G6TXOGSRN8PI', 10, 'true', '2022-03-06'),
+(41, 3, '7TAQK6DcQIbM', 20, 'true', '2022-03-06'),
+(42, 1, 'C8s3JaBxEVeC', 10, 'false', '2022-03-06'),
+(43, 1, 'pCVq702pXAr5', 10, 'false', '2022-03-06'),
+(44, 1, 'gpi7cojvjwFt', 10, 'false', '2022-03-06'),
+(45, 2, 'A2IkiI3jhugq', 20, 'false', '2022-03-06'),
+(46, 2, 'UqREQHLYg6a0', 10, 'false', '2022-03-06'),
+(47, 1, 'HkWNqusNoSiL', 10, 'false', '2022-03-06');
 
 --
 -- Index pour les tables déchargées
@@ -70,7 +68,7 @@ ALTER TABLE `coupon`
 -- AUTO_INCREMENT pour la table `coupon`
 --
 ALTER TABLE `coupon`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=48;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

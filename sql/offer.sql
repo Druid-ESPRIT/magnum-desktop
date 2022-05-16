@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1
--- Généré le : mer. 02 mars 2022 à 12:27
+-- Généré le : Dim 06 mars 2022 à 22:26
 -- Version du serveur :  10.4.17-MariaDB
 -- Version de PHP : 7.4.15
 
@@ -29,7 +29,7 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `offer` (
   `id` int(11) NOT NULL,
-  `podcaster_id` int(11) NOT NULL,
+  `user_id` int(11) NOT NULL,
   `description` varchar(250) NOT NULL,
   `price` float NOT NULL,
   `image` varchar(120) NOT NULL
@@ -39,17 +39,10 @@ CREATE TABLE `offer` (
 -- Déchargement des données de la table `offer`
 --
 
-INSERT INTO `offer` (`id`, `podcaster_id`, `description`, `price`, `image`) VALUES
-(18, 10, 'zafezae', 30, 'test.png'),
-(24, 125215, 'faeefz', 25, 'test.png'),
-(25, 10, 'khaled', 30, 'test2.png'),
-(30, 10, 'gaezezagezage', 20, 'test.png'),
-(31, 10, 'zfeqzefezq', 20, 'test.png'),
-(32, 10, 'efeqzefqze', 10, 'test1.png'),
-(33, 10, 'gsergrs', 8, 'test.png'),
-(34, 10, 'vdvqdqd1', 19, 'test2.png'),
-(35, 10, 'vezqe', 17, 'test.png'),
-(36, 10, 'THIS IS A COOL OFFER', 69, 'test1.png');
+INSERT INTO `offer` (`id`, `user_id`, `description`, `price`, `image`) VALUES
+(94, 1, 'first offer ', 20, 'test.png'),
+(96, 2, 'azezae', 10, 'test2.png'),
+(97, 3, 'blaaaahblaah', 20, 'test2.png');
 
 --
 -- Index pour les tables déchargées
@@ -59,7 +52,8 @@ INSERT INTO `offer` (`id`, `podcaster_id`, `description`, `price`, `image`) VALU
 -- Index pour la table `offer`
 --
 ALTER TABLE `offer`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `fk_offer_user` (`user_id`);
 
 --
 -- AUTO_INCREMENT pour les tables déchargées
@@ -69,7 +63,17 @@ ALTER TABLE `offer`
 -- AUTO_INCREMENT pour la table `offer`
 --
 ALTER TABLE `offer`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=98;
+
+--
+-- Contraintes pour les tables déchargées
+--
+
+--
+-- Contraintes pour la table `offer`
+--
+ALTER TABLE `offer`
+  ADD CONSTRAINT `fk_offer_user` FOREIGN KEY (`user_id`) REFERENCES `users` (`ID`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
