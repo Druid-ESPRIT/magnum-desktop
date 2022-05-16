@@ -12,7 +12,6 @@ import com.druid.utils.Clearable;
 import com.druid.utils.ConnectedUser;
 import com.druid.utils.QuickHistory;
 import java.io.IOException;
-import java.net.NoRouteToHostException;
 import java.net.URL;
 import java.util.Optional;
 import java.util.ResourceBundle;
@@ -31,7 +30,6 @@ public class LoginController implements Initializable {
   private Stage stage;
   private UserService user_svc = new UserService();
 
-
   @FXML private Hyperlink forgotPassword;
   @FXML private Hyperlink signUp;
   @FXML private Button confirm;
@@ -42,7 +40,6 @@ public class LoginController implements Initializable {
   public Stage getStage() {
     return stage;
   }
-
 
   private Optional<User> authUser() {
     try {
@@ -99,11 +96,9 @@ public class LoginController implements Initializable {
               sceneController.showForgotPassword(actionEvent);
             } catch (IOException e) {
               e.printStackTrace();
-
             }
           }
         });
-
 
     confirm.setOnAction(
         new EventHandler<ActionEvent>() {

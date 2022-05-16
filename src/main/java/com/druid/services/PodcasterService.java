@@ -4,16 +4,14 @@ package com.druid.services;
 // inheritance and borrows ideas found in:
 // https://docs.oracle.com/cd/E28280_01/apirefs.1111/e13946/ejb3_overview_mapping_inher.html#ejb3_overview_mapping_inher_single
 
-import at.favre.lib.crypto.bcrypt.BCrypt;
 
-import com.druid.enums.UserStatus;
 import com.druid.enums.UserDiscriminator;
+import com.druid.enums.UserStatus;
 import com.druid.errors.register.EmailTakenException;
 import com.druid.errors.register.UsernameTakenException;
 import com.druid.interfaces.IUser;
 import com.druid.models.Podcaster;
 import com.druid.utils.Debugger;
-
 import java.nio.file.Paths;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -35,7 +33,12 @@ public class PodcasterService implements IUser<Podcaster> {
     UserService user_svc = new UserService();
     user_svc.add(podcaster);
 
-    user_svc.fetchOne(podcaster) .ifPresent( u -> { podcaster.setID(u.getID()); });
+    user_svc
+        .fetchOne(podcaster)
+        .ifPresent(
+            u -> {
+              podcaster.setID(u.getID());
+            });
 
     // Second, insert a new podcaster.
     String query =
@@ -80,7 +83,7 @@ public class PodcasterService implements IUser<Podcaster> {
                 result.getString("password"),
                 Paths.get(result.getString("avatar")),
                 UserStatus.fromString(result.getString("status")),
-		UserDiscriminator.fromString(result.getString("discr")),
+                UserDiscriminator.fromString(result.getString("discr")),
                 result.getString("firstName"),
                 result.getString("lastName"),
                 result.getString("biography")));
@@ -115,7 +118,7 @@ public class PodcasterService implements IUser<Podcaster> {
                 result.getString("password"),
                 Paths.get(result.getString("avatar")),
                 UserStatus.fromString(result.getString("status")),
-		UserDiscriminator.fromString(result.getString("discr")),
+                UserDiscriminator.fromString(result.getString("discr")),
                 result.getString("firstName"),
                 result.getString("lastName"),
                 result.getString("biography")));
@@ -151,8 +154,8 @@ public class PodcasterService implements IUser<Podcaster> {
             + "', "
             + "`status` = '"
             + podcaster.getStatus().toString()
-	    + "', "
-	    + "`discr` = '"
+            + "', "
+            + "`discr` = '"
             + podcaster.getDiscriminator().toString()
             + "' "
             + "WHERE `username` = '"
