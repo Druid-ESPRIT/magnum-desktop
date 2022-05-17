@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.String?>
+<?import java.net.URL?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="547.0" prefWidth="742.0" stylesheets="@../css/general.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.druid.controllers.DetTicketController">
+   <children>
+      <VBox layoutX="-5.0" layoutY="-3.0" prefHeight="556.0" prefWidth="288.0" styleClass="right-bar" stylesheets="@../css/style.css">
+         <children>
+            <Label />
+         </children>
+      </VBox>
+      <TextArea fx:id="Description" layoutX="314.0" layoutY="202.0" prefHeight="202.0" prefWidth="357.0" promptText="WRITE..">
+         <stylesheets>
+            <URL value="@../css/style.css" />
+            <URL value="@../css/Stylesheet.css" />
+         </stylesheets></TextArea>
+      <Button fx:id="Env" layoutX="405.0" layoutY="438.0" mnemonicParsing="false" onAction="#initialize" prefHeight="31.0" prefWidth="202.0" text="SEND">
+         <styleClass>
+            <String fx:value="form-button" />
+            <String fx:value="shadow" />
+         </styleClass>
+         <stylesheets>
+            <URL value="@../css/Stylesheet.css" />
+            <URL value="@../css/style.css" />
+            <URL value="@../css/general.css" />
+         </stylesheets>
+         <font>
+            <Font name="Franklin Gothic Demi Cond" size="15.0" />
+         </font></Button>
+      <Text fontSmoothingType="LCD" layoutX="24.0" layoutY="236.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Subject" wrappingWidth="82.13665771484375">
+         <font>
+            <Font name="Berlin Sans FB" size="18.0" />
+         </font>
+      </Text>
+      <Text fontSmoothingType="LCD" layoutX="447.0" layoutY="184.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Description" wrappingWidth="103.7366943359375">
+         <font>
+            <Font name="Franklin Gothic Medium Cond" size="22.0" />
+         </font>
+      </Text>
+      <Text fontSmoothingType="LCD" layoutX="30.0" layoutY="355.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Date" wrappingWidth="56.53668212890625">
+         <font>
+            <Font name="Franklin Gothic Medium Cond" size="18.0" />
+         </font>
+      </Text>
+      <DatePicker fx:id="CreationDate" layoutX="94.0" layoutY="332.0" prefHeight="25.0" prefWidth="176.0" promptText="DAY OF PROBLEM" />
+      <TextField fx:id="Subject" layoutX="111.0" layoutY="215.0" prefHeight="17.0" prefWidth="132.0" promptText="WRITE.." stylesheets="@../css/style.css">
+         <styleClass>
+            <String fx:value="shadow" />
+            <String fx:value="search-box" />
+         </styleClass></TextField>
+      <ImageView fitHeight="97.0" fitWidth="95.0" layoutX="634.0" layoutY="443.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../assets/Magnum.png" />
+         </image>
+      </ImageView>
+      <Text fontSmoothingType="LCD" layoutX="492.0" layoutY="71.0" strokeType="OUTSIDE" strokeWidth="0.0" text="SHOW TICKET NUMBER" wrappingWidth="202.39996337890625">
+         <font>
+            <Font name="Franklin Gothic Medium Cond" size="19.0" />
+         </font>
+      </Text>
+      <TextField fx:id="test" layoutX="477.0" layoutY="81.0" prefHeight="43.0" prefWidth="239.0" promptText="AFTER SENDING" styleClass="search-box" stylesheets="@../css/style.css" />
+      <Label fx:id="Cat" layoutX="47.0" layoutY="455.0" prefHeight="56.0" prefWidth="210.0" text="Label" textAlignment="CENTER" textFill="#b71c1c">
+         <font>
+            <Font name="Franklin Gothic Demi Cond" size="20.0" />
+         </font></Label>
+      <Button fx:id="Aff" layoutX="611.0" layoutY="88.0" mnemonicParsing="false" onAction="#Aff" prefHeight="25.0" prefWidth="95.0" styleClass="buttons-card" stylesheets="@../css/style.css" text="SHOW">
+         <font>
+            <Font name="Franklin Gothic Medium Cond" size="12.0" />
+         </font>
+      </Button>
+      <ImageView fitHeight="80.0" fitWidth="76.0" layoutX="101.0" layoutY="31.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../assets/USER.png" />
+         </image>
+      </ImageView>
+      <Label fx:id="Name" layoutX="106.0" layoutY="104.0" prefHeight="56.0" prefWidth="142.0" styleClass="shadow" stylesheets="@../css/style.css" text="  " textAlignment="CENTER">
+         <font>
+            <Font name="Franklin Gothic Medium Cond" size="48.0" />
+         </font>
+      </Label>
+      <Label fx:id="Name1" layoutX="7.0" layoutY="-15.0" prefHeight="56.0" prefWidth="268.0" styleClass="shadow" stylesheets="@../css/style.css" text="  " textAlignment="CENTER" textFill="#b71c1c">
+         <font>
+            <Font name="Franklin Gothic Medium Cond" size="17.0" />
+         </font>
+      </Label>
+      <Label fx:id="Cat1" layoutX="458.0" layoutY="476.0" prefHeight="56.0" prefWidth="104.0" text="  " textAlignment="CENTER" textFill="#b71c1c">
+         <font>
+            <Font name="Franklin Gothic Demi Cond" size="20.0" />
+         </font>
+      </Label>
+   </children>
+</Pane>

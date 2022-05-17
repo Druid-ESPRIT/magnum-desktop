@@ -6,6 +6,7 @@ import java.sql.SQLException;
 import java.util.Properties;
 
 public class DBConnection {
+
   // MYSQL User.
   static final String USERNAME = "root";
   static final String PASSWORD = "";
@@ -13,6 +14,7 @@ public class DBConnection {
   // Your Host.
   static final String HOST = "localhost";
   static final String DB_NAME = "magnum2";
+
 
   static DBConnection instance = null;
   private Connection con;
