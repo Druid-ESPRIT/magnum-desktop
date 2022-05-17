@@ -5,7 +5,9 @@
  */
 package com.druid.models;
 
-/** @author zeineb */
+/**
+ * @author zeineb
+ */
 public class Article {
   private int id;
   private User authorID;

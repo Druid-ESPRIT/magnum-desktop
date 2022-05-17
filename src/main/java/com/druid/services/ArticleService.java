@@ -20,7 +20,9 @@ import java.util.List;
 // import java.util.logging.Level;
 // import java.util.logging.Logger;
 
-/** @author zeineb */
+/**
+ * @author zeineb
+ */
 public class ArticleService implements IarticleService {
   Connection con = DBConnection.getInstance().getConnection();
   UserService podcasterService;
@@ -107,7 +109,6 @@ public class ArticleService implements IarticleService {
     }
   }
 
-
   public Article getArticle(int id) {
     String request = "select * from article where id=" + id;
     Statement st;
@@ -149,21 +150,17 @@ public class ArticleService implements IarticleService {
       Statement st = con.createStatement();
       ResultSet rs = st.executeQuery(request);
 
-        User u = new User();
-        Article A = new Article();
-        A.setId(rs.getInt(1));
-        //A.setAuthorID(podcasterService.getUser(rs.getInt(2)));
+      User u = new User();
+      Article A = new Article();
+      A.setId(rs.getInt(1));
+      // A.setAuthorID(podcasterService.getUser(rs.getInt(2)));
       A.setAuthorID(podcasterService.fetchOne(u).get());
       u.setID(rs.getInt(2));
 
-        A.setTitle(rs.getNString(3));
-        A.setContent(rs.getNString(5));
-        A.setUrl(rs.getNString(4));
-        articles.add(A);
-
-
-
-
+      A.setTitle(rs.getNString(3));
+      A.setContent(rs.getNString(5));
+      A.setUrl(rs.getNString(4));
+      articles.add(A);
 
     } catch (SQLException ex) {
       ex.printStackTrace();

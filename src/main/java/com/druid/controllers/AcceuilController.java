@@ -30,7 +30,6 @@ import javafx.scene.control.Pagination;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
@@ -45,7 +44,6 @@ public class AcceuilController implements Initializable {
   @FXML private Pagination pagination;
   @FXML private Text title1;
   @FXML private Button add;
-
 
   ArticleService as = new ArticleService();
   PodcasterService ps = new PodcasterService();
@@ -145,7 +143,7 @@ public class AcceuilController implements Initializable {
   @FXML
   private void delete1(ActionEvent event) {
     as.cancelArticle(id1);
-    ///articles2 = as.afficherArticle();
+    /// articles2 = as.afficherArticle();
     articles2 = as.afficherArticle();
     this.createPage(0);
     if (this.articles2.size() % 4 == 0) pagination.setPageCount(this.articles2.size() / 4);
@@ -286,7 +284,7 @@ public class AcceuilController implements Initializable {
               .filter(
                   a ->
                       a.getAuthorID()
-                              .getUsername()
+                          .getUsername()
                           .toUpperCase()
                           .equals(this.getByAuthor.getText().toUpperCase()))
               .sorted((v, u) -> cs.getNbComment(u.getId()) - cs.getNbComment(v.getId()))

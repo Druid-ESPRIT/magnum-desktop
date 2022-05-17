@@ -8,7 +8,9 @@ package com.druid.interfaces;
 import com.druid.models.Commentaire;
 import java.util.List;
 
-/** @author zeineb */
+/**
+ * @author zeineb
+ */
 public interface Icommentaire {
   public boolean addCommentaire(Commentaire C);
 

@@ -26,7 +26,6 @@ import javafx.scene.control.Pagination;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
@@ -148,7 +147,7 @@ public class CommentCotroller implements Initializable {
               .filter(
                   a ->
                       a.getAuthorID()
-                              .getUsername()
+                          .getUsername()
                           .toUpperCase()
                           .equals(this.getByAuthor.getText().toUpperCase()))
               .collect(Collectors.toList());
@@ -205,16 +204,14 @@ public class CommentCotroller implements Initializable {
   @FXML
   void show1(ActionEvent event) throws IOException {
     ids = id1;
-   Stage stage = (Stage) show1.getScene().getWindow();
+    Stage stage = (Stage) show1.getScene().getWindow();
     stage.close();
     Stage Stage = new Stage();
     Parent root = FXMLLoader.load(getClass().getResource("/views/commentList.fxml"));
     Stage.setTitle("comment list");
     Stage.setScene(new Scene(root));
     Stage.show();
-
   }
-
 
   @FXML
   void show2(ActionEvent event) throws IOException {

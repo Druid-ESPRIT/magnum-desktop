@@ -6,16 +6,13 @@
 package com.druid.controllers;
 
 import com.druid.models.Article;
-import com.druid.models.Podcaster;
 import com.druid.models.User;
 import com.druid.services.ArticleService;
 import com.druid.services.PodcasterService;
+import com.druid.utils.ConnectedUser;
 import java.io.IOException;
 import java.net.URL;
-import java.util.List;
 import java.util.ResourceBundle;
-
-import com.druid.utils.ConnectedUser;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -60,7 +57,9 @@ public class UpdateArticleController implements Initializable {
       field.setOpacity(0);
     }
   }
+
   User connectedUser = ConnectedUser.getInstance().getUser();
+
   @Override
   public void initialize(URL url, ResourceBundle rb) {
     Article a = as.getArticle(AcceuilController.ids);
@@ -76,7 +75,7 @@ public class UpdateArticleController implements Initializable {
   private void update(ActionEvent event) throws IOException {
     boolean valid = true;
     Article a = new Article();
-   /* List<Podcaster> podcasters = ps.getPodcasters();
+    /* List<Podcaster> podcasters = ps.getPodcasters();
     Podcaster podcaster =
         ps.getPodcasters().stream()
             .filter(p -> p.getFirstName().toUpperCase().equals(AuthorUp.getText().toUpperCase()))
@@ -94,7 +93,7 @@ public class UpdateArticleController implements Initializable {
 
     } else {
 
-     /* if (podcaster == null) {
+      /* if (podcaster == null) {
         alert(authorctrl, "invalid author Name");
         valid = false;
       } else hideAlert(authorctrl);*/
