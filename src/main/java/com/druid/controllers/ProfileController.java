@@ -77,7 +77,6 @@ public class ProfileController implements Initializable {
           }
         });
 
-
     history.setOnAction(
         new EventHandler<ActionEvent>() {
           @Override
@@ -105,8 +104,6 @@ public class ProfileController implements Initializable {
             }
           }
         });
-
-
 
     flag.setOnAction(
         new EventHandler<ActionEvent>() {
