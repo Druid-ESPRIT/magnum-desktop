@@ -1,6 +1,7 @@
 package com.druid.models;
 
 import com.druid.enums.UserStatus;
+import com.druid.enums.UserDiscriminator;
 
 import java.nio.file.Path;
 
@@ -9,8 +10,7 @@ public class Podcaster extends User {
     private String lastName;
     private String biography;
 
-    public Podcaster() {
-    }
+    public Podcaster() {}
 
     public Podcaster(
             String username,
@@ -18,10 +18,11 @@ public class Podcaster extends User {
             String password,
             Path avatar,
             UserStatus status,
+	    UserDiscriminator discriminator,
             String firstName,
             String lastName,
             String biography) {
-        super(username, email, password, avatar, status);
+        super(username, email, password, avatar, status, discriminator);
         this.firstName = firstName;
         this.lastName = lastName;
         this.biography = biography;
@@ -34,10 +35,11 @@ public class Podcaster extends User {
             String password,
             Path avatar,
             UserStatus status,
+	    UserDiscriminator discriminator,
             String firstName,
             String lastName,
             String biography) {
-        super(id, username, email, password, avatar, status);
+        super(id, username, email, password, avatar, status, discriminator);
         this.firstName = firstName;
         this.lastName = lastName;
         this.biography = biography;
@@ -61,6 +63,9 @@ public class Podcaster extends User {
                 + '\''
                 + ", status="
                 + this.getStatus()
+	    	+ ", discriminator='"
+	        + this.getDiscriminator()
+	        + '\''
                 + ", firstName='"
                 + firstName
                 + '\''

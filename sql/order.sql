@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1
--- Généré le : mer. 02 mars 2022 à 12:28
+-- Généré le : Dim 06 mars 2022 à 22:26
 -- Version du serveur :  10.4.17-MariaDB
 -- Version de PHP : 7.4.15
 
@@ -30,6 +30,7 @@ SET time_zone = "+00:00";
 CREATE TABLE `order` (
   `id` int(11) NOT NULL,
   `offer_id` int(11) NOT NULL,
+  `user_id` int(11) NOT NULL,
   `plan` int(11) NOT NULL,
   `total` float NOT NULL,
   `orderdate` varchar(30) NOT NULL,
@@ -40,28 +41,16 @@ CREATE TABLE `order` (
 -- Déchargement des données de la table `order`
 --
 
-INSERT INTO `order` (`id`, `offer_id`, `plan`, `total`, `orderdate`, `status`) VALUES
-(47, 18, 2, 80, '2022-02-27 10:48:25.847', 'Completed'),
-(48, 18, 2, 80, '2022-02-27 10:48:28.653', 'Canceled'),
-(49, 18, 2, 80, '2022-02-27 10:53:33.603', 'Completed'),
-(52, 18, 2, 80, '2022-02-27 12:13:33.991', 'Canceled'),
-(53, 18, 4, 128, '2022-02-27 12:18:38.812', 'Completed'),
-(54, 18, 4, 128, '2022-02-27 12:21:40.178', 'Completed'),
-(55, 18, 4, 128, '2022-02-27 12:22:19.116', 'Completed'),
-(56, 18, 4, 128, '2022-02-27 12:28:48.559', 'Completed'),
-(57, 18, 4, 128, '2022-02-27 12:28:58.844', 'Completed'),
-(58, 18, 4, 128, '2022-02-27 12:29:51.748', 'Completed'),
-(59, 18, 4, 144, '2022-02-27 12:39:44.132', 'Pending'),
-(60, 18, 5, 90, '2022-02-27 14:46:06.948', 'Pending'),
-(61, 18, 6, 108, '2022-02-27 14:47:17.358', 'Pending'),
-(62, 18, 4, 72, '2022-02-27 14:53:11.079', 'Pending'),
-(63, 18, 9, 144, '2022-02-27 14:56:12.084', 'Pending'),
-(64, 18, 11, 220, '2022-02-27 14:58:28.715', 'Pending'),
-(65, 18, 6, 120, '2022-02-27 19:58:22.064', 'Pending'),
-(66, 18, 8, 144, '2022-02-27 19:58:22.064', 'Pending'),
-(67, 18, 8, 144, '2022-02-28 10:10:15.903', 'Pending'),
-(68, 18, 5, 100, '2022-02-28 23:11:07.566', 'Pending'),
-(69, 18, 4, 80, '2022-03-02 00:32:17.067', 'Pending');
+INSERT INTO `order` (`id`, `offer_id`, `user_id`, `plan`, `total`, `orderdate`, `status`) VALUES
+(139, 96, 3, 8, 72, '2022-03-06 05:08:18.671', 'Completed'),
+(140, 96, 1, 4, 32, '2022-03-06 05:09:37.375', 'Completed'),
+(141, 96, 1, 3, 30, '2022-03-06 05:37:31.928', 'Completed'),
+(142, 96, 1, 5, 50, '2022-03-06 05:48:23.265', 'Completed'),
+(143, 96, 2, 7, 70, '2022-03-06 05:50:11.737', 'Completed'),
+(144, 96, 2, 3, 30, '2022-03-06 05:53:51.355', 'Completed'),
+(145, 96, 1, 4, 40, '2022-03-06 15:18:50.51', 'Completed'),
+(146, 96, 1, 2, 20, '2022-03-06 15:40:58.106', 'Completed'),
+(149, 96, 1, 2, 20, '2022-03-06 17:00:22.138', 'Pending');
 
 --
 -- Index pour les tables déchargées
@@ -72,7 +61,8 @@ INSERT INTO `order` (`id`, `offer_id`, `plan`, `total`, `orderdate`, `status`) V
 --
 ALTER TABLE `order`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `fk_offer_order` (`offer_id`);
+  ADD KEY `fk_offer_order` (`offer_id`),
+  ADD KEY `fk_order_user` (`user_id`);
 
 --
 -- AUTO_INCREMENT pour les tables déchargées
@@ -82,7 +72,7 @@ ALTER TABLE `order`
 -- AUTO_INCREMENT pour la table `order`
 --
 ALTER TABLE `order`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=70;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=150;
 
 --
 -- Contraintes pour les tables déchargées
@@ -92,7 +82,8 @@ ALTER TABLE `order`
 -- Contraintes pour la table `order`
 --
 ALTER TABLE `order`
-  ADD CONSTRAINT `fk_offer_order` FOREIGN KEY (`offer_id`) REFERENCES `offer` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `fk_offer_order` FOREIGN KEY (`offer_id`) REFERENCES `offer` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `fk_order_user` FOREIGN KEY (`user_id`) REFERENCES `users` (`ID`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

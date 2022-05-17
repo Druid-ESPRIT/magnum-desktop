@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+
+<AnchorPane prefHeight="600.0" prefWidth="500.0" stylesheets="@../css/general.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.druid.controllers.AccountTypePicker">
+   <children>
+      <CheckBox fx:id="isPodcaster" layoutX="100.0" layoutY="248.0" mnemonicParsing="false" text="I'm a podcaster">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </CheckBox>
+      <Text layoutX="170.0" layoutY="127.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Who are you?">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Text>
+      <CheckBox fx:id="isUser" layoutX="105.0" layoutY="309.0" mnemonicParsing="false" text="I want to listen to podcasts">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </CheckBox>
+   </children>
+</AnchorPane>

@@ -3,6 +3,7 @@ package com.druid.services;
 import at.favre.lib.crypto.bcrypt.BCrypt;
 import com.druid.enums.HistoryActivity;
 import com.druid.enums.UserStatus;
+import com.druid.enums.UserDiscriminator;
 import com.druid.errors.login.BannedUserException;
 import com.druid.errors.login.InvalidCredentialsException;
 import com.druid.errors.register.EmailTakenException;
@@ -13,6 +14,7 @@ import com.druid.models.User;
 import com.druid.utils.Debugger;
 import com.druid.utils.Mail;
 
+import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.sql.*;
 import java.util.ArrayList;
@@ -21,6 +23,28 @@ import java.util.List;
 import java.util.Optional;
 
 public class UserService {
+    HistoryService hist_svc = new HistoryService();
+
+    public String insertQuery(User user) {
+        // This fixes a NullPointerException, DO NOT REMOVE.
+        if (user.getAvatar() == null) {
+            user.setAvatar(Paths.get(""));
+        }
+
+        return "INSERT INTO Users (username, email, password, avatar, status, discr) VALUES ('"
+                + user.getUsername()
+                + "', '"
+                + user.getEmail()
+                + "', '"
+                + encrypt(user.getPassword())
+                + "', '"
+                + Optional.ofNullable(user.getAvatar().toString()).orElse("")
+                + "', '"
+                + user.getStatus().toString()
+                + "', '"
+                + user.getDiscriminator().toString()
+                + "');";
+    }
 
     public void add(User user) throws UsernameTakenException, EmailTakenException {
         // Check that the user being passed doesn't
@@ -39,44 +63,24 @@ public class UserService {
             }
         }
 
-        String query =
-                "INSERT INTO `Users` (`username`, `email`, `password`,"
-                        + " `avatar`, `status`) VALUES ('"
-                        + user.getUsername()
-                        + "','"
-                        + user.getEmail()
-                        + "','"
-                        + encrypt(user.getPassword())
-                        + "','"
-                        + user.getAvatar()
-                        + "','"
-                        + user.getStatus().toString()
-                        + "')";
-
         try {
             Statement stmt = IUser.con.createStatement();
-            stmt.executeUpdate(query);
+            stmt.executeUpdate(insertQuery(user));
             Debugger.log("INFO: User (with username='" + user.getUsername() + "') successfully added.");
 
-            // Fetch the recently created user
-            // since we need their ID.
-            fetchOne(user)
-                    .ifPresent(
-                            u -> {
-                                // Set the fetched ID
-                                user.setID(u.getID());
-                                // Record this action
-                                HistoryService hist_svc = new HistoryService();
-                                History hist = new History();
-                                hist.setTime(new Timestamp(new Date().getTime()));
-                                hist.setUserID(user.getID());
-                                hist.setActivity(HistoryActivity.CORE);
-                                hist.setDescription("The moment you created your account");
-                                hist_svc.add(hist, user);
-                            });
+            // Get the ID, which we don't know yet.
+            fetchOne(user).ifPresent( u -> { user.setID(u.getID()); });
         } catch (SQLException ex) {
             ex.printStackTrace();
         }
+
+        // Record this action
+        History hist = new History();
+        hist.setTime(new Timestamp(new Date().getTime()));
+        hist.setUserID(user.getID());
+        hist.setActivity(HistoryActivity.CORE);
+        hist.setDescription("The moment you created your account");
+        hist_svc.add(hist, user);
     }
 
     public List<User> fetchAll() {
@@ -95,7 +99,8 @@ public class UserService {
                                 result.getString("email"),
                                 result.getString("password"),
                                 Paths.get(result.getString("avatar")),
-                                UserStatus.fromString(result.getString("status"))));
+                                UserStatus.fromString(result.getString("status")),
+				UserDiscriminator.fromString(result.getString("discr"))));
             }
 
             return users;
@@ -116,14 +121,16 @@ public class UserService {
             ResultSet result = stmt.executeQuery();
 
             if (result.next()) {
-                return Optional.of(
-                        new User(
-                                result.getInt("ID"),
-                                result.getString("username"),
-                                result.getString("email"),
-                                result.getString("password"),
-                                Paths.get(result.getString("avatar")),
-                                UserStatus.fromString(result.getString("status"))));
+                user = new User();
+                user.setID(result.getInt("ID"));
+                user.setUsername(result.getString("username"));
+                user.setEmail(result.getString("email"));
+                user.setPassword(result.getString("password"));
+                user.setAvatar(Paths.get(result.getString("avatar")));
+                user.setStatus(UserStatus.fromString(result.getString("status")));
+                user.setDiscriminator(UserDiscriminator.fromString(result.getString("discr")));
+
+                return Optional.of(user);
             }
         } catch (SQLException ex) {
             ex.printStackTrace();
@@ -150,6 +157,24 @@ public class UserService {
         Mail.send(user.getEmail(), subject, text, false);
     }
 
+    public void updateStatus(User user) {
+        String query =
+                "UPDATE `Users` SET "
+                        + "`status` = '"
+                        + user.getStatus().toString()
+                        + "' "
+                        + "WHERE `ID` = '"
+                        + user.getID()
+                        + "'";
+
+        try {
+            Statement stmt = IUser.con.createStatement();
+            stmt.executeUpdate(query);
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+    }
+
     public void update(User user) {
         String query =
                 "UPDATE `Users` SET "
@@ -164,7 +189,10 @@ public class UserService {
                         + "', "
                         + "`status` = '"
                         + user.getStatus().toString()
-                        + "' "
+                        + "', "
+                        + "`discr` = '"
+	                    + user.getDiscriminator().toString()
+	                    + "' "
                         + "WHERE `username` = '"
                         + user.getUsername()
                         + "'";
@@ -234,7 +262,8 @@ public class UserService {
                                 result.getString("email"),
                                 result.getString("password"),
                                 Paths.get(result.getString("avatar")),
-                                UserStatus.fromString(result.getString("status")));
+                                UserStatus.fromString(result.getString("status")),
+				UserDiscriminator.fromString(result.getString("discr")));
 
                 BCrypt.Result BResult =
                         BCrypt.verifyer().verify(user.getPassword().toCharArray(), match.getPassword());
@@ -247,15 +276,15 @@ public class UserService {
 
                 // Do not authenticate if the user
                 // has been previously banned.
-                if (match.getStatus().equals(UserStatus.BANNED)) {
+                if (match.isBanned()) {
                     throw new BannedUserException("This user has been banned.");
                 }
 
                 // Re-enable the user if their account
                 // has been previously disabled.
-                if (match.getStatus().equals(UserStatus.DISABLED)) {
+                if (match.isDisabled()) {
                     match.setStatus(UserStatus.ACTIVE);
-                    update(match);
+                    this.updateStatus(match);
                 }
 
                 return Optional.of(match);

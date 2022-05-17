@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Hyperlink?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="50.0" prefWidth="523.0" styleClass="display-cards" stylesheets="@../css/style.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.druid.controllers.SingleOrderController">
+   <children>
+      <Label fx:id="orderId" layoutX="14.0" layoutY="17.0" text="Label" />
+      <Label fx:id="orderPlan" layoutX="72.0" layoutY="17.0" text="Label" />
+      <Label fx:id="orderTotal" layoutX="134.0" layoutY="17.0" text="Label" />
+      <Label fx:id="orderDate" layoutX="245.0" layoutY="17.0" text="Label" />
+      <Separator layoutX="54.0" orientation="VERTICAL" prefHeight="40.0" AnchorPane.bottomAnchor="0.0" AnchorPane.topAnchor="0.0" />
+      <Separator layoutX="110.0" orientation="VERTICAL" prefHeight="40.0" AnchorPane.bottomAnchor="0.0" AnchorPane.topAnchor="0.0" />
+      <Separator layoutX="180.0" orientation="VERTICAL" prefHeight="40.0" AnchorPane.bottomAnchor="0.0" AnchorPane.topAnchor="0.0" />
+      <Separator layoutX="405.0" layoutY="1.0" orientation="VERTICAL" prefHeight="40.0" AnchorPane.bottomAnchor="0.0" AnchorPane.topAnchor="0.0" />
+      <Hyperlink fx:id="orderStatus" layoutX="440.0" layoutY="14.0" />
+      <Label layoutX="162.0" layoutY="17.0" text="\$" />
+   </children>
+</AnchorPane>
