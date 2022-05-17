@@ -13,7 +13,7 @@ public class DBConnection {
 
   // Your Host.
   static final String HOST = "localhost";
-  static final String DB_NAME = "magnum2";
+  static final String DB_NAME = "integ";
 
 
   static DBConnection instance = null;
@@ -23,7 +23,7 @@ public class DBConnection {
     try {
       Properties properties = new Properties();
       properties.put("user", USERNAME);
-      properties.put("password", PASSWORD);
+     properties.put("password", PASSWORD);
       con = DriverManager.getConnection("jdbc:mysql://" + HOST + ":/" + DB_NAME, properties);
 
       Debugger.log("INFO: Database connection established.");

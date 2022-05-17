@@ -133,7 +133,7 @@ public class FXMLController implements Initializable {
   private void addateg(ActionEvent event) {
     if (descatg.getText().isEmpty()) {
       descatg.setStyle("-fx-border-color : red ; -fx-border-width: 2px ;");
-      new animatefx.animation.Shake(descatg).play();
+      //new animatefx.animation.Shake(descatg).play();
 
       Alert alert = new Alert(Alert.AlertType.WARNING);
       alert.setTitle("Emplacement invalide");
@@ -144,7 +144,7 @@ public class FXMLController implements Initializable {
     }
     if (namecatg.getText().isEmpty()) {
       namecatg.setStyle("-fx-border-color : red ; -fx-border-width: 2px ;");
-      new animatefx.animation.Shake(namecatg).play();
+    //  new animatefx.animation.Shake(namecatg).play();
     } else {
 
       Categorie c = new Categorie();
@@ -195,7 +195,7 @@ public class FXMLController implements Initializable {
   private void addpod(ActionEvent event) {
     if (desp.getText().isEmpty()) {
       desp.setStyle("-fx-border-color : red ; -fx-border-width: 2px ;");
-      new animatefx.animation.Shake(desp).play();
+      //new animatefx.animation.Shake(desp).play();
 
       Alert alert = new Alert(Alert.AlertType.WARNING);
       alert.setTitle("Emplacement invalide");
@@ -206,11 +206,11 @@ public class FXMLController implements Initializable {
     }
     if (filep.getText().isEmpty()) {
       filep.setStyle("-fx-border-color : red ; -fx-border-width: 2px ;");
-      new animatefx.animation.Shake(filep).play();
+     // new animatefx.animation.Shake(filep).play();
     }
     if (titelp.getText().isEmpty()) {
       titelp.setStyle("-fx-border-color : red ; -fx-border-width: 2px ;");
-      new animatefx.animation.Shake(titelp).play();
+      //new animatefx.animation.Shake(titelp).play();
     } else {
 
       Podcast p = new Podcast();
