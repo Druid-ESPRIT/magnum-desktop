@@ -1,9 +1,12 @@
 package com.druid.controllers;
 
 import com.druid.models.Offer;
+import com.druid.models.Order;
 import com.druid.models.Subscription;
 import com.druid.services.OfferService;
 import java.io.IOException;
+
+import com.druid.services.OrderService;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Label;
@@ -21,9 +24,12 @@ public class SubscriptionListController {
 
   @FXML private Label status;
   private OfferService os = new OfferService();
-  Offer selected = os.findOffer(100);
+  private OrderService order = new OrderService();
+
 
   public void setData(Subscription subscription) {
+    int ord = order.getOfferId(subscription.getorder_id());
+    Offer selected = os.findOffer(ord);
     try {
       FXMLLoader fxmlLoader = new FXMLLoader();
       fxmlLoader.setLocation(getClass().getResource("/views/Item.fxml"));

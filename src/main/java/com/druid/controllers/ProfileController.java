@@ -77,19 +77,6 @@ public class ProfileController implements Initializable {
           }
         });
 
-    subscriptions.setOnAction(
-        new EventHandler<ActionEvent>() {
-          @Override
-          public void handle(ActionEvent actionEvent) {
-            try {
-              AnchorPane anchor =
-                  FXMLLoader.load(getClass().getResource("/views/SubscriptionManager.fxml"));
-              userPane.setContent(anchor);
-            } catch (IOException e) {
-              e.printStackTrace();
-            }
-          }
-        });
 
     history.setOnAction(
         new EventHandler<ActionEvent>() {
@@ -119,18 +106,7 @@ public class ProfileController implements Initializable {
           }
         });
 
-    orders.setOnAction(
-        new EventHandler<ActionEvent>() {
-          @Override
-          public void handle(ActionEvent actionEvent) {
-            try {
-              AnchorPane anchor = FXMLLoader.load(getClass().getResource("/views/OrderView.fxml"));
-              userPane.setContent(anchor);
-            } catch (IOException e) {
-              e.printStackTrace();
-            }
-          }
-        });
+
 
     flag.setOnAction(
         new EventHandler<ActionEvent>() {
