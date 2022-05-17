@@ -43,17 +43,16 @@ public class ConsulterController implements Initializable {
     @FXML
     private TableView<Chat> Tab;
     @FXML
-    private TableColumn<Chat,String> Msg;
-    private TableColumn<Chat,String> Ifrom;
-    
-        private ObservableList<Chat> list;
-        Connection cnx = DBConnection.getInstance().getConnection();
+    private TableColumn<Chat, String> Msg;
+    private TableColumn<Chat, String> Ifrom;
+
+    private ObservableList<Chat> list;
+    Connection cnx = DBConnection.getInstance().getConnection();
     @FXML
     private TextField Rep;
     @FXML
     private Button RepB;
-    @FXML
-    private TextField IDU;
+
     @FXML
     private Label Type;
     @FXML
@@ -64,7 +63,7 @@ public class ConsulterController implements Initializable {
     private ChoiceBox<String> Nt;
     @FXML
     private Button Ref;
-   
+
     @FXML
     private Label Cat;
     @FXML
@@ -74,12 +73,15 @@ public class ConsulterController implements Initializable {
     @FXML
     private ChoiceBox<String> Ev;
     @FXML
-    private TableColumn<?, ?> Tmp;
+    private TableColumn<Chat, String> Tmp;
+    @FXML
+    private Label Name;
+    @FXML
+    private Label Name1;
 
     private User connectedUser = ConnectedUser.getInstance().getUser();
 
-    
-    
+
     public TextField getIDT() {
         return IDT;
     }
@@ -89,13 +91,14 @@ public class ConsulterController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-U.setText("");
+        Name.setText(connectedUser.getUsername());
+        Name1.setText("USER:  " + String.valueOf(connectedUser.getID()));
+        U.setText("");
         Ev.getItems().clear();
 
         connectedUser.getID();
         connectedUser.getUsername();
-        int t= connectedUser.getID();
-        IDU.setText(String.valueOf(t));
+        int t = connectedUser.getID();
 
         //initialiser
 
@@ -104,13 +107,12 @@ U.setText("");
 
         try {
 
-            ResultSet rs = cnx.createStatement().executeQuery("SELECT ID FROM ticket WHERE  USERID='"+Integer.parseInt(IDU.getText())+"' ");
+            ResultSet rs = cnx.createStatement().executeQuery("SELECT ID FROM ticket WHERE  USERID='" + connectedUser.getID() + "' ");
 
             while (rs.next()) {
 
 
-
-                String s1=rs.getString("ID");
+                String s1 = rs.getString("ID");
 
                 Nt.getItems().add(s1);
 
@@ -127,173 +129,172 @@ U.setText("");
     @FXML
     private void Aff(ActionEvent event) {
         Ev.getItems().clear();
-        
+
         U.setText("");
         System.out.println(Nt.getValue());
-        
-        
-        if (!"".equals(Nt.getValue()) ){ 
-                    
-        
-         list = FXCollections.observableArrayList();
 
-        try {
 
-            ResultSet rs = cnx.createStatement().executeQuery("SELECT * FROM chat WHERE ID='"+Integer.parseInt(Nt.getValue())+"' And USERID='"+Integer.parseInt(IDU.getText())+"'  ");
+        if (!"".equals(Nt.getValue())) {
 
-            while (rs.next()) {
-                
-                String s = "["+rs.getString("Ifrom")+"]: "+rs.getString("Msg");
-                 list.add(new Chat(s,rs.getString("DateM")));
 
-            
+            list = FXCollections.observableArrayList();
 
+            try {
+
+                ResultSet rs = cnx.createStatement().executeQuery("SELECT * FROM chat WHERE ID='" + Integer.parseInt(Nt.getValue()) + "'  ");
+
+                while (rs.next()) {
+
+                    String s = "[" + rs.getString("Ifrom") + "]: " + rs.getString("Msg");
+                    list.add(new Chat(s, rs.getString("DateM")));
+
+
+                }
+
+            } catch (SQLException ex) {
+                ex.printStackTrace();
             }
 
-        } catch (SQLException ex) {
-            ex.printStackTrace();
-        }
-        
-        Msg.setCellValueFactory(new PropertyValueFactory<>("Msg"));
-        Tmp.setCellValueFactory(new PropertyValueFactory<>("DateM"));
-        
-        Tab.setItems(list);
-        
-        
-        //################################# TYPEE
-        
-        
-        
-             list = FXCollections.observableArrayList();
+            Msg.setCellValueFactory(new PropertyValueFactory<>("Msg"));
+            Tmp.setCellValueFactory(new PropertyValueFactory<>("DateM"));
 
-        try {
+            Tab.setItems(list);
 
-            ResultSet rs = cnx.createStatement().executeQuery("SELECT Type FROM ticketkind WHERE ID='"+Integer.parseInt(Nt.getValue())+"'   ");
 
-            while (rs.next()) {
+            //################################# TYPEE
 
-              String s1=rs.getString("Type");
-              Type.setText(s1);
 
+            list = FXCollections.observableArrayList();
+
+            try {
+
+                ResultSet rs = cnx.createStatement().executeQuery("SELECT Type FROM ticketkind WHERE ID='" + Integer.parseInt(Nt.getValue()) + "'   ");
+
+                while (rs.next()) {
+
+                    String s1 = rs.getString("Type");
+                    Type.setText(s1);
+
+                }
+
+            } catch (SQLException ex) {
+                ex.printStackTrace();
             }
 
-        } catch (SQLException ex) {
-            ex.printStackTrace();
-        }
-        
-        //################################## STATUS ET DESC
-               list = FXCollections.observableArrayList();
+            //################################## STATUS ET DESC
+            list = FXCollections.observableArrayList();
 
-        try {
+            try {
 
-            ResultSet rs = cnx.createStatement().executeQuery("SELECT STATUS,Description FROM ticket WHERE ID='"+Integer.parseInt(Nt.getValue())+"' AND USERID='"+Integer.parseInt(IDU.getText())+"' ");
+                ResultSet rs = cnx.createStatement().executeQuery("SELECT STATUS,Description FROM ticket WHERE ID='" + Integer.parseInt(Nt.getValue()) + "' AND USERID='" + connectedUser.getID() + "' ");
 
-            while (rs.next()) {
+                while (rs.next()) {
 
-              String s1=rs.getString("STATUS");
-              STATUS.setText(s1);
-              String s2=rs.getString("Description");
-              Desc.setText(s2);
+                    String s1 = rs.getString("STATUS");
+                    STATUS.setText(s1);
+                    String s2 = rs.getString("Description");
+                    Desc.setText(s2);
 
+                }
+
+            } catch (SQLException ex) {
+                ex.printStackTrace();
             }
 
-        } catch (SQLException ex) {
-            ex.printStackTrace();
+
+        } else {
+            System.out.println("Ekteb");
         }
-        
-        
-        
-        
-    }else{System.out.println("Ekteb");}
-        
-        if("Resolved".equals(STATUS.getText())){U.setText("Evaluate !!");
-        
-          Ev.getItems().add("Excelent");
-        Ev.getItems().add("Good");
-        Ev.getItems().add("Bad");
-        
+
+        if ("Resolved".equals(STATUS.getText())) {
+            U.setText("Evaluate !!");
+
+            Ev.getItems().add("Excelent");
+            Ev.getItems().add("Good");
+            Ev.getItems().add("Bad");
+
         }
-                
-      
-        
+
+
     }
 
 
     @FXML
     private void RepB(ActionEvent event) {
-        
-        if(!"Closed".equals(STATUS.getText()) ){
-        
-        System.out.println(Integer.parseInt(IDU.getText()));
-  
-          Statement st = null;
-           
-            try {
-                String req ="INSERT INTO `chat`(`ID`, `ReSolverID`, `Msg`, `DateM`, `USERID`, `Ifrom`) VALUES ('"+Integer.parseInt(Nt.getValue())+"','','"+Rep.getText()+"',NOW(),'"+Integer.parseInt(IDU.getText())+"','User')";
+        if (!Nt.getSelectionModel().isEmpty()) {
 
-                st = cnx.createStatement();
-                st.executeUpdate(req);
+            if (!"Closed".equals(STATUS.getText())) {
 
-            } catch (SQLException ex) {
-                ex.printStackTrace();
+                System.out.println(connectedUser.getID());
+
+                Statement st = null;
+
+                try {
+                    String req = "INSERT INTO `chat`(`ID`, `ReSolverID`, `Msg`, `DateM`, `USERID`, `Ifrom`) VALUES ('" + Integer.parseInt(Nt.getValue()) + "','','" + Rep.getText() + "',NOW(),'" + connectedUser.getID() + "','User')";
+
+                    st = cnx.createStatement();
+                    st.executeUpdate(req);
+
+                } catch (SQLException ex) {
+                    ex.printStackTrace();
+                }
+
+
+                list = FXCollections.observableArrayList();
+
+                try {
+
+                    ResultSet rs = cnx.createStatement().executeQuery("SELECT * FROM chat WHERE ID='" + Integer.parseInt(Nt.getValue()) + "'  ");
+
+                    while (rs.next()) {
+
+                        String s = "[" + rs.getString("Ifrom") + "]: " + rs.getString("Msg");
+
+
+                        list.add(new Chat(s, rs.getString("DateM")));
+
+
+                    }
+
+                } catch (SQLException ex) {
+                    ex.printStackTrace();
+                }
+
+                Msg.setCellValueFactory(new PropertyValueFactory<>("Msg"));
+                Tmp.setCellValueFactory(new PropertyValueFactory<>("DateM"));
+
+                Tab.setItems(list);
+
+            } else {
+                U.setText("YOU CANT SEND ANYMORE");
+                System.out.println("Closed");
+
             }
-        
-       
-             list = FXCollections.observableArrayList();
-
-        try {
-
-            ResultSet rs = cnx.createStatement().executeQuery("SELECT * FROM chat WHERE ID='"+Integer.parseInt(Nt.getValue())+"' And USERID='"+Integer.parseInt(IDU.getText())+"' ");
-
-            while (rs.next()) {
-                
-                     String s = "["+rs.getString("Ifrom")+"]: "+rs.getString("Msg");
-
-
-                list.add(new Chat(s,rs.getString("DateM")));
-              
-
-            }
-
-        } catch (SQLException ex) {
-            ex.printStackTrace();
         }
-        
-        Msg.setCellValueFactory(new PropertyValueFactory<>("Msg"));
-        Tmp.setCellValueFactory(new PropertyValueFactory<>("DateM"));
-        
-        Tab.setItems(list);
-            
-    }else{ 
-            U.setText("YOU CANT SEND ANYMORE");
-            System.out.println("Closed");
-        
-        } 
     }
 
     @FXML
     private void ref(ActionEvent event) {
 
         Nt.getItems().clear();
-                 list = FXCollections.observableArrayList();
+        list = FXCollections.observableArrayList();
 
         try {
 
-            ResultSet rs = cnx.createStatement().executeQuery("SELECT ID FROM ticket WHERE  USERID='"+Integer.parseInt(IDU.getText())+"' ");
+            ResultSet rs = cnx.createStatement().executeQuery("SELECT ID FROM ticket WHERE  USERID='" + connectedUser.getID() + "' ");
 
             while (rs.next()) {
 
 
+                String s1 = rs.getString("ID");
 
-              String s1=rs.getString("ID");
-
-               Nt.getItems().add(s1);
+                Nt.getItems().add(s1);
 
             }
 
-         // int s2=Integer.parseInt(Nt.getItems().toString().substring(1,Nt.getItems().toString().length()-1));
+            // int s2=Integer.parseInt(Nt.getItems().toString().substring(1,Nt.getItems().toString().length()-1));
 
-           // System.out.println(Nt.getValue());
+            // System.out.println(Nt.getValue());
         } catch (SQLException ex) {
             ex.printStackTrace();
         }
@@ -303,52 +304,56 @@ U.setText("");
 
     @FXML
     private void Ev(ActionEvent event) {
-        
-        int t=-1;
-        
-        if(Ev.getSelectionModel().getSelectedItem().toString()=="Excelent")
-        {
-            t=100;
-        }else if(Ev.getSelectionModel().getSelectedItem().toString()=="Good")
-        {
-            t=50;
-        }else{t=10;}
 
-       
-        
-         try {
-             
+        if ((!Nt.getSelectionModel().isEmpty())&& (!Ev.getSelectionModel().isEmpty())) {
 
-            ResultSet rs = cnx.createStatement().executeQuery("SELECT Evaluate FROM ticket WHERE ID='"+Integer.parseInt(Nt.getValue())+"' ");
+
+
+        int t = -1;
+
+        if (Ev.getSelectionModel().getSelectedItem().toString() == "Excelent") {
+            t = 5;
+        } else if (Ev.getSelectionModel().getSelectedItem().toString() == "Good") {
+            t = 3;
+        } else {
+            t = 0;
+        }
+
+
+        try {
+
+
+            ResultSet rs = cnx.createStatement().executeQuery("SELECT Evaluate FROM ticket WHERE ID='" + Integer.parseInt(Nt.getValue()) + "' ");
 
             while (rs.next()) {
-                System.out.println(rs.getString("Evaluate"));  
-               if(rs.getInt("Evaluate")==0)
-               {
-                   
-                       Statement st = null;
-            try {
-                String req = "UPDATE `ticket` SET `Evaluate`='" +t+ "'  WHERE `ID`='"+Integer.parseInt(Nt.getValue())+"'";
-          //      System.out.println(Ev.getSelectionModel().getSelectedItem().toString());
-                st = cnx.createStatement();
-                st.executeUpdate(req);
+                System.out.println(rs.getString("Evaluate"));
+                if (rs.getInt("Evaluate") == 0) {
 
-            } catch (SQLException ex) {
-                ex.printStackTrace();
-            }
-                   
-                   
-               }
-               else{U.setText("Deja evalué");}
-                
+                    Statement st = null;
+                    try {
+                        String req = "UPDATE `ticket` SET `Evaluate`='" + t + "'  WHERE `ID`='" + Integer.parseInt(Nt.getValue()) + "'";
+                        //      System.out.println(Ev.getSelectionModel().getSelectedItem().toString());
+                        st = cnx.createStatement();
+                        st.executeUpdate(req);
+
+                    } catch (SQLException ex) {
+                        ex.printStackTrace();
+                    }
+
+
+                } else {
+                    U.setText("YOU HAVE ALREADY EVALUATED");
+                }
+
 
             }
 
         } catch (SQLException ex) {
             ex.printStackTrace();
         }
-        
-    
+
+
     }
+}
     
 }

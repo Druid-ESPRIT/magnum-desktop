@@ -45,7 +45,7 @@ public class ChoixController implements Initializable {
     @FXML
     private ImageView Logo;
     private ImageView Logo1;
-    //Image Mag = new Image("3.png");
+
 
     @FXML
     ChoiceBox<Rcategorie> Tcat1 = new ChoiceBox<Rcategorie>();
@@ -79,14 +79,7 @@ public class ChoixController implements Initializable {
             ex.printStackTrace();
         }
         
-        /*
-        Tcat1.getItems().add(new Categorie("1","Feature Request"));
-        Tcat1.getItems().add(new Categorie("2","Missing Podcast"));
-        Tcat1.getItems().add(new Categorie("3","Failed Payment"));
-        Tcat1.getItems().add(new Categorie("4","Account Recovery"));
-        Tcat1.getItems().add(new Categorie("5","Other"));
 
-        Logo.setImage(Mag);*/
     }
 
     /**
@@ -96,7 +89,7 @@ public class ChoixController implements Initializable {
      */
     @FXML
     public void handleButtonAction(ActionEvent event) throws IOException {
-        if (!Tcat1.getValue().toString().isEmpty()) {
+        if (!Tcat1.getSelectionModel().isEmpty()) {
 
             System.out.println(Tcat1.getValue().getIcat());
             String CS =Tcat1.getValue().toString();

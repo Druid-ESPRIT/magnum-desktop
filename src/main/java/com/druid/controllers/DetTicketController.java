@@ -48,8 +48,7 @@ public class DetTicketController implements Initializable {
     Connection cnx = DBConnection.getInstance().getConnection();
     @FXML
     private DatePicker CreationDate;
-    @FXML
-    private TextField Userid;
+
     @FXML
     private TextField Subject;
     @FXML
@@ -61,7 +60,12 @@ public class DetTicketController implements Initializable {
     String S;
     int I;
     private User connectedUser = ConnectedUser.getInstance().getUser();
-
+    @FXML
+    private Label Name;
+    @FXML
+    private Label Name1;
+    @FXML
+    private Label Cat1;
 
     Ticket T1 = new Ticket();
     public void Useed(int CI, String CS) {
@@ -77,9 +81,9 @@ public class DetTicketController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         connectedUser.getID();
         connectedUser.getUsername();
-        int t= connectedUser.getID();
 
-        getUserid().setText(String.valueOf(t));
+        Name.setText(connectedUser.getUsername());
+        Name1.setText("USER: "+String.valueOf(connectedUser.getID()));
 
 
     }
@@ -88,9 +92,6 @@ public class DetTicketController implements Initializable {
         return CreationDate;
     }
 
-    public TextField getUserid() {
-        return Userid;
-    }
 
     public TextField getSubject() {
         return Subject;
@@ -110,7 +111,7 @@ public class DetTicketController implements Initializable {
 
             System.out.println(S);
 
-            if ((!"".equals(Description.getText())) && (Integer.parseInt(Userid.getText()) > 0) && (!"".equals(Subject.getText())) && (CreationDate.getValue() != null)) {
+            if ((!"".equals(Description.getText())) && (connectedUser.getID() > 0) && (!"".equals(Subject.getText())) && (CreationDate.getValue() != null)) {
 
                 // String ID = UUID.randomUUID().toString().substring(24);
                 int ID = abs(ThreadLocalRandom.current().nextInt());
@@ -119,7 +120,7 @@ public class DetTicketController implements Initializable {
                 T1.setDescription(Description.getText());
                 //T1.setCreationDate(CreationDate.getValue());!!!!!!!!!!!              
                 //res id
-                T1.setUSERID(Integer.parseInt(Userid.getText()));
+                T1.setUSERID(connectedUser.getID());
                 T1.setSTATUS("Pending");
                 T1.setReSolverId("");
 
@@ -127,7 +128,7 @@ public class DetTicketController implements Initializable {
                 Statement st = null;
                 try {
 
-                    String req = "INSERT INTO `ticket`(`ID`, `Subject`, `Description`, `CreationDate`, `ReSolverID`, `USERID`, `STATUS`) VALUES ('" + T1.getID() + "','" + T1.getSubject() + "','" + T1.getDescription() + "','" + CreationDate.getValue() + "','" + T1.getReSolverId() + "','" + T1.getUSERID() + "','" + T1.getSTATUS() + "')";
+                    String req = "INSERT INTO `ticket`(`ID`, `Subject`, `Description`, `CreationDate`, `ReSolverID`, `USERID`, `STATUS`,`Evaluate`) VALUES ('" + T1.getID() + "','" + T1.getSubject() + "','" + T1.getDescription() + "','" + CreationDate.getValue() + "','" + T1.getReSolverId() + "','" + T1.getUSERID() + "','" + T1.getSTATUS() +"','"+0+"' )";
                     st = cnx.createStatement();
                     st.executeUpdate(req);
 
@@ -150,7 +151,7 @@ public class DetTicketController implements Initializable {
                 System.out.println(ID);
 
             } else {
-                System.out.println("Ekteb haja ya bro");
+                Cat1.setText("NOT SENDED");
             }
         }
     }

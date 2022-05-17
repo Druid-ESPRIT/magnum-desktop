@@ -19,6 +19,7 @@ import java.util.ResourceBundle;
 import com.druid.controllers.ReplyController;
 import com.druid.models.Ticket;
 import com.druid.models.User;
+import com.druid.services.UserService;
 import com.druid.utils.ConnectedUser;
 import com.druid.utils.DBConnection;
 import javafx.beans.value.ChangeListener;
@@ -114,7 +115,9 @@ public class ResolverController implements Initializable {
     private User connectedUser = ConnectedUser.getInstance().getUser();
 
     @FXML
-    private Label msg;
+    private Label Name;
+    @FXML
+    private Label Name1;
 
     public ChoiceBox<String> getMsup() {
         return Msup;
@@ -147,18 +150,18 @@ public class ResolverController implements Initializable {
         return IDT;
     }
 
-    public TextField getRes() {
-        return Res;
-    }
+
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
 
+        Name.setText(connectedUser.getUsername());
+        Name1.setText("RESOLVER:  "+String.valueOf(connectedUser.getID()));
 
 
-        Mrech.getItems().add("ID");
-        Mrech.getItems().add("USERID");
-        Mrech.getItems().add("Categorie");
+        Mrech.getItems().add("TICKET");
+        Mrech.getItems().add("USER");
+        Mrech.getItems().add("TYPE");
         Mrech.getItems().add("STATUS");
 
         Mstat.getItems().add("Resolved");
@@ -228,7 +231,7 @@ public class ResolverController implements Initializable {
             ResultSet rs = cnx.createStatement().executeQuery("SELECT ReSolverID,SUM(Evaluate) AS t FROM ticket GROUP BY ReSolverID");
 
             while (rs.next()) {
-                String s = rs.getString("ReSolverID") + ":>" + rs.getString("t");
+                String s = rs.getString("ReSolverID") + ":   " + rs.getString("t")+"P";
 
                 BEST.getItems().addAll(s);
 
@@ -256,147 +259,150 @@ public class ResolverController implements Initializable {
 
     @FXML
     private void SuppB(ActionEvent event) {
-             Alert alert1 = new Alert(Alert.AlertType.CONFIRMATION);
+        if (!Mrech.getSelectionModel().isEmpty()) {
+
+        Alert alert1 = new Alert(Alert.AlertType.CONFIRMATION);
         alert1.setTitle("Edit an offer");
         alert1.setHeaderText("Do you really want to DELETE ?");
         alert1.setContentText("Ticket will be UPDATED");
         Optional<ButtonType> option = alert1.showAndWait();
         if (option.isPresent() && option.get() == ButtonType.OK) {
 
-        list = FXCollections.observableArrayList();
+            list = FXCollections.observableArrayList();
 
-        if ("USERID".equals(Mrech.getValue().toString())) {
+            if ("USER".equals(Mrech.getValue().toString())) {
 
-            Statement st = null;
-            Statement st1 = null;
-            Statement st2 = null;
+                Statement st = null;
+                Statement st1 = null;
+                Statement st2 = null;
 
-            try {
+                try {
 
-                ResultSet rs = cnx.createStatement().executeQuery("SELECT * FROM ticket,ticketkind WHERE ticketkind.ID=ticket.ID AND ticket.USERID='" + Integer.parseInt(getRech().getText()) + "'  ");
+                    ResultSet rs = cnx.createStatement().executeQuery("SELECT * FROM ticket,ticketkind WHERE ticketkind.ID=ticket.ID AND ticket.USERID='" + Integer.parseInt(getRech().getText()) + "'  ");
 
-                while (rs.next()) {
+                    while (rs.next()) {
 
-                    int s = rs.getInt("ticketkind.ID");
-                    String req1 = "DELETE FROM ticketkind WHERE  ID='" + s + "' ";
+                        int s = rs.getInt("ticketkind.ID");
+                        String req1 = "DELETE FROM ticketkind WHERE  ID='" + s + "' ";
 
-                    st1 = cnx.createStatement();
-                    st1.executeUpdate(req1);
+                        st1 = cnx.createStatement();
+                        st1.executeUpdate(req1);
 
+                    }
+
+                } catch (SQLException ex) {
+                    ex.printStackTrace();
                 }
 
-            } catch (SQLException ex) {
-                ex.printStackTrace();
-            }
+                try {
 
-            try {
+                    String req = "DELETE FROM ticket WHERE  USERID='" + Integer.parseInt(getRech().getText()) + "' ";
 
-                String req = "DELETE FROM ticket WHERE  USERID='" + Integer.parseInt(getRech().getText()) + "' ";
+                    String req2 = "DELETE FROM chat WHERE  USERID='" + Integer.parseInt(getRech().getText()) + "' ";
 
-                String req2 = "DELETE FROM chat WHERE  USERID='" + Integer.parseInt(getRech().getText()) + "' ";
-
-                st = cnx.createStatement();
-                st.executeUpdate(req);
-                st2 = cnx.createStatement();
-                st2.executeUpdate(req2);
-
-            } catch (SQLException ex) {
-                ex.printStackTrace();
-            }
-
-        } else if ("ID".equals(Mrech.getValue().toString())) {
-
-            //******************************
-            Statement st = null;
-            Statement st1 = null;
-            Statement st2 = null;
-
-            try {
-                String req = "DELETE FROM ticket WHERE  ID='" + Integer.parseInt(getRech().getText()) + "' ";
-
-                st = cnx.createStatement();
-                st.executeUpdate(req);
-
-                String req1 = "DELETE FROM ticketkind WHERE  ID='" + Integer.parseInt(getRech().getText()) + "' ";
-                st1 = cnx.createStatement();
-                st1.executeUpdate(req1);
-                String req2 = "DELETE FROM chat WHERE  ID='" + Integer.parseInt(getRech().getText()) + "' ";
-                st2 = cnx.createStatement();
-                st2.executeUpdate(req2);
-
-            } catch (SQLException ex) {
-                ex.printStackTrace();
-            }
-
-            //************
-        } else if ("Categorie".equals(Mrech.getValue().toString())) {
-
-            Statement st = null;
-            Statement st1 = null;
-            Statement st2 = null;
-            Statement st3 = null;
-
-            try {
-
-                ResultSet rs = cnx.createStatement().executeQuery("SELECT * FROM ticket,ticketkind WHERE ticketkind.ID=ticket.ID AND ticketkind.type='" + getRech().getText() + "'  ");
-
-                while (rs.next()) {
-
-                    int s = rs.getInt("ticketkind.ID");
-
-                    String req3 = "DELETE FROM chat WHERE  ID='" + s + "' ";
-
-                    st3 = cnx.createStatement();
-                    st3.executeUpdate(req3);
-
-                    String req1 = "DELETE FROM ticketkind WHERE  ID='" + s + "' ";
-                    st1 = cnx.createStatement();
-                    st1.executeUpdate(req1);
-
-                    String req2 = "DELETE FROM ticket WHERE  ID='" + s + "' ";
+                    st = cnx.createStatement();
+                    st.executeUpdate(req);
                     st2 = cnx.createStatement();
                     st2.executeUpdate(req2);
 
+                } catch (SQLException ex) {
+                    ex.printStackTrace();
                 }
 
-            } catch (SQLException ex) {
-                ex.printStackTrace();
-            }
+            } else if ("TICKET".equals(Mrech.getValue().toString())) {
 
-        } else if ("STATUS".equals(Mrech.getValue().toString())) {
+                //******************************
+                Statement st = null;
+                Statement st1 = null;
+                Statement st2 = null;
 
-            Statement st = null;
-            Statement st1 = null;
-            Statement st2 = null;
-            Statement st3 = null;
+                try {
+                    String req = "DELETE FROM ticket WHERE  ID='" + Integer.parseInt(getRech().getText()) + "' ";
 
-            try {
+                    st = cnx.createStatement();
+                    st.executeUpdate(req);
 
-                ResultSet rs = cnx.createStatement().executeQuery("SELECT * FROM ticket,ticketkind WHERE ticketkind.ID=ticket.ID AND ticket.STATUS='" + getRech().getText() + "'  ");
-
-                while (rs.next()) {
-
-                    int s = rs.getInt("ticket.ID");
-
-                    String req3 = "DELETE FROM chat WHERE  ID='" + s + "' ";
-
-                    st3 = cnx.createStatement();
-                    st3.executeUpdate(req3);
-
-                    String req1 = "DELETE FROM ticketkind WHERE  ID='" + s + "' ";
+                    String req1 = "DELETE FROM ticketkind WHERE  ID='" + Integer.parseInt(getRech().getText()) + "' ";
                     st1 = cnx.createStatement();
                     st1.executeUpdate(req1);
-
-                    String req2 = "DELETE FROM ticket WHERE  ID='" + s + "' ";
+                    String req2 = "DELETE FROM chat WHERE  ID='" + Integer.parseInt(getRech().getText()) + "' ";
                     st2 = cnx.createStatement();
                     st2.executeUpdate(req2);
 
+                } catch (SQLException ex) {
+                    ex.printStackTrace();
                 }
 
-            } catch (SQLException ex) {
-                ex.printStackTrace();
-            }
+                //************
+            } else if ("TYPE".equals(Mrech.getValue().toString())) {
 
+                Statement st = null;
+                Statement st1 = null;
+                Statement st2 = null;
+                Statement st3 = null;
+
+                try {
+
+                    ResultSet rs = cnx.createStatement().executeQuery("SELECT * FROM ticket,ticketkind WHERE ticketkind.ID=ticket.ID AND ticketkind.type='" + getRech().getText() + "'  ");
+
+                    while (rs.next()) {
+
+                        int s = rs.getInt("ticketkind.ID");
+
+                        String req3 = "DELETE FROM chat WHERE  ID='" + s + "' ";
+
+                        st3 = cnx.createStatement();
+                        st3.executeUpdate(req3);
+
+                        String req1 = "DELETE FROM ticketkind WHERE  ID='" + s + "' ";
+                        st1 = cnx.createStatement();
+                        st1.executeUpdate(req1);
+
+                        String req2 = "DELETE FROM ticket WHERE  ID='" + s + "' ";
+                        st2 = cnx.createStatement();
+                        st2.executeUpdate(req2);
+
+                    }
+
+                } catch (SQLException ex) {
+                    ex.printStackTrace();
+                }
+
+            } else if ("STATUS".equals(Mrech.getValue().toString())) {
+
+                Statement st = null;
+                Statement st1 = null;
+                Statement st2 = null;
+                Statement st3 = null;
+
+                try {
+
+                    ResultSet rs = cnx.createStatement().executeQuery("SELECT * FROM ticket,ticketkind WHERE ticketkind.ID=ticket.ID AND ticket.STATUS='" + getRech().getText() + "'  ");
+
+                    while (rs.next()) {
+
+                        int s = rs.getInt("ticket.ID");
+
+                        String req3 = "DELETE FROM chat WHERE  ID='" + s + "' ";
+
+                        st3 = cnx.createStatement();
+                        st3.executeUpdate(req3);
+
+                        String req1 = "DELETE FROM ticketkind WHERE  ID='" + s + "' ";
+                        st1 = cnx.createStatement();
+                        st1.executeUpdate(req1);
+
+                        String req2 = "DELETE FROM ticket WHERE  ID='" + s + "' ";
+                        st2 = cnx.createStatement();
+                        st2.executeUpdate(req2);
+
+                    }
+
+                } catch (SQLException ex) {
+                    ex.printStackTrace();
+                }
+
+            }
         }
     }
     }
@@ -411,12 +417,12 @@ public class ResolverController implements Initializable {
         alert1.setContentText("Ticket STATUS will be edited");
         Optional<ButtonType> option = alert1.showAndWait();
         if (option.isPresent() && option.get() == ButtonType.OK) {
-        if (!"".equals(getRes().getText())) {
+
 
             Statement st = null;
-            System.out.println(getRes().getText());
+
             try {
-                String req = "UPDATE `ticket` SET `ReSolverID`='" + getRes().getText() + "',`STATUS`='Resolved' WHERE `ID`='" + Integer.parseInt(ID.getSelectionModel().getSelectedItem()) + "'";
+                String req = "UPDATE `ticket` SET `ReSolverID`='" + connectedUser.getID() + "',`STATUS`='Resolved' WHERE `ID`='" + Integer.parseInt(ID.getSelectionModel().getSelectedItem()) + "'";
 
                 st = cnx.createStatement();
                 st.executeUpdate(req);
@@ -425,9 +431,7 @@ public class ResolverController implements Initializable {
                 ex.printStackTrace();
             }
 
-        } else {
-            System.out.println("Ekteb");
-        }
+
     }
     }
 
@@ -474,8 +478,10 @@ public class ResolverController implements Initializable {
 
     @FXML
     private void RechB(ActionEvent event) {
+        if (!Mrech.getSelectionModel().isEmpty()) {
 
-            ID.getItems().clear();
+
+        ID.getItems().clear();
         Subject.getItems().clear();
         Description.getItems().clear();
         CreationDate.getItems().clear();
@@ -484,7 +490,7 @@ public class ResolverController implements Initializable {
         Categorie.getItems().clear();
 
 
-        if ("USERID".equals(Mrech.getValue().toString() )) {
+        if ("USER".equals(Mrech.getValue().toString())) {
 
             list = FXCollections.observableArrayList();
 
@@ -509,7 +515,7 @@ public class ResolverController implements Initializable {
                 ex.printStackTrace();
             }
 
-        } else if ("ID".equals(Mrech.getValue().toString())) {
+        } else if ("TICKET".equals(Mrech.getValue().toString())) {
 
             list = FXCollections.observableArrayList();
 
@@ -553,9 +559,9 @@ public class ResolverController implements Initializable {
             } catch (SQLException ex) {
                 ex.printStackTrace();
             }
-        } else if ("Categorie".equals(Mrech.getValue().toString())) {
+        } else if ("TYPE".equals(Mrech.getValue().toString())) {
 
-             try {
+            try {
 
                 ResultSet rs = cnx.createStatement().executeQuery("SELECT * FROM ticket,ticketkind WHERE ticket.ID=ticketkind.ID  AND ticketkind.Type='" + getRech().getText() + "' ");
 
@@ -575,7 +581,7 @@ public class ResolverController implements Initializable {
             }
 
         }
-
+    }
     }
 
     @FXML
@@ -595,6 +601,8 @@ public class ResolverController implements Initializable {
 
     @FXML
     private void Stat(ActionEvent event) {
+        if (!Mstat.getSelectionModel().isEmpty()) {
+
 
         if ("Resolved".equals(Mstat.getValue())) {
 
@@ -606,8 +614,10 @@ public class ResolverController implements Initializable {
 
                 while (rs.next()) {
 
+
                     float s = rs.getFloat("t") * 100;
-                    String s1 = Float.toString(s);
+                    int value = (int) s;
+                    String s1 = Float.toString(value).substring(0,Float.toString(value).length()-2);
                     Stat.setText(s1 + " %");
 
                 }
@@ -625,7 +635,8 @@ public class ResolverController implements Initializable {
                 while (rs.next()) {
 
                     float s = rs.getFloat("t") * 100;
-                    String s1 = Float.toString(s);
+                    int value = (int) s;
+                    String s1 = Float.toString(value).substring(0,Float.toString(value).length()-2);
                     Stat.setText(s1 + " %");
 
                 }
@@ -642,7 +653,8 @@ public class ResolverController implements Initializable {
                 while (rs.next()) {
 
                     float s = rs.getFloat("t") * 100;
-                    String s1 = Float.toString(s);
+                    int value = (int) s;
+                    String s1 = Float.toString(value).substring(0,Float.toString(value).length()-2);
                     Stat.setText(s1 + " %");
 
                 }
@@ -651,7 +663,7 @@ public class ResolverController implements Initializable {
                 ex.printStackTrace();
             }
         }
-
+    }
     }
 
     @FXML
@@ -663,12 +675,9 @@ public class ResolverController implements Initializable {
         Optional<ButtonType> option = alert1.showAndWait();
         if (option.isPresent() && option.get() == ButtonType.OK) {
 
-        if (!"".equals(getRes().getText())) {
-
             Statement st = null;
-            System.out.println(getRes().getText());
             try {
-                String req = "UPDATE `ticket` SET `ReSolverID`='" + getRes().getText() + "',`STATUS`='Pending' WHERE `ID`='" + Integer.parseInt(ID.getSelectionModel().getSelectedItem()) + "'";
+                String req = "UPDATE `ticket` SET `ReSolverID`='" +connectedUser.getID()+ "',`STATUS`='Pending' WHERE `ID`='" + Integer.parseInt(ID.getSelectionModel().getSelectedItem()) + "'";
 
                 st = cnx.createStatement();
                 st.executeUpdate(req);
@@ -677,9 +686,7 @@ public class ResolverController implements Initializable {
                 ex.printStackTrace();
             }
 
-        } else {
-            System.out.println("Ekteb");
-        }
+
     }
     }
 
@@ -729,7 +736,7 @@ public class ResolverController implements Initializable {
 
     @FXML
     private void SupC(ActionEvent event) {
-        
+
                        Alert alert1 = new Alert(Alert.AlertType.CONFIRMATION);
         alert1.setTitle("Edit an offer");
         alert1.setHeaderText("Do you really want to DELETE this TYPE ?");
@@ -785,12 +792,12 @@ public class ResolverController implements Initializable {
         Optional<ButtonType> option = alert1.showAndWait();
         if (option.isPresent() && option.get() == ButtonType.OK) {
 
-        if (!"".equals(getRes().getText())) {
+
 
             Statement st = null;
-            System.out.println(getRes().getText());
+
             try {
-                String req = "UPDATE `ticket` SET `ReSolverID`='" + getRes().getText() + "',`STATUS`='Closed' WHERE `ID`='" + Integer.parseInt(ID.getSelectionModel().getSelectedItem()) + "'";
+                String req = "UPDATE `ticket` SET `ReSolverID`='" + connectedUser.getID() + "',`STATUS`='Closed' WHERE `ID`='" + Integer.parseInt(ID.getSelectionModel().getSelectedItem()) + "'";
 
                 st = cnx.createStatement();
                 st.executeUpdate(req);
@@ -799,9 +806,7 @@ public class ResolverController implements Initializable {
                 ex.printStackTrace();
             }
 
-        } else {
-            System.out.println("Ekteb");
-        }
+
     }
 
     }
