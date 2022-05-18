@@ -20,16 +20,12 @@ import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 
 public class ProfileController implements Initializable {
   ConnectedUser connectedUser = ConnectedUser.getInstance();
-    private Scene scene;
-    private Parent root;
-    private Stage stage;
+  private Scene scene;
+  private Parent root;
+  private Stage stage;
 
   @FXML private AnchorPane fileChooserPane;
   @FXML private AnchorPane pane;
@@ -41,11 +37,9 @@ public class ProfileController implements Initializable {
   @FXML private Hyperlink orders;
   @FXML private Hyperlink security;
 
-    @FXML
-    private Hyperlink issues;
+  @FXML private Hyperlink issues;
 
-
-    @FXML private Hyperlink subscriptions;
+  @FXML private Hyperlink subscriptions;
 
   @FXML private ScrollPane userPane;
 
@@ -144,21 +138,21 @@ public class ProfileController implements Initializable {
             }
           }
         });
-      issues.setOnAction(
-              new EventHandler<ActionEvent>() {
-                  @Override
-                  public void handle(ActionEvent actionEvent) {
-                      try {
-                      Parent root = FXMLLoader.load(getClass().getResource("/views/Consulter.fxml"));
-                      stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
-                      scene = new Scene(root);
-                      stage.setScene(scene);
-                      stage.show();
-                      } catch (IOException e) {
-                          e.printStackTrace();
-                      }
-                  }
-              });
+    issues.setOnAction(
+        new EventHandler<ActionEvent>() {
+          @Override
+          public void handle(ActionEvent actionEvent) {
+            try {
+              Parent root = FXMLLoader.load(getClass().getResource("/views/Consulter.fxml"));
+              stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+              scene = new Scene(root);
+              stage.setScene(scene);
+              stage.show();
+            } catch (IOException e) {
+              e.printStackTrace();
+            }
+          }
+        });
 
     flag.setOnAction(
         new EventHandler<ActionEvent>() {

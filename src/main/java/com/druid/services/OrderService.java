@@ -277,14 +277,14 @@ public class OrderService {
       ResultSet result = stmt.executeQuery(query);
       while (result.next()) {
         orders.add(
-                new Order(
-                        result.getInt("id"),
-                        result.getInt("offer_id"),
-                        result.getInt("user_id"),
-                        result.getInt("plan"),
-                        result.getFloat("total"),
-                        result.getTimestamp("orderdate"),
-                        OrderStatus.fromString(result.getString("status"))));
+            new Order(
+                result.getInt("id"),
+                result.getInt("offer_id"),
+                result.getInt("user_id"),
+                result.getInt("plan"),
+                result.getFloat("total"),
+                result.getTimestamp("orderdate"),
+                OrderStatus.fromString(result.getString("status"))));
       }
       System.out.println(orders);
       return orders;
