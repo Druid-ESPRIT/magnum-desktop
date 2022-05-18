@@ -5,10 +5,7 @@
  */
 package com.druid.enums;
 
-
 public enum EventStatus {
-    FINISHED,NOT_FINISHED
-    
-    
-    
+  FINISHED,
+  NOT_FINISHED
 }
