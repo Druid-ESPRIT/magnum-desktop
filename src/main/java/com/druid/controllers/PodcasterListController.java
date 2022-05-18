@@ -5,14 +5,13 @@ import com.druid.models.Offer;
 import com.druid.models.Podcaster;
 import com.druid.services.OfferService;
 import com.druid.services.PodcasterService;
+import com.druid.utils.SelectedOffer;
 import java.io.IOException;
 import java.net.URL;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.List;
 import java.util.ResourceBundle;
-
-import com.druid.utils.SelectedOffer;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;

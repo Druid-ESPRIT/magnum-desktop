@@ -29,10 +29,8 @@ public class HomeController implements Initializable {
 
   @FXML private Button offermanagerButton;
   @FXML private Button podcastersButton;
-  @FXML
-  private Button reportbutton;
-  @FXML
-  private ImageView logo;
+  @FXML private Button reportbutton;
+  @FXML private ImageView logo;
 
   @FXML private Button logoutButton;
   ConnectedUser connectedUser = ConnectedUser.getInstance();
@@ -53,7 +51,7 @@ public class HomeController implements Initializable {
       workingPane.getChildren().add(newPane);
     } catch (IOException e) {
       e.printStackTrace();
-  }
+    }
   }
 
   @FXML
@@ -128,8 +126,7 @@ public class HomeController implements Initializable {
   @FXML
   void reportPressed(ActionEvent event) {
     try {
-      AnchorPane newLoadedPane =
-              FXMLLoader.load(getClass().getResource("/views/Choix.fxml"));
+      AnchorPane newLoadedPane = FXMLLoader.load(getClass().getResource("/views/Choix.fxml"));
       workingPane.getChildren().clear();
       workingPane.getChildren().add(newLoadedPane);
     } catch (IOException e) {
@@ -137,17 +134,13 @@ public class HomeController implements Initializable {
     }
   }
 
-
-
-
   @Override
   public void initialize(URL location, ResourceBundle resources) {
     if (connectedUser.isUser()) {
       offermanagerButton.setVisible(false);
     }
-    if(connectedUser.isPodcaster())
-    {
-        playListButton.setVisible(false);
+    if (connectedUser.isPodcaster()) {
+      playListButton.setVisible(false);
     }
     Path path = Paths.get("src", "main", "resources", "assets", "logo.png");
     Image image = new Image(path.toFile().toURI().toString());
