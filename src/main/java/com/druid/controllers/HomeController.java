@@ -49,7 +49,6 @@ public class HomeController implements Initializable {
   }
 
   @FXML
-
   void articlePressed(ActionEvent event) {
     try {
       AnchorPane newLoadedPane = FXMLLoader.load(getClass().getResource("/views/acceuil.fxml"));
@@ -58,7 +57,6 @@ public class HomeController implements Initializable {
     } catch (IOException e) {
       e.printStackTrace();
     }
-
   }
 
   @FXML
@@ -85,14 +83,15 @@ public class HomeController implements Initializable {
   }
 
   @FXML
-  void playlistPressed(ActionEvent event) {try {
-    AnchorPane newLoadedPane =
-            FXMLLoader.load(getClass().getResource("/views/FXML.fxml"));
-    workingPane.getChildren().clear();
-    workingPane.getChildren().add(newLoadedPane);
-  } catch (IOException e) {
-    e.printStackTrace();
-  }}
+  void playlistPressed(ActionEvent event) {
+    try {
+      AnchorPane newLoadedPane = FXMLLoader.load(getClass().getResource("/views/FXML.fxml"));
+      workingPane.getChildren().clear();
+      workingPane.getChildren().add(newLoadedPane);
+    } catch (IOException e) {
+      e.printStackTrace();
+    }
+  }
 
   @FXML
   void offerManagementPressed(ActionEvent event) {
@@ -133,6 +132,4 @@ public class HomeController implements Initializable {
       offermanagerButton.setVisible(false);
     }
   }
-
-
 }

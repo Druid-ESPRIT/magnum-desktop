@@ -7,7 +7,6 @@ package com.druid.services;
 
 import com.druid.interfaces.IarticleService;
 import com.druid.models.Article;
-import com.druid.models.User;
 import com.druid.utils.DBConnection;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -149,7 +148,6 @@ public class ArticleService implements IarticleService {
     try {
       Statement st = con.createStatement();
       ResultSet rs = st.executeQuery(request);
-
 
       while (rs.next()) {
         Article A = new Article();
