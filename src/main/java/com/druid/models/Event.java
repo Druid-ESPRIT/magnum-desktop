@@ -7,167 +7,196 @@ package com.druid.models;
 
 import com.druid.enums.EventStatus;
 import com.druid.enums.EventType;
-
 import java.sql.Date;
 
-
 public class Event {
-    
-    private int id;
-    private User user;
-    private String name;
-    private String description;
-    private EventType type;
-    private String location;
-    private Date date;
-    private boolean payant;
-    private double prix;
-    private EventStatus status;
-    private String image;
 
-    public Event() {
-    }
+  private int id;
+  private User user;
+  private String name;
+  private String description;
+  private EventType type;
+  private String location;
+  private Date date;
+  private boolean payant;
+  private double prix;
+  private EventStatus status;
+  private String image;
 
-    public String getImage() {
-        return image;
-    }
+  public Event() {}
 
-    public void setImage(String image) {
-        this.image = image;
-    }
+  public String getImage() {
+    return image;
+  }
 
-    public Event(User user, String name, String description, EventType type, String location, Date date, boolean payant, double prix, String image) {
-        this.user = user;
-        this.name = name;
-        this.description = description;
-        this.type = type;
-        this.location = location;
-        this.date = date;
-        this.payant = payant;
-        this.prix = prix;
-        this.image = image;
-    }
-    
-     public Event(User user, String name, String description, EventType type, String location, Date date, boolean payant) {
-        this.user = user;
-        this.name = name;
-        this.description = description;
-        this.type = type;
-        this.location = location;
-        this.date = date;
-        this.payant = payant;
-    }
+  public void setImage(String image) {
+    this.image = image;
+  }
 
+  public Event(
+      User user,
+      String name,
+      String description,
+      EventType type,
+      String location,
+      Date date,
+      boolean payant,
+      double prix,
+      String image) {
+    this.user = user;
+    this.name = name;
+    this.description = description;
+    this.type = type;
+    this.location = location;
+    this.date = date;
+    this.payant = payant;
+    this.prix = prix;
+    this.image = image;
+  }
 
-    public Event(int id, User user, String name, String description, EventType type, String location, Date date, boolean payant, double prix, EventStatus status) {
-        this.id = id;
-        this.user = user;
-        this.name = name;
-        this.description = description;
-        this.type = type;
-        this.location = location;
-        this.date = date;
-        this.payant = payant;
-        this.prix = prix;
-        this.status = status;
-    }
-    
-    
-    
-    
-    
-    
-   
-    
-    
+  public Event(
+      User user,
+      String name,
+      String description,
+      EventType type,
+      String location,
+      Date date,
+      boolean payant) {
+    this.user = user;
+    this.name = name;
+    this.description = description;
+    this.type = type;
+    this.location = location;
+    this.date = date;
+    this.payant = payant;
+  }
 
-    public int getId() {
-        return id;
-    }
+  public Event(
+      int id,
+      User user,
+      String name,
+      String description,
+      EventType type,
+      String location,
+      Date date,
+      boolean payant,
+      double prix,
+      EventStatus status) {
+    this.id = id;
+    this.user = user;
+    this.name = name;
+    this.description = description;
+    this.type = type;
+    this.location = location;
+    this.date = date;
+    this.payant = payant;
+    this.prix = prix;
+    this.status = status;
+  }
 
-    public void setId(int id) {
-        this.id = id;
-    }
+  public int getId() {
+    return id;
+  }
 
-    public User getUser() {
-        return user;
-    }
+  public void setId(int id) {
+    this.id = id;
+  }
 
-    public void setUser(User user) {
-        this.user = user;
-    }
+  public User getUser() {
+    return user;
+  }
 
-    public String getName() {
-        return name;
-    }
+  public void setUser(User user) {
+    this.user = user;
+  }
 
-    public void setName(String name) {
-        this.name = name;
-    }
+  public String getName() {
+    return name;
+  }
 
-    public String getDescription() {
-        return description;
-    }
+  public void setName(String name) {
+    this.name = name;
+  }
 
-    public void setDescription(String description) {
-        this.description = description;
-    }
+  public String getDescription() {
+    return description;
+  }
 
-    public EventType getType() {
-        return type;
-    }
+  public void setDescription(String description) {
+    this.description = description;
+  }
 
-    public void setType(EventType type) {
-        this.type = type;
-    }
+  public EventType getType() {
+    return type;
+  }
 
-    public String getLocation() {
-        return location;
-    }
+  public void setType(EventType type) {
+    this.type = type;
+  }
 
-    public void setLocation(String location) {
-        this.location = location;
-    }
+  public String getLocation() {
+    return location;
+  }
 
-    public Date getDate() {
-        return date;
-    }
+  public void setLocation(String location) {
+    this.location = location;
+  }
 
-    public void setDate(Date date) {
-        this.date = date;
-    }
+  public Date getDate() {
+    return date;
+  }
 
-    public boolean isPayant() {
-        return payant;
-    }
+  public void setDate(Date date) {
+    this.date = date;
+  }
 
-    public void setPayant(boolean payant) {
-        this.payant = payant;
-    }
+  public boolean isPayant() {
+    return payant;
+  }
 
-    public EventStatus getStatus() {
-        return status;
-    }
+  public void setPayant(boolean payant) {
+    this.payant = payant;
+  }
 
-    public void setStatus(EventStatus status) {
-        this.status = status;
-    }
+  public EventStatus getStatus() {
+    return status;
+  }
 
-    public double getPrix() {
-        return prix;
-    }
+  public void setStatus(EventStatus status) {
+    this.status = status;
+  }
 
-    public void setPrix(double prix) {
-        this.prix = prix;
-    }
+  public double getPrix() {
+    return prix;
+  }
 
-    @Override
-    public String toString() {
-        return "Event{" + "id=" + id + ", user=" + user + ", name=" + name + ", description=" + description + ", type=" + type + ", location=" + location + ", date=" + date + ", payant=" + payant + ", prix=" + prix + ", status=" + status + '}';
-    }
-    
-    
+  public void setPrix(double prix) {
+    this.prix = prix;
+  }
 
-    
-
+  @Override
+  public String toString() {
+    return "Event{"
+        + "id="
+        + id
+        + ", user="
+        + user
+        + ", name="
+        + name
+        + ", description="
+        + description
+        + ", type="
+        + type
+        + ", location="
+        + location
+        + ", date="
+        + date
+        + ", payant="
+        + payant
+        + ", prix="
+        + prix
+        + ", status="
+        + status
+        + '}';
+  }
 }

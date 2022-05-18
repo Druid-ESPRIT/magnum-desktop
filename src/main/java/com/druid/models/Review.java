@@ -5,72 +5,71 @@
  */
 package com.druid.models;
 
-
 public class Review {
-    
-    private int id;
-    private User user;
-    private Event event;
-    private String review;
 
-    public Review() {
-    }
-    
-    
+  private int id;
+  private User user;
+  private Event event;
+  private String review;
 
-    public Review(int id, User user, Event event, String review) {
-        this.id = id;
-        this.user = user;
-        this.event = event;
-        this.review = review;
-    }
+  public Review() {}
 
-    public Review(User user, Event event, String review) {
-        this.user = user;
-        this.event = event;
-        this.review = review;
-    }
+  public Review(int id, User user, Event event, String review) {
+    this.id = id;
+    this.user = user;
+    this.event = event;
+    this.review = review;
+  }
 
-    public int getId() {
-        return id;
-    }
+  public Review(User user, Event event, String review) {
+    this.user = user;
+    this.event = event;
+    this.review = review;
+  }
 
-    public void setId(int id) {
-        this.id = id;
-    }
+  public int getId() {
+    return id;
+  }
 
-    public User getUser() {
-        return user;
-    }
+  public void setId(int id) {
+    this.id = id;
+  }
 
-    public void setUser(User user) {
-        this.user = user;
-    }
+  public User getUser() {
+    return user;
+  }
 
-    public Event getEvent() {
-        return event;
-    }
+  public void setUser(User user) {
+    this.user = user;
+  }
 
-    public void setEvent(Event event) {
-        this.event = event;
-    }
+  public Event getEvent() {
+    return event;
+  }
 
-    public String getReview() {
-        return review;
-    }
+  public void setEvent(Event event) {
+    this.event = event;
+  }
 
-    public void setReview(String review) {
-        this.review = review;
-    }
+  public String getReview() {
+    return review;
+  }
 
-    @Override
-    public String toString() {
-        return "Review{" + "id=" + id + ", user=" + user + ", event=" + event + ", review=" + review + '}';
-    }
+  public void setReview(String review) {
+    this.review = review;
+  }
 
-    
-    
-    
-    
-    
+  @Override
+  public String toString() {
+    return "Review{"
+        + "id="
+        + id
+        + ", user="
+        + user
+        + ", event="
+        + event
+        + ", review="
+        + review
+        + '}';
+  }
 }

@@ -5,7 +5,7 @@
  */
 package com.druid.enums;
 
-
 public enum EventType {
-    LIVE, PRESENTIEL
+  LIVE,
+  PRESENTIEL
 }
