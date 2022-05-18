@@ -307,4 +307,37 @@ public class UserService {
 
     throw new NoSuchUserException("This user doesn't exist.");
   }
+
+  public User getUser(int id) {
+    String request = "select * from users where id='" + id + "'";
+    Statement st;
+    try {
+      st = IUser.con.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
+      ResultSet rs = st.executeQuery(request);
+      rs.last();
+      int nb = rs.getRow();
+      rs.beforeFirst();
+      if (nb != 0) {
+        rs.next();
+        User u = new User();
+        u.setID(rs.getInt(1));
+        u.setUsername(rs.getString(2));
+        u.setEmail(rs.getString(3));
+        u.setPassword(rs.getString(4));
+        u.setPassword(rs.getString(5));
+        u.setStatus(UserStatus.fromString(rs.getString(6)));
+        u.setDiscriminator(UserDiscriminator.fromString(rs.getString(7)));
+
+        return u;
+      }
+
+    } catch (SQLException ex) {
+      ex.printStackTrace();
+      return null;
+    }
+
+    return null;
+  }
+
+
 }

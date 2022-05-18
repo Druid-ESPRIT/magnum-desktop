@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<AnchorPane fx:id="pane" prefHeight="500.0" prefWidth="367.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.druid.controllers.CompleteOrderController">
+   <children>
+      <AnchorPane fx:id="anchorPaneCircle" layoutX="70.0" layoutY="96.0" prefHeight="200.0" prefWidth="264.0">
+         <children>
+            <VBox fx:id="turnVbox" alignment="CENTER" layoutX="-2.0" prefHeight="106.0" prefWidth="271.0">
+               <children>
+                  <FontAwesomeIconView fill="#3bbc25" glyphName="SPINNER" size="60" wrappingWidth="58.99999858438969" />
+               </children>
+            </VBox>
+            <VBox fx:id="vboxText" alignment="CENTER" layoutY="115.0" prefHeight="85.0" prefWidth="271.0">
+               <children>
+                  <Label text="Your order is waitin for complition" />
+                  <Label text="Please pay here to complete your transaction..." />
+               </children>
+            </VBox>
+         </children>
+      </AnchorPane>
+      <AnchorPane fx:id="anchorPanePay" layoutY="294.0" prefHeight="146.0" prefWidth="386.0">
+         <children>
+            <VBox alignment="CENTER_LEFT" prefHeight="146.0" prefWidth="708.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+               <children>
+                  <Label text="Card information">
+                     <VBox.margin>
+                        <Insets left="50.0" />
+                     </VBox.margin>
+                  </Label>
+                  <TextField fx:id="cardNum" prefHeight="25.0" prefWidth="228.0" promptText="1234 1234 1234 1234">
+                     <VBox.margin>
+                        <Insets left="50.0" right="100.0" />
+                     </VBox.margin>
+                  </TextField>
+                  <HBox alignment="CENTER_LEFT" prefHeight="36.0" prefWidth="260.0">
+                     <children>
+                        <TextField fx:id="getmonth" prefHeight="25.0" prefWidth="56.0" promptText="MM">
+                           <HBox.margin>
+                              <Insets right="20.0" />
+                           </HBox.margin>
+                        </TextField>
+                        <TextField fx:id="getYear" prefHeight="25.0" prefWidth="76.0" promptText="YYYY">
+                           <HBox.margin>
+                              <Insets right="20.0" />
+                           </HBox.margin>
+                        </TextField>
+                        <TextField fx:id="getcvc" prefHeight="25.0" prefWidth="52.0" promptText="CVC" />
+                     </children>
+                     <VBox.margin>
+                        <Insets left="50.0" />
+                     </VBox.margin>
+                  </HBox>
+                  <Button contentDisplay="TOP" mnemonicParsing="false" onAction="#PayClicked" prefHeight="48.0" prefWidth="81.0" styleClass="card-bar" stylesheets="@../css/style.css" text="Pay">
+                     <VBox.margin>
+                        <Insets left="150.0" />
+                     </VBox.margin>
+                     <graphic>
+                        <FontAwesomeIconView glyphName="CREDIT_CARD" size="25" />
+                     </graphic>
+                  </Button>
+               </children>
+            </VBox>
+         </children>
+      </AnchorPane>
+      <AnchorPane fx:id="anchorPaneCheck" layoutX="12.0" layoutY="6.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="271.0" prefWidth="363.0">
+         <children>
+            <Label fx:id="event2" layoutX="174.0" layoutY="115.0" prefHeight="61.0" prefWidth="32.0">
+               <graphic>
+                  <FontAwesomeIconView fill="#e80909" glyphName="CHECK" size="40" text="" />
+               </graphic>
+            </Label>
+            <Label fx:id="event1" layoutX="158.0" layoutY="105.0">
+               <graphic>
+                  <FontAwesomeIconView fill="#1fc919" glyphName="CIRCLE_THIN" size="80" wrappingWidth="71.85714340209961" />
+               </graphic>
+            </Label>
+            <Label layoutX="83.0" layoutY="185.0" text="Your payment has been completed successfully." />
+            <Label fx:id="getOrderId" visible="false" />
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>

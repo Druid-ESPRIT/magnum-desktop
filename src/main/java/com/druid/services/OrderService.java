@@ -268,4 +268,30 @@ public class OrderService {
     System.out.println(result);
     return result;
   }
+
+  public List<Order> getOrderByid(int id) {
+    List<Order> orders = new ArrayList<>();
+    String query = "SELECT * from `order` where id ='" + id + "'";
+    try {
+      Statement stmt = con.createStatement();
+      ResultSet result = stmt.executeQuery(query);
+      while (result.next()) {
+        orders.add(
+                new Order(
+                        result.getInt("id"),
+                        result.getInt("offer_id"),
+                        result.getInt("user_id"),
+                        result.getInt("plan"),
+                        result.getFloat("total"),
+                        result.getTimestamp("orderdate"),
+                        OrderStatus.fromString(result.getString("status"))));
+      }
+      System.out.println(orders);
+      return orders;
+
+    } catch (SQLException ex) {
+      ex.printStackTrace();
+    }
+    return null;
+  }
 }

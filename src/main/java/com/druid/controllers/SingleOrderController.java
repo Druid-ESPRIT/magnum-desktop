@@ -1,9 +1,15 @@
 package com.druid.controllers;
 
 import com.druid.models.Order;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Hyperlink;
 import javafx.scene.control.Label;
+import javafx.scene.layout.AnchorPane;
+
+import java.io.IOException;
 
 public class SingleOrderController {
 
@@ -15,6 +21,8 @@ public class SingleOrderController {
 
   @FXML private Label orderDate;
   @FXML private Hyperlink orderStatus;
+  @FXML
+  private AnchorPane pane;
 
   private Order order;
 
@@ -26,8 +34,27 @@ public class SingleOrderController {
     orderDate.setText(order.getOrderDate().toString());
     orderStatus.setText(order.getStatus().toString());
 
+
     if (order.getStatus().toString().equals("Completed")) {
       orderStatus.setDisable(true);
     }
+
+    orderStatus.setOnAction(
+            new EventHandler<ActionEvent>() {
+              @Override
+              public void handle(ActionEvent actionEvent) {
+                try {
+                  FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/views/completeOrder.fxml"));
+                  AnchorPane editPane = fxmlLoader.load();
+                  CompleteOrderController controller = fxmlLoader.<CompleteOrderController>getController();
+                  int orderid = order.getId();
+                  controller.getOrder(orderid);
+                  pane.getChildren().clear();
+                  pane.getChildren().add(editPane);
+                } catch (IOException e) {
+                  e.printStackTrace();
+                }
+              }
+            });
   }
 }

@@ -13,7 +13,7 @@
    <children>
       <BorderPane layoutX="7.0" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <left>
-            <VBox alignment="CENTER" prefHeight="500.0" prefWidth="150.0" styleClass="right-bar" stylesheets="@../css/style.css" BorderPane.alignment="CENTER">
+            <VBox alignment="CENTER" prefHeight="579.0" prefWidth="150.0" styleClass="right-bar" stylesheets="@../css/style.css" BorderPane.alignment="CENTER">
                <children>
                   <Button fx:id="discoverButton" mnemonicParsing="false" onAction="#discoverPressed" prefHeight="35.0" prefWidth="120.0" stylesheets="@../css/style.css" text="Discover">
                      <VBox.margin>
@@ -63,8 +63,7 @@
                         <FontAwesomeIconView glyphName="NEWSPAPER_ALT" />
                      </graphic>
                   </Button>
-
-                  <Button fx:id="offermanagerButton" mnemonicParsing="false" onAction="#offerManagementPressed" prefHeight="35.0" prefWidth="120.0" stylesheets="@../css/style.css" text="Offer Managment">
+                  <Button fx:id="offermanagerButton" mnemonicParsing="false" onAction="#offerManagementPressed" prefHeight="35.0" prefWidth="138.0" stylesheets="@../css/style.css" text="Podcaster Center">
                      <VBox.margin>
                         <Insets bottom="20.0" />
                      </VBox.margin>
@@ -72,19 +71,25 @@
                         <String fx:value="icon-button" />
                         <String fx:value="shadow" />
                      </styleClass>
+                     <graphic>
+                        <FontAwesomeIconView glyphName="COGS" />
+                     </graphic>
                   </Button>
                   <Button fx:id="podcastersButton" mnemonicParsing="false" onAction="#podcastersPressed" prefWidth="100.0" stylesheets="@../css/style.css" text="Podcasters">
                      <VBox.margin>
-                        <Insets bottom="20.0" />
+                        <Insets bottom="40.0" />
                      </VBox.margin>
                      <styleClass>
                         <String fx:value="icon-button" />
                         <String fx:value="shadow" />
                      </styleClass>
+                     <graphic>
+                        <FontAwesomeIconView glyphName="PLAY_CIRCLE_ALT" />
+                     </graphic>
                   </Button>
                   <Button fx:id="logoutButton" mnemonicParsing="false" onAction="#logoutPressed" prefWidth="100.0" stylesheets="@../css/style.css" text="Logout">
                      <VBox.margin>
-                        <Insets />
+                        <Insets bottom="50.0" />
                      </VBox.margin>
                      <styleClass>
                         <String fx:value="icon-button" />
@@ -93,6 +98,18 @@
                      <graphic>
                         <FontAwesomeIconView glyphName="SIGN_OUT" />
                      </graphic>
+                  </Button>
+                  <Button fx:id="reportbutton" mnemonicParsing="false" onAction="#reportPressed" prefWidth="100.0" stylesheets="@../css/style.css" text="Report">
+                     <styleClass>
+                        <String fx:value="icon-button" />
+                        <String fx:value="shadow" />
+                     </styleClass>
+                     <graphic>
+                        <FontAwesomeIconView glyphName="FLAG" />
+                     </graphic>
+                     <VBox.margin>
+                        <Insets bottom="-80.0" top="20.0" />
+                     </VBox.margin>
                   </Button>
                </children>
             </VBox>

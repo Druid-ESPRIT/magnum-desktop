@@ -43,5 +43,6 @@
       <Hyperlink fx:id="flag" layoutX="531.0" layoutY="10.0" text="Flag" />
       <Separator layoutX="640.0" layoutY="17.0" orientation="VERTICAL" prefHeight="18.0" prefWidth="3.0" />
       <Separator layoutX="572.0" layoutY="17.0" orientation="VERTICAL" prefHeight="18.0" prefWidth="3.0" />
+      <Hyperlink fx:id="issues" layoutX="795.0" layoutY="561.0" text="Consult my issues" />
    </children>
 </AnchorPane>

@@ -25,6 +25,8 @@ public class HomeController implements Initializable {
 
   @FXML private Button offermanagerButton;
   @FXML private Button podcastersButton;
+  @FXML
+  private Button reportbutton;
 
   @FXML private Button logoutButton;
   ConnectedUser connectedUser = ConnectedUser.getInstance();
@@ -45,13 +47,13 @@ public class HomeController implements Initializable {
       workingPane.getChildren().add(newPane);
     } catch (IOException e) {
       e.printStackTrace();
-    }
+  }
   }
 
   @FXML
   void articlePressed(ActionEvent event) {
     try {
-      AnchorPane newLoadedPane = FXMLLoader.load(getClass().getResource("/views/acceuil.fxml"));
+      AnchorPane newLoadedPane = FXMLLoader.load(getClass().getResource("/views/userAcceuil.fxml"));
       workingPane.getChildren().clear();
       workingPane.getChildren().add(newLoadedPane);
     } catch (IOException e) {
@@ -97,7 +99,7 @@ public class HomeController implements Initializable {
   void offerManagementPressed(ActionEvent event) {
     try {
       AnchorPane newLoadedPane =
-          FXMLLoader.load(getClass().getResource("/views/OfferManager.fxml"));
+          FXMLLoader.load(getClass().getResource("/views/podcasterCenter.fxml"));
       workingPane.getChildren().clear();
       workingPane.getChildren().add(newLoadedPane);
     } catch (IOException e) {
@@ -116,16 +118,22 @@ public class HomeController implements Initializable {
       e.printStackTrace();
     }
   }
-  /*public void ticketPressed(ActionEvent actionEvent) {
+
+  @FXML
+  void reportPressed(ActionEvent event) {
     try {
       AnchorPane newLoadedPane =
-              FXMLLoader.load(getClass().getResource("/views/Resolver.fxml"));
+              FXMLLoader.load(getClass().getResource("/views/Choix.fxml"));
       workingPane.getChildren().clear();
       workingPane.getChildren().add(newLoadedPane);
     } catch (IOException e) {
       e.printStackTrace();
     }
-  }*/
+  }
+
+
+
+
   @Override
   public void initialize(URL location, ResourceBundle resources) {
     if (connectedUser.isUser()) {

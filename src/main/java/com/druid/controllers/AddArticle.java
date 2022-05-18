@@ -120,7 +120,7 @@ public class AddArticle implements Initializable {
       Stage stage = (Stage) retour.getScene().getWindow();
       stage.close();
       Stage Stage = new Stage();
-      Parent root = FXMLLoader.load(getClass().getResource("/views/acceuil.fxml"));
+      Parent root = FXMLLoader.load(getClass().getResource("/views/Home.fxml"));
       Stage.setTitle("list Article");
       Stage.setScene(new Scene(root));
       Stage.show();
@@ -132,7 +132,7 @@ public class AddArticle implements Initializable {
     Stage stage = (Stage) retour.getScene().getWindow();
     stage.close();
     Stage Stage = new Stage();
-    Parent root = FXMLLoader.load(getClass().getResource("/views/acceuil.fxml"));
+    Parent root = FXMLLoader.load(getClass().getResource("/views/Home.fxml"));
     Stage.setTitle("update comment");
     Stage.setScene(new Scene(root));
     Stage.show();
