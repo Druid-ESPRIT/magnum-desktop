@@ -145,7 +145,7 @@ public class AcceuilController implements Initializable {
   @FXML
   private void delete1(ActionEvent event) {
     as.cancelArticle(id1);
-    ///articles2 = as.afficherArticle();
+    articles2 = as.afficherArticle();
     articles2 = as.afficherArticle();
     this.createPage(0);
     if (this.articles2.size() % 4 == 0) pagination.setPageCount(this.articles2.size() / 4);

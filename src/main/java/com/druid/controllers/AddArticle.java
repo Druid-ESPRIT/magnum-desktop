@@ -117,14 +117,14 @@ public class AddArticle implements Initializable {
       /*if (podcaster == null) alert(authornameControl, "invalid author Name");
       valid = false;*/
     }
-    if (content.getText().equals("")) {
+    /*if (content.getText().equals("")) {
       alert(contentControl, "ce champ est oblegatoire");
       valid = false;
     }
     if (url.getText().equals("")) {
       alert(urlcontrol, "ce champ est oblegatoire");
       valid = false;
-    }
+    }*/
     if (title.getText().equals("")) {
       alert(titlecontrol, "ce champ est oblegatoire");
       valid = false;

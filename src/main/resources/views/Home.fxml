@@ -63,6 +63,7 @@
                         <FontAwesomeIconView glyphName="NEWSPAPER_ALT" />
                      </graphic>
                   </Button>
+
                   <Button fx:id="offermanagerButton" mnemonicParsing="false" onAction="#offerManagementPressed" prefHeight="35.0" prefWidth="120.0" stylesheets="@../css/style.css" text="Offer Managment">
                      <VBox.margin>
                         <Insets bottom="20.0" />

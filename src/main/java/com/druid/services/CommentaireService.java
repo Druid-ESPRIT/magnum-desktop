@@ -143,8 +143,7 @@ public class CommentaireService implements Icommentaire {
       while (rs.next()) {
         Commentaire C = new Commentaire();
         C.setId(rs.getInt(1));
-        //C.setUserID(userService.getClass(rs.getInt(3));
-        C.setUserID(userService.fetchAll().get(rs.getInt(2)));
+        C.setUserID(userService.getUser(rs.getInt(3)));
         C.setArticleID(articleservice.getArticle(rs.getInt(2)));
         C.setMessage(rs.getString(4));
         C.setSubmitDate(rs.getDate(5));

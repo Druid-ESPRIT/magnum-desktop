@@ -122,10 +122,10 @@ public class ArticleService implements IarticleService {
         rs.next();
         Article A = new Article();
         A.setId(rs.getInt(1));
-        A.setAuthorID(podcasterService.getUser(rs.getInt(2)));
-        A.setTitle(rs.getString(3));
-        A.setContent(rs.getNString(5));
-        A.setUrl(rs.getNString(4));
+        A.setAuthorID(podcasterService.getUser(rs.getInt(5)));
+        A.setTitle(rs.getString(2));
+        A.setContent(rs.getNString(4));
+        A.setUrl(rs.getNString(3));
 
         return A;
       }
@@ -149,21 +149,15 @@ public class ArticleService implements IarticleService {
       Statement st = con.createStatement();
       ResultSet rs = st.executeQuery(request);
 
-        User u = new User();
+      while (rs.next()) {
         Article A = new Article();
         A.setId(rs.getInt(1));
-        //A.setAuthorID(podcasterService.getUser(rs.getInt(2)));
-      A.setAuthorID(podcasterService.fetchOne(u).get());
-      u.setID(rs.getInt(2));
-
-        A.setTitle(rs.getNString(3));
-        A.setContent(rs.getNString(5));
-        A.setUrl(rs.getNString(4));
+        A.setAuthorID(podcasterService.getUser(rs.getInt(5)));
+        A.setTitle(rs.getNString(2));
+        A.setContent(rs.getNString(4));
+        A.setUrl(rs.getNString(3));
         articles.add(A);
-
-
-
-
+      }
 
     } catch (SQLException ex) {
       ex.printStackTrace();
