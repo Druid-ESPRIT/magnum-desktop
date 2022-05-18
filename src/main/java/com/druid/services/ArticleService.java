@@ -20,7 +20,9 @@ import java.util.List;
 // import java.util.logging.Level;
 // import java.util.logging.Logger;
 
-/** @author zeineb */
+/**
+ * @author zeineb
+ */
 public class ArticleService implements IarticleService {
   Connection con = DBConnection.getInstance().getConnection();
   UserService podcasterService;
@@ -107,7 +109,6 @@ public class ArticleService implements IarticleService {
     }
   }
 
-
   public Article getArticle(int id) {
     String request = "select * from article where id=" + id;
     Statement st;
@@ -148,6 +149,7 @@ public class ArticleService implements IarticleService {
     try {
       Statement st = con.createStatement();
       ResultSet rs = st.executeQuery(request);
+
 
       while (rs.next()) {
         Article A = new Article();

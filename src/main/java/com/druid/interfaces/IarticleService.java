@@ -11,7 +11,9 @@ import java.util.List;
 
 ////// mmmm///////////
 
-/** @author zeineb */
+/**
+ * @author zeineb
+ */
 public interface IarticleService {
   public boolean addArticle(Article A);
 
@@ -19,7 +21,7 @@ public interface IarticleService {
 
   public boolean cancelArticle(int id);
 
-  //public Article getArticle(int id);
+  // public Article getArticle(int id);
 
   public List<Article> afficherArticle();
 }

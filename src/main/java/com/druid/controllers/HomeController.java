@@ -49,14 +49,16 @@ public class HomeController implements Initializable {
   }
 
   @FXML
-  void articlePressed(ActionEvent event) { try {
-    AnchorPane newLoadedPane =
-            FXMLLoader.load(getClass().getResource("/views/userAcceuil.fxml"));
-    workingPane.getChildren().clear();
-    workingPane.getChildren().add(newLoadedPane);
-  } catch (IOException e) {
-    e.printStackTrace();
-  }
+
+  void articlePressed(ActionEvent event) {
+    try {
+      AnchorPane newLoadedPane = FXMLLoader.load(getClass().getResource("/views/acceuil.fxml"));
+      workingPane.getChildren().clear();
+      workingPane.getChildren().add(newLoadedPane);
+    } catch (IOException e) {
+      e.printStackTrace();
+    }
+
   }
 
   @FXML

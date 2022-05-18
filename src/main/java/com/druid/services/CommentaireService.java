@@ -12,7 +12,9 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
-/** @author zeineb */
+/**
+ * @author zeineb
+ */
 public class CommentaireService implements Icommentaire {
 
   Connection cnx = DBConnection.getInstance().getConnection();
@@ -113,7 +115,7 @@ public class CommentaireService implements Icommentaire {
         rs.next();
         Commentaire C = new Commentaire();
         C.setId(rs.getInt(1));
-        //C.setUserID(userService.getUser(1));
+        // C.setUserID(userService.getUser(1));
         C.setArticleID(articleservice.getArticle(rs.getInt(3)));
         C.setMessage(rs.getString(4));
         C.setSubmitDate(rs.getDate(5));
@@ -143,7 +145,9 @@ public class CommentaireService implements Icommentaire {
       while (rs.next()) {
         Commentaire C = new Commentaire();
         C.setId(rs.getInt(1));
+
         C.setUserID(userService.getUser(rs.getInt(3)));
+
         C.setArticleID(articleservice.getArticle(rs.getInt(2)));
         C.setMessage(rs.getString(4));
         C.setSubmitDate(rs.getDate(5));

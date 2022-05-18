@@ -1,39 +1,26 @@
 package com.druid.controllers;
 
 import com.druid.models.Article;
-import com.druid.models.Podcaster;
 import com.druid.models.User;
 import com.druid.services.ArticleService;
 import com.druid.services.PodcasterService;
-
-import java.awt.event.MouseEvent;
-import java.awt.image.BufferedImage;
-import java.io.File;
+import com.druid.utils.ConnectedUser;
 import java.io.IOException;
 import java.net.URL;
-import java.util.List;
 import java.util.ResourceBundle;
-
-import com.druid.utils.ConnectedUser;
-import javafx.embed.swing.SwingFXUtils;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.*;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
-import javafx.scene.image.Image;
+import javafx.scene.layout.*;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
-import javafx.stage.FileChooser;
-import javafx.scene.control.*;
-import javafx.scene.layout.*;
-
-import javax.imageio.ImageIO;
 import javax.swing.*;
-
 
 public class AddArticle implements Initializable {
 
@@ -63,7 +50,6 @@ public class AddArticle implements Initializable {
   PodcasterService ps = new PodcasterService();
   User connectedUser = ConnectedUser.getInstance().getUser();
 
-
   private void alert(Text field, String content) {
     field.setOpacity(100);
     field.setText(content);
@@ -77,7 +63,6 @@ public class AddArticle implements Initializable {
 
   @FXML
   void add(ActionEvent event) throws IOException {
-
 
     boolean valid = true;
     /*List<User> Podcasters = ps.getPodcasters();
@@ -186,22 +171,16 @@ public class AddArticle implements Initializable {
     }
   }*/
 
-
   /*private void attachActionPerformed(java.awt.event.ActionEvent event){
-    JFileChooser chooser = new JFileChooser();
-    chooser.showOpenDialog(null);
-    File f = chooser.getSelectedFile();
-    String filename =f.getAbsolutePath();
-    content.setText(filename);*/
-
-
-
-
+  JFileChooser chooser = new JFileChooser();
+  chooser.showOpenDialog(null);
+  File f = chooser.getSelectedFile();
+  String filename =f.getAbsolutePath();
+  content.setText(filename);*/
 
   @Override
   public void initialize(URL location, ResourceBundle resources) {
     AuthorName.setText(connectedUser.getUsername());
     AuthorName.setDisable(true);
-
   }
 }

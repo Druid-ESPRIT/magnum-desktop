@@ -7,7 +7,9 @@ package com.druid.models;
 
 import java.sql.Date;
 
-/** @author zeineb */
+/**
+ * @author zeineb
+ */
 public class Commentaire {
 
   private int id;
