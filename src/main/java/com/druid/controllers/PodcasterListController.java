@@ -69,7 +69,9 @@ public class PodcasterListController implements Initializable {
   private void setChosenOffer(Offer offer) {
     String id = String.valueOf(offer.getId());
     SelectedOffer.getInstance().setOffer(offer);
+
     getid.setText(id);
+    getid.setVisible(false);
     //  tfprice.setText(String.valueOf(offer.getPrice()));
     Path assests = Paths.get("src", "main", "resources", "assets", offer.getImage());
     Image image = new Image(assests.toFile().toURI().toString());
@@ -77,6 +79,7 @@ public class PodcasterListController implements Initializable {
   }
 
   private List<Offer> selectedPodcaster(Podcaster podcaster) {
+    grid2.getChildren().clear();
     List<Offer> offers = os.getOffersByUser(podcaster.getID());
     if (offers.size() > 0) {
       setChosenOffer(offers.get(0));

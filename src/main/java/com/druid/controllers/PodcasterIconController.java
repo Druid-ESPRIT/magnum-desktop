@@ -25,7 +25,7 @@ public class PodcasterIconController {
     this.podcaster = podcaster;
     Path assests =
         Paths.get(
-            "src", "main", "resources", "assets", "avatars", podcaster.getAvatar().toString());
+            "src", "main", "resources", "assets", "avatars","blank.jpg");
     Image image = new Image(assests.toFile().toURI().toString());
     avatar.setImage(image);
   }

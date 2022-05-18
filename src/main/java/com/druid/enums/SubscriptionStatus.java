@@ -23,7 +23,7 @@ public enum SubscriptionStatus {
 
     public static SubscriptionStatus fromString(String value) {
         switch (value) {
-            case "On Hold":
+            case "On hold":
                 return SubscriptionStatus.ON_HOLD;
             case "Active":
                 return SubscriptionStatus.ACTIVE;

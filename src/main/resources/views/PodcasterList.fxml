@@ -44,7 +44,7 @@
             </Button>
             <ImageView fx:id="img" fitHeight="150.0" fitWidth="200.0" layoutX="114.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true" />
             <Label layoutX="32.0" layoutY="252.0" prefHeight="26.0" prefWidth="332.0" text="For 6 to 12 months subscription you'll recieve a -20% coupon." />
-            <Label fx:id="getid" layoutX="25.0" layoutY="321.0" text="Label" />
+            <Label fx:id="getid" layoutX="25.0" layoutY="321.0" />
          </children>
       </Pane>
    </children>
