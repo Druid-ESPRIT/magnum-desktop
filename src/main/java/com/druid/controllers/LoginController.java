@@ -13,7 +13,6 @@ import com.druid.utils.Clearable;
 import com.druid.utils.ConnectedUser;
 import com.druid.utils.QuickHistory;
 import java.io.IOException;
-import java.net.NoRouteToHostException;
 import java.net.URL;
 import java.util.Optional;
 import java.util.ResourceBundle;
@@ -99,8 +98,6 @@ public class LoginController implements Initializable {
           }
         });
 
-
-
     confirm.setOnAction(
         new EventHandler<ActionEvent>() {
           @Override
@@ -127,7 +124,6 @@ public class LoginController implements Initializable {
               } catch (IOException e) {
                 e.printStackTrace();
               }
-
             }
           }
         });

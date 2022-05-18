@@ -7,7 +7,6 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 import java.util.StringJoiner;
-
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -46,11 +45,11 @@ public class ProfileController implements Initializable {
 
       StringJoiner _name = new StringJoiner(" ");
       if (podcaster.getFirstName() != null) {
-          _name.add(podcaster.getFirstName());
+        _name.add(podcaster.getFirstName());
       }
 
       if (podcaster.getLastName() != null) {
-          _name.add(podcaster.getLastName());
+        _name.add(podcaster.getLastName());
       }
 
       _name.add("(Podcaster)");
@@ -59,21 +58,21 @@ public class ProfileController implements Initializable {
     }
 
     if (connectedUser.isAdministrator()) {
-        Administrator administrator = (Administrator) connectedUser.getUser();
-        name.setVisible(true);
+      Administrator administrator = (Administrator) connectedUser.getUser();
+      name.setVisible(true);
 
-        StringJoiner _name = new StringJoiner(" ");
-        if (administrator.getFirstName() != null) {
-            _name.add(administrator.getFirstName());
-        }
+      StringJoiner _name = new StringJoiner(" ");
+      if (administrator.getFirstName() != null) {
+        _name.add(administrator.getFirstName());
+      }
 
-        if (administrator.getLastName() != null) {
-            _name.add(administrator.getLastName());
-        }
+      if (administrator.getLastName() != null) {
+        _name.add(administrator.getLastName());
+      }
 
-        _name.add("(Administrator)");
+      _name.add("(Administrator)");
 
-        name.setText(_name.toString());
+      name.setText(_name.toString());
     }
 
     security.setOnAction(
@@ -103,7 +102,6 @@ public class ProfileController implements Initializable {
           }
         });
 
-
     history.setOnAction(
         new EventHandler<ActionEvent>() {
           @Override
@@ -131,8 +129,6 @@ public class ProfileController implements Initializable {
             }
           }
         });
-
-
 
     flag.setOnAction(
         new EventHandler<ActionEvent>() {

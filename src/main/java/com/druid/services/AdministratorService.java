@@ -4,7 +4,6 @@ package com.druid.services;
 // inheritance and borrows ideas found in:
 // https://docs.oracle.com/cd/E28280_01/apirefs.1111/e13946/ejb3_overview_mapping_inher.html#ejb3_overview_mapping_inher_single
 
-import at.favre.lib.crypto.bcrypt.BCrypt;
 
 import com.druid.enums.UserDiscriminator;
 import com.druid.enums.UserStatus;
@@ -12,7 +11,6 @@ import com.druid.errors.register.EmailTakenException;
 import com.druid.errors.register.UsernameTakenException;
 import com.druid.interfaces.IUser;
 import com.druid.models.Administrator;
-import com.druid.models.Podcaster;
 import com.druid.utils.Debugger;
 import java.nio.file.Paths;
 import java.sql.PreparedStatement;
@@ -107,11 +105,11 @@ public class AdministratorService implements IUser<Administrator> {
 
   public Optional<Administrator> fetchOne(Administrator administrator) {
     String query =
-            "SELECT U.*, A.firstName, A.lastName "
-                    + "FROM Users AS U "
-                    + "INNER JOIN Administrators AS A "
-                    + "ON A.ID = U.ID "
-                    + "WHERE A.ID = ?";
+        "SELECT U.*, A.firstName, A.lastName "
+            + "FROM Users AS U "
+            + "INNER JOIN Administrators AS A "
+            + "ON A.ID = U.ID "
+            + "WHERE A.ID = ?";
     try {
       PreparedStatement stmt = IUser.con.prepareStatement(query);
       stmt.setInt(1, administrator.getID());
@@ -167,8 +165,8 @@ public class AdministratorService implements IUser<Administrator> {
             + "`status` = '"
             + administrator.getStatus().toString()
             + "', "
-	    + administrator.getDiscriminator().toString()
-	    + "' "
+            + administrator.getDiscriminator().toString()
+            + "' "
             + "WHERE `username` = '"
             + administrator.getUsername()
             + "'";
