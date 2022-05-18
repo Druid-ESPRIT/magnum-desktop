@@ -27,7 +27,7 @@
                         <FontAwesomeIconView glyphName="HEADPHONES" />
                      </graphic>
                   </Button>
-                  <Button fx:id="playListButton" mnemonicParsing="false" onAction="#playlistPressed" prefHeight="35.0" prefWidth="120.0" stylesheets="@../css/style.css" text="Playlists">
+                  <Button fx:id="playListButton" mnemonicParsing="false" onAction="#playlistPressed" prefHeight="35.0" prefWidth="120.0" stylesheets="@../css/style.css" text="Events">
                      <VBox.margin>
                         <Insets bottom="20.0" />
                      </VBox.margin>

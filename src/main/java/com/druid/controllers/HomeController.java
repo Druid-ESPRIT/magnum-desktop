@@ -87,7 +87,7 @@ public class HomeController implements Initializable {
   @FXML
   void playlistPressed(ActionEvent event) {
     try {
-      AnchorPane newLoadedPane = FXMLLoader.load(getClass().getResource("/views/FXML.fxml"));
+      AnchorPane newLoadedPane = FXMLLoader.load(getClass().getResource("/views/eventsHome.fxml"));
       workingPane.getChildren().clear();
       workingPane.getChildren().add(newLoadedPane);
     } catch (IOException e) {
@@ -138,6 +138,10 @@ public class HomeController implements Initializable {
   public void initialize(URL location, ResourceBundle resources) {
     if (connectedUser.isUser()) {
       offermanagerButton.setVisible(false);
+    }
+    if(connectedUser.isPodcaster())
+    {
+        playListButton.setVisible(false);
     }
   }
 }

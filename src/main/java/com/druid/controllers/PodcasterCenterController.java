@@ -29,7 +29,14 @@ public class PodcasterCenterController {
 
     @FXML
     void events(ActionEvent event) {
-
+         try {
+            AnchorPane newLoadedPane =
+                    FXMLLoader.load(getClass().getResource("/views/eventsHome.fxml"));
+            pane.getChildren().clear();
+            pane.getChildren().add(newLoadedPane);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     @FXML
