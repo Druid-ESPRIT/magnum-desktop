@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #DCDCDC;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.druid.controllers.upCommentController">
+   <children>
+      <Text fx:id="uptitle" layoutX="231.0" layoutY="71.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
+      <TextArea fx:id="upMessage" layoutX="105.0" layoutY="107.0" prefHeight="186.0" prefWidth="403.0" />
+      <Text layoutX="22.0" layoutY="173.0" strokeType="OUTSIDE" strokeWidth="0.0" text="comment" wrappingWidth="68.37890625" />
+      <Button fx:id="retour" layoutX="125.0" layoutY="309.0" mnemonicParsing="false" onAction="#retour" styleClass="add-btn" stylesheets="@../css/style.css" text="retour" />
+      <Button fx:id="upcom" layoutX="320.0" layoutY="309.0" mnemonicParsing="false" onAction="#upcom" styleClass="add-btn" stylesheets="@../css/style.css" text="update" />
+   </children>
+</AnchorPane>

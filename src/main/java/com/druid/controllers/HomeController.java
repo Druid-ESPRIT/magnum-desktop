@@ -49,7 +49,15 @@ public class HomeController implements Initializable {
   }
 
   @FXML
-  void articlePressed(ActionEvent event) {}
+  void articlePressed(ActionEvent event) {
+    try {
+      AnchorPane newLoadedPane = FXMLLoader.load(getClass().getResource("/views/acceuil.fxml"));
+      workingPane.getChildren().clear();
+      workingPane.getChildren().add(newLoadedPane);
+    } catch (IOException e) {
+      e.printStackTrace();
+    }
+  }
 
   @FXML
   void discoverPressed(ActionEvent event) {
@@ -75,7 +83,15 @@ public class HomeController implements Initializable {
   }
 
   @FXML
-  void playlistPressed(ActionEvent event) {}
+  void playlistPressed(ActionEvent event) {
+    try {
+      AnchorPane newLoadedPane = FXMLLoader.load(getClass().getResource("/views/FXML.fxml"));
+      workingPane.getChildren().clear();
+      workingPane.getChildren().add(newLoadedPane);
+    } catch (IOException e) {
+      e.printStackTrace();
+    }
+  }
 
   @FXML
   void offerManagementPressed(ActionEvent event) {
@@ -100,7 +116,16 @@ public class HomeController implements Initializable {
       e.printStackTrace();
     }
   }
-
+  /*public void ticketPressed(ActionEvent actionEvent) {
+    try {
+      AnchorPane newLoadedPane =
+              FXMLLoader.load(getClass().getResource("/views/Resolver.fxml"));
+      workingPane.getChildren().clear();
+      workingPane.getChildren().add(newLoadedPane);
+    } catch (IOException e) {
+      e.printStackTrace();
+    }
+  }*/
   @Override
   public void initialize(URL location, ResourceBundle resources) {
     if (connectedUser.isUser()) {

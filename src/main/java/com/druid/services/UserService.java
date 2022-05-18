@@ -179,6 +179,7 @@ public class UserService {
       stmt.executeUpdate(query);
     } catch (SQLException ex) {
       ex.printStackTrace();
+
     }
   }
 
