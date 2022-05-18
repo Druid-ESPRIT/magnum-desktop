@@ -12,6 +12,7 @@ import com.druid.errors.register.EmailTakenException;
 import com.druid.errors.register.UsernameTakenException;
 import com.druid.interfaces.IUser;
 import com.druid.models.Podcaster;
+import com.druid.models.User;
 import com.druid.utils.Debugger;
 
 import java.nio.file.Paths;
@@ -107,18 +108,23 @@ public class PodcasterService implements IUser<Podcaster> {
       ResultSet result = stmt.executeQuery();
 
       if (result.next()) {
-        return Optional.of(
-            new Podcaster(
-                result.getInt("ID"),
-                result.getString("username"),
-                result.getString("email"),
-                result.getString("password"),
-                Paths.get(result.getString("avatar")),
-                UserStatus.fromString(result.getString("status")),
-		UserDiscriminator.fromString(result.getString("discr")),
-                result.getString("firstName"),
-                result.getString("lastName"),
-                result.getString("biography")));
+        Podcaster pod = new Podcaster();
+        pod.setID(result.getInt("ID"));
+        pod.setEmail(result.getString("email"));
+        pod.setUsername(result.getString("username"));
+        pod.setPassword(result.getString("password"));
+        pod.setPassword(result.getString("firstName"));
+        pod.setPassword(result.getString("lastName"));
+        pod.setPassword(result.getString("biography"));
+        pod.setStatus(UserStatus.fromString(result.getString("status")));
+        pod.setDiscriminator(UserDiscriminator.fromString(result.getString("discr")));
+
+        Optional<String> avatar = Optional.ofNullable(result.getString("avatar"));
+        if (avatar.isPresent()) {
+          pod.setAvatar(Paths.get(avatar.get()));
+        }
+
+        return Optional.of(pod);
       }
     } catch (SQLException ex) {
       ex.printStackTrace();

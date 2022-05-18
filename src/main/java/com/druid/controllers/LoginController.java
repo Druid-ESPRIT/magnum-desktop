@@ -2,6 +2,7 @@ package com.druid.controllers;
 
 import com.druid.errors.login.BannedUserException;
 import com.druid.errors.login.InvalidCredentialsException;
+import com.druid.errors.login.NoSuchUserException;
 import com.druid.models.Administrator;
 import com.druid.models.Podcaster;
 import com.druid.models.User;
@@ -30,8 +31,6 @@ import javafx.stage.Stage;
 public class LoginController implements Initializable {
   private Stage stage;
   private UserService user_svc = new UserService();
-
-
   @FXML private Hyperlink forgotPassword;
   @FXML private Hyperlink signUp;
   @FXML private Button confirm;
@@ -39,26 +38,23 @@ public class LoginController implements Initializable {
   @FXML private TextField username;
   @FXML private PasswordField password;
 
-  public Stage getStage() {
-    return stage;
-  }
-
-
   private Optional<User> authUser() {
-    try {
-      UserService user_svc = new UserService();
-      User user = new User();
-      user.setUsername(username.getText());
-      user.setPassword(password.getText());
+    User user = new User();
+    user.setUsername(username.getText());
+    user.setPassword(password.getText());
 
-      return user_svc.authenticate(user);
+    try {
+      return Optional.of(user_svc.authenticate(user));
     } catch (InvalidCredentialsException ex) {
+      errorAlert.setOpacity(100);
       errorAlert.setText(ex.getMessage());
     } catch (BannedUserException ex) {
+      errorAlert.setOpacity(100);
+      errorAlert.setText(ex.getMessage());
+    } catch (NoSuchUserException ex) {
+      errorAlert.setOpacity(100);
       errorAlert.setText(ex.getMessage());
     }
-
-    errorAlert.setOpacity(100);
 
     return Optional.empty();
   }
@@ -99,7 +95,6 @@ public class LoginController implements Initializable {
               sceneController.showForgotPassword(actionEvent);
             } catch (IOException e) {
               e.printStackTrace();
-
             }
           }
         });

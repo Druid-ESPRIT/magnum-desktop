@@ -12,6 +12,7 @@ import com.druid.errors.register.EmailTakenException;
 import com.druid.errors.register.UsernameTakenException;
 import com.druid.interfaces.IUser;
 import com.druid.models.Administrator;
+import com.druid.models.Podcaster;
 import com.druid.utils.Debugger;
 import java.nio.file.Paths;
 import java.sql.PreparedStatement;
@@ -78,17 +79,22 @@ public class AdministratorService implements IUser<Administrator> {
       ResultSet result = stmt.executeQuery(query);
 
       while (result.next()) {
-        administrators.add(
-            new Administrator(
-                result.getInt("ID"),
-                result.getString("username"),
-                result.getString("email"),
-                result.getString("password"),
-                Paths.get(result.getString("avatar")),
-                UserStatus.fromString(result.getString("status")),
-		UserDiscriminator.fromString(result.getString("discr")),
-                result.getString("firstName"),
-                result.getString("lastName")));
+        Administrator adm = new Administrator();
+        adm.setID(result.getInt("ID"));
+        adm.setEmail(result.getString("email"));
+        adm.setUsername(result.getString("username"));
+        adm.setPassword(result.getString("password"));
+        adm.setPassword(result.getString("firstName"));
+        adm.setPassword(result.getString("lastName"));
+        adm.setStatus(UserStatus.fromString(result.getString("status")));
+        adm.setDiscriminator(UserDiscriminator.fromString(result.getString("discr")));
+
+        Optional<String> avatar = Optional.ofNullable(result.getString("avatar"));
+        if (avatar.isPresent()) {
+          adm.setAvatar(Paths.get(avatar.get()));
+        }
+
+        administrators.add(adm);
       }
 
       return administrators;
@@ -101,28 +107,33 @@ public class AdministratorService implements IUser<Administrator> {
 
   public Optional<Administrator> fetchOne(Administrator administrator) {
     String query =
-        "SELECT U.*, A.firstName, A.lastName "
-            + "FROM Users AS U "
-            + "INNER JOIN Administrators AS A "
-            + "ON A.ID = U.ID "
-            + "WHERE A.ID = ?";
+            "SELECT U.*, A.firstName, A.lastName "
+                    + "FROM Users AS U "
+                    + "INNER JOIN Administrators AS A "
+                    + "ON A.ID = U.ID "
+                    + "WHERE A.ID = ?";
     try {
       PreparedStatement stmt = IUser.con.prepareStatement(query);
       stmt.setInt(1, administrator.getID());
       ResultSet result = stmt.executeQuery();
 
       if (result.next()) {
-        return Optional.of(
-            new Administrator(
-                result.getInt("ID"),
-                result.getString("username"),
-                result.getString("email"),
-                result.getString("password"),
-                Paths.get(result.getString("avatar")),
-                UserStatus.fromString(result.getString("status")),
-		UserDiscriminator.fromString(result.getString("discr")),
-                result.getString("firstName"),
-                result.getString("lastName")));
+        Administrator adm = new Administrator();
+        adm.setID(result.getInt("ID"));
+        adm.setEmail(result.getString("email"));
+        adm.setUsername(result.getString("username"));
+        adm.setPassword(result.getString("password"));
+        adm.setPassword(result.getString("firstName"));
+        adm.setPassword(result.getString("lastName"));
+        adm.setStatus(UserStatus.fromString(result.getString("status")));
+        adm.setDiscriminator(UserDiscriminator.fromString(result.getString("discr")));
+
+        Optional<String> avatar = Optional.ofNullable(result.getString("avatar"));
+        if (avatar.isPresent()) {
+          adm.setAvatar(Paths.get(avatar.get()));
+        }
+
+        return Optional.of(adm);
       }
     } catch (SQLException ex) {
       ex.printStackTrace();
