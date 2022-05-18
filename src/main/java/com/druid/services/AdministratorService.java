@@ -4,8 +4,6 @@ package com.druid.services;
 // inheritance and borrows ideas found in:
 // https://docs.oracle.com/cd/E28280_01/apirefs.1111/e13946/ejb3_overview_mapping_inher.html#ejb3_overview_mapping_inher_single
 
-import at.favre.lib.crypto.bcrypt.BCrypt;
-
 import com.druid.enums.UserDiscriminator;
 import com.druid.enums.UserStatus;
 import com.druid.errors.register.EmailTakenException;
@@ -78,17 +76,22 @@ public class AdministratorService implements IUser<Administrator> {
       ResultSet result = stmt.executeQuery(query);
 
       while (result.next()) {
-        administrators.add(
-            new Administrator(
-                result.getInt("ID"),
-                result.getString("username"),
-                result.getString("email"),
-                result.getString("password"),
-                Paths.get(result.getString("avatar")),
-                UserStatus.fromString(result.getString("status")),
-		UserDiscriminator.fromString(result.getString("discr")),
-                result.getString("firstName"),
-                result.getString("lastName")));
+        Administrator adm = new Administrator();
+        adm.setID(result.getInt("ID"));
+        adm.setEmail(result.getString("email"));
+        adm.setUsername(result.getString("username"));
+        adm.setPassword(result.getString("password"));
+        adm.setPassword(result.getString("firstName"));
+        adm.setPassword(result.getString("lastName"));
+        adm.setStatus(UserStatus.fromString(result.getString("status")));
+        adm.setDiscriminator(UserDiscriminator.fromString(result.getString("discr")));
+
+        Optional<String> avatar = Optional.ofNullable(result.getString("avatar"));
+        if (avatar.isPresent()) {
+          adm.setAvatar(Paths.get(avatar.get()));
+        }
+
+        administrators.add(adm);
       }
 
       return administrators;
@@ -112,17 +115,22 @@ public class AdministratorService implements IUser<Administrator> {
       ResultSet result = stmt.executeQuery();
 
       if (result.next()) {
-        return Optional.of(
-            new Administrator(
-                result.getInt("ID"),
-                result.getString("username"),
-                result.getString("email"),
-                result.getString("password"),
-                Paths.get(result.getString("avatar")),
-                UserStatus.fromString(result.getString("status")),
-		UserDiscriminator.fromString(result.getString("discr")),
-                result.getString("firstName"),
-                result.getString("lastName")));
+        Administrator adm = new Administrator();
+        adm.setID(result.getInt("ID"));
+        adm.setEmail(result.getString("email"));
+        adm.setUsername(result.getString("username"));
+        adm.setPassword(result.getString("password"));
+        adm.setPassword(result.getString("firstName"));
+        adm.setPassword(result.getString("lastName"));
+        adm.setStatus(UserStatus.fromString(result.getString("status")));
+        adm.setDiscriminator(UserDiscriminator.fromString(result.getString("discr")));
+
+        Optional<String> avatar = Optional.ofNullable(result.getString("avatar"));
+        if (avatar.isPresent()) {
+          adm.setAvatar(Paths.get(avatar.get()));
+        }
+
+        return Optional.of(adm);
       }
     } catch (SQLException ex) {
       ex.printStackTrace();
@@ -156,8 +164,8 @@ public class AdministratorService implements IUser<Administrator> {
             + "`status` = '"
             + administrator.getStatus().toString()
             + "', "
-	    + administrator.getDiscriminator().toString()
-	    + "' "
+            + administrator.getDiscriminator().toString()
+            + "' "
             + "WHERE `username` = '"
             + administrator.getUsername()
             + "'";

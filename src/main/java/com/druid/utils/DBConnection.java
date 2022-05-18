@@ -13,7 +13,7 @@ public class DBConnection {
 
   // Your Host.
   static final String HOST = "localhost";
-  static final String DB_NAME = "integ";
+  static final String DB_NAME = "magnum";
 
   static DBConnection instance = null;
   private Connection con;

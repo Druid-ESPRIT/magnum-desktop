@@ -6,6 +6,7 @@ import com.druid.utils.ConnectedUser;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+import java.util.StringJoiner;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -41,13 +42,37 @@ public class ProfileController implements Initializable {
     if (connectedUser.isPodcaster()) {
       Podcaster podcaster = (Podcaster) connectedUser.getUser();
       name.setVisible(true);
-      name.setText(podcaster.getFirstName() + " " + podcaster.getLastName() + " (Podcaster)");
+
+      StringJoiner _name = new StringJoiner(" ");
+      if (podcaster.getFirstName() != null) {
+        _name.add(podcaster.getFirstName());
+      }
+
+      if (podcaster.getLastName() != null) {
+        _name.add(podcaster.getLastName());
+      }
+
+      _name.add("(Podcaster)");
+
+      name.setText(_name.toString());
     }
 
     if (connectedUser.isAdministrator()) {
-      Administrator admin = (Administrator) connectedUser.getUser();
+      Administrator administrator = (Administrator) connectedUser.getUser();
       name.setVisible(true);
-      name.setText(admin.getFirstName() + " " + admin.getLastName() + " (Administrator)");
+
+      StringJoiner _name = new StringJoiner(" ");
+      if (administrator.getFirstName() != null) {
+        _name.add(administrator.getFirstName());
+      }
+
+      if (administrator.getLastName() != null) {
+        _name.add(administrator.getLastName());
+      }
+
+      _name.add("(Administrator)");
+
+      name.setText(_name.toString());
     }
 
     security.setOnAction(
@@ -77,7 +102,6 @@ public class ProfileController implements Initializable {
           }
         });
 
-
     history.setOnAction(
         new EventHandler<ActionEvent>() {
           @Override
@@ -105,8 +129,6 @@ public class ProfileController implements Initializable {
             }
           }
         });
-
-
 
     flag.setOnAction(
         new EventHandler<ActionEvent>() {

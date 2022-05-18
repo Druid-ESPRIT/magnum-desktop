@@ -6,6 +6,7 @@ import com.druid.enums.UserDiscriminator;
 import com.druid.enums.UserStatus;
 import com.druid.errors.login.BannedUserException;
 import com.druid.errors.login.InvalidCredentialsException;
+import com.druid.errors.login.NoSuchUserException;
 import com.druid.errors.register.EmailTakenException;
 import com.druid.errors.register.UsernameTakenException;
 import com.druid.interfaces.IUser;
@@ -24,11 +25,6 @@ public class UserService {
   HistoryService hist_svc = new HistoryService();
 
   public String insertQuery(User user) {
-    // This fixes a NullPointerException, DO NOT REMOVE.
-    if (user.getAvatar() == null) {
-      user.setAvatar(Paths.get(""));
-    }
-
     return "INSERT INTO Users (username, email, password, avatar, status, discr) VALUES ('"
         + user.getUsername()
         + "', '"
@@ -36,7 +32,7 @@ public class UserService {
         + "', '"
         + encrypt(user.getPassword())
         + "', '"
-        + Optional.ofNullable(user.getAvatar().toString()).orElse("")
+        + user.getAvatar().toString()
         + "', '"
         + user.getStatus().toString()
         + "', '"
@@ -94,15 +90,20 @@ public class UserService {
       ResultSet result = stmt.executeQuery(query);
 
       while (result.next()) {
-        users.add(
-            new User(
-                result.getInt("ID"),
-                result.getString("username"),
-                result.getString("email"),
-                result.getString("password"),
-                Paths.get(result.getString("avatar")),
-                UserStatus.fromString(result.getString("status")),
-                UserDiscriminator.fromString(result.getString("discr"))));
+        User user = new User();
+        user.setID(result.getInt("ID"));
+        user.setEmail(result.getString("email"));
+        user.setUsername(result.getString("username"));
+        user.setPassword(result.getString("password"));
+        user.setStatus(UserStatus.fromString(result.getString("status")));
+        user.setDiscriminator(UserDiscriminator.fromString(result.getString("discr")));
+
+        Optional<String> avatar = Optional.ofNullable(result.getString("avatar"));
+        if (avatar.isPresent()) {
+          user.setAvatar(Paths.get(avatar.get()));
+        }
+
+        users.add(user);
       }
 
       return users;
@@ -125,12 +126,16 @@ public class UserService {
       if (result.next()) {
         user = new User();
         user.setID(result.getInt("ID"));
-        user.setUsername(result.getString("username"));
         user.setEmail(result.getString("email"));
+        user.setUsername(result.getString("username"));
         user.setPassword(result.getString("password"));
-        user.setAvatar(Paths.get(result.getString("avatar")));
         user.setStatus(UserStatus.fromString(result.getString("status")));
         user.setDiscriminator(UserDiscriminator.fromString(result.getString("discr")));
+
+        Optional<String> avatar = Optional.ofNullable(result.getString("avatar"));
+        if (avatar.isPresent()) {
+          user.setAvatar(Paths.get(avatar.get()));
+        }
 
         return Optional.of(user);
       }
@@ -174,6 +179,7 @@ public class UserService {
       stmt.executeUpdate(query);
     } catch (SQLException ex) {
       ex.printStackTrace();
+
     }
   }
 
@@ -249,8 +255,8 @@ public class UserService {
    * @param user A user to be compared against existing users in the database.
    * @return If a match is found, a User object, with their full details is returned.
    */
-  public Optional<User> authenticate(User user)
-      throws BannedUserException, InvalidCredentialsException {
+  public User authenticate(User user)
+      throws BannedUserException, InvalidCredentialsException, NoSuchUserException {
     String query = "SELECT * FROM `Users` WHERE `username` = ?";
     try {
       PreparedStatement stmt = IUser.con.prepareStatement(query);
@@ -258,15 +264,18 @@ public class UserService {
       ResultSet result = stmt.executeQuery();
 
       if (result.next()) {
-        User match =
-            new User(
-                result.getInt("ID"),
-                result.getString("username"),
-                result.getString("email"),
-                result.getString("password"),
-                Paths.get(result.getString("avatar")),
-                UserStatus.fromString(result.getString("status")),
-                UserDiscriminator.fromString(result.getString("discr")));
+        User match = new User();
+        match.setID(result.getInt("ID"));
+        match.setEmail(result.getString("email"));
+        match.setUsername(result.getString("username"));
+        match.setPassword(result.getString("password"));
+        match.setStatus(UserStatus.fromString(result.getString("status")));
+        match.setDiscriminator(UserDiscriminator.fromString(result.getString("discr")));
+
+        Optional<String> avatar = Optional.ofNullable(result.getString("avatar"));
+        if (avatar.isPresent()) {
+          match.setAvatar(Paths.get(avatar.get()));
+        }
 
         BCrypt.Result BResult =
             BCrypt.verifyer().verify(user.getPassword().toCharArray(), match.getPassword());
@@ -274,7 +283,7 @@ public class UserService {
         // Do not authenticate if the
         // passwords do not match.
         if (!BResult.verified) {
-          throw new InvalidCredentialsException("The username/password is incorrect");
+          throw new InvalidCredentialsException("The username/password is incorrect.");
         }
 
         // Do not authenticate if the user
@@ -290,40 +299,12 @@ public class UserService {
           this.updateStatus(match);
         }
 
-        return Optional.of(match);
+        return match;
       }
     } catch (SQLException ex) {
       ex.printStackTrace();
     }
 
-    return Optional.empty();
-  }
-
-  public User getUser(int id) {
-    String request = "select * from users where id='" + id + "'";
-    Statement st;
-    try {
-      st = IUser.con.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
-      ResultSet rs = st.executeQuery(request);
-      rs.last();
-      int nb = rs.getRow();
-      rs.beforeFirst();
-      if (nb != 0) {
-        rs.next();
-        User u = new User();
-        u.setID(rs.getInt(1));
-        u.setUsername(rs.getString(2));
-        u.setEmail(rs.getString(3));
-        u.setPassword(rs.getString(4));
-
-        return u;
-      }
-
-    } catch (SQLException ex) {
-      ex.printStackTrace();
-      return null;
-    }
-
-    return null;
+    throw new NoSuchUserException("This user doesn't exist.");
   }
 }
